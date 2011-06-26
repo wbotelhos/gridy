@@ -1,0 +1,60 @@
+/**
+ * jQuery Gridy - A Grid Plugin - http://wbotelhos.com/gridy
+ * --------------------------------------------------------------------------
+ *
+ * 0.1.0 (in this first version you can):
+ *
+ * - Choose class to be used as icon on the descending sort;
+ * - Choose class to be used as icon when there is no sort;
+ * - Choose class to be used as icon on the ascending sort;
+ * - Enables a function to be executed before the grid load;
+ * - Shows pagination buttons;
+ * - Choose alternative text to be prepended on the page buttons;
+ * - Choose width of the buttons wrapper;
+ * - Enables ajax cache;
+ * - Enables rows selection on click;
+ * - Set a list with the width of each column of the grid;
+ * - Enables a function to be executed when the grid load;
+ * - Choose the content type of the ajax request;
+ * - Choose the data type of the ajax request;
+ * - Shows details of the grid request;
+ * - Enables a function to be executed when occurs an error;
+ * - Choose the name of the column where research will be done;
+ * - Set a list with the name of the columns for research;
+ * - Choose the column to do the research;
+ * - Choose the height of the grid;
+ * - Enables highlight rows on mouseover;
+ * - Enables the JSONP content type;
+ * - Choose the name of the callback function for JSONP content type;
+ * - Choose the name of the class used as a loading icon;
+ * - Enables the presentation of the loading message;
+ * - Choose the text that will appear during the loading;
+ * - Enables the display of messages about the grid;
+ * - Choose the time in milliseconds to keep the messages on screen;
+ * - Enables the presentation of the no result message;
+ * - Choose the text shown when no result is found for the search;
+ * - Choose the number of the page to be displayed;
+ * - Set parameters to be added to the query string;
+ * - Enables the presentation of details of the result;
+ * - Choose the text displayed in the details of the result;
+ * - Choose the number of rows displayed on each page;
+ * - Set a list with the numbers of lines availables to choose;
+ * - Enable choose the number of rows displayed;
+ * - Choose the default term to be consulted;
+ * - Enables the automatic focus in the search field;
+ * - Enables the search field; 
+ * - Choose the text displayed in the search field;
+ * - Enables the display of the grid with height limit and scroll;
+ * - Set a List of the columns available for sorting;
+ * - Choose the name of the default column to be sorted;
+ * - Enables the option to sort results by column;
+ * - Choose the order of classification;
+ * - Choose the width of the sort columns wrapper;
+ * - Enables a function to be executed when the grid loads successfully;
+ * - Choose the ID of the script template to be loaded;
+ * - Choose the name of the template style "CSS prefix";
+ * - Choose the type of the HTTP request;
+ * - Choose the url to request the data;
+ * - Choose the width of the grid.
+ *
+ */
