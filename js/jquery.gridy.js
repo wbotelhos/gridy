@@ -286,6 +286,18 @@
 			.children('option[value="' + rows +  '"]').attr('checked', 'checked');
 		}
 
+		if (opt.searchTarget) {
+			$searchField.parent().appendTo(opt.searchTarget);
+		}
+
+		if (opt.findTarget) {
+			$findBox.parent().appendTo(opt.findTarget);
+		}
+
+		if (opt.rowsTarget) {
+			$rowBox.parent().appendTo(opt.rowsTarget);
+		}		
+
 		var $buttons = null;
 		
 		if (opt.buttonOption) {
@@ -524,6 +536,7 @@
 		find:			'id',
 		findList:		[],
 		findOption:		true,
+		findTarget:		null,
 		height:			'auto',
 		hoverFx:		false,
 		jsonp:			false,
@@ -542,9 +555,11 @@
 		rows:			10,
 		rowsList:		[5, 10, 25, 50, 100],
 		rowsOption:		true,
+		rowsTarget:		null,
 		search:			'',
 		searchFocus:	true,
 		searchOption:	true,
+		searchTarget:	null,
 		searchText:		'',
 		scroll:			false,
 		sortList:		[],
