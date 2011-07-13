@@ -289,15 +289,15 @@
 		var scrollSufix = (opt.scroll) ? '-scroll' : '';
 
 		if (opt.hoverFx) {
-			$this.delegate('div.content > div', 'mouseenter', function() {
+			$content.delegate('.row', 'mouseenter', function() {
 				$(this).addClass('item-hover' + scrollSufix);
-			}).delegate('div.content > div', 'mouseleave', function() {
+			}).delegate('.row', 'mouseleave', function() {
 				$(this).removeClass('item-hover' + scrollSufix);
 			});
 		}
 
 		if (opt.clickFx) {
-			$this.delegate('div.content > div', 'click', function(evt) {
+			$content.delegate('.row', 'click', function(evt) {
 				var $this = $(this);
 
 				if (!evt.shiftKey) {
@@ -323,7 +323,6 @@
 				}, opt.messageTimer);
 			}
 		};
-		/** MESSAGE - END **/
 
 		listGridy(opt.page, opt.sortName, opt.sortOrder);
 
