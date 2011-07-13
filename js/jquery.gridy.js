@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  *
- * @version         0.1.0
+ * @version         0.2.0 beta
  * @since           06.03.2011
  * @author          Washington Botelho dos Santos
  * @documentation   wbotelhos.com/gridy
@@ -112,15 +112,17 @@
 
 		if (opt.sortOption && opt.sortList.length > 0) {
 			var sortContent = '',
-				sortItem	= '';
+				sortItem	= '',
+				sortLabel	= '';
 
 			for (var i = 0; i < opt.sortList.length; i++) {
-				sortItem = opt.sortList[i];
+				sortItem = opt.sortList[i][0];
+				sortLabel = opt.sortList[i][1];
 
 				sortContent +=
 						'<div class="sort-item">' +
 							'<div class="' + opt.arrowNone + '"></div>' +
-							'<a id="sort-by-' + sortItem + '" href="javascript:void(0);" name="' + sortItem + '" rel="desc">' + sortItem + '</a>' +
+							'<a id="sort-by-' + sortItem + '" href="javascript:void(0);" name="' + sortItem + '" rel="desc">' + sortLabel + '</a>' +
 						'</div>';
 			}
 
@@ -158,7 +160,7 @@
 			var $sortInit = $('a#sort-by-' + opt.sortName);
 
 			if (!$sortInit.length) {
-				opt.sortName = opt.sortList[0];
+				opt.sortName = opt.sortList[0][0];
 				$sortInit = $('a#sort-by-' + opt.sortName);
 			}
 
@@ -219,28 +221,30 @@
 		if (opt.findOption) {
 			$findBox = $('<div class="find-option"><select></select></div>').appendTo($footerBar).children();
 
-			var hasName		= false,
+			var hasItem		= false,
 				options		= '',
-				name		= '';
+				findItem	= '',
+				findLabel	= '';
 
 			if (opt.findList.length == 0 && opt.sortList.length > 0) {
 				opt.findList = opt.sortList;
-				opt.find = opt.sortList[0];
+				opt.find = opt.sortList[0][0];
 			} else if (opt.findList.length > 0) {
-				opt.find = opt.findList[0];
+				opt.find = opt.findList[0][0];
 			}
 
 			for (var i = 0; i < opt.findList.length; i++) {
-				name = opt.findList[i];
+				findItem = opt.findList[i][0];
+				findLabel = opt.findList[i][1];
 
-				options += '<option value="' + name + '">' + name + '</option>';
+				options += '<option value="' + findItem + '">' + findLabel + '</option>';
 
-				if (name == opt.find) {
-					hasName = true;
+				if (findItem == opt.find) {
+					hasItem = true;
 				}
 			}
 
-			if (!hasName) {
+			if (!hasItem) {
 				$findBox.html('<option value="' + opt.find + '" checked="checked">' + opt.find + '</option>');
 			}
 
@@ -305,11 +309,6 @@
 		};
 
 		listGridy(opt.page, opt.sortName, opt.sortOrder);
-
-		function prevent(evt) {
-			console.log('sdfasdf');
-			evt.preventDefault();
-		};
 
 		function enableGrid(isEnable) {
 			if (isEnable) {
