@@ -245,7 +245,9 @@
 			}
 
 			$findBox.append(options).val(opt.find).change().change(function(index, value) {
-				listGridy(1, $currentSortName.val(), $currentSortOrder.val());
+				if (opt.searchFocus) {
+					$searchField.focus();
+				}
 			})
 			.children('option[value="' + opt.find +  '"]').attr('checked', 'checked');
 		}
