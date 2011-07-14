@@ -110,7 +110,7 @@
 		var $sortBar	= null,
 			$sorterItems	= null;
 
-		if (opt.sortOption && opt.sortList.length > 0) {
+		if (opt.sortList.length > 0) {
 			var sortContent = '',
 				sortItem	= '',
 				sortLabel	= '';
@@ -165,7 +165,7 @@
 			listGridy($currentPage.val(), sortName, nextSortOrder);
 		};
 
-		if (opt.sortOption && opt.sortList.length > 0) {
+		if (opt.sortList.length > 0) {
 			var $sortInit = $('div.sort-bar a#sort-by-' + opt.sortName);
 
 			if (!$sortInit.length) {
@@ -206,7 +206,7 @@
 				if (opt.colsWidth.length > 0) {
 					opt.headersWidth = opt.colsWidth;
 				} else {
-					methods.debug(id + ': headersWith and colsWidth invalid or missing!');
+					methods.debug(id + ': headersWith and colsWidth attributes invalid or missing!');
 					return;
 				}
 			}
@@ -251,7 +251,7 @@
 
 			changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
 		} else {
-			methods.debug(id + ': headersName invalid or missing!');
+			methods.debug(id + ': headersName attribute invalid or missing!');
 			return;
 		}
 
@@ -299,12 +299,18 @@
 				findItem	= '',
 				findLabel	= '';
 
-			if (opt.findList.length == 0 && opt.sortList.length > 0) {
-				opt.findList = opt.sortList;
-				opt.find = opt.sortList[0][0];
-			} else if (opt.findList.length > 0) {
-				opt.find = opt.findList[0][0];
+			if (opt.findList.length == 0) {
+				if (opt.headersName.length > 0) {
+					opt.findList = opt.headersName;
+				} else if (opt.sortList.length > 0) {
+					opt.findList = opt.sortList;
+				} else {
+					methods.debug(id + ': find attribute invalid or missing!');
+					return;
+				}
 			}
+
+			opt.find = opt.findList[0][0];
 
 			for (var i = 0; i < opt.findList.length; i++) {
 				findItem = opt.findList[i][0];
@@ -402,7 +408,7 @@
 					$searchButton.removeAttr('disabled');
 				}
 
-				if (opt.sortOption) {
+				if (opt.sortList.length > 0) {
 					$sorterItems.delegate('a', 'click', sortGridyFunction);
 					$headerItems.delegate('a:not(".no-sort")', 'click', sortGridyFunction);
 				}
@@ -416,7 +422,7 @@
 					$searchButton.attr('disabled', 'disabled');
 				}
 
-				if (opt.sortOption) {
+				if (opt.sortList.length > 0) {
 					$sorterItems.undelegate('a', 'click');
 					$headerItems.undelegate('a:not(".no-sort")', 'click');
 				}
@@ -445,7 +451,7 @@
 				enableGrid(true);
 				return;
 			} else {
-				if (opt.sortOption && opt.sortList.length > 0) {
+				if (opt.sortList.length > 0) {
 					$sortBar.show();
 				}
 			}
@@ -644,7 +650,6 @@
 		scroll:			false,
 		sortList:		[],
 		sortName:		'id',
-		sortOption:		true,
 		sortOrder:		'asc',
 		sortWidth:		'auto',
 		success:		null,
