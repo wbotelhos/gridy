@@ -318,7 +318,7 @@
 			}
 
 			$findBox.append(options).val(opt.find).change().change(function(index, value) {
-				if (opt.searchFocus) {
+				if (opt.searchOption && opt.searchFocus) {
 					$searchField.focus();
 				}
 			})
