@@ -15,12 +15,12 @@ div.gridy-default div.arrow-down { background-position: -64px -48px; }
 
 div.gridy-default a.no-sort { cursor: default; }
 
-div.gridy-default div.sort-bar { margin: 0 auto; margin-bottom: 35px; }
-div.gridy-default div.sort-bar div.sort-item { float: left; margin-right: 10px; }
-div.gridy-default div.sort-bar div.sort-item div { float: left; }
-div.gridy-default div.sort-bar div.sort-item a { font: 14px monospace; color: #369; letter-spacing: 2px; text-decoration: none; text-transform: capitalize; }
-div.gridy-default div.sort-bar div.sort-item a:hover { color: #339BD0; }
-div.gridy-default div.sort-bar div.sort-item a.sorted { color: #2C8CBD; font-weight: bold; }
+div.gridy-default div.sorter-bar { margin: 0 auto; margin-bottom: 35px; }
+div.gridy-default div.sorter-bar div.sorter-item { float: left; margin-right: 10px; }
+div.gridy-default div.sorter-bar div.sorter-item div { float: left; }
+div.gridy-default div.sorter-bar div.sorter-item a { font: 14px monospace; color: #369; letter-spacing: 2px; text-decoration: none; text-transform: capitalize; }
+div.gridy-default div.sorter-bar div.sorter-item a:hover { color: #339BD0; }
+div.gridy-default div.sorter-bar div.sorter-item a.sorted { color: #2C8CBD; font-weight: bold; }
 
 div.gridy-default div.fade { opacity: .6; }
 
