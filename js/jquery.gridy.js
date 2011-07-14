@@ -111,29 +111,30 @@
 			$sorterItems	= null;
 
 		if (opt.sortersName.length > 0) {
-			var sortContent = '',
-				sortItem	= '',
-				sortLabel	= '';
+			var sorterContent	= '',
+				sorterItem		= '',
+				sorterLabel		= '';
 
 			for (var i = 0; i < opt.sortersName.length; i++) {
-				sortItem = opt.sortersName[i][0];
-				sortLabel = opt.sortersName[i][1];
+				sorterItem = opt.sortersName[i][0];
+				sorterLabel = opt.sortersName[i][1];
 
-				sortContent +=
+				sorterContent +=
 						'<div class="sorter-item">' +
 							'<div class="' + opt.arrowNone + '"></div>' +
-							'<a id="sort-by-' + sortItem + '" href="javascript:void(0);" name="' + sortItem + '" rel="desc">' + sortLabel + '</a>' +
+							'<a id="sort-by-' + sorterItem + '" href="javascript:void(0);" name="' + sorterItem + '" rel="desc">' + sorterLabel + '</a>' +
 						'</div>';
 			}
 
-			$sortBar = $('<div class="sorter-bar"/>').css('width', methods.getSize(opt.sorterWidth)).html(sortContent).appendTo($this);
-			$sorterItems = $sortBar.children('div.sorter-item').delegate('a', 'click', sortGridyFunction);
+			$sortBar = $('<div class="sorter-bar"/>').css('width', methods.getSize(opt.sorterWidth)).html(sorterContent).appendTo($this);
 
-			var $sortInit = $('div.sorter-bar a#sort-by-' + opt.sortName);
+			$sorterItems = $sortBar.children().delegate('a', 'click', sortGridyFunction);
+
+			var $sortInit = $sorterItems.find('a#sort-by-' + opt.sortName);
 
 			if (!$sortInit.length) {
 				opt.sortName = opt.sortersName[0][0];
-				$sortInit = $('div.sorter-bar a#sort-by-' + opt.sortName);
+				$sortInit = $sorterItems.find('a#sort-by-' + opt.sortName);
 			}
 
 			var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
@@ -197,8 +198,8 @@
 
 			var $head		= null,
 				$sortLink	= null,
-				sortName	= '',
-				sortLabel	= '';
+				headName	= '',
+				headLabel	= '';
 
 			if (opt.headersWidth.length <= 0) {
 				if (opt.colsWidth.length > 0) {
@@ -210,15 +211,15 @@
 			}
 
 			for (var i = 0; i < opt.headersName.length; i++) {
-				sortName = opt.headersName[i][0];
-				sortLabel = opt.headersName[i][1];
+				headName = opt.headersName[i][0];
+				headLabel = opt.headersName[i][1];
 
-				$sortLink = $('<a/>', { href: 'javascript:void(0);', html: sortLabel });
+				$sortLink = $('<a/>', { href: 'javascript:void(0);', html: headLabel });
 
 				$head = $('<div class="head-item"/>');
 
-				if (sortName) {
-					$sortLink.attr({ id: 'sort-by-' + sortName, name: sortName, rel: 'desc' });
+				if (headName) {
+					$sortLink.attr({ id: 'sort-by-' + headName, name: headName, rel: 'desc' });
 
 					var $sortIcon = $('<div/>', { 'class': opt.arrowNone });
 
