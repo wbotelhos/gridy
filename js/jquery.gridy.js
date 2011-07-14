@@ -250,9 +250,6 @@
 				isResetIcon	= false;
 
 			changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
-		} else {
-			methods.debug(id + ': headersName attribute invalid or missing!');
-			return;
 		}
 
 		var $content = $('<div class="content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
@@ -285,13 +282,13 @@
 
 		var $footerBar = null;
 
-		if (opt.findOption || opt.rowsName.length > 0  || opt.messageOption) {
+		if (opt.findsName.length > 0 || opt.rowsName.length > 0  || opt.messageOption) {
 			$footerBar = $('<div class="footer"/>').css('width', methods.getSize(opt.width)).appendTo($this);
 		}
 
 		var $findBox = null;
 
-		if (opt.findOption) {
+		if (opt.findsName.length > 0 || opt.headersName.length > 0 || opt.sortersName.length > 0) {
 			$findBox = $('<div class="find-option"><select></select></div>').appendTo($footerBar).children();
 
 			var hasItem		= false,
@@ -299,22 +296,26 @@
 				findItem	= '',
 				findLabel	= '';
 
-			if (opt.findList.length == 0) {
+			if (opt.findsName.length == 0) {
 				if (opt.headersName.length > 0) {
-					opt.findList = opt.headersName;
+					opt.findsName = opt.headersName;
 				} else if (opt.sortersName.length > 0) {
-					opt.findList = opt.sortersName;
+					opt.findsName = opt.sortersName;
 				} else {
-					methods.debug(id + ': find attribute invalid or missing!');
-					return;
+					if (opt.find) {
+						opt.findsName.push(opt.find);
+					} else {
+						methods.debug(id + ': find attribute invalid or missing!');
+						return;
+					}
 				}
 			}
 
-			opt.find = opt.findList[0][0];
+			opt.find = opt.findsName[0][0];
 
-			for (var i = 0; i < opt.findList.length; i++) {
-				findItem = opt.findList[i][0];
-				findLabel = opt.findList[i][1];
+			for (var i = 0; i < opt.findsName.length; i++) {
+				findItem = opt.findsName[i][0];
+				findLabel = opt.findsName[i][1];
 
 				options += '<option value="' + findItem + '">' + findLabel + '</option>';
 
@@ -414,7 +415,7 @@
 				}
 
 				if (opt.buttonOption) { $buttons.children().removeAttr('disabled'); }
-				if (opt.findOption) { $findBox.removeAttr('disabled'); }
+				if (opt.findsName.length > 0) { $findBox.removeAttr('disabled'); }
 				if (opt.rowsName.length > 0 ) { $rowBox.removeAttr('disabled'); }
 			} else {
 				if (opt.searchOption) {
@@ -428,7 +429,7 @@
 				}
 
 				if (opt.buttonOption) { $buttons.children().attr('disabled', 'disabled'); }
-				if (opt.findOption) { $findBox.attr('disabled', 'disabled'); }
+				if (opt.findsName.length > 0) { $findBox.attr('disabled', 'disabled'); }
 				if (opt.rowsName.length > 0 ) { $rowBox.attr('disabled', 'disabled'); }
 			}
 		};
@@ -514,7 +515,7 @@
 
 			var key				= opt.search,
 				selectedRows	= (opt.rowsName.length > 0 ) ? $rowBox.val() : opt.rows,
-				selectedFind	= (opt.findOption) ? $findBox.val() : opt.find;
+				selectedFind	= (opt.findsName.length > 0) ? $findBox.val() : opt.find;
 
 			if (opt.searchOption) {
 				key = ($searchField.val() == opt.searchText) ? '' : $searchField.val();
@@ -618,8 +619,7 @@
 		debug:			false,
 		error: 			null,
 		find:			'id',
-		findList:		[],
-		findOption:		true,
+		findsName:		[],
 		findTarget:		null,
 		headersName:	[],
 		headersWidth:	[],
