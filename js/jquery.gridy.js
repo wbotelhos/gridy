@@ -126,7 +126,7 @@
 						'</div>';
 			}
 
-			$sortBar = $('<div class="sorter-bar"/>').css('width', methods.getSize(opt.sortWidth)).html(sortContent).appendTo($this);
+			$sortBar = $('<div class="sorter-bar"/>').css('width', methods.getSize(opt.sorterWidth)).html(sortContent).appendTo($this);
 			$sorterItems = $sortBar.children('div.sorter-item').delegate('a', 'click', sortGridyFunction);
 		}
 
@@ -649,9 +649,9 @@
 		searchText:		'',
 		scroll:			false,
 		sortersName:	[],
+		sorterWidth:	'auto',
 		sortName:		'id',
 		sortOrder:		'asc',
-		sortWidth:		'auto',
 		success:		null,
 		template:		'template',
 		templateStyle:	'gridy-default',
