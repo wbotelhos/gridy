@@ -297,7 +297,7 @@
 				findLabel	= '';
 
 			if (opt.findsName.length == 0) {
-				opt.findsName = (opt.headersName.length > 0) ? opt.headersNam : opt.sortersName;
+				opt.findsName = (opt.headersName.length > 0) ? opt.headersName : opt.sortersName;
 			}
 
 			opt.find = opt.findsName[0][0];
