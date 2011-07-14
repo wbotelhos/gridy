@@ -5,16 +5,22 @@ div.gridy-default div.search input[type="button"] { height: 28px; margin-left: 2
 div.gridy-default div.search input[type="text"] { color: #BBB; height: 20px; padding-left: 4px; margin-bottom: 5px; }
 div.gridy-default div.search input[type="text"].typed { color: #444; }
 
+div.gridy-default div.arrow-none,
+div.gridy-default div.arrow-down,
+div.gridy-default div.arrow-up { background-image: url('../img/jquery-icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
+
+div.gridy-default div.arrow-up { background-position: 0 -48px; }
+div.gridy-default div.arrow-none { background-position: -128px -32px; }
+div.gridy-default div.arrow-down { background-position: -64px -48px; }
+
+div.gridy-default a.no-sort { cursor: default; }
+
 div.gridy-default div.sort-bar { margin: 0 auto; margin-bottom: 35px; }
 div.gridy-default div.sort-bar div.sort-item { float: left; margin-right: 10px; }
 div.gridy-default div.sort-bar div.sort-item div { float: left; }
 div.gridy-default div.sort-bar div.sort-item a { font: 14px monospace; color: #369; letter-spacing: 2px; text-decoration: none; text-transform: capitalize; }
 div.gridy-default div.sort-bar div.sort-item a:hover { color: #339BD0; }
 div.gridy-default div.sort-bar div.sort-item a.sorted { color: #2C8CBD; font-weight: bold; }
-div.gridy-default div.sort-bar div.sort-item div.arrow-none, div.arrow-down, div.arrow-up { background-image: url('../img/jquery-icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
-div.gridy-default div.sort-bar div.sort-item div.arrow-up { background-position: 0 -48px; }
-div.gridy-default div.sort-bar div.sort-item div.arrow-none { background-position: -128px -32px; }
-div.gridy-default div.sort-bar div.sort-item div.arrow-down { background-position: -64px -48px; }
 
 div.gridy-default div.fade { opacity: .6; }
 
@@ -24,8 +30,12 @@ div.gridy-default div.loading div { background: url("../img/loading.gif") no-rep
 div.gridy-default div.result { color: #555; float: right; font-size: 12px; margin-bottom: 5px; margin-right: 37px; text-align: right; width: 190px; }
 
 div.gridy-default div.header { clear: both; height: 24px; margin: 0 auto 0 15px; }
-div.gridy-default div.header div.button { padding-left: 0 !important; padding-right: 0 !important; }
-div.gridy-default div.header div.head { float: left; font-weight: bold; margin-top: 4px; padding: 7px; text-align: center; }
+div.gridy-default div.header div.head-item { float: left; margin-top: 4px; padding: 7px; text-align: center; }
+div.gridy-default div.header div.head-item div { float: right; }
+div.gridy-default div.header div.head-item a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
+div.gridy-default div.header div.head-item a:hover { color: #339BD0; }
+div.gridy-default div.header div.head-item a.sorted { color: #2C8CBD; font-weight: bold; }
+div.gridy-default div.header div.column-button { padding-left: 0 !important; padding-right: 0 !important; }
 
 div.gridy-default div.content { clear: both; height: auto; margin: 0 auto; overflow: visible; }
 div.gridy-default div.content div.item-hover { background-color: #D9EBF5; border-color: #BBB; }

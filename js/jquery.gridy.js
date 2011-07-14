@@ -108,7 +108,7 @@
 		}
 
 		var $sortBar	= null,
-			$sortItems	= null;
+			$sorterItems	= null;
 
 		if (opt.sortOption && opt.sortList.length > 0) {
 			var sortContent = '',
@@ -127,21 +127,30 @@
 			}
 
 			$sortBar = $('<div class="sort-bar"/>').css('width', methods.getSize(opt.sortWidth)).html(sortContent).appendTo($this);
-			$sortItems = $sortBar.children('div.sort-item');
-
-			$sortItems.delegate('a', 'click', sortGridyFunction);
+			$sorterItems = $sortBar.children('div.sort-item').delegate('a', 'click', sortGridyFunction);
 		}
 
 		function sortGridyFunction() {
 			sortGridy($(this));
 		};
 
-		function changeSortIndicator(_sortLink, _sortOrder, _sortIcon, _isClearIcon) {
-			if (_isClearIcon) {
-				$sortBar.find('a.sorted').attr('rel', 'desc').removeClass('sorted').prev('div').removeClass().addClass('arrow-none');
+		function changeSortIndicator(_sortLink, _sortOrder, _sortIcon, _isResetIcon) {
+			var $sortWrapper	= _sortLink.parent().parent(),
+				isHeader		= opt.headersName.length > 0 && $sortWrapper.attr('class') == 'header';
+
+			if (_isResetIcon) {
+				var $links = $sortWrapper.find('a.sorted').attr('rel', 'desc').removeClass('sorted');
+
+				$links = (isHeader) ? $links.next('div') : $links.prev('div');
+
+				$links.removeClass().addClass('arrow-none');
 			}
 
-			_sortLink.attr('rel', _sortOrder).addClass('sorted').prev('div').removeClass().addClass(_sortIcon);
+			_sortLink.attr('rel', _sortOrder).addClass('sorted');
+
+			var $sortIcon = (isHeader) ? _sortLink.next('div') : _sortLink.prev('div');
+
+			$sortIcon.removeClass().addClass(_sortIcon);
 		};
 
 		function sortGridy(_clickedLink) {
@@ -149,25 +158,25 @@
 				sortOrder		= _clickedLink.attr('rel'),
 				nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
 				sortIcon		= (sortOrder == 'desc') ? 'arrow-up' : 'arrow-down',
-				isClearIcon		= $sortBar.find('a.sorted').length > 0;
+				isResetIcon		= $sortBar.find('a.sorted').length > 0;
 
-			changeSortIndicator(_clickedLink, nextSortOrder, sortIcon, isClearIcon);
+			changeSortIndicator(_clickedLink, nextSortOrder, sortIcon, isResetIcon);
 
 			listGridy($currentPage.val(), sortName, nextSortOrder);
 		};
 
 		if (opt.sortOption && opt.sortList.length > 0) {
-			var $sortInit = $('a#sort-by-' + opt.sortName);
+			var $sortInit = $('div.sort-bar a#sort-by-' + opt.sortName);
 
 			if (!$sortInit.length) {
 				opt.sortName = opt.sortList[0][0];
-				$sortInit = $('a#sort-by-' + opt.sortName);
+				$sortInit = $('div.sort-bar a#sort-by-' + opt.sortName);
 			}
 
 			var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
-				isClearIcon	= false;
+				isResetIcon	= false;
 
-			changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isClearIcon);
+			changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
 		}
 
 		var $loading = null;
@@ -182,30 +191,68 @@
 			$result = $('<div class="result"/>').appendTo($this);
 		}
 
-		var $header = null;
-		
-		if (opt.headerOption) {
+		var $header			= null,
+			$headerItems	= null;
+
+		if (opt.headersName.length > 0) {
 			$header = $('<div class="header"/>').appendTo($this);
 
-			if (opt.headerList.length == 0) {
-				methods.debug(id + ': headerList invalid or missing!');
-				return;
-			} else if (opt.colsWidth.length == 0) {
-				methods.debug(id + ': colsWidth invalid or missing!');
-				return;
-			} else {
-				var $head = null;
-				
-				for (var i = 0; i < opt.headerList.length; i++) {
-					$head = $('<div class="head">' + opt.headerList[i][1] + '</div>');
-					
-					if (opt.headerList[i][2]) {
-						$head.addClass(opt.headerList[i][2]);
-					}
-					
-					$head.css('width', opt.colsWidth[i]).appendTo($header);
+			var $head		= null,
+				$sortLink	= null,
+				sortName	= '',
+				sortLabel	= '';
+
+			if (opt.headersWidth.length <= 0) {
+				if (opt.colsWidth.length > 0) {
+					opt.headersWidth = opt.colsWidth;
+				} else {
+					methods.debug(id + ': headersWith and colsWidth invalid or missing!');
+					return;
 				}
 			}
+
+			for (var i = 0; i < opt.headersName.length; i++) {
+				sortName = opt.headersName[i][0];
+				sortLabel = opt.headersName[i][1];
+
+				$sortLink = $('<a/>', { href: 'javascript:void(0);', html: sortLabel });
+
+				$head = $('<div class="head-item"/>');
+
+				if (sortName) {
+					$sortLink.attr({ id: 'sort-by-' + sortName, name: sortName, rel: 'desc' });
+
+					var $sortIcon = $('<div/>', { 'class': opt.arrowNone });
+
+					$head.append($sortLink, $sortIcon);
+				} else {
+					$sortLink.attr('class', 'no-sort');
+					$head.append($sortLink);
+				}
+
+				if (opt.headersName[i][2]) {
+					$head.addClass(opt.headersName[i][2]);
+				}
+
+				$head.css('width', opt.headersWidth[i]).appendTo($header);
+			}
+
+			$headerItems = $header.children().delegate('a:not(".no-sort")', 'click', sortGridyFunction);
+
+			var $sortInit = $('div.header a#sort-by-' + opt.sortName);
+
+			if (!$sortInit.length) {
+				opt.sortName = opt.headersName[0][0];
+				$sortInit = $('div.header a#sort-by-' + opt.sortName);
+			}
+
+			var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
+				isResetIcon	= false;
+
+			changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
+		} else {
+			methods.debug(id + ': headersName invalid or missing!');
+			return;
 		}
 
 		var $content = $('<div class="content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
@@ -356,7 +403,8 @@
 				}
 
 				if (opt.sortOption) {
-					$sortItems.delegate('a', 'click', sortGridyFunction);
+					$sorterItems.delegate('a', 'click', sortGridyFunction);
+					$headerItems.delegate('a:not(".no-sort")', 'click', sortGridyFunction);
 				}
 
 				if (opt.buttonOption) { $buttons.children().removeAttr('disabled'); }
@@ -368,7 +416,11 @@
 					$searchButton.attr('disabled', 'disabled');
 				}
 
-				if (opt.sortOption) { $sortItems.undelegate('a', 'click'); }
+				if (opt.sortOption) {
+					$sorterItems.undelegate('a', 'click');
+					$headerItems.undelegate('a:not(".no-sort")', 'click');
+				}
+
 				if (opt.buttonOption) { $buttons.children().attr('disabled', 'disabled'); }
 				if (opt.findOption) { $findBox.attr('disabled', 'disabled'); }
 				if (opt.rowsOption) { $rowBox.attr('disabled', 'disabled'); }
@@ -563,8 +615,8 @@
 		findList:		[],
 		findOption:		true,
 		findTarget:		null,
-		header:			false,
-		headerList:		[],
+		headersName:	[],
+		headersWidth:	[],
 		height:			'auto',
 		hoverFx:		false,
 		jsonp:			false,
