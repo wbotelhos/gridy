@@ -23,6 +23,10 @@ div.gridy-default div.loading div { background: url("../img/loading.gif") no-rep
 
 div.gridy-default div.result { color: #555; float: right; font-size: 12px; margin-bottom: 5px; margin-right: 37px; text-align: right; width: 190px; }
 
+div.gridy-default div.header { clear: both; height: 24px; margin: 0 auto 0 15px; }
+div.gridy-default div.header div.button { padding-left: 0 !important; padding-right: 0 !important; }
+div.gridy-default div.header div.head { float: left; font-weight: bold; margin-top: 4px; padding: 7px; text-align: center; }
+
 div.gridy-default div.content { clear: both; height: auto; margin: 0 auto; overflow: visible; }
 div.gridy-default div.content div.item-hover { background-color: #D9EBF5; border-color: #BBB; }
 div.gridy-default div.content div.item-hover-scroll { background-color: #D9EBF5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
