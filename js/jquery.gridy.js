@@ -285,7 +285,7 @@
 
 		var $footerBar = null;
 
-		if (opt.findOption || opt.rowsOption || opt.messageOption) {
+		if (opt.findOption || opt.rowsName.length > 0  || opt.messageOption) {
 			$footerBar = $('<div class="footer"/>').css('width', methods.getSize(opt.width)).appendTo($this);
 		}
 
@@ -337,7 +337,7 @@
 
 		var $rowBox = null;
 
-		if (opt.rowsOption) {
+		if (opt.rowsName.length > 0 ) {
 			$rowBox = $('<div class="row-option"><select></select></div>').appendTo($footerBar).children();
 
 			var rows		= (opt.rows < 1) ? 1 : opt.rows,
@@ -345,8 +345,8 @@
 				options		= '',
 				number		= '';
 
-			for (var i = 0; i < opt.rowsList.length; i++) {
-				number = opt.rowsList[i];
+			for (var i = 0; i < opt.rowsName.length; i++) {
+				number = opt.rowsName[i];
 
 				if (number == rows) {
 					hasNumber = true;
@@ -415,7 +415,7 @@
 
 				if (opt.buttonOption) { $buttons.children().removeAttr('disabled'); }
 				if (opt.findOption) { $findBox.removeAttr('disabled'); }
-				if (opt.rowsOption) { $rowBox.removeAttr('disabled'); }
+				if (opt.rowsName.length > 0 ) { $rowBox.removeAttr('disabled'); }
 			} else {
 				if (opt.searchOption) {
 					$searchField.attr('readonly', 'readonly');
@@ -429,7 +429,7 @@
 
 				if (opt.buttonOption) { $buttons.children().attr('disabled', 'disabled'); }
 				if (opt.findOption) { $findBox.attr('disabled', 'disabled'); }
-				if (opt.rowsOption) { $rowBox.attr('disabled', 'disabled'); }
+				if (opt.rowsName.length > 0 ) { $rowBox.attr('disabled', 'disabled'); }
 			}
 		};
 
@@ -513,7 +513,7 @@
 			startLoading(true);
 
 			var key				= opt.search,
-				selectedRows	= (opt.rowsOption) ? $rowBox.val() : opt.rows,
+				selectedRows	= (opt.rowsName.length > 0 ) ? $rowBox.val() : opt.rows,
 				selectedFind	= (opt.findOption) ? $findBox.val() : opt.find;
 
 			if (opt.searchOption) {
@@ -639,8 +639,7 @@
 		resultOption:	true,
 		resultText:		'Displaying {from} - {to} of {total} items',
 		rows:			10,
-		rowsList:		[5, 10, 25, 50, 100],
-		rowsOption:		true,
+		rowsName:		[5, 10, 25, 50, 100],
 		rowsTarget:		null,
 		search:			'',
 		searchFocus:	true,
