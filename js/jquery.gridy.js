@@ -128,6 +128,18 @@
 
 			$sortBar = $('<div class="sorter-bar"/>').css('width', methods.getSize(opt.sorterWidth)).html(sortContent).appendTo($this);
 			$sorterItems = $sortBar.children('div.sorter-item').delegate('a', 'click', sortGridyFunction);
+
+			var $sortInit = $('div.sorter-bar a#sort-by-' + opt.sortName);
+
+			if (!$sortInit.length) {
+				opt.sortName = opt.sortersName[0][0];
+				$sortInit = $('div.sorter-bar a#sort-by-' + opt.sortName);
+			}
+
+			var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
+				isResetIcon	= false;
+
+			changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
 		}
 
 		function sortGridyFunction() {
@@ -164,20 +176,6 @@
 
 			listGridy($currentPage.val(), sortName, nextSortOrder);
 		};
-
-		if (opt.sortersName.length > 0) {
-			var $sortInit = $('div.sorter-bar a#sort-by-' + opt.sortName);
-
-			if (!$sortInit.length) {
-				opt.sortName = opt.sortersName[0][0];
-				$sortInit = $('div.sorter-bar a#sort-by-' + opt.sortName);
-			}
-
-			var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
-				isResetIcon	= false;
-
-			changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
-		}
 
 		var $loading = null;
 
