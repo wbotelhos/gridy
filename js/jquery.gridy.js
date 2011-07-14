@@ -166,14 +166,14 @@
 			sortGridy($(this));
 		};
 
-		function sortGridy(_clickedLink) {
-			var sortName		= _clickedLink.attr('name'),
-				sortOrder		= _clickedLink.attr('rel'),
+		function sortGridy(clickedLink) {
+			var sortName		= clickedLink.attr('name'),
+				sortOrder		= clickedLink.attr('rel'),
 				nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
 				sortIcon		= (sortOrder == 'desc') ? 'arrow-up' : 'arrow-down',
-				isResetIcon		= _clickedLink.parent().parent().find('a.sorted').length > 0;
+				isResetIcon		= clickedLink.parent().parent().find('a.sorted').length > 0;
 
-			changeSortIndicator(_clickedLink, nextSortOrder, sortIcon, isResetIcon);
+			changeSortIndicator(clickedLink, nextSortOrder, sortIcon, isResetIcon);
 
 			listGridy($currentPage.val(), sortName, nextSortOrder);
 		};
@@ -287,19 +287,13 @@
 
 		var $findBox = null;
 
-		if (opt.findsName.length > 0 || opt.headersName.length > 0 || opt.sortersName.length > 0) {
+		if (opt.findsName.length > 0) {
 			$findBox = $('<div class="find-option"><select></select></div>').appendTo($footerBar).children();
 
 			var hasItem		= false,
 				options		= '',
 				findItem	= '',
 				findLabel	= '';
-
-			if (opt.findsName.length == 0) {
-				opt.findsName = (opt.headersName.length > 0) ? opt.headersName : opt.sortersName;
-			}
-
-			opt.find = opt.findsName[0][0];
 
 			for (var i = 0; i < opt.findsName.length; i++) {
 				findItem = opt.findsName[i][0];
@@ -322,13 +316,6 @@
 				}
 			})
 			.children('option[value="' + opt.find +  '"]').attr('checked', 'checked');
-		} else {
-			if (opt.find) {
-				opt.findsName.push(opt.find);
-			} else {
-				methods.debug(id + ': find attribute invalid or missing!');
-				return;
-			}
 		}
 
 		var $rowBox = null;
