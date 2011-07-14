@@ -297,18 +297,7 @@
 				findLabel	= '';
 
 			if (opt.findsName.length == 0) {
-				if (opt.headersName.length > 0) {
-					opt.findsName = opt.headersName;
-				} else if (opt.sortersName.length > 0) {
-					opt.findsName = opt.sortersName;
-				} else {
-					if (opt.find) {
-						opt.findsName.push(opt.find);
-					} else {
-						methods.debug(id + ': find attribute invalid or missing!');
-						return;
-					}
-				}
+				opt.findsName = (opt.headersName.length > 0) ? opt.headersNam : opt.sortersName;
 			}
 
 			opt.find = opt.findsName[0][0];
@@ -334,6 +323,13 @@
 				}
 			})
 			.children('option[value="' + opt.find +  '"]').attr('checked', 'checked');
+		} else {
+			if (opt.find) {
+				opt.findsName.push(opt.find);
+			} else {
+				methods.debug(id + ': find attribute invalid or missing!');
+				return;
+			}
 		}
 
 		var $rowBox = null;
@@ -618,7 +614,7 @@
 		dataType:		'json',
 		debug:			false,
 		error: 			null,
-		find:			'id',
+		find:			'',
 		findsName:		[],
 		findTarget:		null,
 		headersName:	[],
