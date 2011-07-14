@@ -107,6 +107,25 @@
 			});
 		}
 
+		function changeSortIndicator(clickedLink, sortOrder, sortIcon, isResetIcon) {
+			var $sortWrapper	= clickedLink.parent().parent(),
+				isHeader		= opt.headersName.length > 0 && $sortWrapper.attr('class') == 'header';
+
+			if (isResetIcon) {
+				var $sortedLink = $sortWrapper.find('a.sorted').attr('rel', 'desc').removeClass('sorted');
+
+				$sortedLink = (isHeader) ? $sortedLink.next('div') : $sortedLink.prev('div');
+
+				$sortedLink.removeClass().addClass('arrow-none');
+			}
+
+			clickedLink.attr('rel', sortOrder).addClass('sorted');
+
+			var $sortIcon = (isHeader) ? clickedLink.next('div') : clickedLink.prev('div');
+
+			$sortIcon.removeClass().addClass(sortIcon);
+		};
+
 		var $sortBar		= null,
 			$sorterItems	= null;
 
@@ -145,25 +164,6 @@
 
 		function sortGridyFunction() {
 			sortGridy($(this));
-		};
-
-		function changeSortIndicator(_sortLink, _sortOrder, _sortIcon, _isResetIcon) {
-			var $sortWrapper	= _sortLink.parent().parent(),
-				isHeader		= opt.headersName.length > 0 && $sortWrapper.attr('class') == 'header';
-
-			if (_isResetIcon) {
-				var $links = $sortWrapper.find('a.sorted').attr('rel', 'desc').removeClass('sorted');
-
-				$links = (isHeader) ? $links.next('div') : $links.prev('div');
-
-				$links.removeClass().addClass('arrow-none');
-			}
-
-			_sortLink.attr('rel', _sortOrder).addClass('sorted');
-
-			var $sortIcon = (isHeader) ? _sortLink.next('div') : _sortLink.prev('div');
-
-			$sortIcon.removeClass().addClass(_sortIcon);
 		};
 
 		function sortGridy(_clickedLink) {
