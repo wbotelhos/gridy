@@ -158,8 +158,7 @@
 				sortOrder		= _clickedLink.attr('rel'),
 				nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
 				sortIcon		= (sortOrder == 'desc') ? 'arrow-up' : 'arrow-down',
-				$sortWrapper	= _clickedLink.parent().parent(),
-				isResetIcon		= $sortWrapper.find('a.sorted').length > 0;
+				isResetIcon		= _clickedLink.parent().parent().find('a.sorted').length > 0;
 
 			changeSortIndicator(_clickedLink, nextSortOrder, sortIcon, isResetIcon);
 
