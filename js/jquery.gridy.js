@@ -182,6 +182,32 @@
 			$result = $('<div class="result"/>').appendTo($this);
 		}
 
+		var $header = null;
+		
+		if (opt.headerOption) {
+			$header = $('<div class="header"/>').appendTo($this);
+
+			if (opt.headerList.length == 0) {
+				methods.debug(id + ': headerList invalid or missing!');
+				return;
+			} else if (opt.colsWidth.length == 0) {
+				methods.debug(id + ': colsWidth invalid or missing!');
+				return;
+			} else {
+				var $head = null;
+				
+				for (var i = 0; i < opt.headerList.length; i++) {
+					$head = $('<div class="head">' + opt.headerList[i][1] + '</div>');
+					
+					if (opt.headerList[i][2]) {
+						$head.addClass(opt.headerList[i][2]);
+					}
+					
+					$head.css('width', opt.colsWidth[i]).appendTo($header);
+				}
+			}
+		}
+
 		var $content = $('<div class="content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
 
 		function startLoading(isStart) {
@@ -537,6 +563,8 @@
 		findList:		[],
 		findOption:		true,
 		findTarget:		null,
+		header:			false,
+		headerList:		[],
 		height:			'auto',
 		hoverFx:		false,
 		jsonp:			false,
