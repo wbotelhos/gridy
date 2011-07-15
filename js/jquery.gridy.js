@@ -151,15 +151,12 @@
 
 			var $sortInit = $sorterItems.find('a#sort-by-' + opt.sortName);
 
-			if (!$sortInit.length) {
-				opt.sortName = opt.sortersName[0][0];
-				$sortInit = $sorterItems.find('a#sort-by-' + opt.sortName);
+			if ($sortInit.length) {
+				var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
+					isResetIcon	= false;
+	
+				changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
 			}
-
-			var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
-				isResetIcon	= false;
-
-			changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
 		}
 
 		function sortGridyFunction() {
@@ -240,15 +237,12 @@
 
 			var $sortInit = $('div.header a#sort-by-' + opt.sortName);
 
-			if (!$sortInit.length) {
-				opt.sortName = opt.headersName[0][0];
-				$sortInit = $('div.header a#sort-by-' + opt.sortName);
+			if ($sortInit.length) {
+				var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
+					isResetIcon	= false;
+
+				changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
 			}
-
-			var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
-				isResetIcon	= false;
-
-			changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
 		}
 
 		var $content = $('<div class="content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
