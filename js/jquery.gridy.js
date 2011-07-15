@@ -625,7 +625,7 @@
 		scroll:			false,
 		sortersName:	[],
 		sorterWidth:	'auto',
-		sortName:		'id',
+		sortName:		'',
 		sortOrder:		'asc',
 		success:		null,
 		template:		'template',
