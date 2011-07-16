@@ -458,27 +458,87 @@
 				$result.html(resultText);
 			}
 
-			enableGrid(true);
-
 			if (opt.buttonOption) {
 				if (wrapper.total > selectedRows) {
-					var buttons	= '',
-						number	= 0;
+					var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="empty"/>&nbsp;',
+						buttons		= '',
+						number		= 0,
+						rangePage	= null,
+						start		= 1;
 
-					for (var i = 1; i <= totalPage; i++) {
+					if (opt.buttonMax > totalPage) {
+						//opt.buttonMax = totalPage;
+					}
+
+					if (opt.buttonMax % 2 == 0) {
+						rangePage	= opt.buttonMax / 2;
+						start		= page - rangePage + 1;
+					} else {
+						rangePage	= Math.floor(opt.buttonMax / 2);
+						start		= page - rangePage;
+					}
+
+					var end = page + rangePage;
+
+					if (start == 0) {
+						end++;
+						start = 1;
+					}
+
+					if (start < 0) {
+						end += Math.abs(start) + 1;
+						start = 1;
+					}
+
+					if (end > totalPage) {
+						if (start > 1) {
+							start -= (end - totalPage);
+						}
+
+						end = totalPage;
+					}
+
+					var hasBackNavigation	= page > rangePage,
+						hasNextNavigation	= page < (totalPage - rangePage);
+
+					if (hasBackNavigation) {
+						buttons = '<input type="button" value="&lsaquo;" alt="' + opt.buttonBackTitle + '" title="' + opt.buttonBackTitle + '" class="back"/>&nbsp;';
+						buttons += buttonEmpty;
+					}
+
+					for (var i = start; i <= end; i++) {
 						number = methods.getNumber(i);
 						buttons += '<input type="button" value="' + number + '" alt="' + number + '" title="' + opt.buttonTitle + ' ' + number + '"/>&nbsp;';
 					}
 
-					$buttons.html(buttons).children().click(function() {
+					if (hasNextNavigation) {
+						buttons += buttonEmpty;
+						buttons += '<input type="button" value="&rsaquo;" alt="' + opt.buttonNextTitle + '" title="' + opt.buttonNextTitle + '" class="next"/>&nbsp;';
+					}
+
+					$buttons.html(buttons).children(':not(".empty")').click(function() {
 						listGridy(parseInt(this.alt, 10), $currentSortName.val(), $currentSortOrder.val());
 					});
+
+					if (hasBackNavigation) {
+						$buttons.children('.back').click(function() {
+							listGridy(page - 1, $currentSortName.val(), $currentSortOrder.val());
+						});
+					}
+
+					if (hasNextNavigation) {
+						$buttons.children('.next').click(function() {
+							listGridy(page + 1, $currentSortName.val(), $currentSortOrder.val());
+						});
+					}
 				} else {
 					$buttons.empty();
 				}
 
 				$('input[value="' + methods.getNumber(page) + '"]').attr('disabled', 'disabled').addClass('active');
 			}
+
+			enableGrid(true);
 
 			$currentPage.val(page);
 			$currentSortName.val(sortName);
@@ -579,60 +639,63 @@
 	};
 
 	$.fn.gridy.defaults = {
-		arrowDown:		'arrow-down',
-		arrowNone:		'arrow-none',
-		arrowUp:		'arrow-up',
-		before:			null,
-		buttonOption:	true,
-		buttonTitle:	'page',
-		buttonsWidth:	'auto',
-		cache:			false,
-		clickFx:		false,
-		colsWidth:		[],
-		complete:		null,
-		contentType:	'application/x-www-form-urlencoded; charset=utf-8',
-		dataType:		'json',
-		debug:			false,
-		error: 			null,
-		find:			'',
-		findsName:		[],
-		findTarget:		null,
-		headersName:	[],
-		headersWidth:	[],
-		height:			'auto',
-		hoverFx:		false,
-		jsonp:			false,
-		jsonpCallback:	'callback',
-		loadingIcon:	'loading',
-		loadingOption:	true,
-		loadingText:	'Loading...',
-		messageOption:	true,
-		messageTimer:	4000,
-		noResultOption:	true,
-		noResultText:	'No items found!',
-		page:			1,
-		params: 		'',
-		resultOption:	true,
-		resultText:		'Displaying {from} - {to} of {total} items',
-		rows:			10,
-		rowsName:		[5, 10, 25, 50, 100],
-		rowsTarget:		null,
-		search:			'',
-		searchFocus:	true,
-		searchOption:	true,
-		searchTarget:	null,
-		searchText:		'',
-		scroll:			false,
-		sortersName:	[],
-		sorterWidth:	'auto',
-		sortName:		'',
-		sortOrder:		'asc',
-		success:		null,
-		template:		'template',
-		templateStyle:	'gridy-default',
-		type:			'get',
-		url:			'/gridy',
-		width:			'auto'
+		arrowDown:			'arrow-down',
+		arrowNone:			'arrow-none',
+		arrowUp:			'arrow-up',
+		before:				null,
+		buttonBackTitle:	'&lsaquo; Back',
+		buttonMax:			10,
+		buttonNextTitle:	'Next &rsaquo;',
+		buttonOption:		true,
+		buttonTitle:		'page',
+		buttonsWidth:		'auto',
+		cache:				false,
+		clickFx:			false,
+		colsWidth:			[],
+		complete:			null,
+		contentType:		'application/x-www-form-urlencoded; charset=utf-8',
+		dataType:			'json',
+		debug:				false,
+		error: 				null,
+		find:				'',
+		findsName:			[],
+		findTarget:			null,
+		headersName:		[],
+		headersWidth:		[],
+		height:				'auto',
+		hoverFx:			false,
+		jsonp:				false,
+		jsonpCallback:		'callback',
+		loadingIcon:		'loading',
+		loadingOption:		true,
+		loadingText:		'Loading...',
+		messageOption:		true,
+		messageTimer:		4000,
+		noResultOption:		true,
+		noResultText:		'No items found!',
+		page:				1,
+		params: 			'',
+		resultOption:		true,
+		resultText:			'Displaying {from} - {to} of {total} items',
+		rows:				10,
+		rowsName:			[5, 10, 25, 50, 100],
+		rowsTarget:			null,
+		search:				'',
+		searchFocus:		true,
+		searchOption:		true,
+		searchTarget:		null,
+		searchText:			'',
+		scroll:				false,
+		sortersName:		[],
+		sorterWidth:		'auto',
+		sortName:			'',
+		sortOrder:			'asc',
+		success:			null,
+		template:			'template',
+		templateStyle:		'gridy-default',
+		type:				'get',
+		url:				'/gridy',
+		width:				'auto'
 	};
 
 })(jQuery);
