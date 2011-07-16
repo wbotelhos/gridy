@@ -11,14 +11,14 @@
  * @author          Washington Botelho dos Santos
  * @documentation   wbotelhos.com/gridy
  * @twitter         twitter.com/wbotelhos
- * @license         opensource.org/licenses/mit-license.php MIT
+ * @license         opensource.org/licenses/mit-license.php
  * @package         jQuery Plugins
  *
  * Usage with default values:
  * ---------------------------------------------------------------------------------
- * $('#gridy').gridy({ url: 'url/gridy' });
+ * $('#grid').gridy({ url: 'url/gridy' });
  *
- * <div id="gridy"></div>
+ * <div id="grid"></div>
  *
  * <script id="template" type="text/x-jquery-tmpl">
  *    <div>
@@ -479,7 +479,7 @@
 						start		= page - rangePage;
 					}
 
-					var end = page + rangePage;
+					var end = parseInt(page) + rangePage;
 
 					if (start == 0) {
 						end++;
