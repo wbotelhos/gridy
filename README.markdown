@@ -4,7 +4,7 @@ jQuery Gridy is a plugin that automatically generates a highly customizable grid
 
 ## License
 
-The jQuery Gridy is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php)
+The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/licenses/mit-license.php)
 
 ## Version
 
