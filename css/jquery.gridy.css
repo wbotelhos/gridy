@@ -59,7 +59,7 @@ div.gridy-default div.footer div.find-option { float: left; margin-left: 7px; ma
 div.gridy-default div.footer div.row-option { float: left; margin-left: 5px; margin-top: 7px; }
 div.gridy-default div.footer div.message { color: #F55; font-weight: bold; float: right; font-size: 12px; letter-spacing: .3px; margin-right: 20px; margin-top: 10px; text-align: right; }
 div.gridy-default div.footer select {
-	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; width: 80px;
+	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer;
 	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 }
 
