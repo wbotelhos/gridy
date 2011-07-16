@@ -275,7 +275,7 @@
 
 		var $footerBar = null;
 
-		if (opt.findsName.length > 0 || opt.rowsName.length > 0  || opt.messageOption) {
+		if (opt.findsName.length > 0 || opt.rowsNumber.length > 0  || opt.messageOption) {
 			$footerBar = $('<div class="footer"/>').css('width', methods.getSize(opt.width)).appendTo($this);
 		}
 
@@ -312,18 +312,18 @@
 			.children('option[value="' + opt.find +  '"]').attr('checked', 'checked');
 		}
 
-		var $rowBox = null;
+		var $rowsBox = null;
 
-		if (opt.rowsName.length > 0 ) {
-			$rowBox = $('<div class="row-option"><select></select></div>').appendTo($footerBar).children();
+		if (opt.rowsNumber.length > 0 ) {
+			$rowsBox = $('<div class="row-option"><select></select></div>').appendTo($footerBar).children();
 
 			var rows		= (opt.rows < 1) ? 1 : opt.rows,
 				hasNumber	= false,
 				options		= '',
 				number		= '';
 
-			for (var i = 0; i < opt.rowsName.length; i++) {
-				number = opt.rowsName[i];
+			for (var i = 0; i < opt.rowsNumber.length; i++) {
+				number = opt.rowsNumber[i];
 
 				if (number == rows) {
 					hasNumber = true;
@@ -333,10 +333,10 @@
 			}
 
 			if (!hasNumber) {
-				$rowBox.html('<option value="' + rows + '" checked="checked">' + methods.getNumber(rows) + '</option>');
+				$rowsBox.html('<option value="' + rows + '" checked="checked">' + methods.getNumber(rows) + '</option>');
 			}
 
-			$rowBox.append(options).val(rows).change().change(function(index, value) {
+			$rowsBox.append(options).val(rows).change().change(function(index, value) {
 				listGridy(1, $currentSortName.val(), $currentSortOrder.val());
 			})
 			.children('option[value="' + rows +  '"]').attr('checked', 'checked');
@@ -351,7 +351,7 @@
 		}
 
 		if (opt.rowsTarget) {
-			$rowBox.parent().appendTo(opt.rowsTarget);
+			$rowsBox.parent().appendTo(opt.rowsTarget);
 		}		
 
 		var $buttons = null;
@@ -392,7 +392,7 @@
 
 				if (opt.buttonOption) { $buttons.children().removeAttr('disabled'); }
 				if (opt.findsName.length > 0) { $findBox.removeAttr('disabled'); }
-				if (opt.rowsName.length > 0 ) { $rowBox.removeAttr('disabled'); }
+				if (opt.rowsNumber.length > 0 ) { $rowsBox.removeAttr('disabled'); }
 			} else {
 				if (opt.searchOption) {
 					$searchField.attr('readonly', 'readonly');
@@ -406,7 +406,7 @@
 
 				if (opt.buttonOption) { $buttons.children().attr('disabled', 'disabled'); }
 				if (opt.findsName.length > 0) { $findBox.attr('disabled', 'disabled'); }
-				if (opt.rowsName.length > 0 ) { $rowBox.attr('disabled', 'disabled'); }
+				if (opt.rowsNumber.length > 0 ) { $rowsBox.attr('disabled', 'disabled'); }
 			}
 		};
 
@@ -550,7 +550,7 @@
 			startLoading(true);
 
 			var key				= opt.search,
-				selectedRows	= (opt.rowsName.length > 0 ) ? $rowBox.val() : opt.rows,
+				selectedRows	= (opt.rowsNumber.length > 0 ) ? $rowsBox.val() : opt.rows,
 				selectedFind	= (opt.findsName.length > 0) ? $findBox.val() : opt.find;
 
 			if (opt.searchOption) {
@@ -647,8 +647,8 @@
 		buttonMax:			10,
 		buttonNextTitle:	'Next &rsaquo;',
 		buttonOption:		true,
-		buttonTitle:		'page',
 		buttonsWidth:		'auto',
+		buttonTitle:		'page',
 		cache:				false,
 		clickFx:			false,
 		colsWidth:			[],
@@ -678,14 +678,14 @@
 		resultOption:		true,
 		resultText:			'Displaying {from} - {to} of {total} items',
 		rows:				10,
-		rowsName:			[5, 10, 25, 50, 100],
+		rowsNumber:			[5, 10, 25, 50, 100],
 		rowsTarget:			null,
+		scroll:				false,
 		search:				'',
 		searchFocus:		true,
 		searchOption:		true,
 		searchTarget:		null,
 		searchText:			'',
-		scroll:				false,
 		sortersName:		[],
 		sorterWidth:		'auto',
 		sortName:			'',
