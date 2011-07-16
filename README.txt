@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  *
- * @version         0.1.0
+ * @version         0.2.0 beta
  * @since           06.03.2011
  * @author          Washington Botelho dos Santos
  * @documentation   wbotelhos.com/gridy
@@ -20,9 +20,12 @@
  * arrowNone:       'arrow-none'                                // Class used as icon when there is no sort.
  * arrowUp:         'arrow-up'                                  // Class used as icon on the ascending sort.
  * before:          null                                        // Function executed before the grid load.
+ * buttonBackTitle: '&lsaquo; Back'                             // Title of the navigation button back.
+ * buttonMax:       '&lsaquo; Back'                             // Number of paging buttons visible.
+ * buttonNextTitle: 'Next &rsaquo;'                             // Title of the navigation button next.
  * buttonOption:    true                                        // Shows the pagination buttons.
- * buttonTitle:     'page'                                      // Alternative text prepended on the page buttons.
  * buttonsWidth:    'auto'                                      // Width of the buttons wrapper.
+ * buttonTitle:     'page'                                      // Alternative text prepended on the page buttons.
  * cache:           false                                       // Enables the ajax cache.
  * clickFx:         false                                       // Enables rows selection on click.
  * colsWidth:       []                                          // List with the width of each column of the grid.
@@ -32,8 +35,10 @@
  * debug:           false                                       // Shows details of the grid request.
  * error:           null                                        // Function executed when occurs an error.
  * find:            'id'                                        // Name of the column where research will be done.
- * findList:        []                                          // List with the name of the columns for research.
- * findOption:      true                                        // Enables you to choose the column to do the research.
+ * findsName:       []                                          // List with the name of the columns for research.
+ * findTarget:      null                                        // ID of the place where the find element will be appended.
+ * headersName      []                                          // List of the names used on the header element.
+ * headersWidth:    []                                          // Width of the columns of the header element.
  * height:          'auto'                                      // Height of the grid.
  * hoverFx:         false                                       // Enables highlight rows on mouseover.
  * jsonp:           false                                       // Enables the JSONP content type.
@@ -50,18 +55,17 @@
  * resultOption:    true                                        // Enables the presentation of details of the result.
  * resultText:      'Displaying {from} - {to} of {total} items' // Text displayed in the details of the result.
  * rows:            10                                          // Number of rows displayed on each page.
- * rowsList:        [5, 10, 25, 50, 100]                        // List with the numbers of lines availables to choose.
- * rowsOption:      true                                        // Enable choose the number of rows to be displayed.
+ * rowsNumber:      [5, 10, 25, 50, 100] 	                    // List with the numbers of lines should be displayed.
+ * rowsTarget:      null                                        // ID of the place where the rows element will be appended.
+ * scroll:          false                                       // Enables the display of the grid with scroll.
  * search:          ''                                          // Default term to be consulted.
  * searchFocus:     true                                        // Enables the automatic focus in the search field.
  * searchOption:    true                                        // Enables the search field. 
  * searchText:      ''                                          // Text displayed in the search field.
- * scroll:          false                                       // Enables the display of the grid with scroll.
- * sortList:        []                                          // List of the columns available for sorting.
+ * sortersName:     []                                          // List with the names used on the sorter element.
+ * sorterWidth:     'auto'                                      // Width of the sorter element.
  * sortName:        'id'                                        // Name of the default column sorted.
- * sortOption:      true                                        // Enables the option to sort results by column.
  * sortOrder:       'asc'                                       // Order of classification.
- * sortWidth:       'auto'                                      // Width of the sort columns wrapper.
  * success:         null                                        // Function executed when the grid loads successfully.
  * template:        'template'                                  // The ID of the script template to be loaded.
  * templateStyle:   'gridy-default'                             // Name of the template style "CSS prefix".
