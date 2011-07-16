@@ -640,6 +640,27 @@
 		return $this;
 	};
 
+	$.fn.gridy.reload = function(id, settings) {
+		var $context	= $(id),
+			options		= $context.data('options');
+
+		if (settings !== undefined) {
+			$.each(settings, function(attribute, value) {
+				if (options[attribute] === undefined) {
+					methods.debug('\'' + attribute + '\' is an invalid attribute!');
+				} else {
+					if (value != options[attribute]) {
+						options[attribute] = value;
+					}
+				}
+			});
+
+			$context.data('options', options);
+		}
+
+		return $context.gridy(options);
+	};
+
 	$.fn.gridy.defaults = {
 		arrowDown:			'arrow-down',
 		arrowNone:			'arrow-none',
