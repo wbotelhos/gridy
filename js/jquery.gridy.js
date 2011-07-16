@@ -472,7 +472,6 @@
 					}
 
 					if (isEven) {
-						console.log(opt.buttonMax);
 						rangePage	= opt.buttonMax / 2;
 						start		= page - rangePage + 1;
 					} else {
@@ -500,8 +499,9 @@
 						end = totalPage;
 					}
 
-					var hasBackNavigation	= page > ((isEven) ? rangePage : rangePage + 1),
-						hasNextNavigation	= page < (totalPage - rangePage);
+					var	hasExceeded			= totalPage > opt.buttonMax,
+						hasBackNavigation	= hasExceeded && page > ((isEven) ? rangePage : rangePage + 1),
+						hasNextNavigation	= hasExceeded && page < (totalPage - rangePage);
 
 					if (hasBackNavigation) {
 						buttons = '<input type="button" value="&lsaquo;" alt="' + opt.buttonBackTitle + '" title="' + opt.buttonBackTitle + '" class="back"/>&nbsp;';
