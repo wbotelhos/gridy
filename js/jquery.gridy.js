@@ -464,13 +464,15 @@
 						buttons		= '',
 						number		= 0,
 						rangePage	= null,
-						start		= 1;
+						start		= 1,
+						isEven		= (opt.buttonMax % 2 == 0);
 
 					if (opt.buttonMax > totalPage) {
-						//opt.buttonMax = totalPage;
+						opt.buttonMax = totalPage;
 					}
 
-					if (opt.buttonMax % 2 == 0) {
+					if (isEven) {
+						console.log(opt.buttonMax);
 						rangePage	= opt.buttonMax / 2;
 						start		= page - rangePage + 1;
 					} else {
@@ -498,7 +500,7 @@
 						end = totalPage;
 					}
 
-					var hasBackNavigation	= page > rangePage,
+					var hasBackNavigation	= page > ((isEven) ? rangePage : rangePage + 1),
 						hasNextNavigation	= page < (totalPage - rangePage);
 
 					if (hasBackNavigation) {
