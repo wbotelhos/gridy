@@ -465,17 +465,20 @@
 						number		= 0,
 						rangePage	= null,
 						start		= 1,
+						buttonMax	= opt.buttonMax,
 						isEven		= (opt.buttonMax % 2 == 0);
 
 					if (opt.buttonMax > totalPage) {
-						opt.buttonMax = totalPage;
+						buttonMax = totalPage;
+					} else {
+						buttonMax = opt.buttonMax;
 					}
 
 					if (isEven) {
-						rangePage	= opt.buttonMax / 2;
+						rangePage	= Math.ceil(buttonMax / 2);
 						start		= page - rangePage + 1;
 					} else {
-						rangePage	= Math.floor(opt.buttonMax / 2);
+						rangePage	= Math.floor(buttonMax / 2);
 						start		= page - rangePage;
 					}
 
@@ -487,7 +490,7 @@
 					}
 
 					if (start < 0) {
-						end += Math.abs(start) + 1;
+						end += Math.abs(start) + 1; // + 1 is the button 0.
 						start = 1;
 					}
 
@@ -499,7 +502,7 @@
 						end = totalPage;
 					}
 
-					var	hasExceeded			= totalPage > opt.buttonMax,
+					var	hasExceeded			= totalPage > buttonMax,
 						hasBackNavigation	= hasExceeded && page > ((isEven) ? rangePage : rangePage + 1),
 						hasNextNavigation	= hasExceeded && page < (totalPage - rangePage);
 
