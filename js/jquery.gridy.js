@@ -100,7 +100,7 @@
 				}
 			});
 
-			$searchButton = $('<input type="button" value="search" title="consultar"/>').appendTo($searchWrapper);
+			$searchButton = $('<input type="button" value="' + opt.searchButtonLabel + '" title="' + opt.searchButtonTitle + '"/>').appendTo($searchWrapper);
 
 			$searchButton.click(function() {
 				listGridy(1, $currentSortName.val(), $currentSortOrder.val());
@@ -708,6 +708,8 @@
 		rowsTarget:			null,
 		scroll:				false,
 		search:				'',
+		searchButtonLabel:	'search',
+		searchButtonTitle:	'Start the search',
 		searchFocus:		true,
 		searchOption:		true,
 		searchTarget:		null,
