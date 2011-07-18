@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-div.gridy-default div.gridy-search { margin: 0 auto; margin-bottom: 15px; width: 370px; }
+div.gridy-default div.gridy-search { margin: 0 auto 5px; width: 370px; }
 div.gridy-default div.gridy-search input[type="button"] { height: 28px; margin-left: 2px; width: 80px; }
 div.gridy-default div.gridy-search input[type="text"] { color: #BBB; height: 20px; padding-left: 4px; margin-bottom: 5px; }
 div.gridy-default div.gridy-search input[type="text"].typed { color: #444; }
@@ -29,8 +29,8 @@ div.gridy-default div.gridy-loading div { background: url("../img/loading.gif") 
 
 div.gridy-default div.gridy-result { color: #555; float: right; font-size: 12px; margin-bottom: 5px; margin-right: 30px; text-align: right; width: 190px; }
 
-div.gridy-default div.gridy-header { clear: both; height: 24px; margin: 0 auto 0 15px; }
-div.gridy-default div.gridy-header div.gridy-head-item { float: left; margin-top: 4px; padding: 7px; text-align: center; }
+div.gridy-default div.gridy-header { clear: both; height: 21px; margin: 0 auto 0 15px; }
+div.gridy-default div.gridy-header div.gridy-head-item { float: left; margin-top: 2px; padding: 0 7px; text-align: center; }
 div.gridy-default div.gridy-header div.gridy-head-item div { float: right; }
 div.gridy-default div.gridy-header div.gridy-head-item a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
 div.gridy-default div.gridy-header div.gridy-head-item a:hover { color: #339BD0; }
