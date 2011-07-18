@@ -17,7 +17,7 @@ span.comment { color: #999; font: 12px monospace; letter-spacing: .1px; margin-b
 
 div#content { background-color: #FFF; border: 1px solid #DEDEDE; box-shadow: 0 1px 3px rgba(100, 100, 100, 0.4); margin: 0 auto; padding: 15px; width: 1100px; min-height: 510px; }
 
-div.description { color: #555; letter-spacing: .1px; margin-bottom: 20px; margin-top: 15px; text-align: left; }
+div.description { color: #555; letter-spacing: .1px; margin-bottom: 10px; text-indent: 7px; }
 
 div#footer { clear: both; height: 25px; margin-top: 5px; width: 100%; }
 div#footer div#copy { margin: 0 auto; text-align: center; width: 1100px; }
