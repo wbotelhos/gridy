@@ -35,7 +35,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	dataType:        'json'                                      // The data type of the ajax request.
 	debug:           false                                       // Shows details of the grid request.
 	error:           null                                        // Function executed when occurs an error.
-	find:            'id'                                        // Name of the column where research will be done.
+	find:            ''                                          // Name of the column where research will be done.
 	findsName:       []                                          // List with the name of the columns for research.
 	findTarget:      null                                        // ID of the place where the find element will be appended.
 	headersName      []                                          // List of the names used on the header element.
@@ -65,7 +65,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	searchText:      ''                                          // Text displayed in the search field.
 	sortersName:     []                                          // List with the names used on the sorter element.
 	sorterWidth:     'auto'                                      // Width of the sorter element.
-	sortName:        'id'                                        // Name of the default column sorted.
+	sortName:        ''                                          // Name of the default column sorted.
 	sortOrder:       'asc'                                       // Order of classification.
 	success:         null                                        // Function executed when the grid loads successfully.
 	template:        'template'                                  // The ID of the script template to be loaded.
