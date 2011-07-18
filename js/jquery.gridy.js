@@ -25,8 +25,8 @@
  *       <div>${name}</div>
  *       <div>${email}</div>
  *
- *       <div class="button">
- *          <a href="#">like</a>
+ *       <div class="gridy-button">
+ *          <a href="#">edit</a>
  *       </div>
  *    </div>
  * </script>
@@ -82,17 +82,17 @@
 			$searchButton	= null;
 
 		if (opt.searchOption) {
-			var $searchWrapper = $('<div class="search"/>').appendTo($this);
+			var $searchWrapper = $('<div class="gridy-search"/>').appendTo($this);
 
 			$searchField = $('<input id="key" type="text" size="35" maxlength="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($searchWrapper);
 
 			$searchField.blur(function() {
 				if ($searchField.val() == '') {
-					$searchField.removeClass('typed').val(opt.searchText);
+					$searchField.removeClass('gridy-typed').val(opt.searchText);
 				}
 			}).focus(function() {
 				if ($searchField.val() == opt.searchText) {
-					$searchField.addClass('typed').val('');
+					$searchField.addClass('gridy-typed').val('');
 				}
 			}).keypress(function(evt) {
 				if ((evt.keyCode ? evt.keyCode : evt.which) == 13) {
@@ -109,17 +109,17 @@
 
 		function changeSortIndicator(clickedLink, sortOrder, sortIcon, isResetIcon) {
 			var $sortWrapper	= clickedLink.parent().parent(),
-				isHeader		= opt.headersName.length > 0 && $sortWrapper.attr('class') == 'header';
+				isHeader		= opt.headersName.length > 0 && $sortWrapper.attr('class') == 'gridy-header';
 
 			if (isResetIcon) {
-				var $sortedLink = $sortWrapper.find('a.sorted').attr('rel', 'desc').removeClass('sorted');
+				var $sortedLink = $sortWrapper.find('a.gridy-sorted').attr('rel', 'desc').removeClass('gridy-sorted');
 
 				$sortedLink = (isHeader) ? $sortedLink.next('div') : $sortedLink.prev('div');
 
-				$sortedLink.removeClass().addClass('arrow-none');
+				$sortedLink.removeClass().addClass('gridy-arrow-none');
 			}
 
-			clickedLink.attr('rel', sortOrder).addClass('sorted');
+			clickedLink.attr('rel', sortOrder).addClass('gridy-sorted');
 
 			var $sortIcon = (isHeader) ? clickedLink.next('div') : clickedLink.prev('div');
 
@@ -139,20 +139,20 @@
 				sorterLabel = opt.sortersName[i][1];
 
 				sorterContent +=
-						'<div class="sorter-item">' +
+						'<div class="gridy-sorter-item">' +
 							'<div class="' + opt.arrowNone + '"></div>' +
 							'<a id="sort-by-' + sorterItem + '" href="javascript:void(0);" name="' + sorterItem + '" rel="desc">' + sorterLabel + '</a>' +
 						'</div>';
 			}
 
-			$sortBar = $('<div class="sorter-bar"/>').css('width', methods.getSize(opt.sorterWidth)).html(sorterContent).appendTo($this);
+			$sortBar = $('<div class="gridy-sorter-bar"/>').css('width', methods.getSize(opt.sorterWidth)).html(sorterContent).appendTo($this);
 
 			$sorterItems = $sortBar.children().delegate('a', 'click', sortGridyFunction);
 
 			var $sortInit = $sorterItems.find('a#sort-by-' + opt.sortName);
 
 			if ($sortInit.length) {
-				var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
+				var sortIcon	= (opt.sortOrder == 'asc') ? 'gridy-arrow-up' : 'gridy-arrow-down',
 					isResetIcon	= false;
 	
 				changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
@@ -167,8 +167,8 @@
 			var sortName		= clickedLink.attr('name'),
 				sortOrder		= clickedLink.attr('rel'),
 				nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
-				sortIcon		= (sortOrder == 'desc') ? 'arrow-up' : 'arrow-down',
-				isResetIcon		= clickedLink.parent().parent().find('a.sorted').length > 0;
+				sortIcon		= (sortOrder == 'desc') ? 'gridy-arrow-up' : 'gridy-arrow-down',
+				isResetIcon		= clickedLink.parent().parent().find('a.gridy-sorted').length > 0;
 
 			changeSortIndicator(clickedLink, nextSortOrder, sortIcon, isResetIcon);
 
@@ -184,14 +184,14 @@
 		var $result = null;
 
 		if (opt.resultOption) {
-			$result = $('<div class="result"/>').appendTo($this);
+			$result = $('<div class="gridy-result"/>').appendTo($this);
 		}
 
 		var $header			= null,
 			$headerItems	= null;
 
 		if (opt.headersName.length > 0) {
-			$header = $('<div class="header"/>').appendTo($this);
+			$header = $('<div class="gridy-header"/>').appendTo($this);
 
 			var $head		= null,
 				$sortLink	= null,
@@ -213,7 +213,7 @@
 
 				$sortLink = $('<a/>', { href: 'javascript:void(0);', html: headLabel });
 
-				$head = $('<div class="head-item"/>');
+				$head = $('<div class="gridy-head-item"/>');
 
 				if (headName) {
 					$sortLink.attr({ id: 'sort-by-' + headName, name: headName, rel: 'desc' });
@@ -222,7 +222,7 @@
 
 					$head.append($sortLink, $sortIcon);
 				} else {
-					$sortLink.attr('class', 'no-sort');
+					$sortLink.attr('class', 'gridy-no-sort');
 					$head.append($sortLink);
 				}
 
@@ -233,35 +233,35 @@
 				$head.css('width', opt.headersWidth[i]).appendTo($header);
 			}
 
-			$headerItems = $header.children().delegate('a:not(".no-sort")', 'click', sortGridyFunction);
+			$headerItems = $header.children().delegate('a:not(".gridy-no-sort")', 'click', sortGridyFunction);
 
-			var $sortInit = $('div.header a#sort-by-' + opt.sortName);
+			var $sortInit = $('div.gridy-header a#sort-by-' + opt.sortName);
 
 			if ($sortInit.length) {
-				var sortIcon	= (opt.sortOrder == 'asc') ? 'arrow-up' : 'arrow-down',
+				var sortIcon	= (opt.sortOrder == 'asc') ? 'gridy-arrow-up' : 'gridy-arrow-down',
 					isResetIcon	= false;
 
 				changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
 			}
 		}
 
-		var $content = $('<div class="content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
+		var $content = $('<div class="gridy-content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
 
 		function startLoading(isStart) {
 			if (opt.loadingOption) {
 				if (isStart) {
 					$loading.fadeIn('fast');
-					$content.addClass('fade');
+					$content.addClass('gridy-fade');
 				} else {
 					$loading.fadeOut();
-					$content.removeClass('fade');
+					$content.removeClass('gridy-fade');
 				}
 			}
 		};
 
 		function showNoResult() {
 			if (opt.noResultOption) {
-				$content.html('<p class="no-result">' + opt.noResultText + '</p>');
+				$content.html('<p class="gridy-no-result">' + opt.noResultText + '</p>');
 	
 				if (opt.resultOption) {
 					$result.html($result.html().replace(/\d+/g, '--'));
@@ -276,13 +276,13 @@
 		var $footerBar = null;
 
 		if (opt.findsName.length > 0 || opt.rowsNumber.length > 0  || opt.messageOption) {
-			$footerBar = $('<div class="footer"/>').css('width', methods.getSize(opt.width)).appendTo($this);
+			$footerBar = $('<div class="gridy-footer"/>').css('width', methods.getSize(opt.width)).appendTo($this);
 		}
 
 		var $findBox = null;
 
 		if (opt.findsName.length > 0) {
-			$findBox = $('<div class="find-option"><select></select></div>').appendTo($footerBar).children();
+			$findBox = $('<div class="gridy-find-option"><select></select></div>').appendTo($footerBar).children();
 
 			var hasItem		= false,
 				options		= '',
@@ -315,7 +315,7 @@
 		var $rowsBox = null;
 
 		if (opt.rowsNumber.length > 0 ) {
-			$rowsBox = $('<div class="row-option"><select></select></div>').appendTo($footerBar).children();
+			$rowsBox = $('<div class="gridy-row-option"><select></select></div>').appendTo($footerBar).children();
 
 			var rows		= (opt.rows < 1) ? 1 : opt.rows,
 				hasNumber	= false,
@@ -357,13 +357,13 @@
 		var $buttons = null;
 		
 		if (opt.buttonOption) {
-			$buttons = $('<div class="buttons"/>').css('width', methods.getSize(opt.buttonsWidth)).appendTo($this);
+			$buttons = $('<div class="gridy-buttons"/>').css('width', methods.getSize(opt.buttonsWidth)).appendTo($this);
 		}
 
 		var $message = null;
 
 		if (opt.messageOption) {
-			$message = $('<div class="message"/>').appendTo($footerBar);
+			$message = $('<div class="gridy-message"/>').appendTo($footerBar);
 		}
 
 		function showMessage(message) {
@@ -387,7 +387,7 @@
 
 				if (opt.sortersName.length > 0) {
 					$sorterItems.delegate('a', 'click', sortGridyFunction);
-					$headerItems.delegate('a:not(".no-sort")', 'click', sortGridyFunction);
+					$headerItems.delegate('a:not(".gridy-no-sort")', 'click', sortGridyFunction);
 				}
 
 				if (opt.buttonOption) { $buttons.children().removeAttr('disabled'); }
@@ -401,7 +401,7 @@
 
 				if (opt.sortersName.length > 0) {
 					$sorterItems.undelegate('a', 'click');
-					$headerItems.undelegate('a:not(".no-sort")', 'click');
+					$headerItems.undelegate('a:not(".gridy-no-sort")', 'click');
 				}
 
 				if (opt.buttonOption) { $buttons.children().attr('disabled', 'disabled'); }
@@ -438,8 +438,8 @@
 			$content.html($('#' + opt.template).tmpl(entityList));
 
 			if (opt.colsWidth) {
-				$content.children('div').addClass('row').each(function() {
-					$(this).children('div').addClass('column').each(function(index) {
+				$content.children('div').addClass('gridy-row').each(function() {
+					$(this).children('div').addClass('gridy-column').each(function(index) {
 						$(this).width(opt.colsWidth[index]);
 					});
 				});
@@ -460,7 +460,7 @@
 
 			if (opt.buttonOption) {
 				if (wrapper.total > selectedRows) {
-					var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="empty"/>&nbsp;',
+					var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="gridy-empty"/>&nbsp;',
 						buttons		= '',
 						number		= 0,
 						rangePage	= null,
@@ -507,7 +507,7 @@
 						hasNextNavigation	= hasExceeded && page < (totalPage - rangePage);
 
 					if (hasBackNavigation) {
-						buttons = '<input type="button" value="&lsaquo;" alt="' + opt.buttonBackTitle + '" title="' + opt.buttonBackTitle + '" class="back"/>&nbsp;';
+						buttons = '<input type="button" value="&lsaquo;" alt="' + opt.buttonBackTitle + '" title="' + opt.buttonBackTitle + '" class="gridy-back"/>&nbsp;';
 						buttons += buttonEmpty;
 					}
 
@@ -518,21 +518,21 @@
 
 					if (hasNextNavigation) {
 						buttons += buttonEmpty;
-						buttons += '<input type="button" value="&rsaquo;" alt="' + opt.buttonNextTitle + '" title="' + opt.buttonNextTitle + '" class="next"/>&nbsp;';
+						buttons += '<input type="button" value="&rsaquo;" alt="' + opt.buttonNextTitle + '" title="' + opt.buttonNextTitle + '" class="gridy-next"/>&nbsp;';
 					}
 
-					$buttons.html(buttons).children(':not(".empty")').click(function() {
+					$buttons.html(buttons).children(':not(".gridy-empty")').click(function() {
 						listGridy(parseInt(this.alt, 10), $currentSortName.val(), $currentSortOrder.val());
 					});
 
 					if (hasBackNavigation) {
-						$buttons.children('.back').click(function() {
+						$buttons.children('.gridy-back').click(function() {
 							listGridy(page - 1, $currentSortName.val(), $currentSortOrder.val());
 						});
 					}
 
 					if (hasNextNavigation) {
-						$buttons.children('.next').click(function() {
+						$buttons.children('.gridy-next').click(function() {
 							listGridy(page + 1, $currentSortName.val(), $currentSortOrder.val());
 						});
 					}
@@ -540,7 +540,7 @@
 					$buttons.empty();
 				}
 
-				$('input[value="' + methods.getNumber(page) + '"]').attr('disabled', 'disabled').addClass('active');
+				$('input[value="' + methods.getNumber(page) + '"]').attr('disabled', 'disabled').addClass('gridy-active');
 			}
 
 			enableGrid(true);
@@ -591,9 +591,9 @@
 
 					if (opt.hoverFx) {
 						$content.children().mouseenter(function() {
-							$(this).addClass('item-hover' + scrollSufix);
+							$(this).addClass('gridy-item-hover' + scrollSufix);
 						}).mouseleave(function() {
-							$(this).removeClass('item-hover' + scrollSufix);
+							$(this).removeClass('gridy-item-hover' + scrollSufix);
 						});
 					}
 
@@ -602,10 +602,10 @@
 							var $this = $(this);
 
 							if (!evt.shiftKey) {
-								$this.parent().children('div.item-active' + scrollSufix).removeClass('item-active' + scrollSufix);
+								$this.parent().children('div.gridy-item-active' + scrollSufix).removeClass('gridy-item-active' + scrollSufix);
 							}
 
-							$this.toggleClass('item-active' + scrollSufix);
+							$this.toggleClass('gridy-item-active' + scrollSufix);
 						});
 					}
 
@@ -628,7 +628,7 @@
 
 						$content
 						.css({ 'border': '1px solid #BBB', 'overflow': 'auto' })
-							.children('div').addClass('scroll')
+							.children('div').addClass('gridy-scroll')
 						.end()
 							.children('div:last').css('border-bottom-color', '#FFF');
 					}
@@ -665,9 +665,9 @@
 	};
 
 	$.fn.gridy.defaults = {
-		arrowDown:			'arrow-down',
-		arrowNone:			'arrow-none',
-		arrowUp:			'arrow-up',
+		arrowDown:			'gridy-arrow-down',
+		arrowNone:			'gridy-arrow-none',
+		arrowUp:			'gridy-arrow-up',
 		before:				null,
 		buttonBackTitle:	'&lsaquo; Back',
 		buttonMax:			10,
@@ -692,7 +692,7 @@
 		hoverFx:			false,
 		jsonp:				false,
 		jsonpCallback:		'callback',
-		loadingIcon:		'loading',
+		loadingIcon:		'gridy-loading',
 		loadingOption:		true,
 		loadingText:		'Loading...',
 		messageOption:		true,
