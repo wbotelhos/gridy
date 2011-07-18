@@ -116,7 +116,7 @@
 
 				$sortedLink = (isHeader) ? $sortedLink.next('div') : $sortedLink.prev('div');
 
-				$sortedLink.removeClass().addClass('gridy-arrow-none');
+				$sortedLink.removeClass().addClass(opt.arrowNone);
 			}
 
 			clickedLink.attr('rel', sortOrder).addClass('gridy-sorted');
@@ -152,7 +152,7 @@
 			var $sortInit = $sorterItems.find('a#sort-by-' + opt.sortName);
 
 			if ($sortInit.length) {
-				var sortIcon	= (opt.sortOrder == 'asc') ? 'gridy-arrow-up' : 'gridy-arrow-down',
+				var sortIcon	= (opt.sortOrder == 'asc') ? opt.arrowUp : opt.arrowDown,
 					isResetIcon	= false;
 	
 				changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
@@ -167,7 +167,7 @@
 			var sortName		= clickedLink.attr('name'),
 				sortOrder		= clickedLink.attr('rel'),
 				nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
-				sortIcon		= (sortOrder == 'desc') ? 'gridy-arrow-up' : 'gridy-arrow-down',
+				sortIcon		= (sortOrder == 'desc') ? opt.arrowUp : opt.arrowDown,
 				isResetIcon		= clickedLink.parent().parent().find('a.gridy-sorted').length > 0;
 
 			changeSortIndicator(clickedLink, nextSortOrder, sortIcon, isResetIcon);
@@ -238,7 +238,7 @@
 			var $sortInit = $('div.gridy-header a#sort-by-' + opt.sortName);
 
 			if ($sortInit.length) {
-				var sortIcon	= (opt.sortOrder == 'asc') ? 'gridy-arrow-up' : 'gridy-arrow-down',
+				var sortIcon	= (opt.sortOrder == 'asc') ? opt.arrowUp : opt.arrowDown,
 					isResetIcon	= false;
 
 				changeSortIndicator($sortInit, opt.sortOrder, sortIcon, isResetIcon);
