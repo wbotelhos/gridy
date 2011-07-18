@@ -44,7 +44,8 @@ span#version { color: #777; font: 10px verdana; }
 
 span.attribute { color: #369; }
 
-div#menu-feature { color: #AAA; margin-bottom: 35px; }
+div#menu-feature { color: #AAA; height: 75px; margin-bottom: 65px; }
+div#menu-feature a { float: left; width: 120px }
 div#menu-feature a.selected { color: #2C8CBD; cursor: default; font-weight: bold; }
 
 div.session-mini { font: bold 10px verdana; color: #444; letter-spacing: .7px; margin-top: 17px; }
