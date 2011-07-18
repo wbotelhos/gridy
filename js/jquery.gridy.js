@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  *
- * @version         0.2.0 beta
+ * @version         0.2.0
  * @since           06.03.2011
  * @author          Washington Botelho dos Santos
  * @documentation   wbotelhos.com/gridy
