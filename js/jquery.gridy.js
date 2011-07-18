@@ -84,7 +84,7 @@
 		if (opt.searchOption) {
 			var $searchWrapper = $('<div class="gridy-search"/>').appendTo($this);
 
-			$searchField = $('<input id="key" type="text" size="35" maxlength="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($searchWrapper);
+			$searchField = $('<input id="search" type="text" size="35" maxlength="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($searchWrapper);
 
 			$searchField.blur(function() {
 				if ($searchField.val() == '') {
@@ -554,12 +554,12 @@
 			enableGrid(false);
 			startLoading(true);
 
-			var key				= opt.search,
+			var search			= opt.search,
 				selectedRows	= (opt.rowsNumber.length > 0 ) ? $rowsBox.val() : opt.rows,
 				selectedFind	= (opt.findsName.length > 0) ? $findBox.val() : opt.find;
 
 			if (opt.searchOption) {
-				key = ($searchField.val() == opt.searchText) ? '' : $searchField.val();
+				search = ($searchField.val() == opt.searchText) ? '' : $searchField.val();
 
 				if (opt.searchFocus) {
 					$searchField.focus();
@@ -572,7 +572,7 @@
 			}
 
 			if (opt.debug) {
-				methods.debug('query string: key=' + key + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params);
+				methods.debug('query string: search=' + search + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params);
 			}
 
 			$.ajax({
@@ -583,7 +583,7 @@
 				jsonpCallback:	opt.jsonpCallback,
 				type:			opt.type,
 				url:			opt.url,
-				data:			'key=' + key + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params,
+				data:			'search=' + search + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params,
 				success: function(wrapper) {
 					processCallback(wrapper, page, sortName, sortOrder, selectedRows);
 
