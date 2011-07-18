@@ -84,7 +84,7 @@
 		if (opt.searchOption) {
 			var $searchWrapper = $('<div class="gridy-search"/>').appendTo($this);
 
-			$searchField = $('<input id="search" type="text" size="35" maxlength="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($searchWrapper);
+			$searchField = $('<input id="search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($searchWrapper);
 
 			$searchField.blur(function() {
 				if ($searchField.val() == '') {
