@@ -83,7 +83,11 @@
 			$searchButton	= null;
 
 		if (opt.searchOption) {
-			$searchWrapper = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').css('width', methods.getSize(opt.width)).appendTo($this);
+			$searchWrapper = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').appendTo($this);
+
+			if (opt.resize) {
+				$searchWrapper.css('width', methods.getSize(opt.width));
+			}
 
 			$searchField = $('<input id="search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($searchWrapper.children());
 
@@ -179,7 +183,11 @@
 		var $status = null;
 
 		if (opt.loadingOption || opt.resultOption) {
-			$status = $('<div class="gridy-status"/>').css('width', methods.getSize(opt.width)).appendTo($this);
+			$status = $('<div class="gridy-status"/>').appendTo($this);
+
+			if (opt.resize) {
+				$status.css('width', methods.getSize(opt.width));
+			}
 		}
 
 		var $loading = null;
@@ -198,7 +206,11 @@
 			$headerItems	= null;
 
 		if (opt.headersName.length > 0) {
-			$header = $('<div class="gridy-header"/>').css('width', methods.getSize(opt.width)).appendTo($this);
+			$header = $('<div class="gridy-header"/>').appendTo($this);
+
+			if (opt.resize) {
+				$header.css('width', methods.getSize(opt.width));
+			}
 
 			var $head		= null,
 				$sortLink	= null,
@@ -280,16 +292,20 @@
 			}
 		};
 
-		var $footerBar = null;
+		var $footer = null;
 
 		if (opt.findsName.length > 0 || opt.rowsNumber.length > 0  || opt.messageOption) {
-			$footerBar = $('<div class="gridy-footer"/>').css('width', methods.getSize(opt.width)).appendTo($this);
+			$footer = $('<div class="gridy-footer"/>').appendTo($this);
+
+			if (opt.resize) {
+				$footer.css('width', methods.getSize(opt.width));
+			}
 		}
 
 		var $findBox = null;
 
 		if (opt.findsName.length > 0) {
-			$findBox = $('<div class="gridy-find-option"><select></select></div>').appendTo($footerBar).children();
+			$findBox = $('<div class="gridy-find-option"><select></select></div>').appendTo($footer).children();
 
 			var hasItem		= false,
 				options		= '',
@@ -322,7 +338,7 @@
 		var $rowsBox = null;
 
 		if (opt.rowsNumber.length > 0 ) {
-			$rowsBox = $('<div class="gridy-row-option"><select></select></div>').appendTo($footerBar).children();
+			$rowsBox = $('<div class="gridy-row-option"><select></select></div>').appendTo($footer).children();
 
 			var rows		= (opt.rows < 1) ? 1 : opt.rows,
 				hasNumber	= false,
@@ -364,13 +380,17 @@
 		var $buttons = null;
 
 		if (opt.buttonOption) {
-			$buttons = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>').css('width', methods.getSize(opt.width)).appendTo($this).children();
+			$buttons = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>').appendTo($this).children();
+
+			if (opt.resize) {
+				$buttons.css('width', methods.getSize(opt.width));
+			}
 		}
 
 		var $message = null;
 
 		if (opt.messageOption) {
-			$message = $('<div class="gridy-message"/>').appendTo($footerBar);
+			$message = $('<div class="gridy-message"/>').appendTo($footer);
 		}
 
 		function showMessage(message) {
@@ -708,6 +728,7 @@
 		noResultText:		'No items found!',
 		page:				1,
 		params: 			'',
+		resize:				true,
 		resultOption:		true,
 		resultText:			'Displaying {from} - {to} of {total} items',
 		rows:				10,
