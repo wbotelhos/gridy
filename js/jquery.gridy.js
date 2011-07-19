@@ -417,7 +417,7 @@
 					$headerItems.delegate('a:not(".gridy-no-sort")', 'click', sortGridyFunction);
 				}
 
-				if (opt.buttonOption) { $buttons.children().removeAttr('disabled'); }
+				if (opt.buttonOption) { $buttons.children(':not(".gridy-empty")').removeAttr('disabled'); }
 				if (opt.findsName.length > 0) { $findBox.removeAttr('disabled'); }
 				if (opt.rowsNumber.length > 0 ) { $rowsBox.removeAttr('disabled'); }
 			} else {
