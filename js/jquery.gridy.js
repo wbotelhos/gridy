@@ -78,13 +78,14 @@
 
 		$this.addClass(opt.templateStyle).data('options', opt);
 
-		var $searchField	= null,
+		var $searchWrapper	= null,
+			$searchField	= null,
 			$searchButton	= null;
 
 		if (opt.searchOption) {
-			var $searchWrapper = $('<div class="gridy-search"/>').appendTo($this);
+			$searchWrapper = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').css('width', methods.getSize(opt.width)).appendTo($this);
 
-			$searchField = $('<input id="search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($searchWrapper);
+			$searchField = $('<input id="search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($searchWrapper.children());
 
 			$searchField.blur(function() {
 				if ($searchField.val() == '') {
@@ -100,7 +101,7 @@
 				}
 			});
 
-			$searchButton = $('<input type="button" value="' + opt.searchButtonLabel + '" title="' + opt.searchButtonTitle + '"/>').appendTo($searchWrapper);
+			$searchButton = $('<input type="button" value="' + opt.searchButtonLabel + '" title="' + opt.searchButtonTitle + '"/>').appendTo($searchWrapper.children());
 
 			$searchButton.click(function() {
 				listGridy(1, $currentSortName.val(), $currentSortOrder.val());
@@ -175,23 +176,29 @@
 			listGridy($currentPage.val(), sortName, nextSortOrder);
 		};
 
+		var $status = null;
+
+		if (opt.loadingOption || opt.resultOption) {
+			$status = $('<div class="gridy-status"/>').css('width', methods.getSize(opt.width)).appendTo($this);
+		}
+
 		var $loading = null;
 
 		if (opt.loadingOption) {
-			$loading = $('<div class="' + opt.loadingIcon + '"><div>' + opt.loadingText + '</div></div>').appendTo($this).children();
+			$loading = $('<div class="' + opt.loadingIcon + '"><div>' + opt.loadingText + '</div></div>').appendTo($status).children();
 		}
 
 		var $result = null;
 
 		if (opt.resultOption) {
-			$result = $('<div class="gridy-result"/>').appendTo($this);
+			$result = $('<div class="gridy-result"/>').appendTo($status);
 		}
 
 		var $header			= null,
 			$headerItems	= null;
 
 		if (opt.headersName.length > 0) {
-			$header = $('<div class="gridy-header"/>').appendTo($this);
+			$header = $('<div class="gridy-header"/>').css('width', methods.getSize(opt.width)).appendTo($this);
 
 			var $head		= null,
 				$sortLink	= null,
@@ -206,7 +213,7 @@
 					return;
 				}
 			}
-
+			console.log(opt.headersName.length);
 			for (var i = 0; i < opt.headersName.length; i++) {
 				headName = opt.headersName[i][0];
 				headLabel = opt.headersName[i][1];
@@ -355,9 +362,9 @@
 		}		
 
 		var $buttons = null;
-		
+
 		if (opt.buttonOption) {
-			$buttons = $('<div class="gridy-buttons"/>').css('width', methods.getSize(opt.buttonsWidth)).appendTo($this);
+			$buttons = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>').css('width', methods.getSize(opt.width)).appendTo($this).children();
 		}
 
 		var $message = null;
