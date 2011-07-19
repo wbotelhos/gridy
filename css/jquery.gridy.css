@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 div.gridy-default div.gridy-search { height: 28px; }
-div.gridy-default div.gridy-search div.gridy-search-content { height: 28px; width: 380px; }
+div.gridy-default div.gridy-search div.gridy-search-content { height: 28px; width: 480px; }
 div.gridy-default div.gridy-search div.gridy-search-content input[type="button"] { float: left; height: 28px; margin-left: 2px; width: 80px; }
 div.gridy-default div.gridy-search div.gridy-search-content input[type="text"] { color: #BBB; float: left; height: 28px; margin-bottom: 5px; }
 div.gridy-default div.gridy-search div.gridy-search-content input[type="text"].gridy-typed { color: #444; }
@@ -36,7 +36,7 @@ div.gridy-default div.gridy-sorter-bar div.gridy-sorter-item a.gridy-sorted { co
 
 div.gridy-default div.gridy-fade { opacity: .6; }
 
-div.gridy-default div.gridy-loading { clear: left; float: left; margin-left: 5px; width: 90px; }
+div.gridy-default div.gridy-loading { clear: left; float: left; width: 90px; }
 div.gridy-default div.gridy-loading div { background: url("../img/loading.gif") no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
 
 div.gridy-default div.gridy-status { height: 17px; margin-top: 10px; }
@@ -61,25 +61,27 @@ div.gridy-default div.gridy-content p.gridy-no-result { height: 100%; color: #F5
 div.gridy-default div.gridy-content div.gridy-scroll { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }
 
 div.gridy-default div.gridy-row { border: 1px solid #CCC; float: left; margin-bottom: -1px; width: auto; }
-/* div.gridy-default div.gridy-row div.gridy-button { padding: 0 !important; } */
-div.gridy-default div.gridy-row div.gridy-column { float: left; padding: 10px 7px 4px; }
+div.gridy-default div.gridy-row div.gridy-column { float: left; padding: 10px 7px 5px; }
 div.gridy-default div.gridy-row div.gridy-button a {
 	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; display: block; height: 20px; margin-right: 5px; margin-top: -5px; padding-top: 3px; text-align: center; text-transform: lowercase; width: 90px;
 	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 }
 
-
 div.gridy-default div.gridy-footer { clear: both; height: 31px; }
 div.gridy-default div.gridy-footer div.gridy-message { color: #F55; font-weight: bold; float: right; font-size: 12px; letter-spacing: .gridy-3px; margin-right: 20px; margin-top: 10px; text-align: right; }
-div.gridy-default div.gridy-footer select {
-	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer;
+
+div.gridy-default div.gridy-find-option select,
+div.gridy-default div.gridy-row-option select {
+	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-size: 12px; height: 24px; padding: 2px;
 	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 }
 
-div.gridy-default div.gridy-find-option select { float: left; font-size: 12px; height: 24px; margin-top: 4px; padding: 2px; }
-div.gridy-default div.gridy-row-option select { float: left; font-size: 12px; height: 24px; margin-left: 5px; margin-top: 4px; padding: 2px; }
+div.gridy-default div.gridy-find-option { float: left; margin-left: 5px; }
+div.gridy-default div.gridy-find-option select { margin-top: 2px; }
 
-div.gridy-default div.gridy-buttons { margin-top: 10px; text-align: center; }
+div.gridy-default div.gridy-row-option select { margin-top: 4px; }
+
+div.gridy-default div.gridy-buttons { text-align: center; }
 div.gridy-default div.gridy-buttons input[type="button"].gridy-active { background-color: #F5F8F9; border: 1px solid #B5B5B5; cursor: default; color: #47A; }
 div.gridy-default div.gridy-buttons input[type="button"].gridy-empty { color: #999; cursor: default; width: 25px; }
 div.gridy-default div.gridy-buttons input[type="button"] {

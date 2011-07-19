@@ -78,18 +78,18 @@
 
 		$this.addClass(opt.templateStyle).data('options', opt);
 
-		var $searchWrapper	= null,
+		var $search			= null,
 			$searchField	= null,
 			$searchButton	= null;
 
 		if (opt.searchOption) {
-			$searchWrapper = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').appendTo($this);
+			$search = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').appendTo($this);
 
 			if (opt.resize) {
-				$searchWrapper.css('width', methods.getSize(opt.width));
+				$search.css('width', methods.getSize(opt.width));
 			}
 
-			$searchField = $('<input id="search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($searchWrapper.children());
+			$searchField = $('<input id="search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($search.children());
 
 			$searchField.blur(function() {
 				if ($searchField.val() == '') {
@@ -105,7 +105,7 @@
 				}
 			});
 
-			$searchButton = $('<input type="button" value="' + opt.searchButtonLabel + '" title="' + opt.searchButtonTitle + '"/>').appendTo($searchWrapper.children());
+			$searchButton = $('<input type="button" value="' + opt.searchButtonLabel + '" title="' + opt.searchButtonTitle + '"/>').appendTo($search.children());
 
 			$searchButton.click(function() {
 				listGridy(1, $currentSortName.val(), $currentSortOrder.val());
@@ -225,7 +225,7 @@
 					return;
 				}
 			}
-			console.log(opt.headersName.length);
+
 			for (var i = 0; i < opt.headersName.length; i++) {
 				headName = opt.headersName[i][0];
 				headLabel = opt.headersName[i][1];
@@ -294,7 +294,7 @@
 
 		var $footer = null;
 
-		if (opt.findsName.length > 0 || opt.rowsNumber.length > 0  || opt.messageOption) {
+		if (opt.rowsNumber.length > 0  || opt.messageOption || (opt.findsName.length > 0 && !opt.searchOption)) {
 			$footer = $('<div class="gridy-footer"/>').appendTo($this);
 
 			if (opt.resize) {
@@ -305,7 +305,7 @@
 		var $findBox = null;
 
 		if (opt.findsName.length > 0) {
-			$findBox = $('<div class="gridy-find-option"><select></select></div>').appendTo($footer).children();
+			$findBox = $('<div class="gridy-find-option"><select></select></div>').appendTo((opt.searchOption) ? $search.children() : $footer).children();
 
 			var hasItem		= false,
 				options		= '',
@@ -570,8 +570,6 @@
 				$('input[value="' + methods.getNumber(page) + '"]').attr('disabled', 'disabled').addClass('gridy-active');
 			}
 
-			enableGrid(true);
-
 			$currentPage.val(page);
 			$currentSortName.val(sortName);
 			$currentSortOrder.val(sortOrder);
@@ -647,6 +645,7 @@
 					}
 				}, complete: function() {
 					startLoading(false);
+					enableGrid(true);
 
 					if (opt.scroll) {
 						if (opt.height == 'auto') {
