@@ -8,7 +8,7 @@ div.gridy-default div.gridy-search div.gridy-search-content input[type="text"].g
 
 div.gridy-default div.gridy-arrow-none,
 div.gridy-default div.gridy-arrow-down,
-div.gridy-default div.gridy-arrow-up { background-image: url('../images/jquery-icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
+div.gridy-default div.gridy-arrow-up { background-image: url('../img/jquery-icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
 
 div.gridy-default > div.gridy-header,
 div.gridy-default > div.gridy-content,
@@ -37,16 +37,16 @@ div.gridy-default div.gridy-sorter-bar div.gridy-sorter-item a.gridy-sorted { co
 div.gridy-default div.gridy-fade { opacity: .6; }
 
 div.gridy-default div.gridy-loading { clear: left; float: left; margin-left: 5px; width: 90px; }
-div.gridy-default div.gridy-loading div { background: url("../images/loading.gif") no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
+div.gridy-default div.gridy-loading div { background: url("../img/loading.gif") no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
 
 div.gridy-default div.gridy-status { height: 17px; margin-top: 10px; }
 
 div.gridy-default div.gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
 
-div.gridy-default div.gridy-header { clear: both; height: 30px; }
-div.gridy-default div.gridy-header div.gridy-head-item { float: left; padding: 7px; text-align: center; }
+div.gridy-default div.gridy-header { clear: both; height: 24px; }
+div.gridy-default div.gridy-header div.gridy-head-item { float: left; padding: 4px 7px; text-align: center; }
 div.gridy-default div.gridy-header div.gridy-head-item div { float: right; }
-div.gridy-default div.gridy-header div.gridy-head-item a { font-size: 12px; color: #369; letter-spacing: 1px; text-decoration: none; }
+div.gridy-default div.gridy-header div.gridy-head-item a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
 div.gridy-default div.gridy-header div.gridy-head-item a:hover { color: #339BD0; }
 div.gridy-default div.gridy-header div.gridy-head-item a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
 div.gridy-default div.gridy-header div.gridy-column-button { padding-left: 0 !important; padding-right: 0 !important; }
