@@ -3,7 +3,7 @@
 div.gridy-default div.gridy-search { height: 28px; }
 div.gridy-default div.gridy-search div.gridy-search-content { height: 28px; width: 480px; }
 div.gridy-default div.gridy-search div.gridy-search-content input[type="button"] { float: left; height: 28px; margin-left: 2px; width: 80px; }
-div.gridy-default div.gridy-search div.gridy-search-content input[type="text"] { color: #BBB; float: left; height: 28px; margin-bottom: 5px; }
+div.gridy-default div.gridy-search div.gridy-search-content input[type="text"] { color: #BBB; float: left; height: 20px; margin-bottom: 5px; }
 div.gridy-default div.gridy-search div.gridy-search-content input[type="text"].gridy-typed { color: #444; }
 
 div.gridy-default div.gridy-arrow-none,
