@@ -152,7 +152,7 @@
 
 			$sortBar = $('<div class="gridy-sorter-bar"/>').css('width', methods.getSize(opt.sorterWidth)).html(sorterContent).appendTo($this);
 
-			$sorterItems = $sortBar.children().delegate('a', 'click', sortGridyFunction);
+			$sorterItems = $sortBar.children().children('a').click(sortGridyFunction);
 
 			var $sortInit = $sorterItems.find('a#sort-by-' + opt.sortName);
 
@@ -252,7 +252,7 @@
 				$head.css('width', opt.headersWidth[i]).appendTo($header);
 			}
 
-			$headerItems = $header.children().delegate('a:not(".gridy-no-sort")', 'click', sortGridyFunction);
+			$headerItems = $header.children().children('a:not(".gridy-no-sort")').click(sortGridyFunction);
 
 			var $sortInit = $('div.gridy-header a#sort-by-' + opt.sortName);
 
@@ -413,8 +413,8 @@
 				}
 
 				if (opt.sortersName.length > 0) {
-					$sorterItems.delegate('a', 'click', sortGridyFunction);
-					$headerItems.delegate('a:not(".gridy-no-sort")', 'click', sortGridyFunction);
+					$sorterItems.children('a').click(sortGridyFunction);
+					$headerItems.children('a:not(".gridy-no-sort")').click(sortGridyFunction);
 				}
 
 				if (opt.buttonOption) { $buttons.children(':not(".gridy-empty")').removeAttr('disabled'); }
@@ -427,8 +427,8 @@
 				}
 
 				if (opt.sortersName.length > 0) {
-					$sorterItems.undelegate('a', 'click');
-					$headerItems.undelegate('a:not(".gridy-no-sort")', 'click');
+					$sorterItems.children('a').die('click');
+					$headerItems.children('a:not(".gridy-no-sort")').die('click');
 				}
 
 				if (opt.buttonOption) { $buttons.children().attr('disabled', 'disabled'); }
