@@ -53,6 +53,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	noResultText:      No results found!                         // Text shown when no result is found for the search.
 	page:              1                                         // Number o the page to be displayed.
 	params:            ''                                        // Further parameters to be added to the query string.
+	resize:            true                                      // Apply the same width of the content to the other wrappers.
 	resultOption:      true                                      // Enables the presentation of details of the result.
 	resultText:        'Displaying {from} - {to} of {total} items' // Text displayed in the details of the result.
 	rows:              10                                        // Number of rows displayed on each page.
