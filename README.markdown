@@ -35,6 +35,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	dataType:          'json'                                    // The data type of the ajax request.
 	debug:             false                                     // Shows details of the grid request.
 	error:             null                                      // Function executed when occurs an error.
+	evenOdd:           false                                     // Enables the even odd row style.
 	find:              ''                                        // Name of the column where research will be done.
 	findsName:         []                                        // List with the name of the columns for research.
 	findTarget:        null                                      // ID of the place where the find element will be appended.

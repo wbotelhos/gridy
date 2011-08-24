@@ -78,6 +78,7 @@
 				<a href="javascript:void(0);" class="disabled">dataType</a>
 				<a href="javascript:void(0);" class="disabled">debug</a>
 				<a href="javascript:void(0);" class="disabled">error</a>
+				<a href="javascript:void(0);" class="disabled">evenOdd</a>
 				<a href="javascript:void(0);" class="disabled">find</a>
 				<a href="javascript:void(0);" class="disabled">findsName</a>
 				<a href="javascript:void(0);" class="disabled">findTarget</a>
@@ -207,34 +208,34 @@
 			<div class="session">Default options:</div>
 
 			<div class="source">
-				arrowDown:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-down'
+				arrowDown:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-down'
 				<div class="comment">Class with background used as icon on the descending sort.</div>
 
-				arrowNone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-none'
+				arrowNone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-none'
 				<div class="comment">Class with background used as icon when there is no sort by especific field.</div>
 
-				arrowUp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-up'
+				arrowUp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-up'
 				<div class="comment">Class with background used as icon on the ascending sort.</div>
 
 				before:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
 				<div class="comment">Function executed before the grid load.</div>
 
-				buttonBackTitle:&nbsp;&nbsp;&nbsp;'&lsaquo; Back'
+				buttonBackTitle:&nbsp;&nbsp;&nbsp;&nbsp;'&lsaquo; Back'
 				<div class="comment">Title of the navigation button back.</div>
 
-				buttonMax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lsaquo; Back'
+				buttonMax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lsaquo; Back'
 				<div class="comment">Number of paging buttons visible.</div>
 
-				buttonNextTitle:&nbsp;&nbsp;&nbsp;'Next &rsaquo;'
+				buttonNextTitle:&nbsp;&nbsp;&nbsp;&nbsp;'Next &rsaquo;'
 				<div class="comment">Title of the navigation button next.</div>
 
 				buttonOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
 				<div class="comment">Shows the pagination buttons.</div>
 
-				buttonsWidth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
+				buttonsWidth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
 				<div class="comment">Width of the buttons wrapper.</div>
 
-				buttonTitle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'page'
+				buttonTitle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'page'
 				<div class="comment">Alternative text prepended in the title attribute together the number of the button page.</div>
 
 				cache:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
@@ -249,10 +250,10 @@
 				complete:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
 				<div class="comment">Function executed when the grid load.</div>
 
-				contentType:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'application/x-www-form-urlencoded; charset=utf-8'
+				contentType:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'application/x-www-form-urlencoded; charset=utf-8'
 				<div class="comment">The content type of the ajax request.</div>
 
-				dataType:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'json'
+				dataType:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'json'
 				<div class="comment">The data type of the ajax request.</div>
 
 				debug:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
@@ -260,6 +261,9 @@
 
 				error:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
 				<div class="comment">Function executed when occurs an error on the grid load.</div>
+
+				evenOdd:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
+				<div class="comment">Enables the even odd row style.</div>
 
 				find:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
 				<div class="comment">Name of the column where research will be done.</div>
@@ -285,10 +289,10 @@
 				jsonp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
 				<div class="comment">Enables the JSONP content type.</div>
 
-				jsonpCallback:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'callback'
+				jsonpCallback:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'callback'
 				<div class="comment">Name of the callback function when the content type is JSONP.</div>
 
-				loadingIcon:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-loading'
+				loadingIcon:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-loading'
 				<div class="comment">Name of the class used as a loading icon.</div>
 
 				loadingOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
@@ -306,13 +310,13 @@
 				noResultOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
 				<div class="comment">Enables the presentation of the no result message.</div>
 
-				noResultText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'No results found!'
+				noResultText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'No results found!'
 				<div class="comment">Text shown when no result is found for the search.</div>
 
 				page:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
 				<div class="comment">The number of the page to be displayed.</div>
 
-				params:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
+				params:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
 				<div class="comment">Further parameters added to the query string.</div>
 
 				resize:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
@@ -321,10 +325,10 @@
 				resultOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
 				<div class="comment">Enables the presentation of details of the result.</div>
 
-				resultText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Displaying {from} - {to} of {total} items'
+				resultText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Displaying {from} - {to} of {total} items'
 				<div class="comment">Text displayed in the details of the result.</div>
 
-				root:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'entityList'
+				root:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'entityList'
 				<div class="comment">Name of the root element of the response.</div>
 
 				rows:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10
@@ -333,13 +337,13 @@
 				rowsNumber:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5, 10, 25, 50, 100]
 				<div class="comment">List with the numbers of lines should be displayed.</div>
 
-				rowsTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
+				rowsTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
 				<div class="comment">ID of the place where the rows element will be appended.</div>
 
 				scroll:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
 				<div class="comment">Enables the display of the grid with scroll.</div>
 
-				search:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
+				search:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
 				<div class="comment">Default term to be consulted.</div>
 
 				searchButtonLabel:&nbsp;&nbsp;'search'
@@ -354,37 +358,37 @@
 				searchOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
 				<div class="comment">Enables the search field.</div>
 
-				searchText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
+				searchText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
 				<div class="comment">Text displayed in the search field.</div>
 
 				sortersName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
 				<div class="comment">List with the names used on the sorter element.</div>
 
-				sorterWidth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
+				sorterWidth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
 				<div class="comment">Width of the sorter element.</div>
 
-				sortName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
+				sortName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
 				<div class="comment">Name of the default column sorted.</div>
 
-				sortOrder:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'asc'
+				sortOrder:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'asc'
 				<div class="comment">Order of classification.</div>
 
 				success:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
 				<div class="comment">Function executed when the grid loads successfully.</div>
 				
-				template:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'template'
+				template:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'template'
 				<div class="comment">The ID of the script template loaded.</div>
 
-				templateStyle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-default'
+				templateStyle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-default'
 				<div class="comment">Name of the template style "CSS prefix".</div>
 
-				type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'get'
+				type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'get'
 				<div class="comment">Type of the HTTP request.</div>
 				
-				url:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'/gridy'
+				url:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'/gridy'
 				<div class="comment">Url to request the data.</div>
 				
-				width:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
+				width:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
 				<div class="comment">Width of the grid.</div>
 			</div>
 
