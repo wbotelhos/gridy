@@ -465,7 +465,10 @@
 			$content.html($('#' + opt.template).tmpl(entityList));
 
 			if (opt.evenOdd) {
-				$content.children(':odd').addClass('gridy-odd');
+				$content
+					.children(':even').addClass('gridy-even')
+				.end()
+					.children(':odd').addClass('gridy-odd');
 			}
 
 			if (opt.colsWidth) {
