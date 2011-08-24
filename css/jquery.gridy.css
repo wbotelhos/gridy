@@ -52,7 +52,9 @@ div.gridy-default div.gridy-header div.gridy-head-item a.gridy-sorted { color: #
 div.gridy-default div.gridy-header div.gridy-column-button { padding-left: 0 !important; padding-right: 0 !important; }
 
 div.gridy-default div.gridy-content { clear: both; height: auto; overflow: visible; }
-div.gridy-default div.gridy-content div.gridy-item-hover { background-color: #D9EBF5; border-color: #BBB; }
+div.gridy-default div.gridy-content div.gridy-even { background-color: #FFF; }
+div.gridy-default div.gridy-content div.gridy-odd { background-color: #F7F7F7; }
+div.gridy-default div.gridy-content div.gridy-item-hover { background-color: #D9EBF5; border-color: #CCC; }
 div.gridy-default div.gridy-content div.gridy-item-hover-scroll { background-color: #D9EBF5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
 div.gridy-default div.gridy-content div.gridy-item-active { background-color: #ECF1F5; border-color: #BBB; }
 div.gridy-default div.gridy-content div.gridy-item-active-scroll { background-color: #ECF1F5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }

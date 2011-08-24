@@ -464,6 +464,10 @@
 
 			$content.html($('#' + opt.template).tmpl(entityList));
 
+			if (opt.evenOdd) {
+				$content.children(':odd').addClass('gridy-odd');
+			}
+
 			if (opt.colsWidth) {
 				$content.children('div').addClass('gridy-row').each(function() {
 					$(this).children('div').addClass('gridy-column').each(function(index) {
@@ -709,6 +713,7 @@
 		dataType:			'json',
 		debug:				false,
 		error: 				null,
+		evenOdd:			false,
 		find:				'',
 		findsName:			[],
 		findTarget:			null,
