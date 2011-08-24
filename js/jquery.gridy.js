@@ -254,7 +254,7 @@
 
 			$headerItems = $header.children().children('a:not(".gridy-no-sort")').click(sortGridyFunction);
 
-			var $sortInit = $('div.gridy-header a#sort-by-' + opt.sortName);
+			var $sortInit = $('.gridy-header a#sort-by-' + opt.sortName);
 
 			if ($sortInit.length) {
 				var sortIcon	= (opt.sortOrder == 'asc') ? opt.arrowUp : opt.arrowDown,
@@ -472,8 +472,8 @@
 			}
 
 			if (opt.colsWidth) {
-				$content.children('div').addClass('gridy-row').each(function() {
-					$(this).children('div').addClass('gridy-column').each(function(index) {
+				$content.children().addClass('gridy-row').each(function() { // div|tr
+					$(this).children().addClass('gridy-column').each(function(index) { // div|td
 						$(this).width(opt.colsWidth[index]);
 					});
 				});
@@ -634,7 +634,7 @@
 							var $this = $(this);
 
 							if (!evt.shiftKey) {
-								$this.parent().children('div.gridy-item-active' + scrollSufix).removeClass('gridy-item-active' + scrollSufix);
+								$this.parent().children('.gridy-item-active' + scrollSufix).removeClass('gridy-item-active' + scrollSufix);
 							}
 
 							$this.toggleClass('gridy-item-active' + scrollSufix);
