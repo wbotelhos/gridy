@@ -8,7 +8,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Version
 
-	@version         0.2.0
+	@version         0.3.0 beta
 	@since           06.03.2011
 	@author          Washington Botelho dos Santos
 	@documentation   wbotelhos.com/gridy
@@ -56,6 +56,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	resize:            true                                      // Apply the same width of the content to the other wrappers.
 	resultOption:      true                                      // Enables the presentation of details of the result.
 	resultText:        'Displaying {from} - {to} of {total} items' // Text displayed in the details of the result.
+	root:              'entityList'                              // Name of the root element of the response.
 	rows:              10                                        // Number of rows displayed on each page.
 	rowsNumber:        [5, 10, 25, 50, 100] 	                 // List with the numbers of lines should be displayed.
 	rowsTarget:        null                                      // ID of the place where the rows element will be appended.
