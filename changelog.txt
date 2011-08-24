@@ -2,6 +2,12 @@
  * jQuery Gridy - A Grid Plugin - http://wbotelhos.com/gridy
  * --------------------------------------------------------------------------
  *
+ * 0.3.0 beta
+ *
+ * Added 'resize' to apply the same width of the content to the other wrappers;
+ * Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
+ * Now the component 'find' will be hanging on 'search' container.
+ *
  * 0.2.0
  *
  * The 'rowsList'  renamed to 'rowsNumber';
