@@ -460,7 +460,7 @@
 				}
 			}
 
-			var entityList	= wrapper.entityList;
+			var entityList	= wrapper[opt.root];
 
 			$content.html($('#' + opt.template).tmpl(entityList));
 
@@ -730,6 +730,7 @@
 		resize:				true,
 		resultOption:		true,
 		resultText:			'Displaying {from} - {to} of {total} items',
+		root:				'entityList',
 		rows:				10,
 		rowsNumber:			[5, 10, 25, 50, 100],
 		rowsTarget:			null,
