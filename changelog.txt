@@ -6,6 +6,7 @@
  *
  * Added 'resize' option to apply the same width of the content to the other wrappers;
  * Added 'root' option to choose the name of the root element of the response;
+ * Added 'evenOdd' option to enables the even odd row style;
  * Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
  * Now the component 'find' will be hanging on search container.
  *
