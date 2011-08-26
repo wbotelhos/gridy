@@ -450,7 +450,9 @@
 				}
 			}
 
-			if (wrapper.total == 0) {
+			var total = wrapper[opt.totalPath];
+
+			if (total == 0) {
 				showNoResult();
 				enableGrid(true);
 				return;
@@ -479,21 +481,21 @@
 				});
 			}
 
-			var rest		= wrapper.total % selectedRows,
-				totalPage	= (wrapper.total - rest) / selectedRows;
+			var rest		= total % selectedRows,
+				totalPage	= (total - rest) / selectedRows;
 
 			if (rest > 0) {
 				totalPage++;
-			};
+			}
 
 			if (opt.resultOption) {
-				var resultText = opt.resultText.replace(/{from}/, methods.getNumber(page)).replace(/{to}/, methods.getNumber(totalPage)).replace(/{total}/, methods.getNumber(wrapper.total));
+				var resultText = opt.resultText.replace(/{from}/, methods.getNumber(page)).replace(/{to}/, methods.getNumber(totalPage)).replace(/{total}/, methods.getNumber(total));
 
 				$result.html(resultText);
 			}
 
 			if (opt.buttonOption) {
-				if (wrapper.total > selectedRows) {
+				if (total > selectedRows) {
 					var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="gridy-button-reticence"/>&nbsp;',
 						buttons		= '',
 						number		= 0,
@@ -587,7 +589,7 @@
 			startLoading(true);
 
 			var search			= opt.search,
-				selectedRows	= (opt.rowsNumber.length > 0 ) ? $rowsBox.val() : opt.rows,
+				selectedRows	= (opt.rowsNumber.length > 0) ? $rowsBox.val() : opt.rows,
 				selectedFind	= (opt.findsName.length > 0) ? $findBox.val() : opt.find;
 
 			if (opt.searchOption) {
@@ -768,6 +770,7 @@
 		success:			null,
 		template:			'template',
 		templateStyle:		'gridy-default',
+		totalPath:			'total',
 		type:				'get',
 		url:				'/gridy',
 		width:				'auto'
