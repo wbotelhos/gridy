@@ -697,9 +697,7 @@
 				if (options[attribute] === undefined) {
 					methods.debug('\'' + attribute + '\' is an invalid attribute!');
 				} else {
-					if (value != options[attribute]) {
-						options[attribute] = value;
-					}
+					options[attribute] = value;
 				}
 			});
 
