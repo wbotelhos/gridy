@@ -7,6 +7,7 @@
  * Added 'resize' option to apply the same width of the content to the other wrappers;
  * Added 'root' option to choose the name of the root element of the response;
  * Added 'evenOdd' option to enables the even odd row style;
+ * Added 'paramsElements' option to choose an array of selectors of fields to be used it values as parameters;
  * Now you can use table rather div if you'd just tabulated data in a list format;
  * Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
  * Now the component 'find' will be hanging on search container.

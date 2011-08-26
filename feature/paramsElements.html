@@ -6,7 +6,7 @@
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="Expires" content="-1">
 
-		<title>jQuery Gridy - A Grid Plugin [scroll]</title>
+		<title>jQuery Gridy - A Grid Plugin [paramsElements]</title>
 
 		<!-- This CSS does not belong to the plugin. -->
 		<link type="text/css" rel="stylesheet" href="../css/stylesheet.css"/>
@@ -43,7 +43,7 @@
 				<a href="http://wbotelhos.com/gridy/changelog.txt" target="_blank">Change Log</a> |
 				<a href="http://wbotelhos.com/gridy/README.txt" target="_blank">Readme</a> |
 				<a href="http://www.wbotelhos.com/2011/06/26/jquery-gridy-a-grid-plugin/" target="_blank">Article</a> |
-				<a href="http://wbotelhos.com/gridy/LICENSE.txt" target="_blank">Licence</a> |
+				<a href="http://wbotelhos.com/gridy/LICENSE.txt" target="_blank">License</a> |
 				<a href="http://www.wbotelhos.com/gridy/who.html" target="_blank">Who is using</a> |
 				<a href="http://www.wbotelhos.com/2011/06/26/jquery-gridy-a-grid-plugin/#comments" target="_blank" style="color: #2C8CBD;">Doubt</a> |
 				<a href="http://www.wbotelhos.com/lab" target="_blank" style="color: #000;">yLab</a>
@@ -51,15 +51,15 @@
 
 			<a id="coffee" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=X8HEP2878NDEG&amp;item_name=jQuery%20Gridy" target="_blank">buy me a coffee</a>
 
-			<div class="description">jQuery <strong>Gridy</strong> is a plugin that generates a highly customizable grid automatically.</div>
+			<div class="description">jQuery <strong>Gridy</strong> is a plugin that automatically generates a highly customizable grid using templates.</div>
 		</div>
 
 		<div id="content">
 			<div id="default-demo" class="session-first">Features:</div>
 
 			<div id="menu-feature">
-				<a href="http://wbotelhos.com/gridy/index.html">home</a>
-				<a href="javascript:void(0);" class="selected">scroll</a>
+				<a href="javascript:void(0);">home</a>
+				<a href="http://wbotelhos.com/gridy/feature/scroll.html" class="selected">scroll</a>
 				<a href="javascript:void(0);" class="disabled">arrowDown</a>
 				<a href="javascript:void(0);" class="disabled">arrowNone</a>
 				<a href="javascript:void(0);" class="disabled">arrowUp</a>
@@ -97,7 +97,7 @@
 				<a href="javascript:void(0);" class="disabled">noResultText</a>
 				<a href="javascript:void(0);" class="disabled">page</a>
 				<a href="javascript:void(0);" class="disabled">params</a>
-				<a href="http://wbotelhos.com/gridy/feature/paramsElements.html">paramsElements</a>
+				<a href="javascript:void(0);" class="selected">paramsElements</a>
 				<a href="javascript:void(0);" class="disabled">resize</a>
 				<a href="javascript:void(0);" class="disabled">resultOption</a>
 				<a href="javascript:void(0);" class="disabled">resultText</a>
@@ -125,19 +125,37 @@
 				<a href="javascript:void(0);" class="disabled">.reload()</a>
 			</div>
 
-			<div id="grid"></div>
+			<div id="grid"></div><br/>
+
+			<div style="background-color: #F7F7F7; border: 1px solid #CCC; margin-left: 15px; margin-top: -46px; padding: 10px; width: 1033px;">
+				<label style="font-weight: bold;">Search type:</label>
+	
+				<select name="searchType" style="margin-right: 10px;">
+					<option value="basic">Basic</option>
+					<option value="advanced" selected="selected">Advanced</option>
+				</select>
+	
+				<label style="font-weight: bold;">Extra search:</label>
+	
+				<input id="secondSearch" type="text" name="secondSearch" value="ajax" />
+			</div>
 
 			<div class="session-mini">Script:</div>
 
+			<div class="source">paramsElements: ['select[name="searchType"]', 'input#secondSearch']</div>
+
+			<div class="session-mini">Query string:</div>
+
 			<div class="source">
-				scroll: true<br/>
-				height: 200
+				search=&page=1&sortName=&sortOrder=asc&find=attribute&rows=10&searchType=advanced&secondSearch=ajax
 			</div>
 
 			<div class="session">TIP:</div>
 
 			<span class="comment">
-				 - You must specify the height attribute to restrict the height and the scroll bar to appear, otherwise the height will be automatic.
+				 - Always add the attribute name on your fields, because it is the name of the query string parameter;<br/>
+				 - The selectors can be any one accepted by jQuery;<br/>
+				 - paramsElements is a way to pass parameters dynamically to your functions.
 			</span>
 		</div>
 
@@ -149,17 +167,17 @@
 			$(function() {
 
 				$('#grid').gridy({
+					buttonOption:	false,
 					colsWidth:		[90, 100, 524, 75, 90, 90],
+					debug:			true,
 					dataType:		'jsonp',
 					find:			'attribute',
 					height:			200,
 					jsonp:			true,
 					loadingOption:	false,
+					paramsElements:	['select[name="searchType"]', 'input#secondSearch'],
 					resultOption:	false,
-					rows:			90,
 					rowsNumber:		[],
-					scroll:			true,
-					searchOption:	false,
 					url:			'http://www.moviecollection.com.br/gridy',
 					width:			1070
 				});

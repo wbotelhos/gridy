@@ -39,7 +39,7 @@
 		init: function(settings) {
 			
 		}, getSize: function(size) {
-			return (isNaN(parseInt(size))) ? size : size + 'px';
+			return (isNaN(parseInt(size, 10))) ? size : size + 'px';
 		}, getNumber: function(number) {
 			return (number < 10) ? '0' + number : number;
 		}, getError: function(xhr) {
@@ -516,7 +516,7 @@
 						start		= page - rangePage;
 					}
 
-					var end = parseInt(page) + rangePage;
+					var end = parseInt(page, 10) + rangePage;
 
 					if (start == 0) {
 						end++;
@@ -603,8 +603,18 @@
 				return;
 			}
 
+			var paramsElements = '';
+
+			if (opt.paramsElements) {
+				for (var i = 0; i < opt.paramsElements.length; i++) {
+					var $this = $(opt.paramsElements[i]);
+
+					paramsElements += '&' + $this.attr('name') + '=' + $this.val(); 
+				}
+			}
+
 			if (opt.debug) {
-				methods.debug('query string: search=' + search + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params);
+				methods.debug('query string: search=' + search + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params + paramsElements);
 			}
 
 			$.ajax({
@@ -615,7 +625,7 @@
 				jsonpCallback:	opt.jsonpCallback,
 				type:			opt.type,
 				url:			opt.url,
-				data:			'search=' + search + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params,
+				data:			'search=' + search + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params + paramsElements,
 				success: function(wrapper) {
 					processCallback(wrapper, page, sortName, sortOrder, selectedRows);
 
@@ -735,6 +745,7 @@
 		noResultText:		'No items found!',
 		page:				1,
 		params: 			'',
+		paramsElements:		[],
 		resize:				true,
 		resultOption:		true,
 		resultText:			'Displaying {from} - {to} of {total} items',
