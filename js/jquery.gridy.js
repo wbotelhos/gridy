@@ -450,7 +450,7 @@
 				}
 			}
 
-			var total = wrapper[opt.totalPath];
+			var total = eval('wrapper.' + opt.totalPath);
 
 			if (total == 0) {
 				showNoResult();
