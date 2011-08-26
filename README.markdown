@@ -111,3 +111,4 @@ You can do it by [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&b
 ## Contributors
 
 + Gabriel Benz
++ Makoto Hashimoto
