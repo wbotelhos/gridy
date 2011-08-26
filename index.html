@@ -88,6 +88,7 @@
 				<a href="javascript:void(0);" class="disabled">hoverFx</a>
 				<a href="javascript:void(0);" class="disabled">jsonp</a>
 				<a href="javascript:void(0);" class="disabled">jsonpCallback</a>
+				<a href="javascript:void(0);" class="disabled">listPath</a>
 				<a href="javascript:void(0);" class="disabled">loadingIcon</a>
 				<a href="javascript:void(0);" class="disabled">loadingOption</a>
 				<a href="javascript:void(0);" class="disabled">loadingText</a>
@@ -101,7 +102,6 @@
 				<a href="javascript:void(0);" class="disabled">resize</a>
 				<a href="javascript:void(0);" class="disabled">resultOption</a>
 				<a href="javascript:void(0);" class="disabled">resultText</a>
-				<a href="javascript:void(0);" class="disabled">root</a>
 				<a href="javascript:void(0);" class="disabled">rows</a>
 				<a href="javascript:void(0);" class="disabled">rowsNumber</a>
 				<a href="javascript:void(0);" class="disabled">rowsTarget</a>
@@ -119,6 +119,7 @@
 				<a href="javascript:void(0);" class="disabled">success</a>
 				<a href="javascript:void(0);" class="disabled">template</a>
 				<a href="javascript:void(0);" class="disabled">templateStyle</a>
+				<a href="javascript:void(0);" class="disabled">totalPath</a>
 				<a href="javascript:void(0);" class="disabled">type</a>
 				<a href="javascript:void(0);" class="disabled">url</a>
 				<a href="javascript:void(0);" class="disabled">width</a>
@@ -302,6 +303,9 @@
 				loadingText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading...
 				<div class="comment">Text that will appear during the loading.</div>
 
+				listPath:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'entityList'
+				<div class="comment">Path of the list element like 'response.movie.list'.</div>
+
 				messageOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
 				<div class="comment">Enables the display of messages about the grid.</div>
 
@@ -331,9 +335,6 @@
 
 				resultText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Displaying {from} - {to} of {total} items'
 				<div class="comment">Text displayed in the details of the result.</div>
-
-				root:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'entityList'
-				<div class="comment">Name of the root element of the response.</div>
 
 				rows:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10
 				<div class="comment">Number of rows displayed on each page.</div>
@@ -385,6 +386,9 @@
 
 				templateStyle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-default'
 				<div class="comment">Name of the template style "CSS prefix".</div>
+
+				totalPath:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'total'
+				<div class="comment">Path of the total element like 'response.movie.total'.</div>
 
 				type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'get'
 				<div class="comment">Type of the HTTP request.</div>

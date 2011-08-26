@@ -48,6 +48,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	loadingIcon:       'loading'                               // Name of the class used as a loading icon.
 	loadingOption:     true                                    // Enables the presentation of the loading message.
 	loadingText:       Loading...                              // Text that will appear during the loading.
+	listPath:          'entityList'                            // Path of the list element like 'response.movie.list'.
 	messageOption:     true                                    // Enables the display of messages about the grid.
 	messageTimer:      4000                                    // Time in milliseconds to keep the messages on screen.
 	noResultOption:    true                                    // Enables the presentation of the no result message.
@@ -58,7 +59,6 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	resize:            true                                    // Apply the same width of the content to the other wrappers.
 	resultOption:      true                                    // Enables the presentation of details of the result.
 	resultText:        'Displaying {from} - {to} of {total} items' // Text displayed in the details of the result.
-	root:              'entityList'                            // Name of the root element of the response.
 	rows:              10                                      // Number of rows displayed on each page.
 	rowsNumber:        [5, 10, 25, 50, 100] 	               // List with the numbers of lines should be displayed.
 	rowsTarget:        null                                    // ID of the place where the rows element will be appended.
@@ -77,6 +77,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	template:          'template'                              // The ID of the script template to be loaded.
 	templateStyle:     'gridy-default'                         // Name of the template style "CSS prefix".
 	type:              'get'                                   // Type of the HTTP request.
+	totalPath:         'entityList'                            // Path of the total element like 'response.movie.total'.
 	url:               '/gridy'                                // Url to request the data.
 	width:             'auto'                                  // Width of the grid.
 

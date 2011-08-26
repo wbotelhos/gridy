@@ -1,8 +1,8 @@
 /*!
  * jQuery Gridy - A Grid Plugin - http://wbotelhos.com/gridy
- * ---------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------------------
  *
- * jQuery Gridy is a plugin that generates a highly customizable grid automatically.
+ * jQuery Gridy is a plugin that automatically generates a highly customizable grid using templates.
  *
  * Licensed under The MIT License
  *
@@ -15,7 +15,7 @@
  * @package         jQuery Plugins
  *
  * Usage with default values:
- * ---------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------------------
  * $('#grid').gridy({ url: 'url/gridy' });
  *
  * <div id="grid"></div>
