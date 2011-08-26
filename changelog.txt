@@ -5,7 +5,7 @@
  * 0.3.0 beta
  *
  * Added 'resize' option to apply the same width of the content to the other wrappers;
- * Added 'root' option to choose the name of the root element of the response;
+ * Added 'listPath' option to choose the path of the list element like 'response.movie.list';
  * Added 'evenOdd' option to enables the even odd row style;
  * Added 'paramsElements' option to choose an array of selectors of fields to be used it values as parameters;
  * Now you can use table rather div if you'd just tabulated data in a list format;

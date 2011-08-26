@@ -460,7 +460,7 @@
 				}
 			}
 
-			var entityList	= wrapper[opt.root];
+			var entityList	= eval('wrapper.' + opt.listPath);
 
 			$content.html($('#' + opt.template).tmpl(entityList));
 
@@ -736,6 +736,7 @@
 		hoverFx:			false,
 		jsonp:				false,
 		jsonpCallback:		'callback',
+		listPath:			'entityList',
 		loadingIcon:		'gridy-loading',
 		loadingOption:		true,
 		loadingText:		'Loading...',
@@ -749,7 +750,6 @@
 		resize:				true,
 		resultOption:		true,
 		resultText:			'Displaying {from} - {to} of {total} items',
-		root:				'entityList',
 		rows:				10,
 		rowsNumber:			[5, 10, 25, 50, 100],
 		rowsTarget:			null,
