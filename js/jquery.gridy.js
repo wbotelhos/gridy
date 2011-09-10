@@ -183,7 +183,7 @@
 		var $status = null;
 
 		if (opt.loadingOption || opt.resultOption) {
-			$status = $('<div class="gridy-status"/>').appendTo($this);
+			$status = $('<div class="gridy-status"/>').insertBefore($this);
 
 			if (opt.resize) {
 				$status.css('width', methods.getSize(opt.width));

@@ -13,11 +13,11 @@
 .gridy-default-table .gridy-arrow-up { background-image: url('../img/jquery-icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
 
 .gridy-search,
+.gridy-status,
 .gridy-default-table > .gridy-header,
 .gridy-default-table > .gridy-content,
 .gridy-default-table > .gridy-buttons,
 .gridy-default-table > .gridy-sorter-bar,
-.gridy-default-table > .gridy-status,
 .gridy-default-table > .gridy-footer { margin: 0 auto; }
 
 .gridy-search > .gridy-search-content { margin: 0 auto; }
@@ -38,12 +38,12 @@
 
 .gridy-default-table .gridy-fade { opacity: .6; }
 
-.gridy-default-table .gridy-loading { clear: left; float: left; width: 90px; }
-.gridy-default-table .gridy-loading div { background: url("../img/loading.gif") no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
+.gridy-loading { clear: left; float: left; width: 90px; }
+.gridy-loading div { background: url("../img/loading.gif") no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
 
-.gridy-default-table .gridy-status { height: 17px; margin-top: 10px; }
+.gridy-status { height: 17px; margin-top: 10px; }
 
-.gridy-default-table .gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
+.gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
 
 .gridy-default-table .gridy-header { clear: both; height: 24px; }
 .gridy-default-table .gridy-header .gridy-head-item { float: left; padding: 4px 7px; text-align: center; }
@@ -106,11 +106,11 @@
 .gridy-default .gridy-arrow-up { background-image: url('../img/jquery-icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
 
 .gridy-search,
+.gridy-status,
 .gridy-default > .gridy-header,
 .gridy-default > .gridy-content,
 .gridy-default > .gridy-buttons,
 .gridy-default > .gridy-sorter-bar,
-.gridy-default > .gridy-status,
 .gridy-default > .gridy-footer { margin: 0 auto; }
 
 .gridy-search > .gridy-search-content { margin: 0 auto; }
@@ -131,12 +131,12 @@
 
 .gridy-default .gridy-fade { opacity: .6; }
 
-.gridy-default .gridy-loading { clear: left; float: left; width: 90px; }
-.gridy-default .gridy-loading div { background: url("../img/loading.gif") no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
+.gridy-loading { clear: left; float: left; width: 90px; }
+.gridy-loading div { background: url("../img/loading.gif") no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
 
-.gridy-default .gridy-status { height: 17px; margin-top: 10px; }
+.gridy-status { height: 17px; margin-top: 10px; }
 
-.gridy-default .gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
+.gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
 
 .gridy-default .gridy-header { clear: both; height: 24px; }
 .gridy-default .gridy-header .gridy-head-item { float: left; padding: 4px 7px; text-align: center; }
