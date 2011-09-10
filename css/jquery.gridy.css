@@ -90,3 +90,96 @@
 	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; height: 24px; margin-right: 2px; padding-bottom: 2px; text-align: center; width: 40px;
 	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 }
+
+/* TABLE */
+
+.gridy-table-default .gridy-search { height: 28px; }
+.gridy-table-default .gridy-search .gridy-search-content { height: 28px; width: 480px; }
+.gridy-table-default .gridy-search .gridy-search-content input[type="button"] { float: left; height: 28px; margin-left: 2px; width: 80px; }
+.gridy-table-default .gridy-search .gridy-search-content input[type="text"] { color: #BBB; float: left; height: 20px; margin-bottom: 5px; }
+.gridy-table-default .gridy-search .gridy-search-content input[type="text"].gridy-typed { color: #444; }
+
+.gridy-table-default .gridy-arrow-none,
+.gridy-table-default .gridy-arrow-down,
+.gridy-table-default .gridy-arrow-up { background-image: url('../img/jquery-icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
+
+.gridy-table-default > .gridy-header,
+.gridy-table-default > .gridy-content,
+.gridy-table-default > .gridy-search,
+.gridy-table-default > .gridy-buttons,
+.gridy-table-default > .gridy-sorter-bar,
+.gridy-table-default > .gridy-status,
+.gridy-table-default > .gridy-footer { margin: 0 auto; }
+
+.gridy-table-default > .gridy-search > .gridy-search-content { margin: 0 auto; }
+.gridy-table-default > .gridy-buttons > .gridy-buttons-content { margin: 0 auto; }
+
+.gridy-table-default .gridy-arrow-up { background-position: 0 -48px; }
+.gridy-table-default .gridy-arrow-none { background-position: -128px -32px; }
+.gridy-table-default .gridy-arrow-down { background-position: -64px -48px; }
+
+.gridy-table-default a.gridy-no-sort { cursor: default; }
+
+.gridy-table-default .gridy-sorter-bar { margin-bottom: 35px; }
+.gridy-table-default .gridy-sorter-bar .gridy-sorter-item { float: left; margin-right: 10px; }
+.gridy-table-default .gridy-sorter-bar .gridy-sorter-item div { float: left; }
+.gridy-table-default .gridy-sorter-bar .gridy-sorter-item a { font: 14px monospace; color: #369; letter-spacing: 2px; text-decoration: none; text-transform: capitalize; }
+.gridy-table-default .gridy-sorter-bar .gridy-sorter-item a:hover { color: #339BD0; }
+.gridy-table-default .gridy-sorter-bar .gridy-sorter-item a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
+
+.gridy-table-default .gridy-fade { opacity: .6; }
+
+.gridy-table-default .gridy-loading { clear: left; float: left; width: 90px; }
+.gridy-table-default .gridy-loading div { background: url("../img/loading.gif") no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
+
+.gridy-table-default .gridy-status { height: 17px; margin-top: 10px; }
+
+.gridy-table-default .gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
+
+.gridy-table-default .gridy-header { clear: both; height: 24px; }
+.gridy-table-default .gridy-header .gridy-head-item { float: left; padding: 4px 7px; text-align: center; }
+.gridy-table-default .gridy-header .gridy-head-item div { float: right; }
+.gridy-table-default .gridy-header .gridy-head-item a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
+.gridy-table-default .gridy-header .gridy-head-item a:hover { color: #339BD0; }
+.gridy-table-default .gridy-header .gridy-head-item a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
+.gridy-table-default .gridy-header .gridy-column-button { padding-left: 0 !important; padding-right: 0 !important; }
+
+.gridy-table-default .gridy-content { clear: both; height: auto; overflow: visible; }
+.gridy-table-default .gridy-content .gridy-even { background-color: #FFF; }
+.gridy-table-default .gridy-content .gridy-odd { background-color: #F7F7F7; }
+.gridy-table-default .gridy-content .gridy-item-hover { background-color: #D9EBF5; border-color: #CCC; }
+.gridy-table-default .gridy-content .gridy-item-hover-scroll { background-color: #D9EBF5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
+.gridy-table-default .gridy-content .gridy-item-active { background-color: #ECF1F5; border-color: #BBB; }
+.gridy-table-default .gridy-content .gridy-item-active-scroll { background-color: #ECF1F5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
+.gridy-table-default .gridy-content p.gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
+
+.gridy-table-default .gridy-content .gridy-scroll { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }
+
+.gridy-table-default .gridy-row { border: 1px solid #CCC; margin-bottom: -1px; }
+.gridy-table-default .gridy-row .gridy-column { float: left; padding: 10px 7px 5px; }
+.gridy-table-default .gridy-row .gridy-button a {
+	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; display: block; height: 20px; margin-right: 5px; margin-top: -5px; padding-top: 3px; text-align: center; text-transform: lowercase; width: 90px;
+	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
+}
+
+.gridy-table-default .gridy-footer { clear: both; height: 31px; }
+.gridy-table-default .gridy-footer .gridy-message { color: #F55; font-weight: bold; float: right; font-size: 12px; letter-spacing: .gridy-3px; margin-right: 20px; margin-top: 10px; text-align: right; }
+
+.gridy-table-default .gridy-find-option select,
+.gridy-table-default .gridy-row-option select {
+	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-size: 12px; height: 24px; padding: 2px;
+	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
+}
+
+.gridy-table-default .gridy-find-option { float: left; margin-left: 5px; }
+.gridy-table-default .gridy-find-option select { margin-top: 2px; }
+
+.gridy-table-default .gridy-row-option select { margin-top: 4px; }
+
+.gridy-table-default .gridy-buttons { text-align: center; }
+.gridy-table-default .gridy-buttons input[type="button"].gridy-active { background-color: #F5F8F9; border: 1px solid #B5B5B5; cursor: default; color: #47A; }
+.gridy-table-default .gridy-buttons input[type="button"].gridy-button-reticence { color: #999; cursor: default; width: 25px; }
+.gridy-table-default .gridy-buttons input[type="button"] {
+	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; height: 24px; margin-right: 2px; padding-bottom: 2px; text-align: center; width: 40px;
+	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
+}
