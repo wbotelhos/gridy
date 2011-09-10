@@ -83,7 +83,7 @@
 			$searchButton	= null;
 
 		if (opt.searchOption) {
-			$search = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').appendTo($this);
+			$search = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').insertBefore($this);
 
 			if (opt.resize) {
 				$search.css('width', methods.getSize(opt.width));
