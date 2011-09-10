@@ -76,7 +76,7 @@
 			$this.attr('id', id); 
 		}
 
-		$this.addClass(opt.templateStyle).data('options', opt);
+		$this.addClass((opt.style == 'table') ? opt.templateStyle + '-table' : opt.templateStyle).data('options', opt);
 
 		var $search			= null,
 			$searchField	= null,
@@ -264,7 +264,9 @@
 			}
 		}
 
-		var $content = $('<div class="gridy-content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
+		var $contentElement = (opt.style == 'table') ? $('<tbody class="gridy-content"/>') : $('<div class="gridy-content"/>');
+		
+		var $content = $contentElement.css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
 
 		function startLoading(isStart) {
 			if (opt.loadingOption) {
@@ -765,6 +767,7 @@
 		sorterWidth:		'auto',
 		sortName:			'',
 		sortOrder:			'asc',
+		style:				'table',
 		success:			null,
 		template:			'template',
 		templateStyle:		'gridy-default',
