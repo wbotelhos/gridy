@@ -53,7 +53,7 @@
 .gridy-default-table .gridy-header .gridy-head-item a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
 .gridy-default-table .gridy-header .gridy-column-button { padding-left: 0 !important; padding-right: 0 !important; }
 
-.gridy-default-table .gridy-content { clear: both; height: auto; overflow: visible; }
+.gridy-default-table .gridy-content { clear: both; height: auto; margin: 0; overflow: visible; padding: 0; }
 .gridy-default-table .gridy-content .gridy-even { background-color: #FFF; }
 .gridy-default-table .gridy-content .gridy-odd { background-color: #F7F7F7; }
 .gridy-default-table .gridy-content .gridy-item-hover { background-color: #D9EBF5; border-color: #CCC; }
@@ -64,8 +64,8 @@
 
 .gridy-default-table .gridy-content .gridy-scroll { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }
 
-.gridy-default-table .gridy-row { border: 1px solid #CCC; margin-bottom: -1px; }
-.gridy-default-table .gridy-row .gridy-column { float: left; padding: 10px 7px 5px; }
+.gridy-default-table .gridy-row { margin-bottom: -1px; }
+.gridy-default-table .gridy-row .gridy-column { border-color: #CCC; border-style: solid; border-width: 1px 0 0; float: left; height: 20px; padding: 10px 7px 5px; width: 90px; }
 .gridy-default-table .gridy-row .gridy-button a {
 	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; display: block; height: 20px; margin-right: 5px; margin-top: -5px; padding-top: 3px; text-align: center; text-transform: lowercase; width: 90px;
 	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
@@ -158,7 +158,7 @@
 .gridy-default .gridy-content .gridy-scroll { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }
 
 .gridy-default .gridy-row { border: 1px solid #CCC; float: left; margin-bottom: -1px; width: auto; }
-.gridy-default .gridy-row .gridy-column { float: left; padding: 10px 7px 5px; }
+.gridy-default .gridy-row .gridy-column { float: left; height: 20px; padding: 10px 7px 5px; }
 .gridy-default .gridy-row .gridy-button a {
 	border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; display: block; height: 20px; margin-right: 5px; margin-top: -5px; padding-top: 3px; text-align: center; text-transform: lowercase; width: 90px;
 	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;

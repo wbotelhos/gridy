@@ -66,7 +66,7 @@
 
 		var opt					= $.extend({}, $.fn.gridy.defaults, settings),
 			id					= this.attr('id'),
-			$this				= $(this).empty(),
+			$this				= $(this).data('options', opt).empty(),
 			$currentPage		= $('<input id="current-page" type="hidden" value="' + opt.page + '"/>').insertBefore($this),
 			$currentSortName	= $('<input id="current-sort-name" type="hidden" value="' + opt.sortName + '"/>').insertBefore($this),
 			$currentSortOrder	= $('<input id="current-sort-order" type="hidden" value="' + opt.sortOrder + '"/>').insertBefore($this);
@@ -76,7 +76,11 @@
 			$this.attr('id', id); 
 		}
 
-		$this.addClass((opt.style == 'table') ? opt.templateStyle + '-table' : opt.templateStyle).data('options', opt);
+		if (opt.style == 'table') {
+			$this.addClass(opt.templateStyle + '-table').attr('cellspacing', 0);
+		} else {
+			$this.addClass(opt.templateStyle);
+		}
 
 		var $search			= null,
 			$searchField	= null,
@@ -264,9 +268,8 @@
 			}
 		}
 
-		var $contentElement = (opt.style == 'table') ? $('<tbody class="gridy-content"/>') : $('<div class="gridy-content"/>');
-		
-		var $content = $contentElement.css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
+		var $contentElement	= (opt.style == 'table') ? $('<tbody class="gridy-content"/>') : $('<div class="gridy-content"/>'),
+			$content		= $contentElement.css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
 
 		function startLoading(isStart) {
 			if (opt.loadingOption) {
@@ -675,9 +678,13 @@
 
 						$content
 						.css({ 'border': '1px solid #BBB', 'overflow': 'auto' })
-							.children('div').addClass('gridy-scroll')
+							.children().addClass('gridy-scroll')
 						.end()
-							.children('div:last').css('border-bottom-color', '#FFF');
+							.children(':last').css('border-bottom-color', '#FFF');
+					}
+
+					if (opt.style == 'table') {
+						$content.children(':last').children('td').css('border-bottom-width', '1px');
 					}
 
 					if (opt.complete) {
