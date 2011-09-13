@@ -76,7 +76,9 @@
 			$this.attr('id', id); 
 		}
 
-		if (opt.style == 'table') {
+		var isTable = opt.style == 'table';
+
+		if (isTable) {
 			$this.addClass(opt.templateStyle + '-table').attr('cellspacing', 0);
 		} else {
 			$this.addClass(opt.templateStyle);
@@ -268,7 +270,7 @@
 			}
 		}
 
-		var $contentElement	= (opt.style == 'table') ? $('<tbody class="gridy-content"/>') : $('<div class="gridy-content"/>'),
+		var $contentElement	= (isTable) ? $('<tbody class="gridy-content"/>') : $('<div class="gridy-content"/>'),
 			$content		= $contentElement.css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
 
 		function startLoading(isStart) {
@@ -467,7 +469,9 @@
 				}
 			}
 
-			var entityList	= eval('wrapper.' + opt.listPath);
+			var entityList	= eval('wrapper.' + opt.listPath),
+				$rows		= null,
+				$columns	= null;
 
 			$content.html($('#' + opt.template).tmpl(entityList));
 
@@ -479,8 +483,20 @@
 			}
 
 			if (opt.colsWidth) {
-				$content.children().addClass('gridy-row').each(function() { // div|tr
-					$(this).children().addClass('gridy-column').each(function(index) { // div|td
+				$rows = $content.children(); // div|tr
+
+				if (!isTable) {
+					$rows.addClass('gridy-row');
+				}
+
+				$rows.each(function() {
+					$columns = $(this).children();
+
+					if (!isTable) {
+						$columns.addClass('gridy-column');
+					}
+
+					$columns.each(function(index) { // div|td
 						$(this).width(opt.colsWidth[index]);
 					});
 				});
@@ -683,7 +699,7 @@
 							.children(':last').css('border-bottom-color', '#FFF');
 					}
 
-					if (opt.style == 'table') {
+					if (isTable) {
 						$content.children(':last').children('td').css('border-bottom-width', '1px');
 					}
 
