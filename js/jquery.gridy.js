@@ -312,7 +312,13 @@
 		var $footer = null;
 
 		if (opt.rowsNumber.length > 0  || opt.messageOption || (opt.findsName.length > 0 && !opt.searchOption)) {
-			$footer = $('<div class="gridy-footer"/>').appendTo($this);
+			$footer = $('<div class="gridy-footer"/>');
+
+			if (isTable) {
+				$footer.insertAfter($this);
+			} else {
+				$footer.appendTo($this);
+			}
 
 			if (opt.resize) {
 				$footer.css('width', methods.getSize(opt.width));
