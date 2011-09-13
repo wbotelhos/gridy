@@ -6,7 +6,7 @@
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="Expires" content="-1">
 
-		<title>jQuery Gridy - A Grid Plugin [paramsElements]</title>
+		<title>jQuery Gridy - A Grid Plugin [style]</title>
 
 		<!-- This CSS does not belong to the plugin. -->
 		<link type="text/css" rel="stylesheet" href="../css/stylesheet.css"/>
@@ -15,7 +15,7 @@
 
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/jquery.tmpl.min.js"></script>
-		<script type="text/javascript" src="../js/jquery.gridy.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.gridy.js"></script>
 
 		<script type="text/javascript">
 			// This code does not belong to the plugin. See the example code at the bottom of this page.
@@ -98,7 +98,7 @@
 				<a href="javascript:void(0);" class="disabled">noResultText</a>
 				<a href="javascript:void(0);" class="disabled">page</a>
 				<a href="javascript:void(0);" class="disabled">params</a>
-				<a href="javascript:void(0);" class="selected">paramsElements</a>
+				<a href="http://wbotelhos.com/gridy/feature/paramsElements.html">paramsElements</a>
 				<a href="javascript:void(0);" class="disabled">resize</a>
 				<a href="javascript:void(0);" class="disabled">resultOption</a>
 				<a href="javascript:void(0);" class="disabled">resultText</a>
@@ -116,7 +116,7 @@
 				<a href="javascript:void(0);" class="disabled">sorterWidth</a>
 				<a href="javascript:void(0);" class="disabled">sortName</a>
 				<a href="javascript:void(0);" class="disabled">sortOrder</a>
-				<a href="http://wbotelhos.com/gridy/feature/style.html">style</a>
+				<a href="javascript:void(0);" class="selected">style</a>
 				<a href="javascript:void(0);" class="disabled">success</a>
 				<a href="javascript:void(0);" class="disabled">template</a>
 				<a href="javascript:void(0);" class="disabled">templateStyle</a>
@@ -129,22 +129,9 @@
 
 			<div id="grid"></div><br/>
 
-			<div style="background-color: #F7F7F7; border: 1px solid #CCC; margin-left: 15px; margin-top: -46px; padding: 10px; width: 1033px;">
-				<label style="font-weight: bold;">Search type:</label>
-	
-				<select name="searchType" style="margin-right: 10px;">
-					<option value="basic">Basic</option>
-					<option value="advanced" selected="selected">Advanced</option>
-				</select>
-	
-				<label style="font-weight: bold;">Extra search:</label>
-	
-				<input id="secondSearch" type="text" name="secondSearch" value="ajax" />
-			</div>
-
 			<div class="session-mini">Script:</div>
 
-			<div class="source">paramsElements: ['select[name="searchType"]', 'input#secondSearch']</div>
+			<div class="source">style: 'div'</div>
 
 			<div class="session-mini">Query string:</div>
 
@@ -157,7 +144,7 @@
 			<span class="comment">
 				 - Always add the attribute name on your fields, because it is the name of the query string parameter;<br/>
 				 - The selectors can be any one accepted by jQuery;<br/>
-				 - paramsElements is a way to pass parameters dynamically to your functions.
+				 - divStyle is a way to pass parameters dynamically to your functions.
 			</span>
 		</div>
 
@@ -169,19 +156,20 @@
 			$(function() {
 
 				$('#grid').gridy({
-					buttonOption:	false,
-					colsWidth:		[90, 100, 524, 75, 90, 90],
-					debug:			true,
+					buttonMax:		4,
+					clickFx:		true,
+					colsWidth:		[90, 100, 549, 75, 90, 90],
 					dataType:		'jsonp',
 					find:			'attribute',
-					height:			200,
+					findsName:		[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
+					headersName:	[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
+					hoverFx:		true,
 					jsonp:			true,
-					loadingOption:	false,
-					paramsElements:	['select[name="searchType"]', 'input#secondSearch'],
-					resultOption:	false,
-					rowsNumber:		[],
+					sortName:		'attribute',
+					searchText:		'type your search here...',
+					style:			'div',
 					url:			'http://www.moviecollection.com.br/gridy',
-					width:			1070
+					width:			1080
 				});
 
 			});

@@ -126,7 +126,7 @@
 				<a href="javascript:void(0);" class="disabled">.reload()</a>
 			</div>
 
-			<div id="grid"></div><br/>
+			<table id="grid"></table><br/>
 
 			<div class="session-mini">JSON:</div>
 
@@ -433,20 +433,20 @@
 		</script>
 
 		<script id="template" type="text/x-jquery-tmpl">
-			<div>
-				<div>${attribute}</div>
-				<div>${value}</div>
-				<div>${description}</div>
-				<div>${version}</div>
+			<tr>
+				<td>${attribute}</td>
+				<td>${value}</td>
+				<td>${description}</td>
+				<td>${version}</td>
 
-				<div class="gridy-button">
+				<td class="gridy-button">
 					<a href="javascript:void(0);">remove</a>
-				</div>
+				</td>
 
-				<div class="gridy-button">
+				<td class="gridy-button">
 					<a href="javascript:void(0);">edit</a>
-				</div>
-			</div>
+				</td>
+			</tr>
 		</script>
 	</body>
 </html>
