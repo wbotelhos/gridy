@@ -403,7 +403,15 @@
 		var $buttons = null;
 
 		if (opt.buttonOption) {
-			$buttons = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>').appendTo($this).children();
+			$buttons = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>');
+
+			if (isTable) {
+				$buttons.insertAfter($footer);
+			} else {
+				$buttons.appendTo($this);
+			}
+
+			$buttons = $buttons.children();
 
 			if (opt.resize) {
 				$buttons.css('width', methods.getSize(opt.width));
