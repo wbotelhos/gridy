@@ -118,9 +118,11 @@
 			});
 		}
 
+		var hasHeader = opt.headersName.length > 0;
+
 		function changeSortIndicator(clickedLink, sortOrder, sortIcon, isResetIcon) {
 			var $sortWrapper	= clickedLink.parent().parent(),
-				isHeader		= opt.headersName.length > 0 && $sortWrapper.attr('class') == 'gridy-header';
+				isHeader		= hasHeader && $sortWrapper.attr('class') == 'gridy-header';
 
 			if (isResetIcon) {
 				var $sortedLink = $sortWrapper.find('a.gridy-sorted').attr('rel', 'desc').removeClass('gridy-sorted');
@@ -211,17 +213,21 @@
 		var $header			= null,
 			$headerItems	= null;
 
-		if (opt.headersName.length > 0) {
-			$header = $('<div class="gridy-header"/>').appendTo($this);
-
-			if (opt.resize) {
-				$header.css('width', methods.getSize(opt.width));
-			}
-
+		if (hasHeader) {
 			var $head		= null,
 				$sortLink	= null,
 				headName	= '',
 				headLabel	= '';
+
+			if (isTable) {
+				$header = $('<thead class="gridy-header"/>').appendTo($this);
+			} else {
+				$header = $('<div class="gridy-header"/>').appendTo($this);
+
+				if (opt.resize) {
+					$header.css('width', methods.getSize(opt.width));
+				}
+			}
 
 			if (opt.headersWidth.length <= 0) {
 				if (opt.colsWidth.length > 0) {
@@ -238,7 +244,11 @@
 
 				$sortLink = $('<a/>', { href: 'javascript:void(0);', html: headLabel });
 
-				$head = $('<div class="gridy-head-item"/>');
+				if (isTable) {
+					$head = $('<th class="gridy-head-item"/>');
+				} else {
+					$head = $('<div class="gridy-head-item"/>');
+				}
 
 				if (headName) {
 					$sortLink.attr({ id: 'sort-by-' + headName, name: headName, rel: 'desc' });
@@ -260,7 +270,7 @@
 
 			$headerItems = $header.children().children('a:not(".gridy-no-sort")').click(sortGridyFunction);
 
-			var $sortInit = $('.gridy-header a#sort-by-' + opt.sortName);
+			var $sortInit = $header.find('#sort-by-' + opt.sortName);
 
 			if ($sortInit.length) {
 				var sortIcon	= (opt.sortOrder == 'asc') ? opt.arrowUp : opt.arrowDown,

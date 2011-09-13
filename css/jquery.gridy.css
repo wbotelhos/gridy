@@ -45,13 +45,11 @@
 
 .gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
 
-.gridy-default-table .gridy-header { clear: both; height: 24px; }
-.gridy-default-table .gridy-header .gridy-head-item { float: left; padding: 4px 7px; text-align: center; }
-.gridy-default-table .gridy-header .gridy-head-item div { float: right; }
-.gridy-default-table .gridy-header .gridy-head-item a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
-.gridy-default-table .gridy-header .gridy-head-item a:hover { color: #339BD0; }
-.gridy-default-table .gridy-header .gridy-head-item a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
-.gridy-default-table .gridy-header .gridy-column-button { padding-left: 0 !important; padding-right: 0 !important; }
+.gridy-default-table th { float: left; padding: 4px 7px; text-align: center; }
+.gridy-default-table th div { float: right; }
+.gridy-default-table th a { font-size: 11px; font-weight: normal; color: #369; letter-spacing: 1px; text-decoration: none; }
+.gridy-default-table th a:hover { color: #339BD0; }
+.gridy-default-table th a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
 
 .gridy-default-table .gridy-content { clear: both; height: auto; margin: 0; overflow: visible; padding: 0; }
 .gridy-default-table .gridy-content .gridy-even { background-color: #FFF; }
@@ -133,7 +131,7 @@
 .gridy-loading { clear: left; float: left; width: 90px; }
 .gridy-loading div { background: url("../img/loading.gif") no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
 
-.gridy-status { height: 17px; margin-top: 10px; }
+.gridy-status { float: left; height: 17px; margin-top: 10px; }
 
 .gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
 
