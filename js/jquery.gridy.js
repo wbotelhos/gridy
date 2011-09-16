@@ -92,7 +92,7 @@
 			$search = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').insertBefore($this);
 
 			if (opt.resize) {
-				$search.css('width', methods.getSize(opt.width));
+				$search.width(methods.getSize(opt.width));
 			}
 
 			$searchField = $('<input id="search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($search.children());
@@ -158,7 +158,7 @@
 						'</div>';
 			}
 
-			$sortBar = $('<div class="gridy-sorter-bar"/>').css('width', methods.getSize(opt.sorterWidth)).html(sorterContent).appendTo($this);
+			$sortBar = $('<div class="gridy-sorter-bar"/>').width(methods.getSize(opt.sorterWidth)).html(sorterContent).appendTo($this);
 
 			$sorterItems = $sortBar.children().children('a').click(sortGridyFunction);
 
@@ -194,7 +194,7 @@
 			$status = $('<div class="gridy-status"/>').insertBefore($this);
 
 			if (opt.resize) {
-				$status.css('width', methods.getSize(opt.width));
+				$status.width(methods.getSize(opt.width));
 			}
 		}
 
@@ -225,7 +225,7 @@
 				$header = $('<div class="gridy-header"/>').appendTo($this);
 
 				if (opt.resize) {
-					$header.css('width', methods.getSize(opt.width));
+					$header.width(methods.getSize(opt.width));
 				}
 			}
 
@@ -268,7 +268,7 @@
 				if (isTable) {
 					$head.attr('width', opt.headersWidth[i]);
 				} else {
-					$head.css('width', opt.headersWidth[i]);
+					$head.width(opt.headersWidth[i]);
 				}
 
 				$head.appendTo($header);
@@ -327,7 +327,7 @@
 			}
 
 			if (opt.resize) {
-				$footer.css('width', methods.getSize(opt.width));
+				$footer.width(methods.getSize(opt.width));
 			}
 		}
 
@@ -420,7 +420,7 @@
 			$buttons = $buttons.children();
 
 			if (opt.resize) {
-				$buttons.css('width', methods.getSize(opt.width));
+				$buttons.width(methods.getSize(opt.width));
 			}
 		}
 
