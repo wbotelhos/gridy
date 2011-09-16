@@ -265,7 +265,13 @@
 					$head.addClass(opt.headersName[i][2]);
 				}
 
-				$head.css('width', opt.headersWidth[i]).appendTo($header);
+				if (isTable) {
+					$head.attr('width', opt.headersWidth[i]);
+				} else {
+					$head.css('width', opt.headersWidth[i]);
+				}
+
+				$head.appendTo($header);
 			}
 
 			$headerItems = $header.children().children('a:not(".gridy-no-sort")').click(sortGridyFunction);
@@ -521,7 +527,11 @@
 					}
 
 					$columns.each(function(index) { // div|td
-						$(this).width(opt.colsWidth[index]);
+						if (isTable) {
+							$(this).attr('width', opt.colsWidth[index]);
+						} else {
+							$(this).width(opt.colsWidth[index]);
+						}
 					});
 				});
 			}
