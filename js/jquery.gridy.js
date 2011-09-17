@@ -286,8 +286,15 @@
 			}
 		}
 
-		var $contentElement	= (isTable) ? $('<tbody class="gridy-content"/>') : $('<div class="gridy-content"/>'),
-			$content		= $contentElement.css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) }).appendTo($this);
+		var $content = null;
+
+		if (isTable) {
+			$content = $('<div class="gridy-content"/>');
+		} else {
+			$content = $('<tbody class="gridy-content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) });
+		}
+
+		$content.appendTo($this);
 
 		function startLoading(isStart) {
 			if (opt.loadingOption) {
