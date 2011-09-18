@@ -514,9 +514,9 @@
 
 			if (opt.evenOdd) {
 				$content
-					.children(':even').addClass('gridy-even')
+					.children(':even').addClass((opt.scroll) ? 'gridy-even-scroll' : 'gridy-even')
 				.end()
-					.children(':odd').addClass('gridy-odd');
+					.children(':odd').addClass((opt.scroll) ? 'gridy-odd-scroll' : 'gridy-odd');
 			}
 
 			if (opt.colsWidth) {
