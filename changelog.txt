@@ -9,6 +9,8 @@
  * Added 'paramsElements' option to choose an array of selectors of fields to be used it values as parameters;
  * Added 'listPath' option to choose the path of the list element like 'response.movie.list';
  * Added 'listTotal' option to choose the path of the total element like 'response.movie.total';
+ * Added 'style' option to choose between table and div grid style;
+ * Added 'separate' option to change the style of the first line on grid to separate visually;
  * Now you can use table rather div if you have just tabulated data in a list format;
  * Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
  * Now the component 'find' will be hanging on search container.
