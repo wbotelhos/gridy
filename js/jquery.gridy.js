@@ -289,9 +289,9 @@
 		var $content = null;
 
 		if (isTable) {
-			$content = $('<tbody class="gridy-content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) });
+			$content = $('<tbody class="gridy-content"/>');
 		} else {
-			$content = $('<div class="gridy-content"/>');
+			$content = $('<div class="gridy-content"/>').css({ 'height': methods.getSize(opt.height), 'width': methods.getSize(opt.width) });
 		}
 
 		$content.appendTo($this);
