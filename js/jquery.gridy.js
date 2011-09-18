@@ -424,11 +424,11 @@
 				$buttons.appendTo($this);
 			}
 
-			$buttons = $buttons.children();
-
 			if (opt.resize) {
 				$buttons.width(methods.getSize(opt.width));
 			}
+
+			$buttons = $buttons.children();
 		}
 
 		var $message = null;
