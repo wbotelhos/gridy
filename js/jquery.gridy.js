@@ -733,8 +733,7 @@
 							throw id + ': height attribute missing!';
 						}
 
-						$content
-						.css({ 'border': '1px solid #BBB', 'overflow': 'auto' })
+						$content.addClass('gridy-scroll-wrapper')
 							.children().addClass('gridy-scroll')
 						.end()
 							.children(':last').css('border-bottom-color', '#FFF');
