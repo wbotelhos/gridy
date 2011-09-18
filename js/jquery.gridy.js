@@ -734,9 +734,7 @@
 						}
 
 						$content.addClass('gridy-scroll-wrapper')
-							.children().addClass('gridy-scroll')
-						.end()
-							.children(':last').css('border-bottom-color', '#FFF');
+							.children().addClass('gridy-scroll');
 					}
 
 					if (isTable) {
