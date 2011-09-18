@@ -741,7 +741,7 @@
 					}
 
 					if (isTable) {
-						$content.children(':last').children().css('border-bottom-width', '1px');
+						$content.children(':last').children().addClass('gridy-last-line');
 					}
 
 					if (opt.separate) {
