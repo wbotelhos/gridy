@@ -730,7 +730,7 @@
 
 					if (opt.scroll) {
 						if (opt.height == 'auto') {
-							methods.debug(id + ': height attribute missing!');
+							throw id + ': height attribute missing!';
 						}
 
 						$content
