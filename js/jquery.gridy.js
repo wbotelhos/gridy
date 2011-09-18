@@ -66,7 +66,7 @@
 
 		var opt					= $.extend({}, $.fn.gridy.defaults, settings),
 			id					= this.attr('id'),
-			$this				= $(this).data('options', opt).empty(),
+			$this				= $(this).data('options', opt).width(methods.getSize(opt.width)).empty(),
 			$currentPage		= $('<input id="current-page" type="hidden" value="' + opt.page + '"/>').insertBefore($this),
 			$currentSortName	= $('<input id="current-sort-name" type="hidden" value="' + opt.sortName + '"/>').insertBefore($this),
 			$currentSortOrder	= $('<input id="current-sort-order" type="hidden" value="' + opt.sortOrder + '"/>').insertBefore($this);
