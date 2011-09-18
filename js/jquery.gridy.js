@@ -741,7 +741,15 @@
 					}
 
 					if (isTable) {
-						$content.children(':last').children('td').css('border-bottom-width', '1px');
+						$content.children(':last').children().css('border-bottom-width', '1px');
+					}
+
+					if (opt.separate) {
+						if (isTable) {
+							$content.children(':first').children().addClass('gridy-separate');
+						} else {
+							$content.children(':first').addClass('gridy-separate');
+						}
 					}
 
 					if (opt.complete) {
@@ -827,6 +835,7 @@
 		searchOption:		true,
 		searchTarget:		null,
 		searchText:			'',
+		separate:			true,
 		sortersName:		[],
 		sorterWidth:		'auto',
 		sortName:			'',
