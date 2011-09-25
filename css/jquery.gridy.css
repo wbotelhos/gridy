@@ -12,9 +12,9 @@
 	.gridy-arrow-down,
 	.gridy-arrow-up { background-image: url('../img/jquery-icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
 
-	.gridy-arrow-up { background-position: 0 -48px; }
-	.gridy-arrow-none { background-position: -128px -32px; }
-	.gridy-arrow-down { background-position: -64px -48px; }
+	.gridy-arrow-up { background-position: 0 -16px; }
+	.gridy-arrow-none { background-position: -128px -16px; }
+	.gridy-arrow-down { background-position: -64px -16px; }
 
 	.gridy-no-sort { cursor: default; }
 
@@ -98,7 +98,7 @@
 
 	.gridy-default .gridy-separate { border-top-width: 2px !important; }
 
-	.gridy-default .gridy-header { clear: both; height: 24px; }
+	.gridy-default .gridy-header { clear: both; height: 16px; margin-bottom: 3px; }
 	.gridy-default .gridy-header .gridy-head-item { float: left; text-align: center; }
 	.gridy-default .gridy-header .gridy-head-item div { float: right; }
 	.gridy-default .gridy-header .gridy-head-item a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
