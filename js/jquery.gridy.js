@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  *
- * @version         0.3.0 beta
+ * @version         0.3.0
  * @since           06.03.2011
  * @author          Washington Botelho dos Santos
  * @documentation   wbotelhos.com/gridy
@@ -733,20 +733,32 @@
 							throw id + ': height attribute missing!';
 						}
 
-						$content.addClass('gridy-scroll-wrapper')
-							.children().addClass('gridy-scroll');
-					}
+						if (isTable) {
+							var $this	= $content.parent(),
+								width	= methods.getSize(opt.width + 15);
 
-					if (isTable) {
-						$content.children(':last').children().addClass('gridy-last-line');
-					}
+							$this.wrap('<div id="' + id + '-wrapper" />')
+								.parent().addClass('gridy-scroll-wrapper').css({ 'height': methods.getSize(opt.height), 'width': width })
+							.end()
+							.clone(true).removeAttr('id').width(width) 
+								.find('tbody').remove()
+							.end()
+							.insertBefore($this.parent());
 
-					if (opt.separate) {
+							$this.children('thead').remove();
+						} else {
+							$content.addClass('gridy-scroll-wrapper').children().addClass('gridy-scroll');
+						}
+					} else {
 						if (isTable) {
 							$content.children(':first').children().addClass('gridy-separate');
 						} else {
 							$content.children(':first').addClass('gridy-separate');
 						}
+					}
+
+					if (isTable) {
+						$content.children(':last').children().addClass('gridy-last-line');
 					}
 
 					if (opt.complete) {
