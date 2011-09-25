@@ -112,6 +112,7 @@
 				<a href="javascript:void(0);" class="disabled">searchFocus</a>
 				<a href="javascript:void(0);" class="disabled">searchOption</a> 
 				<a href="javascript:void(0);" class="disabled">searchText</a>
+				<a href="javascript:void(0);" class="disabled">separate</a>
 				<a href="javascript:void(0);" class="disabled">sortersName</a>
 				<a href="javascript:void(0);" class="disabled">sorterWidth</a>
 				<a href="javascript:void(0);" class="disabled">sortName</a>
@@ -127,9 +128,9 @@
 				<a href="javascript:void(0);" class="disabled">.reload()</a>
 			</div>
 
-			<div id="grid"></div><br/>
+			<table id="grid"></table>
 
-			<div style="background-color: #F7F7F7; border: 1px solid #CCC; margin-left: 15px; margin-top: -46px; padding: 10px; width: 1033px;">
+			<div style="background-color: #F7F7F7; border: 1px solid #CCC; padding-bottom: 10px; padding-top: 10px; text-indent: 10px; width: 1098px;">
 				<label style="font-weight: bold;">Search type:</label>
 	
 				<select name="searchType" style="margin-right: 10px;">
@@ -139,25 +140,25 @@
 	
 				<label style="font-weight: bold;">Extra search:</label>
 	
-				<input id="secondSearch" type="text" name="secondSearch" value="ajax" />
+				<input id="extraSearch" type="text" name="extraSearch" value="ajax" />
 			</div>
 
 			<div class="session-mini">Script:</div>
 
-			<div class="source">paramsElements: ['select[name="searchType"]', 'input#secondSearch']</div>
+			<div class="source">paramsElements: ['select[name="searchType"]', 'input#extraSearch']</div>
 
 			<div class="session-mini">Query string:</div>
 
 			<div class="source">
-				search=&page=1&sortName=&sortOrder=asc&find=attribute&rows=10&searchType=advanced&secondSearch=ajax
+				search=&page=1&sortName=&sortOrder=asc&find=attribute&rows=10&<b>searchType</b>=advanced&<b>extraSearch</b>=ajax
 			</div>
 
 			<div class="session">TIP:</div>
 
 			<span class="comment">
+				 - paramsElements is a way to pass parameters dynamically to your functions;<br/>
 				 - Always add the attribute name on your fields, because it is the name of the query string parameter;<br/>
-				 - The selectors can be any one accepted by jQuery;<br/>
-				 - paramsElements is a way to pass parameters dynamically to your functions.
+				 - The selectors can be any one accepted by jQuery.
 			</span>
 		</div>
 
@@ -170,38 +171,38 @@
 
 				$('#grid').gridy({
 					buttonOption:	false,
-					colsWidth:		[90, 100, 524, 75, 90, 90],
+					colsWidth:		[150, 120, 550, 68, 100, 100],
 					debug:			true,
 					dataType:		'jsonp',
 					find:			'attribute',
 					height:			200,
 					jsonp:			true,
 					loadingOption:	false,
-					paramsElements:	['select[name="searchType"]', 'input#secondSearch'],
+					paramsElements:	['select[name="searchType"]', 'input#extraSearch'],
 					resultOption:	false,
 					rowsNumber:		[],
 					url:			'http://www.moviecollection.com.br/gridy',
-					width:			1070
+					width:			1100
 				});
 
 			});
 		</script>
 
 		<script id="template" type="text/x-jquery-tmpl">
-			<div>
-				<div>${attribute}</div>
-				<div>${value}</div>
-				<div>${description}</div>
-				<div>${version}</div>
+			<tr>
+				<td>${attribute}</td>
+				<td>${value}</td>
+				<td>${description}</td>
+				<td>${version}</td>
 
-				<div class="gridy-button">
+				<td class="gridy-button">
 					<a href="javascript:void(0);">remove</a>
-				</div>
+				</td>
 
-				<div class="gridy-button">
+				<td class="gridy-button">
 					<a href="javascript:void(0);">edit</a>
-				</div>
-			</div>
+				</td>
+			</tr>
 		</script>
 	</body>
 </html>

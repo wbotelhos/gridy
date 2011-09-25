@@ -112,6 +112,7 @@
 				<a href="javascript:void(0);" class="disabled">searchFocus</a>
 				<a href="javascript:void(0);" class="disabled">searchOption</a> 
 				<a href="javascript:void(0);" class="disabled">searchText</a>
+				<a href="javascript:void(0);" class="disabled">separate</a>
 				<a href="javascript:void(0);" class="disabled">sortersName</a>
 				<a href="javascript:void(0);" class="disabled">sorterWidth</a>
 				<a href="javascript:void(0);" class="disabled">sortName</a>
@@ -127,7 +128,7 @@
 				<a href="javascript:void(0);" class="disabled">.reload()</a>
 			</div>
 
-			<div id="grid"></div>
+			<table id="grid"></table>
 
 			<div class="session-mini">Script:</div>
 
@@ -151,7 +152,8 @@
 			$(function() {
 
 				$('#grid').gridy({
-					colsWidth:		[90, 100, 524, 75, 90, 90],
+					headersName:	[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
+					colsWidth:		[150, 120, 530, 68, 100, 100],
 					dataType:		'jsonp',
 					find:			'attribute',
 					height:			200,
@@ -163,27 +165,27 @@
 					scroll:			true,
 					searchOption:	false,
 					url:			'http://www.moviecollection.com.br/gridy',
-					width:			1070
+					width:			1080
 				});
 
 			});
 		</script>
 
 		<script id="template" type="text/x-jquery-tmpl">
-			<div>
-				<div>${attribute}</div>
-				<div>${value}</div>
-				<div>${description}</div>
-				<div>${version}</div>
+			<tr>
+				<td>${attribute}</td>
+				<td>${value}</td>
+				<td>${description}</td>
+				<td>${version}</td>
 
-				<div class="gridy-button">
+				<td class="gridy-button">
 					<a href="javascript:void(0);">remove</a>
-				</div>
+				</td>
 
-				<div class="gridy-button">
+				<td class="gridy-button">
 					<a href="javascript:void(0);">edit</a>
-				</div>
-			</div>
+				</td>
+			</tr>
 		</script>
 	</body>
 </html>

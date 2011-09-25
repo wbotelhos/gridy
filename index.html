@@ -112,10 +112,12 @@
 				<a href="javascript:void(0);" class="disabled">searchFocus</a>
 				<a href="javascript:void(0);" class="disabled">searchOption</a> 
 				<a href="javascript:void(0);" class="disabled">searchText</a>
+				<a href="javascript:void(0);" class="disabled">separate</a>
 				<a href="javascript:void(0);" class="disabled">sortersName</a>
 				<a href="javascript:void(0);" class="disabled">sorterWidth</a>
 				<a href="javascript:void(0);" class="disabled">sortName</a>
 				<a href="javascript:void(0);" class="disabled">sortOrder</a>
+				<a href="http://wbotelhos.com/gridy/feature/style.html">style</a>
 				<a href="javascript:void(0);" class="disabled">success</a>
 				<a href="javascript:void(0);" class="disabled">template</a>
 				<a href="javascript:void(0);" class="disabled">templateStyle</a>
@@ -126,12 +128,12 @@
 				<a href="javascript:void(0);" class="disabled">.reload()</a>
 			</div>
 
-			<table id="grid"></table><br/>
+			<table id="grid"></table>
 
 			<div class="session-mini">JSON:</div>
 
 			<div class="source">
-				{"entityList": [{"id": 1, "name": "Washington Botelho", "email": "gridy@wbotelhos.com"}], "total": 1}
+				{"entityList": [{"id": 1, "name": "Washington Botelho", "email": "wbotelhos@gridy.com"}], "total": 1}
 			</div>
 
 			<span class="comment">
@@ -177,8 +179,8 @@
 
 			<span class="comment">
 				- The script that is a template type (text/x-jquery-tmpl) must have an ID to be hooked;<br/>
-				- The first div represents a row of the grid and will be repeated many times;<br/>
-				- Each div inside the wrapper will be considerated a col of the grid;<br/>
+				- The first tr/div represents a row of the grid and will be repeated many times;<br/>
+				- Each td/div inside the wrapper will be considerated a col of the grid;<br/>
 				- If you are using some framework like Spring or EL (Expression Language), scape the '$' to avoid conflicts: \${ } or &lt;c:out value="${ }"/&gt;.<br/>
 			</span>
 
@@ -366,6 +368,9 @@
 				searchText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
 				<div class="comment">Text displayed in the search field.</div>
 
+				separate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				<div class="comment">Change the style of the first line on grid.</div>
+
 				sortersName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
 				<div class="comment">List with the names used on the sorter element.</div>
 
@@ -377,6 +382,9 @@
 
 				sortOrder:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'asc'
 				<div class="comment">Order of classification.</div>
+
+				style:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'table'
+				<div class="comment">Change between table and div style.</div>
 
 				success:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
 				<div class="comment">Function executed when the grid loads successfully.</div>
@@ -414,10 +422,11 @@
 			$(function() {
 
 				$('#grid').gridy({
-					buttonMax:		4,
+					buttonMax:		5,
 					clickFx:		true,
-					colsWidth:		[90, 100, 549, 75, 90, 90],
+					colsWidth:		[150, 120, 550, 68, 100, 100],
 					dataType:		'jsonp',
+					evenOdd:		true,
 					find:			'attribute',
 					findsName:		[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
 					headersName:	[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
@@ -426,7 +435,7 @@
 					sortName:		'attribute',
 					searchText:		'type your search here...',
 					url:			'http://www.moviecollection.com.br/gridy',
-					width:			1080
+					width:			1100
 				});
 
 			});

@@ -8,8 +8,8 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Version
 
-	@version         0.3.0 beta
-	@since           06.03.2011
+	@version         0.3.0
+	@since           2011.06.03
 	@author          Washington Botelho dos Santos
 	@documentation   wbotelhos.com/gridy
 	@twitter         twitter.com/wbotelhos
@@ -69,10 +69,12 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	searchFocus:       true                                    // Enables the automatic focus in the search field.
 	searchOption:      true                                    // Enables the search field. 
 	searchText:        ''                                      // Text displayed in the search field.
+	separate:          true                                    // Change the style of the first line on grid.
 	sortersName:       []                                      // List with the names used on the sorter element.
 	sorterWidth:       'auto'                                  // Width of the sorter element.
 	sortName:          ''                                      // Name of the default column sorted.
 	sortOrder:         'asc'                                   // Order of classification.
+	style:             'table'                                 // Change between table and div style.
 	success:           null                                    // Function executed when the grid loads successfully.
 	template:          'template'                              // The ID of the script template to be loaded.
 	templateStyle:     'gridy-default'                         // Name of the template style "CSS prefix".

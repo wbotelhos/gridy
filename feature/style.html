@@ -15,7 +15,7 @@
 
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/jquery.tmpl.min.js"></script>
-		<script type="text/javascript" src="../js/jquery.gridy.js"></script>
+		<script type="text/javascript" src="../js/jquery.gridy.min.js"></script>
 
 		<script type="text/javascript">
 			// This code does not belong to the plugin. See the example code at the bottom of this page.
@@ -112,6 +112,7 @@
 				<a href="javascript:void(0);" class="disabled">searchFocus</a>
 				<a href="javascript:void(0);" class="disabled">searchOption</a> 
 				<a href="javascript:void(0);" class="disabled">searchText</a>
+				<a href="javascript:void(0);" class="disabled">separate</a>
 				<a href="javascript:void(0);" class="disabled">sortersName</a>
 				<a href="javascript:void(0);" class="disabled">sorterWidth</a>
 				<a href="javascript:void(0);" class="disabled">sortName</a>
@@ -127,24 +128,16 @@
 				<a href="javascript:void(0);" class="disabled">.reload()</a>
 			</div>
 
-			<div id="grid"></div><br/>
+			<div id="grid"></div>
 
 			<div class="session-mini">Script:</div>
 
 			<div class="source">style: 'div'</div>
 
-			<div class="session-mini">Query string:</div>
-
-			<div class="source">
-				search=&page=1&sortName=&sortOrder=asc&find=attribute&rows=10&searchType=advanced&secondSearch=ajax
-			</div>
-
 			<div class="session">TIP:</div>
 
 			<span class="comment">
-				 - Always add the attribute name on your fields, because it is the name of the query string parameter;<br/>
-				 - The selectors can be any one accepted by jQuery;<br/>
-				 - divStyle is a way to pass parameters dynamically to your functions.
+				 - When you use div style, you can build a lot of types of design inside each line.
 			</span>
 		</div>
 
@@ -156,10 +149,11 @@
 			$(function() {
 
 				$('#grid').gridy({
-					buttonMax:		4,
+					buttonMax:		5,
 					clickFx:		true,
-					colsWidth:		[90, 100, 549, 75, 90, 90],
+					colsWidth:		[150, 120, 560, 68, 100, 100],
 					dataType:		'jsonp',
+					evenOdd:		true,
 					find:			'attribute',
 					findsName:		[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
 					headersName:	[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
@@ -169,7 +163,7 @@
 					searchText:		'type your search here...',
 					style:			'div',
 					url:			'http://www.moviecollection.com.br/gridy',
-					width:			1080
+					width:			1100
 				});
 
 			});
