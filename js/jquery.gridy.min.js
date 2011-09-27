@@ -7,7 +7,7 @@
  * Licensed under The MIT License
  *
  * @version         0.3.0
- * @since           06.03.2011
+ * @since           2011.06.03
  * @author          Washington Botelho dos Santos
  * @documentation   wbotelhos.com/gridy
  * @twitter         twitter.com/wbotelhos
