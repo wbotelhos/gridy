@@ -594,8 +594,12 @@
 
 					if (end > totalPage) {
 						if (start > 1) {
-							start -= (end - totalPage);
-						}
+							if (start === (end - totalPage)) {
+								start = 1;
+							} else {
+								start -= (end - totalPage);
+							}
+						} 
 
 						end = totalPage;
 					}
