@@ -128,7 +128,7 @@
 				<a href="javascript:void(0);" class="disabled">.reload()</a>
 			</div>
 
-			<table id="grid"></table>
+			<div id="grid"></div>
 
 			<div class="session-mini">Script:</div>
 
@@ -152,8 +152,7 @@
 			$(function() {
 
 				$('#grid').gridy({
-					headersName:	[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
-					colsWidth:		[150, 120, 530, 68, 100, 100],
+					colsWidth:		[150, 120, 520, 73, 100, 100],
 					dataType:		'jsonp',
 					find:			'attribute',
 					height:			200,
@@ -164,6 +163,7 @@
 					rowsNumber:		[],
 					scroll:			true,
 					searchOption:	false,
+					style:			'div',
 					url:			'http://www.moviecollection.com.br/gridy',
 					width:			1080
 				});
@@ -172,20 +172,20 @@
 		</script>
 
 		<script id="template" type="text/x-jquery-tmpl">
-			<tr>
-				<td>${attribute}</td>
-				<td>${value}</td>
-				<td>${description}</td>
-				<td>${version}</td>
+			<div>
+				<div>${attribute}</div>
+				<div>${value}</div>
+				<div>${description}</div>
+				<div>${version}</div>
 
-				<td class="gridy-button">
+				<div class="gridy-button">
 					<a href="javascript:void(0);">remove</a>
-				</td>
+				</div>
 
-				<td class="gridy-button">
+				<div class="gridy-button">
 					<a href="javascript:void(0);">edit</a>
-				</td>
-			</tr>
+				</div>
+			</div>
 		</script>
 	</body>
 </html>
