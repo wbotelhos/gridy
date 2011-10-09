@@ -283,7 +283,7 @@
 				$content.html('<p class="gridy-no-result">' + opt.noResultText + '</p>');
 	
 				if (opt.resultOption) {
-					$result.html($result.html().replace(/\d+/g, '--'));
+					$result.html($result.html().replace(/\d+/g, '0'));
 				}
 	
 				if (opt.searchOption) {
@@ -291,6 +291,14 @@
 				}
 			}
 		};
+
+		function hidePaginationButtons() {
+			$buttons.empty();
+		};
+
+		function hideRowsBox() {
+			$rowsBox.hide();
+		}
 
 		var $footer = null;
 
@@ -454,12 +462,14 @@
 
 			if (total == 0) {
 				showNoResult();
+				hidePaginationButtons();
+				hideRowsBox();
 				enableGrid(true);
 				return;
-			} else {
-				if (opt.sortersName.length > 0) {
-					$sortBar.show();
-				}
+			}
+			
+			if (opt.sortersName.length > 0) {
+				$sortBar.show();
 			}
 
 			var entityList	= eval('wrapper.' + opt.listPath);
@@ -577,7 +587,7 @@
 						});
 					}
 				} else {
-					$buttons.empty();
+					hidePaginationButtons();
 				}
 
 				$('input[value="' + methods.getNumber(page) + '"]').attr('disabled', 'disabled').addClass('gridy-active');
@@ -593,7 +603,7 @@
 			startLoading(true);
 
 			var search			= opt.search,
-				selectedRows	= (opt.rowsNumber.length > 0) ? $rowsBox.val() : opt.rows,
+				selectedRows	= (opt.rowsNumber.length > 0) ? $rowsBox.show().val() : opt.rows,
 				selectedFind	= (opt.findsName.length > 0) ? $findBox.val() : opt.find;
 
 			if (opt.searchOption) {
