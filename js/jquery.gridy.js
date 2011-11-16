@@ -292,14 +292,6 @@
 			}
 		};
 
-		function hidePaginationButtons() {
-			$buttons.empty();
-		};
-
-		function hideRowsBox() {
-			$rowsBox.hide();
-		}
-
 		var $footer = null;
 
 		if (opt.rowsNumber.length > 0  || opt.messageOption || (opt.findsName.length > 0 && !opt.searchOption)) {
@@ -462,8 +454,8 @@
 
 			if (total == 0) {
 				showNoResult();
-				hidePaginationButtons();
-				hideRowsBox();
+				$buttons.empty();
+				$rowsBox.hide();
 				enableGrid(true);
 				return;
 			}
@@ -587,7 +579,7 @@
 						});
 					}
 				} else {
-					hidePaginationButtons();
+					$buttons.empty();
 				}
 
 				$('input[value="' + methods.getNumber(page) + '"]').attr('disabled', 'disabled').addClass('gridy-active');
