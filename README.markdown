@@ -8,12 +8,17 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Version
 
-	@version         0.3.0
-	@since           2011.06.03
-	@author          Washington Botelho dos Santos
-	@documentation   wbotelhos.com/gridy
-	@twitter         twitter.com/wbotelhos
-	@package         jQuery Plugins
+	@version        0.3.1
+	@since          2011.06.03
+	@author         Washington Botelho
+	@documentation  wbotelhos.com/gridy
+	@twitter        twitter.com/wbotelhos
+
+## Required Files
+
++ jquery.gridy.min.js
++ jquery-icons.png
++ loading.png
 
 ## Default values
 
@@ -30,7 +35,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	cache:             false                                   // Enables the ajax cache.
 	clickFx:           false                                   // Enables rows selection on click.
 	colsWidth:         []                                      // List with the width of each column of the grid.
-	complete:          nul                                     // Function executed when the grid load.
+	complete:          null                                    // Function executed when the grid load.
 	contentType:       'application/x-www-form-urlencoded; charset=utf-8' // The content type of the ajax request.
 	dataType:          'json'                                  // The data type of the ajax request.
 	debug:             false                                   // Shows details of the grid request.
@@ -82,7 +87,6 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	totalPath:         'entityList'                            // Path of the total element like 'response.movie.total'.
 	url:               '/gridy'                                // Url to request the data.
 	width:             'auto'                                  // Width of the grid.
-
 
 ## Usage with default values
 
