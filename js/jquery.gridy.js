@@ -1,21 +1,19 @@
 /*!
  * jQuery Gridy - A Grid Plugin - http://wbotelhos.com/gridy
- * -------------------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------
  *
- * jQuery Gridy is a plugin that automatically generates a highly customizable grid using templates.
+ * jQuery Gridy is a plugin that generates a highly customizable grid using templates.
  *
  * Licensed under The MIT License
  *
- * @version         0.3.0
- * @since           2011.06.03
- * @author          Washington Botelho dos Santos
- * @documentation   wbotelhos.com/gridy
- * @twitter         twitter.com/wbotelhos
- * @license         opensource.org/licenses/mit-license.php
- * @package         jQuery Plugins
+ * @version        0.3.1
+ * @since          2011.06.03
+ * @author         Washington Botelho
+ * @documentation  wbotelhos.com/gridy
+ * @twitter        twitter.com/wbotelhos
  *
  * Usage with default values:
- * -------------------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------
  * $('#grid').gridy({ url: 'url/gridy' });
  *
  * <div id="grid"></div>
@@ -313,7 +311,7 @@
 				$content.html('<p class="gridy-no-result">' + opt.noResultText + '</p>');
 	
 				if (opt.resultOption) {
-					$result.html($result.html().replace(/\d+/g, '--'));
+					$result.html($result.html().replace(/\d+/g, '0'));
 				}
 	
 				if (opt.searchOption) {
@@ -498,12 +496,14 @@
 
 			if (total == 0) {
 				showNoResult();
+				$buttons.empty();
+				$rowsBox.hide();
 				enableGrid(true);
 				return;
-			} else {
-				if (opt.sortersName.length > 0) {
-					$sortBar.show();
-				}
+			}
+			
+			if (opt.sortersName.length > 0) {
+				$sortBar.show();
 			}
 
 			var entityList	= eval('wrapper.' + opt.listPath),
@@ -655,7 +655,7 @@
 			startLoading(true);
 
 			var search			= opt.search,
-				selectedRows	= (opt.rowsNumber.length > 0) ? $rowsBox.val() : opt.rows,
+				selectedRows	= (opt.rowsNumber.length > 0) ? $rowsBox.show().val() : opt.rows,
 				selectedFind	= (opt.findsName.length > 0) ? $findBox.val() : opt.find;
 
 			if (opt.searchOption) {
