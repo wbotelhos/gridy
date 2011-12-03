@@ -440,7 +440,9 @@
 				$message.html(message).show();
 
 				setTimeout(function() {
-					$message.fadeOut();
+					$message.fadeOut(function() {
+						$message.empty().hide();
+					});
 				}, opt.messageTimer);
 			}
 		};
