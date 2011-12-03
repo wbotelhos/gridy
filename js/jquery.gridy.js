@@ -65,9 +65,9 @@
 		var opt					= $.extend({}, $.fn.gridy.defaults, settings),
 			id					= this.attr('id'),
 			$this				= $(this).data('options', opt).width(methods.getSize(opt.width)).empty().wrap('<div id="' + id + '-wrapper">'),
-			$currentPage		= $('<input id="current-page" type="hidden" value="' + opt.page + '"/>').insertBefore($this),
-			$currentSortName	= $('<input id="current-sort-name" type="hidden" value="' + opt.sortName + '"/>').insertBefore($this),
-			$currentSortOrder	= $('<input id="current-sort-order" type="hidden" value="' + opt.sortOrder + '"/>').insertBefore($this);
+			$currentPage		= $('<input id="' + id + '-current-page" type="hidden" value="' + opt.page + '"/>').insertBefore($this),
+			$currentSortName	= $('<input id="' + id + '-current-sort-name" type="hidden" value="' + opt.sortName + '"/>').insertBefore($this),
+			$currentSortOrder	= $('<input id="' + id + '-current-sort-order" type="hidden" value="' + opt.sortOrder + '"/>').insertBefore($this);
 
 		if (id === undefined || id == '') {
 			id = 'gridy-' + $('.' + $this.attr('class')).index(this);

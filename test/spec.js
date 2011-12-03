@@ -14,7 +14,7 @@ describe('style option layout', function() {
 		$('#grid').parent().remove();
 	});
 
-	it('should chainable', function() {
+	it ('should chainable', function() {
 		// given
 		var $grid		= $('#grid'),
 			className	= 'my-class';
@@ -29,7 +29,7 @@ describe('style option layout', function() {
 	    expect($grid).toHaveClass(className);
 	});
 
-	it('should set wrapper element', function() {
+	it ('should set wrapper element', function() {
 		// given
 		var $grid = $('#grid');
 
@@ -42,6 +42,24 @@ describe('style option layout', function() {
 		// then
 	    expect($grid.parent()).toHaveClass('gridy-default');
 	    expect($grid.parent()).toHaveId('grid-wrapper');
+	});
+
+	it ('should set ID on hidden fields', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:	'div',
+			url:	'/gridy'
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+	    expect($wrapper).toContain('input#grid-current-page');
+	    expect($wrapper).toContain('input#grid-current-sort-name');
+	    expect($wrapper).toContain('input#grid-current-sort-order');
 	});
 
 });
