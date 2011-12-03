@@ -1,7 +1,6 @@
 @CHARSET 'UTF-8'; 
 
 /* This CSS does not belong to the plugin. */
-
 body { background: url('../img/background.gif'); font: normal 11px verdana; }
 
 a { color: #2C8CBD; text-decoration: none; }
@@ -21,6 +20,11 @@ div.description { color: #555; letter-spacing: .1px; margin-bottom: 15px; margin
 
 div.description-code { color: #555; letter-spacing: .1px; margin-bottom: 10px; text-indent: 7px; }
 
+div#menu-feature { color: #AAA; float: left; margin-bottom: 20px; }
+div#menu-feature a { float: left; width: 120px }
+div#menu-feature a.disabled { color: #999; cursor: default; }
+div#menu-feature a.selected { color: #2C8CBD; cursor: default; font-weight: bold; }
+
 div#footer { clear: both; height: 25px; margin-top: 5px; width: 100%; }
 div#footer div#copy { margin: 0 auto; text-align: center; width: 1100px; }
 
@@ -30,11 +34,11 @@ div#menu { color: #AB9927; font: bold 14px 'Lucida Grande', 'Helvetica', 'Times 
 div#menu a { color: #EA9C00; font: bold 10px verdana; letter-spacing: .9px; text-decoration: none; }
 div#menu a:hover { color: #DC5; font-weight: bold; letter-spacing: .9px; text-decoration: underline; }
 
-div.session { font: bold 13px verdana; border-bottom: 1px solid #EFEFEF; color: #444; letter-spacing: .7px; margin-bottom: 18px; margin-top: 24px; text-align: left; }
-div.session-first { font: bold 13px verdana; border-bottom: 1px solid #EFEFEF; color: #444; letter-spacing: .7px; margin-bottom: 18px; text-align: left; }
+div.session { clear: both;  font: bold 13px verdana; border-bottom: 1px solid #EFEFEF; color: #444; letter-spacing: .7px; margin-bottom: 18px; margin-top: 24px; text-align: left; }
+div.session-first { clear: both; font: bold 13px verdana; border-bottom: 1px solid #EFEFEF; color: #444; letter-spacing: .7px; margin-bottom: 18px; text-align: left; }
 div.session-mini { font: bold 10px verdana; color: #444; letter-spacing: .7px; margin-top: 17px; }
 
-div.source { background: #F8F8FF; border: 1px solid #EFEFEF; border-left: 3px solid #CCC; color: #444; font: 12px monospace; border-radius: 2px; letter-spacing: .1px; margin-bottom: 7px; margin-top: 15px; padding: 7px; width: 1081px; -khtml-border-radius: 2px; -moz-border-radius: 2px; -opera-border-radius: 2px; -webkit-border-radius: 2px; }
+div.source { background: #F8F8FF; border: 1px solid #EFEFEF; border-left: 3px solid #CCC; clear: both; color: #444; font: 12px monospace; border-radius: 2px; letter-spacing: .1px; margin-bottom: 7px; margin-top: 15px; padding: 7px; width: 1081px; -khtml-border-radius: 2px; -moz-border-radius: 2px; -opera-border-radius: 2px; -webkit-border-radius: 2px; }
 div.source div.comment { color: #777; font: 9px verdana; letter-spacing: 0.4px; margin-bottom: 9px; text-align: left; }
 
 div#title { font: bold 17px verdana; color: #269; letter-spacing: .7px; margin-bottom: 10px; text-align: left; }
@@ -42,12 +46,6 @@ div#title span { color: #777; font: 10px verdana; }
 
 span#version { color: #777; font: 10px verdana; }
 
-
-/* wbotelhos.com/gridy */
+/* custom */
 
 span.attribute { color: #369; }
-
-div#menu-feature { color: #AAA; height: 75px; margin-bottom: 65px; }
-div#menu-feature a { float: left; width: 120px }
-div#menu-feature a.disabled { color: #999; cursor: default; }
-div#menu-feature a.selected { color: #2C8CBD; cursor: default; font-weight: bold; }
