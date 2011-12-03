@@ -58,18 +58,18 @@ describe('param settings', function() {
 
 });
 
-
-
 describe('global settings', function() {
 
 	beforeEach(function() {
 		$('body').append('<div id="grid"></div>');
 
-		var data = "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}";
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			params.success(data);
-			params.complete();
+			var data	= "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}",
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete(xhr, 'status');
 		});
 	});
 
@@ -104,20 +104,58 @@ describe('global settings', function() {
 	    expect($wrapper).toContain('input#grid-current-sort-order');
 	});
 
+	it ('hidden field should have default values', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({ url: '/gridy' });
+
+		var $page		= $('#grid-current-page'),
+			$sortName	= $('#grid-current-sort-name'),
+			$sortOrder	= $('#grid-current-sort-order');
+
+		// then
+	    expect($page).toHaveValue('1');
+	    expect($sortName).toHaveValue('');
+	    expect($sortOrder).toHaveValue('asc');
+	});
+
+	it ('hidden field should have custom values', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			page:		2,
+			sortName:	'id',
+			sortOrder:	'desc',
+			url: '/gridy'
+		});
+
+		var $page		= $('#grid-current-page'),
+			$sortName	= $('#grid-current-sort-name'),
+			$sortOrder	= $('#grid-current-sort-order');
+	
+		// then
+	    expect($page).toHaveValue('2');
+	    expect($sortName).toHaveValue('id');
+	    expect($sortOrder).toHaveValue('desc');
+	});
+
 });
 
-
-
-describe('div style', function() {
+describe('style div', function() {
 
 	beforeEach(function() {
 		$('body').append('<div id="grid"></div>');
 
-		var data = "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}";
-
 		spyOn($, 'ajax').andCallFake(function(params) {
-			params.success(data);
-			params.complete();
+			var data	= "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}",
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 	});
 
@@ -245,18 +283,17 @@ describe('div style', function() {
 
 });
 
-
-
-describe('Using table style', function() {
+describe('style table', function() {
 
 	beforeEach(function() {
 		$('body').append('<div id="grid"></div>');
 
-		var data = "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}";
-
 		spyOn($, 'ajax').andCallFake(function(params) {
-			params.success(data);
-			params.complete();
+			var data	= "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}",
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 	});
 
@@ -389,7 +426,7 @@ describe('error settings', function() {
 			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			params.error(xhr);
+			params.error(xhr, 'status', 'error');
 		});
 
 		// when
@@ -420,5 +457,179 @@ describe('error settings', function() {
 		expect($message).toBeVisible(); 
 		expect($message).toHaveText('statusText'); 
 	});
+
+});
+
+describe('ajax settings', function() {
+
+	beforeEach(function() {
+		$('body').append('<div id="grid"></div>');
+	});
+
+	afterEach(function() {
+		$('#grid').parent().remove();
+	});
+
+	it ('cache should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			expect(params.cache).toBeTruthy();
+		});
+
+		// when
+		$grid.gridy({
+			cache:	true,
+			url:	'/gridy'
+		});
+
+		// then check spyOn
+	});
+
+	it ('contentType should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			expect(params.contentType == 'application/pdf').toBeTruthy();
+		});
+
+		// when
+		$grid.gridy({
+			contentType:	'application/pdf',
+			url:			'/gridy'
+		});
+
+		// then check spyOn
+	});
+
+	it ('dataType should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			expect(params.dataType == 'jsonp').toBeTruthy();
+		});
+
+		// when
+		$grid.gridy({
+			dataType:	'jsonp',
+			url:		'/gridy'
+		});
+
+		// then check spyOn
+	});
+
+	it ('jsonpCallback should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			expect(params.jsonpCallback == 'myCallback').toBeTruthy();
+		});
+
+		// when
+		$grid.gridy({
+			jsonpCallback:	'myCallback',
+			url:			'/gridy'
+		});
+
+		// then check spyOn
+	});
+
+	it ('type should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			expect(params.type == 'post').toBeTruthy();
+		});
+
+		// when
+		$grid.gridy({
+			type:	'post',
+			url:	'/gridy'
+		});
+
+		// then check spyOn
+	});
+
+	it ('url should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			expect(params.url == '/gridy').toBeTruthy();
+		});
+
+		// when
+		$grid.gridy({
+			url:	'/gridy'
+		});
+
+		// then check spyOn
+	});
+
+//	it ('complete should execute complete callback with right args', function() {
+//		// given
+//		var $grid = $('#grid');
+//
+//		spyOn($, 'ajax').andCallFake(function(params) {
+//			params.complete('xhr', 'status');
+//		});
+//		// when
+//		$grid.gridy({
+//			complete: function(xhr, status) {
+//				$(this).data('xhr', xhr).data('status', status);
+//			}
+//		});
+//
+//		// then
+//		expect($grid).toHaveData('xhr', 'xhr');
+//		expect($grid).toHaveData('status', 'status');
+//	});
+//
+//	it ('error should execute complete callback with right args', function() {
+//		// given
+//		var $grid = $('#grid');
+//
+//		spyOn($, 'ajax').andCallFake(function(params) {
+//			params.error('xhr', 'status', 'error');
+//		});
+//		
+//		// when
+//		$grid.gridy({
+//			error: function(xhr, status, error) {
+//				$(this).data('xhr', xhr).data('status', status).data('error', error);
+//			}
+//		});
+//
+//		// then
+//		expect($grid).toHaveData('xhr', 'xhr');
+//		expect($grid).toHaveData('status', 'status');
+//		expect($grid).toHaveData('error', 'error');
+//	});
+//
+//	it ('success should execute complete callback with right args', function() {
+//		// given
+//		var $grid = $('#grid');
+//
+//		spyOn($, 'ajax').andCallFake(function(params) {
+//			params.success('data', 'status', 'xhr');
+//		});
+//
+//		// when
+//		$grid.gridy({
+//			success: function(data, status, xhr) {
+//				$(this).data('data', data).data('xhr', xhr).data('status', status);
+//			}
+//		});
+//
+//		// then
+//		expect($grid).toHaveData('data', 'data');
+//		expect($grid).toHaveData('xhr', 'xhr');
+//		expect($grid).toHaveData('status', 'status');
+//	});
 
 });

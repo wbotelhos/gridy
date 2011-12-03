@@ -481,20 +481,20 @@
 			}
 		};
 
-		function processCallback(wrapper, page, sortName, sortOrder, selectedRows) {
-			if (typeof(wrapper) == 'string') {
-				wrapper = $.parseJSON(wrapper);
+		function processCallback(data, page, sortName, sortOrder, selectedRows) {
+			if (typeof(data) == 'string') {
+				data = $.parseJSON(data);
 			}
 
 			if (opt.before) {
-				var callback = opt.before.apply($this, [wrapper, page, sortName, sortOrder]);
+				var callback = opt.before.call($this, data, page, sortName, sortOrder);
 
 				if (callback) {
-					wrapper = callback;
+					data = callback;
 				}
 			}
 
-			var total = eval('wrapper.' + opt.totalPath);
+			var total = eval('data.' + opt.totalPath);
 
 			if (total == 0) {
 				showNoResult();
@@ -508,7 +508,7 @@
 				$sortBar.show();
 			}
 
-			var entityList	= eval('wrapper.' + opt.listPath),
+			var entityList	= eval('data.' + opt.listPath),
 				$rows		= null,
 				$columns	= null;
 
@@ -721,8 +721,8 @@
 				type:			opt.type,
 				url:			opt.url,
 				data:			data,
-				success: function(wrapper) {
-					processCallback(wrapper, page, sortName, sortOrder, selectedRows);
+				success: function(data, textStatus, jqXHR) {
+					processCallback(data, page, sortName, sortOrder, selectedRows);
 
 					var scrollSufix = (opt.scroll) ? '-scroll' : '';
 
@@ -747,15 +747,15 @@
 					}
 
 					if (opt.success) {
-						opt.success();
+						opt.success(data, textStatus, jqXHR);
 					}
-				}, error: function(xhr, status, error) {
-					showMessage(methods.getError(xhr));
+				}, error: function(jqXHR, textStatus, errorThrown) {
+					showMessage(methods.getError(jqXHR));
 
 					if (opt.error) {
-						opt.error();
+						opt.error(jqXHR, textStatus, errorThrown);
 					}
-				}, complete: function() {
+				}, complete: function(jqXHR, textStatus) {
 					startLoading(false);
 					enableGrid(true);
 
@@ -793,7 +793,7 @@
 					}
 
 					if (opt.complete) {
-						opt.complete();
+						opt.complete(jqXHR, textStatus);
 					}
 				}
 			});
