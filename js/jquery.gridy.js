@@ -551,7 +551,7 @@
 			}
 
 			if (opt.resultOption) {
-				var resultText = opt.resultText.replace(/{from}/, methods.getNumber(page)).replace(/{to}/, methods.getNumber(totalPage)).replace(/{total}/, methods.getNumber(total));
+				var resultText = opt.resultText.replace('{from}', methods.getNumber(page)).replace('{to}', methods.getNumber(totalPage)).replace('{total}', methods.getNumber(total));
 
 				$result.html(resultText);
 			}
