@@ -3,7 +3,7 @@
 /* global */
 
 	.gridy-search { height: 28px; margin: 0 auto; }
-	.gridy-search .gridy-search-content { height: 28px; margin: 0 auto; width: 480px; }
+	.gridy-search .gridy-search-content { height: 28px; margin: 0 auto; width: 500px; }
 	.gridy-search .gridy-search-content input[type="button"] { float: left; height: 28px; margin-left: 2px; width: 80px; }
 	.gridy-search .gridy-search-content input[type="text"] { color: #BBB; float: left; height: 20px; margin-bottom: 5px; }
 	.gridy-search .gridy-search-content input[type="text"].gridy-typed { color: #444; }
