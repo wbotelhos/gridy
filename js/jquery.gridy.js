@@ -69,8 +69,8 @@
 			$currentSortName	= $('<input id="current-sort-name" type="hidden" value="' + opt.sortName + '"/>').insertBefore($this),
 			$currentSortOrder	= $('<input id="current-sort-order" type="hidden" value="' + opt.sortOrder + '"/>').insertBefore($this);
 
-		if (id === undefined) {
-			id = 'gridy-' + $this.index();
+		if (id === undefined || id == '') {
+			id = 'gridy-' + $('.' + $this.attr('class')).index(this);
 			$this.attr('id', id); 
 		}
 
