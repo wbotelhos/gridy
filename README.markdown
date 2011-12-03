@@ -1,6 +1,6 @@
 # jQuery Gridy - A Grid Plugin - http://wbotelhos.com/gridy
 
-jQuery Gridy is a plugin that automatically generates a highly customizable grid using templates.
+jQuery Gridy is a plugin that generates a highly customizable grid using templates.
 
 ## License
 
@@ -8,7 +8,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Version
 
-	@version        0.3.1
+	@version        0.3.0
 	@since          2011.06.03
 	@author         Washington Botelho
 	@documentation  wbotelhos.com/gridy
@@ -52,15 +52,15 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	jsonpCallback:     'callback'                              // Name of the callback function for JSONP content type.
 	loadingIcon:       'loading'                               // Name of the class used as a loading icon.
 	loadingOption:     true                                    // Enables the presentation of the loading message.
-	loadingText:       Loading...                              // Text that will appear during the loading.
+	loadingText:       'Loading...'                            // Text that will appear during the loading.
 	listPath:          'entityList'                            // Path of the list element like 'response.movie.list'.
 	messageOption:     true                                    // Enables the display of messages about the grid.
 	messageTimer:      4000                                    // Time in milliseconds to keep the messages on screen.
 	noResultOption:    true                                    // Enables the presentation of the no result message.
-	noResultText:      No results found!                       // Text shown when no result is found for the search.
+	noResultText:      'No results found!'                     // Text shown when no result is found for the search.
 	page:              1                                       // Number o the page to be displayed.
-	params:            ''                                      // Further parameters to be added to the query string.
-	paramsElements:    []                                      // Array of selectors of fields to be used it values as params.
+	params:            {}                                      // A hash of parameters to be added to the query string.
+	paramsElements:    []                                      // Array of selectors of field to use the name and value as parameter.
 	resize:            true                                    // Apply the same width of the content to the other wrappers.
 	resultOption:      true                                    // Enables the presentation of details of the result.
 	resultText:        'Displaying {from} - {to} of {total} items' // Text displayed in the details of the result.
