@@ -64,7 +64,7 @@
 
 		var opt					= $.extend({}, $.fn.gridy.defaults, settings),
 			id					= this.attr('id'),
-			$this				= $(this).data('options', opt).width(methods.getSize(opt.width)).empty(),
+			$this				= $(this).data('options', opt).width(methods.getSize(opt.width)).empty().wrap('<div id="' + id + '-wrapper">'),
 			$currentPage		= $('<input id="current-page" type="hidden" value="' + opt.page + '"/>').insertBefore($this),
 			$currentSortName	= $('<input id="current-sort-name" type="hidden" value="' + opt.sortName + '"/>').insertBefore($this),
 			$currentSortOrder	= $('<input id="current-sort-order" type="hidden" value="' + opt.sortOrder + '"/>').insertBefore($this);
@@ -77,9 +77,9 @@
 		var isTable = opt.style == 'table';
 
 		if (isTable) {
-			$this.addClass(opt.templateStyle + '-table').attr('cellspacing', 0);
+			$this.attr('cellspacing', 0).parent().addClass(opt.templateStyle + '-table');
 		} else {
-			$this.addClass(opt.templateStyle);
+			$this.parent().addClass(opt.templateStyle);
 		}
 
 		var $search			= null,

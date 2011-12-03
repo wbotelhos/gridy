@@ -1,6 +1,6 @@
 # jQuery Gridy - A Grid Plugin - http://wbotelhos.com/gridy
 
-### 0.3.0
+### 0.3.0 (Development)
 
 + Now you can use table rather div if you have just tabulated data in a list format;
 + Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
@@ -9,7 +9,9 @@
 + Now the 'params' option is sent as hash;
 + Now the 'paramsElements' option is sent as hash;
 + Now the 'debug' option was improved to show a better debug;
++ Now the Gridy has a major wrapper to keep all the grid;
 + Fixed gridy when search gets no result. (by Gabriel Benz)
++ Fixed the index number given to Gridy binded by class without id;
 + Added 'resize' option to apply the same width of the content to the other wrappers;
 + Added 'evenOdd' option to enables the even odd row style;
 + Added 'paramsElements' option to choose an array of selectors of fields to be used it values as parameters;

@@ -1,4 +1,4 @@
-describe('Using ID with table', function() {
+describe('style option layout', function() {
 
 	beforeEach(function() {
 		$('body').append('<div id="grid"></div>');
@@ -11,7 +11,7 @@ describe('Using ID with table', function() {
 	});
 
 	afterEach(function() {
-		$('#grid').remove();
+		$('#grid').parent().remove();
 	});
 
 	it('should chainable', function() {
@@ -21,13 +21,27 @@ describe('Using ID with table', function() {
 
 		// when
 		$grid.gridy({
-			find:			'username',
-			sortName:		'username',
-			url:			'/gridy'
+			style:	'div',
+			url:	'/gridy'
 		}).addClass(className);
 
 		// then
 	    expect($grid).toHaveClass(className);
+	});
+
+	it('should set wrapper element', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:	'div',
+			url:	'/gridy'
+		});
+
+		// then
+	    expect($grid.parent()).toHaveClass('gridy-default');
+	    expect($grid.parent()).toHaveId('grid-wrapper');
 	});
 
 });
