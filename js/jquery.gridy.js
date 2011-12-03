@@ -1,19 +1,19 @@
 /*!
  * jQuery Gridy - A Grid Plugin - http://wbotelhos.com/gridy
- * -------------------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------------
  *
  * jQuery Gridy is a plugin that generates a highly customizable grid using templates.
  *
  * Licensed under The MIT License
  *
- * @version        0.3.1
+ * @version        0.3.0
  * @since          2011.06.03
  * @author         Washington Botelho
  * @documentation  wbotelhos.com/gridy
  * @twitter        twitter.com/wbotelhos
  *
  * Usage with default values:
- * -------------------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------------
  * $('#grid').gridy({ url: 'url/gridy' });
  *
  * <div id="grid"></div>
@@ -671,18 +671,43 @@
 				return;
 			}
 
-			var paramsElements = '';
+			var data = {
+				search:		search,
+				page:		page,
+				sortName: 	sortName,
+				sortOrder:  sortOrder,
+				find:		selectedFind,
+				rows:		selectedRows
+			};
 
-			if (opt.paramsElements) {
-				for (var i = 0; i < opt.paramsElements.length; i++) {
-					var $this = $(opt.paramsElements[i]);
+			for (var prop in opt.params) {
+				data[prop] = opt.params[prop];
+		    }
 
-					paramsElements += '&' + $this.attr('name') + '=' + $this.val(); 
-				}
+			var $paramElement;
+
+			for (var prop in opt.paramsElements) {
+				$paramElement = $(opt.paramsElements[prop]);
+
+				data[$paramElement.attr('name')] = $paramElement.val();				
 			}
 
 			if (opt.debug) {
-				methods.debug('query string: search=' + search + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params + paramsElements);
+				var queryString = 'query string:\n\n',
+					propSpace	,
+					i			;
+
+				for (var prop in data) {
+					propSpace = prop;
+
+					for (i = 0; i < (20 - prop.length); i++) {
+						propSpace += ' ';
+					}
+
+					queryString += propSpace + ': \'' + data[prop] + '\'\n';
+				}
+
+				methods.debug(queryString);
 			}
 
 			$.ajax({
@@ -693,7 +718,7 @@
 				jsonpCallback:	opt.jsonpCallback,
 				type:			opt.type,
 				url:			opt.url,
-				data:			'search=' + search + '&page=' + page + '&sortName=' + sortName + '&sortOrder=' + sortOrder + '&find=' + selectedFind + '&rows=' + selectedRows + opt.params + paramsElements,
+				data:			data,
 				success: function(wrapper) {
 					processCallback(wrapper, page, sortName, sortOrder, selectedRows);
 
