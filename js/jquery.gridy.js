@@ -105,14 +105,14 @@
 				}
 			}).keypress(function(evt) {
 				if ((evt.keyCode ? evt.keyCode : evt.which) == 13) {
-					listGridy(1, $currentSortName.val(), $currentSortOrder.val());
+					listGridy(1, $currentSortName.val(), $currentSortOrder.val(), $this);
 				}
 			});
 
 			$searchButton = $('<input type="button" value="' + opt.searchButtonLabel + '" title="' + opt.searchButtonTitle + '"/>').appendTo($search.children());
 
 			$searchButton.click(function() {
-				listGridy(1, $currentSortName.val(), $currentSortOrder.val());
+				listGridy(1, $currentSortName.val(), $currentSortOrder.val(), $this);
 			});
 		}
 
@@ -171,10 +171,10 @@
 		}
 
 		function sortGridyFunction() {
-			sortGridy($(this));
+			sortGridy($(this), $this);
 		};
 
-		function sortGridy(clickedLink) {
+		function sortGridy(clickedLink, context) {
 			var sortName		= clickedLink.attr('name'),
 				sortOrder		= clickedLink.attr('rel'),
 				nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
@@ -183,7 +183,7 @@
 
 			changeSortIndicator(clickedLink, nextSortOrder, sortIcon, isResetIcon);
 
-			listGridy($currentPage.val(), sortName, nextSortOrder);
+			listGridy($currentPage.val(), sortName, nextSortOrder, context);
 		};
 
 		var $status = null;
@@ -394,7 +394,7 @@
 			}
 
 			$rowsBox.append(options).val(rows).change().change(function(index, value) {
-				listGridy(1, $currentSortName.val(), $currentSortOrder.val());
+				listGridy(1, $currentSortName.val(), $currentSortOrder.val(), $this);
 			})
 			.children('option[value="' + rows +  '"]').attr('checked', 'checked');
 		}
@@ -447,7 +447,7 @@
 			}
 		};
 
-		listGridy(opt.page, opt.sortName, opt.sortOrder);
+		listGridy(opt.page, opt.sortName, opt.sortOrder, $this);
 
 		function enableGrid(isEnable) {
 			if (isEnable) {
@@ -626,18 +626,18 @@
 					}
 
 					$buttons.html(buttons).children(':not(".gridy-button-reticence")').click(function() {
-						listGridy(parseInt(this.alt, 10), $currentSortName.val(), $currentSortOrder.val());
+						listGridy(parseInt(this.alt, 10), $currentSortName.val(), $currentSortOrder.val(), $this);
 					});
 
 					if (hasBackNavigation) {
 						$buttons.children('.gridy-back').click(function() {
-							listGridy(page - 1, $currentSortName.val(), $currentSortOrder.val());
+							listGridy(page - 1, $currentSortName.val(), $currentSortOrder.val(), $this);
 						});
 					}
 
 					if (hasNextNavigation) {
 						$buttons.children('.gridy-next').click(function() {
-							listGridy(page + 1, $currentSortName.val(), $currentSortOrder.val());
+							listGridy(page + 1, $currentSortName.val(), $currentSortOrder.val(), $this);
 						});
 					}
 				} else {
@@ -652,7 +652,7 @@
 			$currentSortOrder.val(sortOrder);
 		};
 
-		function listGridy(page, sortName, sortOrder) {
+		function listGridy(page, sortName, sortOrder, context) {
 			enableGrid(false);
 			startLoading(true);
 
@@ -747,13 +747,13 @@
 					}
 
 					if (opt.success) {
-						opt.success(data, textStatus, jqXHR);
+						opt.success.call(context, data, textStatus, jqXHR);
 					}
 				}, error: function(jqXHR, textStatus, errorThrown) {
 					showMessage(methods.getError(jqXHR));
 
 					if (opt.error) {
-						opt.error(jqXHR, textStatus, errorThrown);
+						opt.error.call(context, jqXHR, textStatus, errorThrown);
 					}
 				}, complete: function(jqXHR, textStatus) {
 					startLoading(false);
@@ -793,7 +793,7 @@
 					}
 
 					if (opt.complete) {
-						opt.complete(jqXHR, textStatus);
+						opt.complete.call(context, jqXHR, textStatus);
 					}
 				}
 			});

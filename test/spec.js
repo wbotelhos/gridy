@@ -571,65 +571,69 @@ describe('ajax settings', function() {
 		// then check spyOn
 	});
 
-//	it ('complete should execute complete callback with right args', function() {
-//		// given
-//		var $grid = $('#grid');
-//
-//		spyOn($, 'ajax').andCallFake(function(params) {
-//			params.complete('xhr', 'status');
-//		});
-//		// when
-//		$grid.gridy({
-//			complete: function(xhr, status) {
-//				$(this).data('xhr', xhr).data('status', status);
-//			}
-//		});
-//
-//		// then
-//		expect($grid).toHaveData('xhr', 'xhr');
-//		expect($grid).toHaveData('status', 'status');
-//	});
-//
-//	it ('error should execute complete callback with right args', function() {
-//		// given
-//		var $grid = $('#grid');
-//
-//		spyOn($, 'ajax').andCallFake(function(params) {
-//			params.error('xhr', 'status', 'error');
-//		});
-//		
-//		// when
-//		$grid.gridy({
-//			error: function(xhr, status, error) {
-//				$(this).data('xhr', xhr).data('status', status).data('error', error);
-//			}
-//		});
-//
-//		// then
-//		expect($grid).toHaveData('xhr', 'xhr');
-//		expect($grid).toHaveData('status', 'status');
-//		expect($grid).toHaveData('error', 'error');
-//	});
-//
-//	it ('success should execute complete callback with right args', function() {
-//		// given
-//		var $grid = $('#grid');
-//
-//		spyOn($, 'ajax').andCallFake(function(params) {
-//			params.success('data', 'status', 'xhr');
-//		});
-//
-//		// when
-//		$grid.gridy({
-//			success: function(data, status, xhr) {
-//				$(this).data('data', data).data('xhr', xhr).data('status', status);
-//			}
-//		});
-//
-//		// then
-//		expect($grid).toHaveData('data', 'data');
-//		expect($grid).toHaveData('xhr', 'xhr');
-//		expect($grid).toHaveData('status', 'status');
-//	});
+	it ('complete should to execute with right args', function() {
+		// given
+		var $grid	= $('#grid'),
+			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			params.complete.call($grid, xhr, 'status');
+		});
+		// when
+		$grid.gridy({
+			complete: function(xhr, status) {
+				$(this).data('xhr', xhr).data('status', status);
+			}
+		});
+
+		// then
+		expect($grid).toHaveData('xhr', xhr);
+		expect($grid).toHaveData('status', 'status');
+	});
+
+	it ('error should to execute with right args', function() {
+		// given
+		var $grid	= $('#grid'),
+			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			params.error.call($grid, xhr, 'status', 'error');
+		});
+		
+		// when
+		$grid.gridy({
+			error: function(xhr, status, error) {
+				$(this).data('xhr', xhr).data('status', status).data('error', error);
+			}
+		});
+
+		// then
+		expect($grid).toHaveData('xhr', xhr);
+		expect($grid).toHaveData('status', 'status');
+		expect($grid).toHaveData('error', 'error');
+	});
+
+	it ('success should to execute with right args', function() {
+		// given
+		var $grid	= $('#grid'),
+			data	= "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}",
+			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+	
+		spyOn($, 'ajax').andCallFake(function(params) {
+			params.success.call($grid, data, 'status', xhr);
+		});
+
+		// when
+		$grid.gridy({
+			success: function(data, status, xhr) {
+				$(this).data('data', data).data('xhr', xhr).data('status', status);
+			}
+		});
+
+		// then
+		expect($grid).toHaveData('data', data);
+		expect($grid).toHaveData('xhr', xhr);
+		expect($grid).toHaveData('status', 'status');
+	});
 
 });
