@@ -221,7 +221,7 @@
 				arrowUp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-up'
 				<div class="comment">Class with background used as icon on the ascending sort.</div>
 
-				before:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
+				before:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">Function executed before the grid load.</div>
 
 				buttonBackTitle:&nbsp;&nbsp;&nbsp;&nbsp;'&lsaquo; Back'
@@ -242,7 +242,7 @@
 				buttonTitle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'page'
 				<div class="comment">Alternative text prepended in the title attribute together the number of the button page.</div>
 
-				cache:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
+				cache:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">Enables the ajax cache.</div>
 
 				clickFx:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
@@ -251,10 +251,10 @@
 				colsWidth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
 				<div class="comment">List with the width of each column of the grid.</div>
 
-				complete:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
+				complete:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">Function executed when the grid load.</div>
 
-				contentType:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'application/x-www-form-urlencoded; charset=utf-8'
+				contentType:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">The content type of the ajax request.</div>
 
 				dataType:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'json'
@@ -263,7 +263,7 @@
 				debug:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
 				<div class="comment">Shows details of the grid request.</div>
 
-				error:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
+				error:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">Function executed when occurs an error on the grid load.</div>
 
 				evenOdd:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
@@ -275,7 +275,7 @@
 				findsName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
 				<div class="comment">List with the name of the columns available for research.</div>
 
-				findTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
+				findTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">ID of the place where the find element will be appended.</div>
 
 				headersName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
@@ -290,11 +290,14 @@
 				hoverFx:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
 				<div class="comment">Enables highlight rows on mouseover.</div>
 
-				jsonp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
+				jsonp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">Enables the JSONP content type.</div>
 
-				jsonpCallback:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'callback'
+				jsonpCallback:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">Name of the callback function when the content type is JSONP.</div>
+
+				listPath:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'entityList'
+				<div class="comment">Path of the list element like 'response.movie.list'.</div>
 
 				loadingIcon:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-loading'
 				<div class="comment">Name of the class used as a loading icon.</div>
@@ -304,9 +307,6 @@
 
 				loadingText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading...
 				<div class="comment">Text that will appear during the loading.</div>
-
-				listPath:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'entityList'
-				<div class="comment">Path of the list element like 'response.movie.list'.</div>
 
 				messageOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
 				<div class="comment">Enables the display of messages about the grid.</div>
@@ -344,7 +344,7 @@
 				rowsNumber:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5, 10, 25, 50, 100]
 				<div class="comment">List with the numbers of lines should be displayed.</div>
 
-				rowsTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
+				rowsTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">ID of the place where the rows element will be appended.</div>
 
 				scroll:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
@@ -356,7 +356,7 @@
 				searchButtonLabel:&nbsp;&nbsp;'search'
 				<div class="comment">Label of the search button.</div>
 
-				searchButtonTitle:&nbsp;&nbsp;'Start the search	'
+				searchButtonTitle:&nbsp;&nbsp;'Start the search'
 				<div class="comment">Title of the search button.</div>
 
 				searchFocus:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
@@ -364,6 +364,9 @@
 
 				searchOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
 				<div class="comment">Enables the search field.</div>
+
+				searchTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				<div class="comment">ID of the place where the rows element will be appended.</div>
 
 				searchText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
 				<div class="comment">Text displayed in the search field.</div>
@@ -386,7 +389,7 @@
 				style:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'table'
 				<div class="comment">Change between table and div style.</div>
 
-				success:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
+				success:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
 				<div class="comment">Function executed when the grid loads successfully.</div>
 				
 				template:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'template'

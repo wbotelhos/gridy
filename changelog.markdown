@@ -4,13 +4,16 @@
 
 + Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
 + Now you can use table rather div if you have just tabulated data in a list format;
-+ Now the component 'find' will be hanging on search container.
++ Now the component 'find' will be hanging on search container;
 + Now the jQuery data is sent as hash;
 + Now the 'params' option is sent as hash;
 + Now the 'paramsElements' option is sent as hash;
 + Now the 'debug' option was improved to show a better debug;
 + Now the Gridy has a major wrapper to keep all the grid;
-+ Fixed gridy when search gets no result. (by Gabriel Benz)
++ Now the 'success', 'error' and 'complete' callback receives the original $.ajax() arguments;
++ Now the 'success', 'error' and 'complete' callback has the 'this' as the Gridy context;
++ Now the defaults options that not belongs Gridy has it owner original value;
++ Fixed gridy when search gets no result; (by Gabriel Benz)
 + Fixed the index number given to Gridy binded by class without id;
 + Fixed the ID of hidden fields to not repeat when has more than one gridy on page;
 + Added 'resize' option to apply the same width of the content to the other wrappers;
