@@ -77,9 +77,9 @@
 		var isTable = opt.style == 'table';
 
 		if (isTable) {
-			$this.attr('cellspacing', 0).parent().addClass(opt.templateStyle + '-table');
+			$this.attr('cellspacing', 0).parent().addClass(opt.skin + '-table');
 		} else {
-			$this.parent().addClass(opt.templateStyle);
+			$this.parent().addClass(opt.skin);
 		}
 
 		var $search			= null,
@@ -832,25 +832,25 @@
 		buttonOption:		true,
 		buttonsWidth:		'auto',
 		buttonTitle:		'page',
-		cache:				undefined,
+		cache:				undefined,				// ajax
 		clickFx:			false,
 		colsWidth:			[],
-		complete:			undefined,
-		contentType:		undefined,
-		dataType:			'json',
+		complete:			undefined,				// ajax
+		contentType:		undefined,				// ajax
+		dataType:			'json',					// ajax
 		debug:				false,
-		error: 				undefined,
+		error: 				undefined,				// ajax
 		evenOdd:			false,
-		find:				'',
+		find:				'',						// ajax
 		findsName:			[],
 		findTarget:			undefined,
 		headersName:		[],
 		headersWidth:		[],
-		height:				'auto',
+		height:				'auto',					// div table
 		hoverFx:			false,
 		jsonp:				undefined,
-		jsonpCallback:		'callback',
-		listPath:			'entityList',
+		jsonpCallback:		'callback',				// ajax
+		listPath:			'entityList',			// json
 		loadingIcon:		'gridy-loading',
 		loadingOption:		true,
 		loadingText:		'Loading...',
@@ -858,36 +858,36 @@
 		messageTimer:		4000,
 		noResultOption:		true,
 		noResultText:		'No items found!',
-		page:				1,
+		page:				1,						// ajax
 		params: 			{},
 		paramsElements:		[],
 		resize:				true,
 		resultOption:		true,
 		resultText:			'Displaying {from} - {to} of {total} items',
-		rows:				10,
+		rows:				10,						// ajax
 		rowsNumber:			[5, 10, 25, 50, 100],
 		rowsTarget:			undefined,
 		scroll:				false,
-		search:				'',
+		search:				'',						// ajax
 		searchButtonLabel:	'search',
 		searchButtonTitle:	'Start the search',
 		searchFocus:		true,
 		searchOption:		true,
 		searchTarget:		undefined,
 		searchText:			'',
-		separate:			true,
+		separate:			true,					// div table
+		skin:				'gridy-default',		// global
 		sortersName:		[],
 		sorterWidth:		'auto',
 		sortName:			'',
 		sortOrder:			'asc',
 		style:				'table',
-		success:			undefined,
-		template:			'template',
-		templateStyle:		'gridy-default',
-		totalPath:			'total',
-		type:				'get',
-		url:				'/gridy',
-		width:				'auto'
+		success:			undefined,				// ajax
+		template:			'template',				// global
+		totalPath:			'total',				// json
+		type:				'get',					// ajax
+		url:				'/gridy',				// ajax
+		width:				'auto'					// div table
 	};
 
 })(jQuery);

@@ -61,7 +61,7 @@ describe('param settings', function() {
 describe('global settings', function() {
 
 	beforeEach(function() {
-		$('body').append('<div id="grid"></div>');
+		$('body').append('<table id="grid"></table>');
 
 
 		spyOn($, 'ajax').andCallFake(function(params) {
@@ -141,6 +141,83 @@ describe('global settings', function() {
 	    expect($page).toHaveValue('2');
 	    expect($sortName).toHaveValue('id');
 	    expect($sortOrder).toHaveValue('desc');
+	});
+
+	it ('template show be possible to change of template', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			template:	'template-custom',
+			url:		'/gridy'
+		});
+
+		// then
+	    expect($grid.children().children().is('ul')).toBeTruthy();
+	});
+
+});
+
+describe('json format', function() {
+
+	beforeEach(function() {
+		$('body').append('<div id="grid"></div>');
+	});
+
+	afterEach(function() {
+		$('#grid').parent().remove();
+	});
+
+	it ('total path should be possible change the path of the total', function() {
+		// given
+		var $grid = $('#grid');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"count\": {\"total\": 3}}",
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			totalPath:	'count.total'
+		});
+
+		var $result = $('.gridy-status').children('.gridy-result');
+
+		expect($result).toHaveText('Displaying 01 - 01 of 03 items');
+	});
+
+	it ('list path should be possible change the path of the list', function() {
+		// given
+		var $grid = $('#grid');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= "{\"data\": {\"list\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}]}, \"total\": 3}",
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			listPath:	'data.list'
+		});
+
+		var $columns = $grid.children('.gridy-content').children('div');
+
+		// then
+	    expect($columns.length == 3).toBeTruthy();
 	});
 
 });
@@ -281,12 +358,44 @@ describe('style div', function() {
 	    expect($columns.eq(0)).toHaveClass('gridy-separate');
 	});
 
+	it ('width should set it', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			width:		1000
+		});
+
+		// then
+	    expect($grid).toHaveAttr('style', 'width: 1000px;');
+	});
+
+	it ('skin should be possible to change', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			skin:		'skin'
+		});
+
+		// then
+	    expect($grid.parent()).toHaveClass('skin');
+	});
+
 });
 
 describe('style table', function() {
 
 	beforeEach(function() {
-		$('body').append('<div id="grid"></div>');
+		$('body').append('<table id="grid"></table>');
 
 		spyOn($, 'ajax').andCallFake(function(params) {
 			var data	= "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}",
@@ -403,6 +512,34 @@ describe('style table', function() {
 
 		// then
 	    expect($row.children('td')).toHaveClass('gridy-separate');
+	});
+
+	it ('width should set it', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:		'/gridy',
+			width:		1000
+		});
+
+		// then
+	    expect($grid).toHaveAttr('style', 'width: 1000px;');
+	});
+
+	it ('skin should be possible to change', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:	'/gridy',
+			skin:	'skin'
+		});
+
+		// then
+	    expect($grid.parent()).toHaveClass('skin-table');
 	});
 
 });

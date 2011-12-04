@@ -2,7 +2,15 @@
 
 ### 0.3.0 (Development)
 
++ Added 'resize' option to apply the same width of the content to the other wrappers;
++ Added 'evenOdd' option to enables the even odd row style;
++ Added 'paramsElements' option to choose an array of selectors of fields to be used it values as parameters;
++ Added 'listPath' option to choose the path of the list element like 'response.movie.list';
++ Added 'totalPath' option to choose the path of the total element like 'response.movie.total';
++ Added 'style' option to choose between table and div grid style;
++ Added 'separate' option to change the style of the first line on grid to separate visually;
 + Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
++ Changed the option 'templateStyle' to simple 'skin';
 + Now you can use table rather div if you have just tabulated data in a list format;
 + Now the component 'find' will be hanging on search container;
 + Now the jQuery data is sent as hash;
@@ -16,13 +24,6 @@
 + Fixed gridy when search gets no result; (by Gabriel Benz)
 + Fixed the index number given to Gridy binded by class without id;
 + Fixed the ID of hidden fields to not repeat when has more than one gridy on page;
-+ Added 'resize' option to apply the same width of the content to the other wrappers;
-+ Added 'evenOdd' option to enables the even odd row style;
-+ Added 'paramsElements' option to choose an array of selectors of fields to be used it values as parameters;
-+ Added 'listPath' option to choose the path of the list element like 'response.movie.list';
-+ Added 'totalPath' option to choose the path of the total element like 'response.movie.total';
-+ Added 'style' option to choose between table and div grid style;
-+ Added 'separate' option to change the style of the first line on grid to separate visually;
 
 ### 0.2.0
 

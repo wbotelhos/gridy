@@ -76,6 +76,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	searchTarget:      undefined                               // ID of the place where the search element will be appended. 
 	searchText:        ''                                      // Text displayed in the search field.
 	separate:          true                                    // Change the style of the first line on grid.
+	skin:              'gridy-default'                         // Name of the root class name style "CSS prefix".
 	sortersName:       []                                      // List with the names used on the sorter element.
 	sorterWidth:       'auto'                                  // Width of the sorter element.
 	sortName:          ''                                      // Name of the default column sorted.
@@ -83,7 +84,6 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	style:             'table'                                 // Change between table and div style.
 	success:           undefined                               // Function executed when the grid loads successfully.
 	template:          'template'                              // The ID of the script template to be loaded.
-	templateStyle:     'gridy-default'                         // Name of the template style "CSS prefix".
 	totalPath:         'entityList'                            // Path of the total element like 'response.movie.total'.
 	type:              'get'                                   // Type of the HTTP request.
 	url:               '/gridy'                                // Url to request the data.
