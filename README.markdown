@@ -91,7 +91,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Usage with default values
 
-	$('#grid').gridy({ url: 'url/gridy' });
+	$('#grid').gridy({ url: '/gridy' });
 	
 	<div id="grid"></div>
 	
@@ -99,10 +99,6 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	   <div>
 	      <div>${name}</div>
 	      <div>${email}</div>
-	
-	      <div class="gridy-button">
-	         <a href="#">edit</a>
-	      </div>
 	   </div>
 	</script>
 

@@ -14,7 +14,7 @@
  *
  * Usage with default values:
  * -----------------------------------------------------------------------------------
- * $('#grid').gridy({ url: 'url/gridy' });
+ * $('#grid').gridy({ url: '/gridy' });
  *
  * <div id="grid"></div>
  *
@@ -22,10 +22,6 @@
  *    <div>
  *       <div>${name}</div>
  *       <div>${email}</div>
- *
- *       <div class="gridy-button">
- *          <a href="#">edit</a>
- *       </div>
  *    </div>
  * </script>
  *
