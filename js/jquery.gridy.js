@@ -50,8 +50,7 @@
 	$.fn.gridy = function(settings) {
 
 		if (this.length == 0) {
-			methods.debug('Selector invalid or missing!');
-			return;
+			$.error('Selector invalid or missing!');
 		} else if (this.length > 1) {
 			return this.each(function() {
 				$.fn.gridy.apply($(this), [settings]);
@@ -227,8 +226,7 @@
 				if (opt.colsWidth.length > 0) {
 					opt.headersWidth = opt.colsWidth;
 				} else {
-					methods.debug(id + ': headersWith and colsWidth attributes invalid or missing!');
-					return;
+					$.error(id + ': headersWith and colsWidth options are invalid or missing!');
 				}
 			}
 
@@ -805,7 +803,7 @@
 		if (settings !== undefined) {
 			$.each(settings, function(attribute, value) {
 				if (options[attribute] === undefined) {
-					methods.debug('\'' + attribute + '\' is an invalid attribute!');
+					$.error('\'' + attribute + '\' is an invalid option!');
 				} else {
 					options[attribute] = value;
 				}
