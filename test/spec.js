@@ -390,6 +390,124 @@ describe('style div', function() {
 	    expect($grid.parent()).toHaveClass('skin');
 	});
 
+	it ('header should create it', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		// then
+		expect($grid).toContain('div.gridy-header');
+	    expect($grid.children().eq(0)).toHaveClass('gridy-header');
+	});
+
+	it ('header should create the columns', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		var $columns = $grid.children('.gridy-header').children();
+
+		// then
+		expect($columns.length == 3).toBeTruthy();
+	});
+
+	it ('header column should have right width', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		var $columnsHeader = $grid.children('div.gridy-header').children('div');
+
+		// then
+		expect($columnsHeader.eq(0)).toHaveAttr('style', 'width: 100px;');
+		expect($columnsHeader.eq(1)).toHaveAttr('style', 'width: 100px;');
+		expect($columnsHeader.eq(2)).toHaveAttr('style', 'width: 100px;');
+	});
+
+	it ('header column should have the right disable icon', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		var $columnsHeader = $grid.children('div.gridy-header').children('div');
+
+		// then
+		expect($columnsHeader.eq(0).children('div')).toHaveClass('gridy-arrow-none');
+		expect($columnsHeader.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+		expect($columnsHeader.eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	});
+
+	it ('header column should have the right link info', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		var $columnsHeader	= $grid.children('div.gridy-header').children('div'),
+			$link1			= $columnsHeader.eq(0).children('a'),
+			$link2			= $columnsHeader.eq(1).children('a'),
+			$link3			= $columnsHeader.eq(2).children('a');
+
+
+		// then
+		expect($link1).toHaveId('sort-by-id');
+		expect($link1).toHaveAttr('href', 'javascript:void(0);');
+		expect($link1).toHaveAttr('name', 'id');
+		expect($link1).toHaveText('ID');
+		expect($link1).not.toHaveAttr('rel');
+
+		expect($link2).toHaveId('sort-by-username');
+		expect($link2).toHaveAttr('href', 'javascript:void(0);');
+		expect($link2).toHaveAttr('name', 'username');
+		expect($link2).toHaveText('Username');
+		expect($link2).not.toHaveAttr('rel');
+
+		expect($link3).toHaveId('sort-by-name');
+		expect($link3).toHaveAttr('href', 'javascript:void(0);');
+		expect($link3).toHaveAttr('name', 'name');
+		expect($link3).toHaveText('Name');
+		expect($link3).not.toHaveAttr('rel');
+	});
+
 });
 
 describe('style table', function() {
@@ -540,6 +658,113 @@ describe('style table', function() {
 
 		// then
 	    expect($grid.parent()).toHaveClass('skin-table');
+	});
+
+	it ('header should create it', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		// then
+		expect($grid).toContain('thead.gridy-header');
+	    expect($grid.children().eq(0)).toHaveClass('gridy-header');
+	});
+
+	it ('header should create the columns', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		var $columns = $grid.children('.gridy-header').children();
+
+		// then
+		expect($columns.length == 3).toBeTruthy();
+	});
+
+	it ('header column should have right width', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		var $columnsHeader = $grid.children('thead.gridy-header').children('th');
+
+		// then
+		expect($columnsHeader.eq(0)).toHaveAttr('width', '100');
+		expect($columnsHeader.eq(1)).toHaveAttr('width', '100');
+		expect($columnsHeader.eq(2)).toHaveAttr('width', '100');
+	});
+
+	it ('header column should have the right disable icon', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		var $columnsHeader = $grid.children('thead.gridy-header').children('th');
+
+		// then
+		expect($columnsHeader.eq(0).children('div')).toHaveClass('gridy-arrow-none');
+		expect($columnsHeader.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+		expect($columnsHeader.eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	});
+
+	it ('header column should have the right link info', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			headersWidth:	[100, 100, 100]
+		});
+
+		var $columnsHeader	= $grid.children('thead.gridy-header').children('th'),
+			$link1			= $columnsHeader.eq(0).children('a'),
+			$link2			= $columnsHeader.eq(1).children('a'),
+			$link3			= $columnsHeader.eq(2).children('a');
+
+		// then
+		expect($link1).toHaveId('sort-by-id');
+		expect($link1).toHaveAttr('href', 'javascript:void(0);');
+		expect($link1).toHaveAttr('name', 'id');
+		expect($link1).toHaveText('ID');
+		expect($link1).not.toHaveAttr('rel');
+
+		expect($link2).toHaveId('sort-by-username');
+		expect($link2).toHaveAttr('href', 'javascript:void(0);');
+		expect($link2).toHaveAttr('name', 'username');
+		expect($link2).toHaveText('Username');
+		expect($link2).not.toHaveAttr('rel');
+
+		expect($link3).toHaveId('sort-by-name');
+		expect($link3).toHaveAttr('href', 'javascript:void(0);');
+		expect($link3).toHaveAttr('name', 'name');
+		expect($link3).toHaveText('Name');
+		expect($link3).not.toHaveAttr('rel');
 	});
 
 });

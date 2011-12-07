@@ -243,7 +243,7 @@
 				}
 
 				if (headName) {
-					$sortLink.attr({ id: 'sort-by-' + headName, name: headName, rel: 'desc' });
+					$sortLink.attr({ id: 'sort-by-' + headName, name: headName });
 
 					var $sortIcon = $('<div/>', { 'class': opt.arrowNone });
 
