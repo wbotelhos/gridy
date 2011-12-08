@@ -1,3 +1,9 @@
+// TODO click one time and check arrow up.
+// TODO click two time and check arrow down.
+// TODO click three time and check arrow none.
+// TODO for loading timer fadeout
+// TODO for message timer fadeout
+
 describe('param settings', function() {
 
 	beforeEach(function() {
@@ -208,7 +214,6 @@ describe('json format', function() {
 
 		// when
 		$grid.gridy({
-			style:		'div',
 			template:	'template-div',
 			url:		'/gridy',
 			listPath:	'data.list'
@@ -508,6 +513,199 @@ describe('style div', function() {
 		expect($link3).not.toHaveAttr('rel');
 	});
 
+	it ('header should not exist for default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy'
+		});
+
+		// then
+		expect($grid).not.toContain('div.gridy-header');
+	});
+
+
+	it ('messageOption should exist for default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy'
+		});
+
+		var $status = $grid.parent().children('div.gridy-status');
+
+		// then
+		expect($status).toContain('div.gridy-result');
+	});
+
+	it ('resultText should have default mask', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy'
+		});
+
+		var $result = $grid.parent().find('div.gridy-result');
+
+		// then
+		expect($result).toHaveHtml('Displaying 01 - 01 of 03 items');
+	});
+
+	it ('resultText should be turned off', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			resultOption:	false
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper).not.toContain('div.gridy-result');
+	});
+
+	it ('resultText should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			resultText:		'Pagee {from} -- {to} off {total} itemss'
+		});
+
+		var $result = $grid.parent().find('div.gridy-result');
+
+		// then
+		expect($result).toHaveHtml('Pagee 01 -- 01 off 03 itemss');
+	});
+
+	it ('loadingOption should be enabled for default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy'
+		});
+
+		var $wrapper = $grid.parent().children('div.gridy-status');
+
+		// then
+		expect($wrapper).toContain('div.gridy-loading');
+		expect($wrapper.children('div.gridy-loading')).toContain('div');
+	});
+
+	it ('loadingOption should be turned off', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			loadingOption:	false
+		});
+
+		var $wrapper = $grid.parent().children('div.gridy-status');
+
+		// then
+		expect($wrapper).not.toContain('div.gridy-loading');
+	});
+
+	it ('loadingText should be the default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy'
+		});
+
+		var $wrapper = $grid.parent().find('div.gridy-loading');
+
+		// then
+		expect($wrapper).toHaveText('Loading...');
+	});
+
+	it ('loadingText should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			loadingText:	'Wait...'
+		});
+
+		var $wrapper = $grid.parent().find('div.gridy-loading');
+
+		// then
+		expect($wrapper).toHaveText('Wait...');
+	});
+
+	it ('searchOption should exist by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:				'div',
+			template:			'template-div',
+			url:				'/gridy'
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper).toContain('div.gridy-search');
+		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content')).toContain('input[type="text"]');
+		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content')).toContain('input[type="button"]');
+	});
+
+	it ('searchButtonLabel should have default value', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:				'div',
+			template:			'template-div',
+			url:				'/gridy'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		expect($wrapper.children('input[type="button"]')).toHaveValue('search');
+	});
+
 });
 
 describe('style table', function() {
@@ -767,10 +965,180 @@ describe('style table', function() {
 		expect($link3).not.toHaveAttr('rel');
 	});
 
+	it ('header should not exist for default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy'
+		});
+
+		// then
+		expect($grid).not.toContain('thead.gridy-header');
+	});
+
+	it ('messageOption should exist for default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy'
+		});
+
+		var $status = $grid.parent().children('div.gridy-status');
+		// then
+		expect($status).toContain('div.gridy-result');
+	});
+
+	it ('resultText should have default mask', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy'
+		});
+
+		var $result = $grid.parent().find('div.gridy-result');
+
+		// then
+		expect($result).toHaveHtml('Displaying 01 - 01 of 03 items');
+	});
+
+	it ('resultText should be turned off', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			resultOption:	false
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper).not.toContain('div.gridy-result');
+	});
+
+	it ('resultText should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			resultText:		'Pagee {from} -- {to} off {total} itemss'
+		});
+
+		var $result = $grid.parent().find('div.gridy-result');
+
+		// then
+		expect($result).toHaveHtml('Pagee 01 -- 01 off 03 itemss');
+	});
+
+	it ('loadingOption should be enabled for default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy'
+		});
+
+		var $wrapper = $grid.parent().children('div.gridy-status');
+
+		// then
+		expect($wrapper).toContain('div.gridy-loading');
+		expect($wrapper.children('div.gridy-loading')).toContain('div');
+	});
+
+	it ('loadingOption should be turned off', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			loadingOption:	false
+		});
+
+		var $wrapper = $grid.parent().children('div.gridy-status');
+
+		// then
+		expect($wrapper).not.toContain('div.gridy-loading');
+	});
+
+	it ('loadingText should be the default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy'
+		});
+
+		var $wrapper = $grid.parent().find('div.gridy-loading');
+
+		// then
+		expect($wrapper).toHaveText('Loading...');
+	});
+
+	it ('loadingText should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			loadingText:	'Wait...'
+		});
+
+		var $wrapper = $grid.parent().find('div.gridy-loading');
+
+		// then
+		expect($wrapper).toHaveText('Wait...');
+	});
+
+	it ('searchOption should exist by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:				'/gridy'
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper).toContain('div.gridy-search');
+		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content')).toContain('input[type="text"]');
+		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content')).toContain('input[type="button"]');
+	});
+
+	it ('searchButtonLabel should have default value', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:				'div',
+			template:			'template-div',
+			url:				'/gridy'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		expect($wrapper.children('input[type="button"]')).toHaveValue('search');
+	});
+
 });
-
-
-// TODO for message timer fadeout
 
 describe('error settings', function() {
 

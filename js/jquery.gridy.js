@@ -88,7 +88,7 @@
 				$search.width(methods.getSize(opt.width));
 			}
 
-			$searchField = $('<input id="search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($search.children());
+			$searchField = $('<input id="' + id + '-search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($search.children());
 
 			$searchField.blur(function() {
 				if ($searchField.val() == '') {
@@ -826,62 +826,62 @@
 		buttonOption:		true,
 		buttonsWidth:		'auto',
 		buttonTitle:		'page',
-		cache:				undefined,				// ajax
+			cache:				undefined,
 		clickFx:			false,
 		colsWidth:			[],
-		complete:			undefined,				// ajax
-		contentType:		undefined,				// ajax
-		dataType:			'json',					// ajax
+			complete:			undefined,
+			contentType:		undefined,
+			dataType:			'json',
 		debug:				false,
-		error: 				undefined,				// ajax
+			error: 				undefined,
 		evenOdd:			false,
-		find:				'',						// ajax
+			find:				'',
 		findsName:			[],
 		findTarget:			undefined,
 		headersName:		[],
 		headersWidth:		[],
-		height:				'auto',					// div table
+			height:				'auto',
 		hoverFx:			false,
 		jsonp:				undefined,
-		jsonpCallback:		'callback',				// ajax
-		listPath:			'entityList',			// json
+			jsonpCallback:		'callback',
+			listPath:			'entityList',
 		loadingIcon:		'gridy-loading',
-		loadingOption:		true,
-		loadingText:		'Loading...',
+			loadingOption:		true,
+			loadingText:		'Loading...',
 		messageOption:		true,
 		messageTimer:		4000,
 		noResultOption:		true,
 		noResultText:		'No items found!',
-		page:				1,						// ajax
+			page:				1,
 		params: 			{},
 		paramsElements:		[],
 		resize:				true,
-		resultOption:		true,
-		resultText:			'Displaying {from} - {to} of {total} items',
+			resultOption:		true,
+			resultText:			'Displaying {from} - {to} of {total} items',
 		rows:				10,						// ajax
 		rowsNumber:			[5, 10, 25, 50, 100],
 		rowsTarget:			undefined,
 		scroll:				false,
-		search:				'',						// ajax
-		searchButtonLabel:	'search',
+			search:				'',
+			searchButtonLabel:	'search',
 		searchButtonTitle:	'Start the search',
 		searchFocus:		true,
-		searchOption:		true,
+			searchOption:		true,
 		searchTarget:		undefined,
 		searchText:			'',
-		separate:			true,					// div table
-		skin:				'gridy-default',		// global
+			separate:			true,
+			skin:				'gridy-default',
 		sortersName:		[],
 		sorterWidth:		'auto',
-		sortName:			'',
-		sortOrder:			'asc',
-		style:				'table',
-		success:			undefined,				// ajax
-		template:			'template',				// global
-		totalPath:			'total',				// json
-		type:				'get',					// ajax
-		url:				'/gridy',				// ajax
-		width:				'auto'					// div table
+			sortName:			'',
+			sortOrder:			'asc',
+			style:				'table',
+			success:			undefined,
+			template:			'template',
+			totalPath:			'total',
+			type:				'get',
+			url:				'/gridy',
+			width:				'auto'
 	};
 
 })(jQuery);

@@ -24,6 +24,7 @@
 + Fixed gridy when search gets no result; (by Gabriel Benz)
 + Fixed the index number given to Gridy binded by class without id;
 + Fixed the ID of hidden fields to not repeat when has more than one gridy on page;
++ Fixed the ID of search field to not repeat when has more than one gridy on page;
 
 ### 0.2.0
 
