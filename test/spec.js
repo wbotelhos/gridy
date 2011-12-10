@@ -105,9 +105,9 @@ describe('global settings', function() {
 		var $wrapper = $grid.parent();
 
 		// then
-	    expect($wrapper).toContain('input#grid-current-page');
-	    expect($wrapper).toContain('input#grid-current-sort-name');
-	    expect($wrapper).toContain('input#grid-current-sort-order');
+	    expect($wrapper.children('input#grid-current-page')).toExist();
+	    expect($wrapper.children('input#grid-current-sort-name')).toExist();
+	    expect($wrapper.children('input#grid-current-sort-order')).toExist();
 	});
 
 	it ('hidden field should have default values', function() {
@@ -200,6 +200,23 @@ describe('json format', function() {
 		expect($result).toHaveText('Displaying 01 - 01 of 03 items');
 	});
 
+	it ('searchButtonTitle have default value', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:				'div',
+			template:			'template-div',
+			url:				'/gridy'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		expect($wrapper.children('input[type="button"]')).toHaveAttr('title', 'Start the search');
+	});
+
 	it ('list path should be possible change the path of the list', function() {
 		// given
 		var $grid = $('#grid');
@@ -273,7 +290,7 @@ describe('style div', function() {
 		});
 
 		// then
-		expect($grid).toContain('.gridy-content');
+		expect($grid.children('.gridy-content')).toExist();
 	});
 
 	it ('content should has height and width as auto', function() {
@@ -409,7 +426,7 @@ describe('style div', function() {
 		});
 
 		// then
-		expect($grid).toContain('div.gridy-header');
+		expect($grid.children('div.gridy-header')).toExist();
 	    expect($grid.children().eq(0)).toHaveClass('gridy-header');
 	});
 
@@ -528,6 +545,22 @@ describe('style div', function() {
 		expect($grid).not.toContain('div.gridy-header');
 	});
 
+	it ('gridy-status should exist for default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy'
+		});
+
+		var $status = $grid.parent().children('div.gridy-status');
+
+		// then
+		expect($status).toExist();
+	});
 
 	it ('messageOption should exist for default', function() {
 		// given
@@ -543,7 +576,7 @@ describe('style div', function() {
 		var $status = $grid.parent().children('div.gridy-status');
 
 		// then
-		expect($status).toContain('div.gridy-result');
+		expect($status.children('div.gridy-result')).toExist();
 	});
 
 	it ('resultText should have default mask', function() {
@@ -613,8 +646,8 @@ describe('style div', function() {
 		var $wrapper = $grid.parent().children('div.gridy-status');
 
 		// then
-		expect($wrapper).toContain('div.gridy-loading');
-		expect($wrapper.children('div.gridy-loading')).toContain('div');
+		expect($wrapper.children('div.gridy-loading')).toExist();
+		expect($wrapper.children('div.gridy-loading').children('div')).toExist();
 	});
 
 	it ('loadingOption should be turned off', function() {
@@ -632,7 +665,7 @@ describe('style div', function() {
 		var $wrapper = $grid.parent().children('div.gridy-status');
 
 		// then
-		expect($wrapper).not.toContain('div.gridy-loading');
+		expect($wrapper.children('div.gridy-loading')).not.toExist();
 	});
 
 	it ('loadingText should be the default', function() {
@@ -684,9 +717,9 @@ describe('style div', function() {
 		var $wrapper = $grid.parent();
 
 		// then
-		expect($wrapper).toContain('div.gridy-search');
-		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content')).toContain('input[type="text"]');
-		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content')).toContain('input[type="button"]');
+		expect($wrapper.children('div.gridy-search')).toExist();
+		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content').children('input[type="text"]')).toExist();
+		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content').children('input[type="button"]')).toExist();
 	});
 
 	it ('searchButtonLabel should have default value', function() {
@@ -704,6 +737,131 @@ describe('style div', function() {
 
 		// then
 		expect($wrapper.children('input[type="button"]')).toHaveValue('search');
+	});
+
+	it ('searchButtonLabel should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:				'div',
+			template:			'template-div',
+			url:				'/gridy',
+			searchButtonLabel:	'find'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		expect($wrapper.children('input[type="button"]')).toHaveValue('find');
+	});
+
+	it ('searchButtonTitle have default value', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:				'div',
+			template:			'template-div',
+			url:				'/gridy'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		expect($wrapper.children('input[type="button"]')).toHaveAttr('title', 'Start the search');
+	});
+
+	it ('searchButtonTitle should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:				'/gridy',
+			searchButtonTitle:	'type here...'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		expect($wrapper.children('input[type="button"]')).toHaveAttr('title', 'type here...');
+	});
+
+	it ('searchFocus have default value and focus it', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:				'div',
+			template:			'template-div',
+			url:				'/gridy'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		//expect($wrapper.children('input[type="text"]')).toBeFocused();
+		expect($wrapper.children('input[type="text"]')).toHaveClass('gridy-typed');
+	});
+
+	it ('searchTarget should put it on target', function() {
+		$('body').append('<div id="target"></div>');
+
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			searchTarget:	'#target'
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper).not.toContain('.gridy-search-content');
+
+		$('#target').remove();
+	});
+
+	it ('gridy-footer should exists by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy'
+		});
+
+		var $wrapper = $grid.parent().children('div.gridy-footer');
+
+		// then
+		expect($wrapper).toExist();
+	});
+
+	it ('gridy-message should exists by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url: 		'/gridy'
+		});
+
+		var $wrapper = $grid.parent().children('.gridy-footer');
+
+		// then
+		expect($wrapper.children('div.gridy-message')).toExist();
 	});
 
 });
@@ -750,7 +908,7 @@ describe('style table', function() {
 		});
 
 		// then
-		expect($grid).toContain('tbody.gridy-content');
+		expect($grid.children('tbody.gridy-content')).toExist();
 	});
 
 	it ('content should NOT has height and width as auto', function() {
@@ -870,7 +1028,7 @@ describe('style table', function() {
 		});
 
 		// then
-		expect($grid).toContain('thead.gridy-header');
+		expect($grid.children('thead.gridy-header')).toExist();
 	    expect($grid.children().eq(0)).toHaveClass('gridy-header');
 	});
 
@@ -971,13 +1129,26 @@ describe('style table', function() {
 
 		// when
 		$grid.gridy({
-			style:			'div',
-			template:		'template-div',
 			url:			'/gridy'
 		});
 
 		// then
 		expect($grid).not.toContain('thead.gridy-header');
+	});
+
+	it ('gridy-status should exist for default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy'
+		});
+
+		var $status = $grid.parent().children('div.gridy-status');
+
+		// then
+		expect($status).toExist();
 	});
 
 	it ('messageOption should exist for default', function() {
@@ -991,7 +1162,7 @@ describe('style table', function() {
 
 		var $status = $grid.parent().children('div.gridy-status');
 		// then
-		expect($status).toContain('div.gridy-result');
+		expect($status.children('div.gridy-result')).toExist();
 	});
 
 	it ('resultText should have default mask', function() {
@@ -1053,8 +1224,8 @@ describe('style table', function() {
 		var $wrapper = $grid.parent().children('div.gridy-status');
 
 		// then
-		expect($wrapper).toContain('div.gridy-loading');
-		expect($wrapper.children('div.gridy-loading')).toContain('div');
+		expect($wrapper.children('div.gridy-loading')).toExist();
+		expect($wrapper.children('div.gridy-loading').children('div')).toExist();
 	});
 
 	it ('loadingOption should be turned off', function() {
@@ -1116,9 +1287,9 @@ describe('style table', function() {
 		var $wrapper = $grid.parent();
 
 		// then
-		expect($wrapper).toContain('div.gridy-search');
-		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content')).toContain('input[type="text"]');
-		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content')).toContain('input[type="button"]');
+		expect($wrapper.children('div.gridy-search')).toExist();
+		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content').children('input[type="text"]')).toExist();
+		expect($wrapper.children('div.gridy-search').children('div.gridy-search-content').children('input[type="button"]')).toExist();
 	});
 
 	it ('searchButtonLabel should have default value', function() {
@@ -1127,8 +1298,6 @@ describe('style table', function() {
 
 		// when
 		$grid.gridy({
-			style:				'div',
-			template:			'template-div',
 			url:				'/gridy'
 		});
 
@@ -1136,6 +1305,104 @@ describe('style table', function() {
 
 		// then
 		expect($wrapper.children('input[type="button"]')).toHaveValue('search');
+	});
+
+	it ('searchButtonLabel should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:				'/gridy',
+			searchButtonLabel:	'find'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		expect($wrapper.children('input[type="button"]')).toHaveValue('find');
+	});
+
+	it ('searchButtonTitle should be changed', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:				'/gridy',
+			searchButtonTitle:	'type here...'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		expect($wrapper.children('input[type="button"]')).toHaveAttr('title', 'type here...');
+	});
+
+	it ('searchFocus have default value and focus it', function() {
+		// given
+		var $grid = $('#grid').wrap('<div/>');
+
+		// when
+		$grid.gridy({
+			url: '/gridy'
+		});
+
+		var $wrapper = $grid.parent().find('.gridy-search-content');
+
+		// then
+		//expect($wrapper.children('input[type="text"]')).toBeFocused();
+		expect($wrapper.children('input[type="text"]')).toHaveClass('gridy-typed');
+	});
+
+	it ('searchTarget should put it on target', function() {
+		$('body').append('<div id="target"></div>');
+
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			searchTarget:	'#target'
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper).not.toContain('.gridy-search-content');
+
+		$('#target').remove();
+	});
+
+	it ('gridy-footer should exists by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url: '/gridy'
+		});
+
+		var $wrapper = $grid.parent().children('div.gridy-footer');
+
+		// then
+		expect($wrapper).toExist();
+	});
+
+	it ('gridy-message should exists by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url: '/gridy'
+		});
+
+		var $wrapper = $grid.parent().children('.gridy-footer');
+
+		// then
+		expect($wrapper.children('div.gridy-message')).toExist();
 	});
 
 });

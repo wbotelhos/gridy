@@ -60,6 +60,7 @@
 		var opt					= $.extend({}, $.fn.gridy.defaults, settings),
 			id					= this.attr('id'),
 			$this				= $(this).data('options', opt).width(methods.getSize(opt.width)).empty().wrap('<div id="' + id + '-wrapper">'),
+			$wrapper			= $this.parent(),
 			$currentPage		= $('<input id="' + id + '-current-page" type="hidden" value="' + opt.page + '"/>').insertBefore($this),
 			$currentSortName	= $('<input id="' + id + '-current-sort-name" type="hidden" value="' + opt.sortName + '"/>').insertBefore($this),
 			$currentSortOrder	= $('<input id="' + id + '-current-sort-order" type="hidden" value="' + opt.sortOrder + '"/>').insertBefore($this);
@@ -314,16 +315,10 @@
 			}
 		};
 
-		var $footer = null;
+		var $footer;
 
 		if (opt.rowsNumber.length > 0  || opt.messageOption || (opt.findsName.length > 0 && !opt.searchOption)) {
-			$footer = $('<div class="gridy-footer"/>');
-
-			if (isTable) {
-				$footer.insertAfter($this);
-			} else {
-				$footer.appendTo($this);
-			}
+			$footer = $('<div class="gridy-footer"/>').appendTo($wrapper);
 
 			if (opt.resize) {
 				$footer.width(methods.getSize(opt.width));
@@ -848,7 +843,7 @@
 		loadingIcon:		'gridy-loading',
 			loadingOption:		true,
 			loadingText:		'Loading...',
-		messageOption:		true,
+			messageOption:		true,
 		messageTimer:		4000,
 		noResultOption:		true,
 		noResultText:		'No items found!',
@@ -858,14 +853,14 @@
 		resize:				true,
 			resultOption:		true,
 			resultText:			'Displaying {from} - {to} of {total} items',
-		rows:				10,						// ajax
+			rows:				10,
 		rowsNumber:			[5, 10, 25, 50, 100],
 		rowsTarget:			undefined,
 		scroll:				false,
 			search:				'',
 			searchButtonLabel:	'search',
-		searchButtonTitle:	'Start the search',
-		searchFocus:		true,
+			searchButtonTitle:	'Start the search',
+			searchFocus:		true,
 			searchOption:		true,
 		searchTarget:		undefined,
 		searchText:			'',
