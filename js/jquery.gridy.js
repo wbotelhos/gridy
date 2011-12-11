@@ -315,7 +315,7 @@
 			}
 		};
 
-		var $footer;
+		var $footer = undefined;
 
 		if (opt.rowsNumber.length > 0  || opt.messageOption || (opt.findsName.length > 0 && !opt.searchOption)) {
 			$footer = $('<div class="gridy-footer"/>').appendTo($wrapper);
@@ -400,16 +400,10 @@
 			$rowsBox.parent().appendTo(opt.rowsTarget);
 		}		
 
-		var $buttons = null;
+		var $buttons = undefined;
 
 		if (opt.buttonOption) {
-			$buttons = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>');
-
-			if (isTable) {
-				$buttons.insertAfter($footer);
-			} else {
-				$buttons.appendTo($this);
-			}
+			$buttons = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>').appendTo($wrapper);
 
 			if (opt.resize) {
 				$buttons.width(methods.getSize(opt.width));
@@ -418,7 +412,7 @@
 			$buttons = $buttons.children();
 		}
 
-		var $message = null;
+		var $message = undefined;
 
 		if (opt.messageOption) {
 			$message = $('<div class="gridy-message"/>').appendTo($footer);
@@ -633,7 +627,7 @@
 					$buttons.empty();
 				}
 
-				$('input[value="' + methods.getNumber(page) + '"]').attr('disabled', 'disabled').addClass('gridy-active');
+				$('input[value="' + methods.getNumber(page) + '"]').attr('disabled', 'disabled').addClass('gridy-button-active');
 			}
 
 			$currentPage.val(page);
@@ -820,7 +814,7 @@
 		buttonNextTitle:	'Next &rsaquo;',
 		buttonOption:		true,
 		buttonsWidth:		'auto',
-		buttonTitle:		'page',
+			buttonTitle:		'page',
 			cache:				undefined,
 		clickFx:			false,
 		colsWidth:			[],

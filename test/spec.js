@@ -864,6 +864,60 @@ describe('style div', function() {
 		expect($wrapper.children('div.gridy-message')).toExist();
 	});
 
+	it ('gridy-buttons should exists when has more then one page', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url: 		'/gridy',
+			rows:		1
+		});
+
+		var $buttonsWrapper = $grid.parent().children('.gridy-buttons'),
+			$buttonsContent	= $buttonsWrapper.children('.gridy-buttons-content');
+
+		// then
+		expect($buttonsWrapper).toExist();
+		expect($buttonsContent).toExist();
+	});
+
+	it ('gridy-buttons should exists when has more then one page', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url: 		'/gridy',
+			rows:		1
+		});
+
+		var $buttonsWrapper = $grid.parent().children('.gridy-buttons'),
+			$buttonsContent	= $buttonsWrapper.children('.gridy-buttons-content'),
+			$buttons		= $buttonsContent.children('input[type="button"]');
+
+		// then
+		expect($buttonsWrapper).toExist();
+		expect($buttonsContent).toExist();
+		expect($buttons.length == 3).toBeTruthy();
+		expect($buttons.eq(0)).toHaveClass('gridy-button-active');
+		expect($buttons.eq(0)).toHaveAttr('title', 'page 01');
+		expect($buttons.eq(0)).toHaveAttr('alt', '01');
+		expect($buttons.eq(0)).toHaveAttr('value', '01');
+		expect($buttons.eq(1)).not.toHaveClass('gridy-button-active');
+		expect($buttons.eq(1)).toHaveAttr('title', 'page 02');
+		expect($buttons.eq(1)).toHaveAttr('alt', '02');
+		expect($buttons.eq(1)).toHaveAttr('value', '02');
+		expect($buttons.eq(2)).not.toHaveClass('gridy-button-active');
+		expect($buttons.eq(2)).toHaveAttr('title', 'page 03');
+		expect($buttons.eq(2)).toHaveAttr('alt', '03');
+		expect($buttons.eq(2)).toHaveAttr('value', '03');
+	});
+
 });
 
 describe('style table', function() {
@@ -1128,9 +1182,7 @@ describe('style table', function() {
 		var $grid = $('#grid');
 
 		// when
-		$grid.gridy({
-			url:			'/gridy'
-		});
+		$grid.gridy({ url: '/gridy' });
 
 		// then
 		expect($grid).not.toContain('thead.gridy-header');
@@ -1141,14 +1193,10 @@ describe('style table', function() {
 		var $grid = $('#grid');
 
 		// when
-		$grid.gridy({
-			url:			'/gridy'
-		});
-
-		var $status = $grid.parent().children('div.gridy-status');
+		$grid.gridy({ url: '/gridy' });
 
 		// then
-		expect($status).toExist();
+		expect($grid.parent().children('div.gridy-status')).toExist();
 	});
 
 	it ('messageOption should exist for default', function() {
@@ -1170,9 +1218,7 @@ describe('style table', function() {
 		var $grid = $('#grid');
 
 		// when
-		$grid.gridy({
-			url:			'/gridy'
-		});
+		$grid.gridy({ url: '/gridy' });
 
 		var $result = $grid.parent().find('div.gridy-result');
 
@@ -1403,6 +1449,56 @@ describe('style table', function() {
 
 		// then
 		expect($wrapper.children('div.gridy-message')).toExist();
+	});
+
+	it ('gridy-buttons should exists when has more then one page', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url: 	'/gridy',
+			rows:	1
+		});
+
+		var $buttonsWrapper = $grid.parent().children('.gridy-buttons'),
+			$buttonsContent	= $buttonsWrapper.children('.gridy-buttons-content');
+
+		// then
+		expect($buttonsWrapper).toExist();
+		expect($buttonsContent).toExist();
+	});
+
+	it ('gridy-buttons should exists when has more then one page', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url: 		'/gridy',
+			rows:		1
+		});
+
+		var $buttonsWrapper = $grid.parent().children('.gridy-buttons'),
+			$buttonsContent	= $buttonsWrapper.children('.gridy-buttons-content'),
+			$buttons		= $buttonsContent.children('input[type="button"]');
+
+		// then
+		expect($buttonsWrapper).toExist();
+		expect($buttonsContent).toExist();
+		expect($buttons.length == 3).toBeTruthy();
+		expect($buttons.eq(0)).toHaveClass('gridy-button-active');
+		expect($buttons.eq(0)).toHaveAttr('title', 'page 01');
+		expect($buttons.eq(0)).toHaveAttr('alt', '01');
+		expect($buttons.eq(0)).toHaveAttr('value', '01');
+		expect($buttons.eq(1)).not.toHaveClass('gridy-button-active');
+		expect($buttons.eq(1)).toHaveAttr('title', 'page 02');
+		expect($buttons.eq(1)).toHaveAttr('alt', '02');
+		expect($buttons.eq(1)).toHaveAttr('value', '02');
+		expect($buttons.eq(2)).not.toHaveClass('gridy-button-active');
+		expect($buttons.eq(2)).toHaveAttr('title', 'page 03');
+		expect($buttons.eq(2)).toHaveAttr('alt', '03');
+		expect($buttons.eq(2)).toHaveAttr('value', '03');
 	});
 
 });
