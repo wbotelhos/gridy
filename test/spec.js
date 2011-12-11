@@ -812,7 +812,8 @@ describe('style div', function() {
 		$('body').append('<div id="target"></div>');
 
 		// given
-		var $grid = $('#grid');
+		var $grid	= $('#grid'),
+			$target	= $('#target');
 
 		// when
 		$grid.gridy({
@@ -825,9 +826,10 @@ describe('style div', function() {
 		var $wrapper = $grid.parent();
 
 		// then
-		expect($wrapper).not.toContain('.gridy-search-content');
+		expect($wrapper.children('.gridy-search')).not.toExist();
+		expect($target.children('.gridy-search')).toExist();
 
-		$('#target').remove();
+		$target.remove();
 	});
 
 	it ('gridy-footer should exists by default', function() {
@@ -916,6 +918,159 @@ describe('style div', function() {
 		expect($buttons.eq(2)).toHaveAttr('title', 'page 03');
 		expect($buttons.eq(2)).toHaveAttr('alt', '03');
 		expect($buttons.eq(2)).toHaveAttr('value', '03');
+	});
+
+	it ('resize should be on by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url: 		'/gridy',
+			width:		100
+		});
+
+		var $wrapper	= $grid.parent(),
+			$search		= $wrapper.children('.gridy-search'),
+			$status		= $wrapper.children('.gridy-status'),
+			$footer		= $wrapper.children('.gridy-footer'),
+			$buttons	= $wrapper.children('.gridy-buttons');
+
+		// then
+		expect($search).toHaveAttr('style', 'width: 100px;');
+		expect($status).toHaveAttr('style', 'width: 100px;');
+		expect($grid).toHaveAttr('style', 'width: 100px;');
+		expect($footer).toHaveAttr('style', 'width: 100px;');
+		expect($buttons).toHaveAttr('style', 'width: 100px;');
+	});
+
+	it ('resize should not resize', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url: 		'/gridy',
+			resize:		false,
+			width:		100
+		});
+
+		var $wrapper	= $grid.parent(),
+			$search		= $wrapper.children('.gridy-search'),
+			$status		= $wrapper.children('.gridy-status'),
+			$footer		= $wrapper.children('.gridy-footer'),
+			$buttons	= $wrapper.children('.gridy-buttons');
+
+		// then
+		expect($search).not.toHaveAttr('style');
+		expect($status).not.toHaveAttr('style');
+		expect($grid).toHaveAttr('style', 'width: 100px;');
+		expect($footer).not.toHaveAttr('style');
+		expect($buttons).not.toHaveAttr('style');
+	});
+
+	it ('rowsNumber should come with default numbers', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url: 		'/gridy'
+		});
+
+		var $rowsNumber = $grid.parent().children('.gridy-footer').find('select').children('option');
+
+		// then
+		expect($rowsNumber.eq(0)).toHaveValue('5');
+		expect($rowsNumber.eq(0)).toHaveHtml('05');
+		expect($rowsNumber.eq(1)).toHaveValue('10');
+		expect($rowsNumber.eq(1)).toHaveHtml('10');
+		expect($rowsNumber.eq(1)).toBeChecked();
+		expect($rowsNumber.eq(2)).toHaveValue('25');
+		expect($rowsNumber.eq(2)).toHaveHtml('25');
+		expect($rowsNumber.eq(3)).toHaveValue('50');
+		expect($rowsNumber.eq(3)).toHaveHtml('50');
+		expect($rowsNumber.eq(4)).toHaveValue('100');
+		expect($rowsNumber.eq(4)).toHaveHtml('100');
+	});
+
+	it ('rowsNumber should change the numbers', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url: 		'/gridy',
+			rowsNumber:	[1, 10, 20]
+		});
+
+		var $rowsNumber = $grid.parent().children('.gridy-footer').find('select').children('option');
+
+		// then
+		expect($rowsNumber.eq(0)).toHaveValue('1');
+		expect($rowsNumber.eq(0)).toHaveHtml('01');
+		expect($rowsNumber.eq(1)).toHaveValue('10');
+		expect($rowsNumber.eq(1)).toHaveHtml('10');
+		expect($rowsNumber.eq(1)).toBeChecked();
+		expect($rowsNumber.eq(2)).toHaveValue('20');
+		expect($rowsNumber.eq(2)).toHaveHtml('20');
+	});
+
+	it ('rowsTarget should put it on target', function() {
+		$('body').append('<div id="target"></div>');
+
+		// given
+		var $grid	= $('#grid'),
+			$target	= $('#target');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			rowsTarget:	'#target'
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper.children('.gridy-row-option')).not.toExist();
+		expect($target.children('.gridy-row-option')).toExist();
+
+		$target.remove();
+	});
+
+	it ('findTarget should put it on target', function() {
+		$('body').append('<div id="target"></div>');
+
+		// given
+		var $grid	= $('#grid'),
+			$target	= $('#target');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			findTarget:	'#target',
+			findsName:	'username'
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper.children('.gridy-search').find('.gridy-find-option')).not.toExist();
+		expect($target.children('.gridy-find-option')).toExist();
+
+		$target.remove();
 	});
 
 });
@@ -1405,7 +1560,8 @@ describe('style table', function() {
 		$('body').append('<div id="target"></div>');
 
 		// given
-		var $grid = $('#grid');
+		var $grid	= $('#grid'),
+			$target	= $('#target');
 
 		// when
 		$grid.gridy({
@@ -1416,9 +1572,10 @@ describe('style table', function() {
 		var $wrapper = $grid.parent();
 
 		// then
-		expect($wrapper).not.toContain('.gridy-search-content');
+		expect($wrapper.children('.gridy-search')).not.toExist();
+		expect($target.children('.gridy-search')).toExist();
 
-		$('#target').remove();
+		$target.remove();
 	});
 
 	it ('gridy-footer should exists by default', function() {
@@ -1499,6 +1656,147 @@ describe('style table', function() {
 		expect($buttons.eq(2)).toHaveAttr('title', 'page 03');
 		expect($buttons.eq(2)).toHaveAttr('alt', '03');
 		expect($buttons.eq(2)).toHaveAttr('value', '03');
+	});
+
+	it ('resize should be on by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url: 		'/gridy',
+			width:		100
+		});
+
+		var $wrapper	= $grid.parent(),
+			$search		= $wrapper.children('.gridy-search'),
+			$status		= $wrapper.children('.gridy-status'),
+			$footer		= $wrapper.children('.gridy-footer'),
+			$buttons	= $wrapper.children('.gridy-buttons');
+
+		// then
+		expect($search).toHaveAttr('style', 'width: 100px;');
+		expect($status).toHaveAttr('style', 'width: 100px;');
+		expect($grid).toHaveAttr('style', 'width: 100px;');
+		expect($footer).toHaveAttr('style', 'width: 100px;');
+		expect($buttons).toHaveAttr('style', 'width: 100px;');
+	});
+
+	it ('resize should not resize', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url: 		'/gridy',
+			resize:		false,
+			width:		100
+		});
+
+		var $wrapper	= $grid.parent(),
+			$search		= $wrapper.children('.gridy-search'),
+			$status		= $wrapper.children('.gridy-status'),
+			$footer		= $wrapper.children('.gridy-footer'),
+			$buttons	= $wrapper.children('.gridy-buttons');
+
+		// then
+		expect($search).not.toHaveAttr('style');
+		expect($status).not.toHaveAttr('style');
+		expect($grid).toHaveAttr('style', 'width: 100px;');
+		expect($footer).not.toHaveAttr('style');
+		expect($buttons).not.toHaveAttr('style');
+	});
+
+	it ('rowsNumber should come with default numbers', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({ url: '/gridy' });
+
+		var $rowsNumber = $grid.parent().children('.gridy-footer').find('select').children('option');
+
+		// then
+		expect($rowsNumber.eq(0)).toHaveValue('5');
+		expect($rowsNumber.eq(0)).toHaveHtml('05');
+		expect($rowsNumber.eq(1)).toHaveValue('10');
+		expect($rowsNumber.eq(1)).toHaveHtml('10');
+		expect($rowsNumber.eq(1)).toBeChecked();
+		expect($rowsNumber.eq(2)).toHaveValue('25');
+		expect($rowsNumber.eq(2)).toHaveHtml('25');
+		expect($rowsNumber.eq(3)).toHaveValue('50');
+		expect($rowsNumber.eq(3)).toHaveHtml('50');
+		expect($rowsNumber.eq(4)).toHaveValue('100');
+		expect($rowsNumber.eq(4)).toHaveHtml('100');
+	});
+
+	it ('rowsNumber should change the numbers', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url: 		'/gridy',
+			rowsNumber:	[1, 10, 20]
+		});
+
+		var $rowsNumber = $grid.parent().children('.gridy-footer').find('select').children('option');
+
+		// then
+		expect($rowsNumber.eq(0)).toHaveValue('1');
+		expect($rowsNumber.eq(0)).toHaveHtml('01');
+		expect($rowsNumber.eq(1)).toHaveValue('10');
+		expect($rowsNumber.eq(1)).toHaveHtml('10');
+		expect($rowsNumber.eq(1)).toBeChecked();
+		expect($rowsNumber.eq(2)).toHaveValue('20');
+		expect($rowsNumber.eq(2)).toHaveHtml('20');
+	});
+
+	it ('rowsTarget should put it on target', function() {
+		$('body').append('<div id="target"></div>');
+
+		// given
+		var $grid	= $('#grid'),
+			$target	= $('#target');
+
+		// when
+		$grid.gridy({
+			url:		'/gridy',
+			rowsTarget:	'#target'
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper.children('.gridy-row-option')).not.toExist();
+		expect($target.children('.gridy-row-option')).toExist();
+
+		$target.remove();
+	});
+
+	it ('findTarget should put it on target', function() {
+		$('body').append('<div id="target"></div>');
+
+		// given
+		var $grid	= $('#grid'),
+			$target	= $('#target');
+
+		// when
+		$grid.gridy({
+			url:		'/gridy',
+			findTarget:	'#target',
+			findsName:	'username'
+		});
+
+		var $wrapper = $grid.parent();
+
+		// then
+		expect($wrapper.children('.gridy-search').find('.gridy-find-option')).not.toExist();
+		expect($target.children('.gridy-find-option')).toExist();
+
+		$target.remove();
 	});
 
 });

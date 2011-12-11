@@ -325,7 +325,7 @@
 			}
 		}
 
-		var $findBox = null;
+		var $findBox = undefined;
 
 		if (opt.findsName.length > 0) {
 			$findBox = $('<div class="gridy-find-option"><select></select></div>').appendTo((opt.searchOption) ? $search.children() : $footer).children();
@@ -389,10 +389,14 @@
 		}
 
 		if (opt.searchTarget) {
-			$searchField.parent().appendTo(opt.searchTarget);
+			$search.appendTo(opt.searchTarget);
 		}
 
 		if (opt.findTarget) {
+			if (opt.findsName.length <= 0) {
+				$.error(id + ': you need set the \'findsName\' option for findOption box be created!');
+			}
+
 			$findBox.parent().appendTo(opt.findTarget);
 		}
 
@@ -826,7 +830,7 @@
 		evenOdd:			false,
 			find:				'',
 		findsName:			[],
-		findTarget:			undefined,
+			findTarget:			undefined,
 		headersName:		[],
 		headersWidth:		[],
 			height:				'auto',
@@ -844,19 +848,19 @@
 			page:				1,
 		params: 			{},
 		paramsElements:		[],
-		resize:				true,
+			resize:				true,
 			resultOption:		true,
 			resultText:			'Displaying {from} - {to} of {total} items',
 			rows:				10,
-		rowsNumber:			[5, 10, 25, 50, 100],
-		rowsTarget:			undefined,
+			rowsNumber:			[5, 10, 25, 50, 100],
+			rowsTarget:			undefined,
 		scroll:				false,
 			search:				'',
 			searchButtonLabel:	'search',
 			searchButtonTitle:	'Start the search',
 			searchFocus:		true,
 			searchOption:		true,
-		searchTarget:		undefined,
+			searchTarget:		undefined,
 		searchText:			'',
 			separate:			true,
 			skin:				'gridy-default',
