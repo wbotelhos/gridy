@@ -18,13 +18,14 @@
 + Now the 'paramsElements' option is sent as hash;
 + Now the 'debug' option was improved to show a better debug;
 + Now the Gridy has a major wrapper to keep all the grid;
-+ Now the 'success', 'error' and 'complete' callback receives the original $.ajax() arguments;
++ Now the 'success', 'error' and 'complete' callback receives the original $.ajax() parameters;
 + Now the 'success', 'error' and 'complete' callback has the 'this' as the Gridy context;
 + Now the defaults options that not belongs Gridy has it owner original value;
 + Fixed gridy when search gets no result; (by Gabriel Benz)
 + Fixed the index number given to Gridy binded by class without id;
 + Fixed the ID of hidden fields to not repeat when has more than one gridy on page;
 + Fixed the ID of search field to not repeat when has more than one gridy on page;
++ Fixed the separate class to not be applied on no result row;
 
 ### 0.2.0
 

@@ -40,10 +40,6 @@
 			return (xhr.responseText) ? xhr.responseText.substring(xhr.responseText.indexOf('(') + 1, xhr.responseText.indexOf(')')) : xhr.statusText;
 		}, getNumber: function(number) {
 			return (number < 10) ? '0' + number : number;
-		}, debug: function(message) {
-			if (window.console && window.console.log) {
-				window.console.log(message);
-			}
 		}
 	};
 
@@ -696,7 +692,9 @@
 					queryString += propSpace + ': \'' + data[prop] + '\'\n';
 				}
 
-				methods.debug(queryString);
+				if (window.console && window.console.log) {
+					window.console.log(message);
+				}
 			}
 
 			$.ajax({
@@ -768,11 +766,13 @@
 							$content.addClass('gridy-scroll-wrapper').children().addClass('gridy-scroll');
 						}
 					} else {
+						var $firstLine = $content.children(':first').not('p');
+
 						if (isTable) {
-							$content.children(':first').children().addClass('gridy-separate');
-						} else {
-							$content.children(':first').addClass('gridy-separate');
+							$firstLine = $firstLine.children();
 						}
+
+						$firstLine.addClass('gridy-separate');
 					}
 
 					if (isTable) {
@@ -825,29 +825,29 @@
 			complete:			undefined,
 			contentType:		undefined,
 			dataType:			'json',
-		debug:				false,
+			debug:				false,
 			error: 				undefined,
 		evenOdd:			false,
 			find:				'',
-		findsName:			[],
+			findsName:			[],
 			findTarget:			undefined,
 		headersName:		[],
 		headersWidth:		[],
 			height:				'auto',
-		hoverFx:			false,
-		jsonp:				undefined,
+			hoverFx:			false,
+			jsonp:				undefined,
 			jsonpCallback:		'callback',
 			listPath:			'entityList',
-		loadingIcon:		'gridy-loading',
+			loadingIcon:		'gridy-loading',
 			loadingOption:		true,
 			loadingText:		'Loading...',
 			messageOption:		true,
-		messageTimer:		4000,
-		noResultOption:		true,
-		noResultText:		'No items found!',
+			messageTimer:		4000,
+			noResultOption:		true,
+			noResultText:		'No items found!',
 			page:				1,
-		params: 			{},
-		paramsElements:		[],
+			params: 			{},
+			paramsElements:		[],
 			resize:				true,
 			resultOption:		true,
 			resultText:			'Displaying {from} - {to} of {total} items',
@@ -861,7 +861,7 @@
 			searchFocus:		true,
 			searchOption:		true,
 			searchTarget:		undefined,
-		searchText:			'',
+			searchText:			'',
 			separate:			true,
 			skin:				'gridy-default',
 		sortersName:		[],

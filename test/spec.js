@@ -1,9 +1,3 @@
-// TODO click one time and check arrow up.
-// TODO click two time and check arrow down.
-// TODO click three time and check arrow none.
-// TODO for loading timer fadeout
-// TODO for message timer fadeout
-
 describe('param settings', function() {
 
 	beforeEach(function() {
@@ -18,6 +12,7 @@ describe('param settings', function() {
 		// given
 		var $grid = $('#grid');
 
+		// then
 		spyOn($, 'ajax').andCallFake(function(params) {
 			expect(params.data.search == '').toBeTruthy();
 			expect(params.data.page == 1).toBeTruthy();
@@ -29,15 +24,13 @@ describe('param settings', function() {
 
 		// when
 		$grid.gridy({ url: '/gridy' });
-
-		// then check spyOn
-		
 	});
 
 	it ('param receive custom', function() {
 		// given
 		var $grid = $('#grid');
 
+		// then
 		spyOn($, 'ajax').andCallFake(function(params) {
 			expect(params.data.search == 'search').toBeTruthy();
 			expect(params.data.page == 2).toBeTruthy();
@@ -57,9 +50,43 @@ describe('param settings', function() {
 			rows:		3,
 			url:		'/gridy'
 		});
+	});
 
-		// then check spyOn
-		
+	it ('params should send custom parameters', function() {
+		// given
+		var $grid = $('#grid');
+
+		// then
+		spyOn($, 'ajax').andCallFake(function(params) {
+			expect(params.data.pa == 'pa').toBeTruthy();
+			expect(params.data.rams == 'rams').toBeTruthy();
+		});
+
+		// when
+		$grid.gridy({
+			url:	'/gridy',
+			params:	{ pa: 'pa', rams: 'rams'}
+		});
+	});
+
+	it ('paramsElements should send params taked from elements', function() {
+		$('body').append('<input id="params-elements" type="text" name="paramsElements" value="params-elements" />');
+
+		// given
+		var $grid = $('#grid');
+
+		// then
+		spyOn($, 'ajax').andCallFake(function(params) {
+			expect(params.data.paramsElements == 'params-elements').toBeTruthy();
+		});
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			paramsElements:	['#params-elements']
+		});
+
+		$('#params-elements').remove();
 	});
 
 });
@@ -136,7 +163,7 @@ describe('global settings', function() {
 			page:		2,
 			sortName:	'id',
 			sortOrder:	'desc',
-			url: '/gridy'
+			url:		'/gridy'
 		});
 
 		var $page		= $('#grid-current-page'),
@@ -1073,6 +1100,115 @@ describe('style div', function() {
 		$target.remove();
 	});
 
+	it ('findsName should changes the finds name and add the default empty find', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			findsName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']]
+		});
+
+		var $findOptions = $grid.parent().find('.gridy-find-option').find('option');
+
+		// then
+		expect($findOptions).toExist();
+		expect($findOptions.eq(0)).toHaveValue('');
+		expect($findOptions.eq(0)).toHaveHtml('');
+		expect($findOptions.eq(0)).toBeChecked();
+		expect($findOptions.eq(1)).toHaveValue('id');
+		expect($findOptions.eq(1)).toHaveHtml('ID');
+		expect($findOptions.eq(2)).toHaveValue('username');
+		expect($findOptions.eq(2)).toHaveHtml('Username');
+		expect($findOptions.eq(3)).toHaveValue('name');
+		expect($findOptions.eq(3)).toHaveHtml('Name');
+	});
+
+	it ('findsName should select the default find value', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			findsName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			find:		'username'
+		});
+
+		var $findOptions = $grid.parent().find('.gridy-find-option').find('option');
+
+		// then
+		expect($findOptions).toExist();
+		expect($findOptions.eq(0)).toHaveValue('id');
+		expect($findOptions.eq(0)).toHaveHtml('ID');
+		expect($findOptions.eq(1)).toHaveValue('username');
+		expect($findOptions.eq(1)).toHaveHtml('Username');
+		expect($findOptions.eq(1)).toBeChecked();
+		expect($findOptions.eq(2)).toHaveValue('name');
+		expect($findOptions.eq(2)).toHaveHtml('Name');
+	});
+
+	it ('searchText should set a default text', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			searchText:	'Text here...'
+		});
+
+		var $field = $grid.parent().find('.gridy-search').find('input[type="text"]');
+
+		$field.blur();
+
+		// then
+		expect($field).toHaveAttr('title', 'Text here...');
+		expect($field).toHaveValue('Text here...');
+	});
+
+	it ('hoverFx should not apply effect for default', function() {
+		// given
+		var $grid = $('#grid').gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy'
+		}),
+
+		$row = $grid.find('.gridy-row:first');
+
+		// when
+		$row.children().eq(0).mouseover();
+
+		// then
+		expect($row).not.toHaveClass('gridy-item-hover');
+	});
+
+	it ('hoverFx should apply effect', function() {
+		// given
+		var $grid = $('#grid').gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			hoverFx:	true
+		}),
+
+		$row = $grid.find('.gridy-row:first');
+
+		// when
+		$row.children().eq(0).mouseover();
+
+		// then
+		expect($row).toHaveClass('gridy-item-hover');
+	});
+
 });
 
 describe('style table', function() {
@@ -1799,6 +1935,252 @@ describe('style table', function() {
 		$target.remove();
 	});
 
+	it ('findsName should changes the finds name and add the default empty find', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:		'/gridy',
+			findsName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']]
+		});
+
+		var $findOptions = $grid.parent().find('.gridy-find-option').find('option');
+
+		// then
+		expect($findOptions).toExist();
+		expect($findOptions.eq(0)).toHaveValue('');
+		expect($findOptions.eq(0)).toHaveHtml('');
+		expect($findOptions.eq(0)).toBeChecked();
+		expect($findOptions.eq(1)).toHaveValue('id');
+		expect($findOptions.eq(1)).toHaveHtml('ID');
+		expect($findOptions.eq(2)).toHaveValue('username');
+		expect($findOptions.eq(2)).toHaveHtml('Username');
+		expect($findOptions.eq(3)).toHaveValue('name');
+		expect($findOptions.eq(3)).toHaveHtml('Name');
+	});
+
+	it ('findsName should select the default find value', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			findsName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			find:		'username'
+		});
+
+		var $findOptions = $grid.parent().find('.gridy-find-option').find('option');
+
+		// then
+		expect($findOptions).toExist();
+		expect($findOptions.eq(0)).toHaveValue('id');
+		expect($findOptions.eq(0)).toHaveHtml('ID');
+		expect($findOptions.eq(1)).toHaveValue('username');
+		expect($findOptions.eq(1)).toHaveHtml('Username');
+		expect($findOptions.eq(1)).toBeChecked();
+		expect($findOptions.eq(2)).toHaveValue('name');
+		expect($findOptions.eq(2)).toHaveHtml('Name');
+	});
+
+	it ('searchText should set a default text', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:		'/gridy',
+			searchText:	'Text here...'
+		});
+
+		var $field = $grid.parent().find('.gridy-search').find('input[type="text"]');
+
+		$field.blur();
+
+		// then
+		expect($field).toHaveAttr('title', 'Text here...');
+		expect($field).toHaveValue('Text here...');
+	});
+
+	it ('hoverFx should not apply effect for default', function() {
+		// given
+		var $grid	= $('#grid').gridy({ url: '/gridy' }),
+			$row	= $grid.find('tr:first');
+
+		// when
+		$row.children(':first').mouseover();
+
+		// then
+		expect($row).not.toHaveClass('gridy-item-hover');
+	});
+
+	it ('hoverFx should apply effect', function() {
+		// given
+		var $grid = $('#grid').gridy({
+			url:		'/gridy',
+			hoverFx:	true
+		}),
+
+		$row = $grid.find('tr:first');
+
+		// when
+		$row.children(':first').mouseover();
+
+		// then
+		expect($row).toHaveClass('gridy-item-hover');
+	});	
+
+});
+
+describe('style table with no result', function() {
+
+	beforeEach(function() {
+		$('body').append('<div id="grid"></div>');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= "{\"entityList\": [], \"total\": 0}",
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete(xhr, 'status');
+		});
+	});
+
+	afterEach(function() {
+		$('#grid').parent().remove();
+	});
+
+	it ('noResultOption should be enabled by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:		'/gridy',
+			findsName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']]
+		});
+
+		var $noResult = $grid.children('.gridy-content').children('.gridy-no-result');
+
+		// then
+		expect($noResult).toExist();
+		expect($noResult).toHaveHtml('No items found!');
+	});
+
+	it ('noResultOption should be disabled', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			findsName:		[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			noResultOption: false
+		});
+
+		var $noResult = $grid.children('.gridy-content').children('.gridy-no-result');
+
+		// then
+		expect($noResult).not.toExist();
+	});
+
+	it ('noResultText should change the text', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url:			'/gridy',
+			findsName:		[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			noResultText:	'No results!'
+		});
+
+		var $noResult = $grid.children('.gridy-content').children('.gridy-no-result');
+
+		// then
+		expect($noResult).toHaveHtml('No results!');
+	});
+
+});
+
+describe('style div with no result', function() {
+
+	beforeEach(function() {
+		$('body').append('<div id="grid"></div>');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= "{\"entityList\": [], \"total\": 0}",
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete(xhr, 'status');
+		});
+	});
+
+	afterEach(function() {
+		$('#grid').parent().remove();
+	});
+
+	it ('noResultOption should be enabled by default', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			findsName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']]
+		});
+
+		var $noResult = $grid.children('.gridy-content').children('.gridy-no-result');
+
+		// then
+		expect($noResult).toExist();
+		expect($noResult).toHaveHtml('No items found!');
+	});
+
+	it ('noResultOption should be disabled', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			findsName:		[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			noResultOption: false
+		});
+
+		var $noResult = $grid.children('.gridy-content').children('.gridy-no-result');
+
+		// then
+		expect($noResult).not.toExist();
+	});
+
+	it ('noResultText should change the text', function() {
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			style:			'div',
+			template:		'template-div',
+			url:			'/gridy',
+			findsName:		[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			noResultText:	'No results!'
+		});
+
+		var $noResult = $grid.children('.gridy-content').children('.gridy-no-result');
+
+		// then
+		expect($noResult).toHaveHtml('No results!');
+	});
+
 });
 
 describe('error settings', function() {
@@ -2028,3 +2410,13 @@ describe('ajax settings', function() {
 	});
 
 });
+
+// TODO click one time and check arrow up.
+// TODO click two time and check arrow down.
+// TODO click three time and check arrow none.
+// TODO for loading timer fadeout.
+// TODO for message timer fadeout.
+// TODO for search with click button.
+// TODO for search with enter key press.
+// TODO for messageTimer.
+// TODO for loadingIcon "background".
