@@ -40,17 +40,14 @@
 	.gridy-content .gridy-odd { background-color: #F7F7F7; }
 	.gridy-content .gridy-odd-scroll { background-color: #F7F7F7; border-left-color: #F7F7F7 !important; border-top-color: #F7F7F7 !important; }
 
-	.gridy-content .gridy-item-hover { background-color: #D9EBF5; border-color: #CCC; }
+	.gridy-content .gridy-row-hovered { background-color: #D9EBF5; border-color: #CCC; }
 	.gridy-content .gridy-row-selected { background-color: #ECF1F5; border-color: #BBB; }
 
 	.gridy-footer { clear: both; height: 31px; margin: 0 auto; }
 	.gridy-footer .gridy-message { color: #F55; font-weight: bold; float: right; font-size: 12px; letter-spacing: .gridy-3px; margin-right: 20px; margin-top: 10px; text-align: right; }
 
 	.gridy-find-option select,
-	.gridy-row-option select {
-		border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-size: 12px; height: 24px; padding: 2px;
-		-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
-	}
+	.gridy-row-option select { border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-size: 12px; height: 24px; padding: 2px; }
 
 	.gridy-find-option { float: left; margin-left: 5px; }
 	.gridy-find-option select { margin-top: 2px; }
@@ -58,10 +55,14 @@
 	.gridy-row-option select { margin-top: 4px; }
 
 	.gridy-buttons { margin: 0 auto; text-align: center; }
-	.gridy-buttons input[type="button"].gridy-active { background-color: #F5F8F9; border: 1px solid #B5B5B5; cursor: default; color: #47A; }
-	.gridy-buttons input[type="button"].gridy-button-reticence { color: #999; cursor: default; width: 25px; }
-	.gridy-buttons input[type="button"] {
-		border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-weight: normal; height: 24px; margin-right: 2px; padding-bottom: 2px; text-align: center; width: 40px;
+	.gridy-buttons input { border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-weight: normal; height: 24px; margin-right: 2px; padding-bottom: 2px; text-align: center; width: 40px; }
+	.gridy-buttons input.gridy-button-active { background-color: #F5F8F9; border: 1px solid #B5B5B5; cursor: default; color: #47A; }
+	.gridy-buttons input.gridy-button-back { }
+	.gridy-buttons input.gridy-button-next { }
+	.gridy-buttons input.gridy-button-reticence { color: #999; cursor: default; width: 25px; }
+
+	.gridy-row-option select,
+	.gridy-buttons input {
 		-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 	}
 
@@ -78,7 +79,7 @@
 	.gridy-default-table th a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
 
 	.gridy-default-table .gridy-content { clear: both; height: auto; margin: 0; overflow: visible; padding: 0; }
-	.gridy-default-table .gridy-content .gridy-item-hover-scroll { background-color: #D9EBF5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
+	.gridy-default-table .gridy-content .gridy-row-hovered-scroll { background-color: #D9EBF5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
 	.gridy-default-table .gridy-content .gridy-row-selected-scroll { background-color: #ECF1F5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
 	.gridy-default-table .gridy-content .gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
 	
@@ -105,7 +106,7 @@
 	.gridy-default .gridy-header .gridy-column-button { padding-left: 0 !important; padding-right: 0 !important; }
 	
 	.gridy-default .gridy-content { clear: both; height: auto; overflow: visible; }
-	.gridy-default .gridy-content .gridy-item-hover-scroll { background-color: #D9EBF5; border-left-color: #D9EBF5 !important; border-top-color: #D9EBF5 !important; }
+	.gridy-default .gridy-content .gridy-row-hovered-scroll { background-color: #D9EBF5; border-left-color: #D9EBF5 !important; border-top-color: #D9EBF5 !important; }
 	.gridy-default .gridy-content .gridy-row-selected-scroll { background-color: #ECF1F5; border-left-color: #ECF1F5 !important; border-top-color: #ECF1F5 !important; }
 	.gridy-default .gridy-content .gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
 	

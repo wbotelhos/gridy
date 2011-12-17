@@ -906,26 +906,6 @@ describe('style div', function() {
 		});
 
 		var $buttonsWrapper = $grid.parent().children('.gridy-buttons'),
-			$buttonsContent	= $buttonsWrapper.children('.gridy-buttons-content');
-
-		// then
-		expect($buttonsWrapper).toExist();
-		expect($buttonsContent).toExist();
-	});
-
-	it ('gridy-buttons should exists when has more then one page', function() {
-		// given
-		var $grid = $('#grid');
-
-		// when
-		$grid.gridy({
-			style:		'div',
-			template:	'template-div',
-			url: 		'/gridy',
-			rows:		1
-		});
-
-		var $buttonsWrapper = $grid.parent().children('.gridy-buttons'),
 			$buttonsContent	= $buttonsWrapper.children('.gridy-buttons-content'),
 			$buttons		= $buttonsContent.children('input[type="button"]');
 
@@ -1462,6 +1442,37 @@ describe('style div', function() {
 
 		// then
 	    expect($columns.eq(0)).not.toHaveClass('gridy-separate');
+	});
+
+	it ('clickFx should enable it', function() {
+		// given
+		var $grid = $('#grid').gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy',
+			clickFx:	true
+		});
+
+		// when
+		var $firstRow = $grid.find('.gridy-row:first').click();
+
+		// then
+		expect($firstRow).toHaveClass('gridy-row-selected');
+	});
+
+	it ('clickFx should not be enabled by default', function() {
+		// given
+		var $grid = $('#grid').gridy({
+			style:		'div',
+			template:	'template-div',
+			url:		'/gridy'
+		});
+
+		// when
+		var $firstRow = $grid.find('.gridy-row:first').click();
+
+		// then
+		expect($firstRow).not.toHaveClass('gridy-row-selected');
 	});
 
 });
@@ -2005,24 +2016,6 @@ describe('style table', function() {
 
 		// when
 		$grid.gridy({
-			url: 	'/gridy',
-			rows:	1
-		});
-
-		var $buttonsWrapper = $grid.parent().children('.gridy-buttons'),
-			$buttonsContent	= $buttonsWrapper.children('.gridy-buttons-content');
-
-		// then
-		expect($buttonsWrapper).toExist();
-		expect($buttonsContent).toExist();
-	});
-
-	it ('gridy-buttons should exists when has more then one page', function() {
-		// given
-		var $grid = $('#grid');
-
-		// when
-		$grid.gridy({
 			url: 		'/gridy',
 			rows:		1
 		});
@@ -2485,6 +2478,36 @@ describe('style table', function() {
 	    expect($columns.eq(0)).not.toHaveClass('gridy-separate');
 	});
 
+	it ('clickFx should enable it', function() {
+		// given
+		var $grid = $('#grid').gridy({
+			url:		'/gridy',
+			clickFx:	true
+		});
+
+		var $firstRow = $grid.find('tr:first');
+
+		// when
+		$firstRow.click();
+
+		// then
+		expect($firstRow).toHaveClass('gridy-row-selected');
+	});
+
+	it ('clickFx should not be enabled by default', function() {
+		// given
+		var $grid = $('#grid').gridy({
+			url:		'/gridy',
+			clickFx:	true
+		});
+
+		// when
+		var $firstRow = $grid.find('.gridy-row:first').click();
+
+		// then
+		expect($firstRow).not.toHaveClass('gridy-row-selected');
+	});
+
 });
 
 describe('style table with no result', function() {
@@ -2863,6 +2886,99 @@ describe('ajax settings', function() {
 
 });
 
+describe('buttons', function() {
+
+	beforeEach(function() {
+		$('body').append('<table id="grid"></table>');
+	});
+
+	afterEach(function() {
+		$('#grid').parent().remove();
+	});
+
+	it ('buttonMax should restrict the number of buttons with one visible and reticence on right', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}",
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url: 		'/gridy',
+			rows:		1,
+			buttonMax:	1
+		});
+
+		var $buttons = $grid.parent().find('.gridy-buttons-content').children('input[type="button"]');
+
+		// then
+		expect($buttons.eq(0)).toHaveClass('gridy-button-active');
+		expect($buttons.eq(0)).toHaveAttr('title', 'page 01');
+		expect($buttons.eq(0)).toHaveAttr('alt', '01');
+		expect($buttons.eq(0)).toHaveAttr('value', '01');
+
+		expect($buttons.eq(1)).toHaveClass('gridy-button-reticence');
+		expect($buttons.eq(1)).toBeDisabled();
+		expect($buttons.eq(1)).toHaveAttr('value', '...');
+
+		expect($buttons.eq(2)).toHaveClass('gridy-button-next');
+		expect($buttons.eq(2).attr('title').indexOf('Next') >= 0).toBeTruthy();
+		expect($buttons.eq(2).attr('alt').indexOf('Next') >= 0).toBeTruthy();
+	});
+
+	it ('buttonMax should restrict the number of buttons with one visible and reticence on right and left', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= "{\"entityList\": [{\"id\": 1, \"username\": \"ajose\", \"name\": \"Arlindo José\"},{\"id\": 2, \"username\": \"wbotelhos\", \"name\": \"Washington Botelho\"},{\"id\": 3, \"username\": \"zbotelho\", \"name\": \"Zilda Botelho\"}], \"total\": 3}",
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $grid = $('#grid');
+
+		// when
+		$grid.gridy({
+			url: 		'/gridy',
+			rows:		1,
+			buttonMax:	1,
+			page:		2
+		});
+
+		var $buttons = $grid.parent().find('.gridy-buttons-content').children('input[type="button"]');
+
+		// then
+		expect($buttons.eq(0)).toHaveClass('gridy-back');
+		expect($buttons.eq(0).attr('title').indexOf('Back') >= 0).toBeTruthy();
+		expect($buttons.eq(0).attr('alt').indexOf('Back') >= 0).toBeTruthy();
+
+		expect($buttons.eq(1)).toHaveClass('gridy-button-reticence');
+		expect($buttons.eq(1)).toBeDisabled();
+		expect($buttons.eq(1)).toHaveAttr('value', '...');
+
+		expect($buttons.eq(2)).toHaveClass('gridy-button-active');
+		expect($buttons.eq(2)).toHaveAttr('title', 'page 02');
+		expect($buttons.eq(2)).toHaveAttr('alt', '02');
+		expect($buttons.eq(2)).toHaveAttr('value', '02');
+
+		expect($buttons.eq(3)).toHaveClass('gridy-button-reticence');
+		expect($buttons.eq(3)).toBeDisabled();
+		expect($buttons.eq(3)).toHaveAttr('value', '...');
+
+		expect($buttons.eq(4)).toHaveClass('gridy-button-next');
+		expect($buttons.eq(4).attr('title').indexOf('Next') >= 0).toBeTruthy();
+		expect($buttons.eq(4).attr('alt').indexOf('Next') >= 0).toBeTruthy();
+	});
+
+});
+	
 // TODO click one time and check arrow up.
 // TODO click two time and check arrow down.
 // TODO click three time and check arrow none.
@@ -2872,3 +2988,6 @@ describe('ajax settings', function() {
 // TODO for search with enter key press.
 // TODO for messageTimer.
 // TODO for loadingIcon "background".
+// TODO click on button to change the page.
+// TODO click on back button to change the page.
+// TODO click on next button to change the page.

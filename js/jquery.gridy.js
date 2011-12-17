@@ -605,7 +605,7 @@
 
 					if (hasNextNavigation) {
 						buttons += buttonEmpty;
-						buttons += '<input type="button" value="&rsaquo;" alt="' + opt.buttonNextTitle + '" title="' + opt.buttonNextTitle + '" class="gridy-next"/>&nbsp;';
+						buttons += '<input type="button" value="&rsaquo;" alt="' + opt.buttonNextTitle + '" title="' + opt.buttonNextTitle + '" class="gridy-button-next"/>&nbsp;';
 					}
 
 					$buttons.html(buttons).children(':not(".gridy-button-reticence")').click(function() {
@@ -619,7 +619,7 @@
 					}
 
 					if (hasNextNavigation) {
-						$buttons.children('.gridy-next').click(function() {
+						$buttons.children('.gridy-button-next').click(function() {
 							listGridy(page + 1, $currentSortName.val(), $currentSortOrder.val(), $this);
 						});
 					}
@@ -822,7 +822,7 @@
 		buttonsWidth:		'auto',
 			buttonTitle:		'page',
 			cache:				undefined,
-		clickFx:			false,
+			clickFx:			false,
 			colsWidth:			[],
 			complete:			undefined,
 			contentType:		undefined,
