@@ -55,11 +55,11 @@
 
 		var opt					= $.extend({}, $.fn.gridy.defaults, settings),
 			id					= this.attr('id'),
-			$this				= $(this).data('options', opt).width(methods.getSize(opt.width)).empty().wrap('<div id="' + id + '-wrapper">'),
-			$wrapper			= $this.parent(),
-			$currentPage		= $('<input id="' + id + '-current-page" type="hidden" value="' + opt.page + '"/>').insertBefore($this),
-			$currentSortName	= $('<input id="' + id + '-current-sort-name" type="hidden" value="' + opt.sortName + '"/>').insertBefore($this),
-			$currentSortOrder	= $('<input id="' + id + '-current-sort-order" type="hidden" value="' + opt.sortOrder + '"/>').insertBefore($this);
+			$this				= $(this).data('options', opt).empty().width(methods.getSize(opt.width)).wrap('<div id="' + id + '-wrapper">'),
+			$wrapper			= $this.parent().width(methods.getSize(opt.width)),
+			$currentPage		= $('<input type="hidden" name="page" value="' + opt.page + '"/>').insertBefore($this),
+			$currentSortName	= $('<input type="hidden" name="sortName" value="' + opt.sortName + '"/>').insertBefore($this),
+			$currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + opt.sortOrder + '"/>').insertBefore($this);
 
 		if (id === undefined || id == '') {
 			id = 'gridy-' + $('.' + $this.attr('class')).index(this);
@@ -85,7 +85,7 @@
 				$search.width(methods.getSize(opt.width));
 			}
 
-			$searchField = $('<input id="' + id + '-search" type="text" size="40" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '"/>').appendTo($search.children());
+			$searchField = $('<input type="text" name="search" value="' + ((opt.search == '') ? opt.searchText : opt.search) + '" title="' + opt.searchText + '" size="40" />').appendTo($search.children());
 
 			$searchField.blur(function() {
 				if ($searchField.val() == '') {
@@ -713,9 +713,9 @@
 
 					if (opt.hoverFx) {
 						$content.children().mouseenter(function() {
-							$(this).addClass('gridy-item-hover' + scrollSufix);
+							$(this).addClass('gridy-row-hovered' + scrollSufix);
 						}).mouseleave(function() {
-							$(this).removeClass('gridy-item-hover' + scrollSufix);
+							$(this).removeClass('gridy-row-hovered' + scrollSufix);
 						});
 					}
 
@@ -724,10 +724,10 @@
 							var $this = $(this);
 
 							if (!evt.shiftKey) {
-								$this.parent().children('.gridy-item-active' + scrollSufix).removeClass('gridy-item-active' + scrollSufix);
+								$this.parent().children('.gridy-row-selected' + scrollSufix).removeClass('gridy-row-selected' + scrollSufix);
 							}
 
-							$this.toggleClass('gridy-item-active' + scrollSufix);
+							$this.toggleClass('gridy-row-selected' + scrollSufix);
 						});
 					}
 
@@ -766,13 +766,15 @@
 							$content.addClass('gridy-scroll-wrapper').children().addClass('gridy-scroll');
 						}
 					} else {
-						var $firstLine = $content.children(':first').not('p');
+						if (opt.separate) {
+							var $firstLine = $content.children(':first').not('p');
+	
+							if (isTable) {
+								$firstLine = $firstLine.children();
+							}
 
-						if (isTable) {
-							$firstLine = $firstLine.children();
+							$firstLine.addClass('gridy-separate');
 						}
-
-						$firstLine.addClass('gridy-separate');
 					}
 
 					if (isTable) {
@@ -809,9 +811,9 @@
 	};
 
 	$.fn.gridy.defaults = {
-		arrowDown:			'gridy-arrow-down',
-		arrowNone:			'gridy-arrow-none',
-		arrowUp:			'gridy-arrow-up',
+			arrowDown:			'gridy-arrow-down',
+			arrowNone:			'gridy-arrow-none',
+			arrowUp:			'gridy-arrow-up',
 		before:				undefined,
 		buttonBackTitle:	'&lsaquo; Back',
 		buttonMax:			10,
@@ -821,18 +823,18 @@
 			buttonTitle:		'page',
 			cache:				undefined,
 		clickFx:			false,
-		colsWidth:			[],
+			colsWidth:			[],
 			complete:			undefined,
 			contentType:		undefined,
 			dataType:			'json',
 			debug:				false,
 			error: 				undefined,
-		evenOdd:			false,
+			evenOdd:			false,
 			find:				'',
 			findsName:			[],
 			findTarget:			undefined,
-		headersName:		[],
-		headersWidth:		[],
+			headersName:		[],
+			headersWidth:		[],
 			height:				'auto',
 			hoverFx:			false,
 			jsonp:				undefined,
