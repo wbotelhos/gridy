@@ -678,7 +678,7 @@
 			}
 
 			if (opt.debug) {
-				var queryString = 'query string:\n\n',
+				var queryString = '[debug] query string:\n\n',
 					propSpace	,
 					i			;
 
@@ -693,7 +693,7 @@
 				}
 
 				if (window.console && window.console.log) {
-					window.console.log(message);
+					window.console.log(queryString);
 				}
 			}
 
