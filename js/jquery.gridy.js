@@ -651,7 +651,7 @@
 				}
 			}
 
-			if (opt.data != null) {
+			if (opt.data) {
 				processCallback(opt.data, page, sortName, sortOrder);
 				return;
 			}
