@@ -143,7 +143,7 @@
 			<div class="session-mini">Script:</div>
 
 			<div class="source">
-				$('#grid').gridy({ url:&nbsp;'/gridy' });
+				$('#grid').gridy({ url:&#160;'/gridy' });
 			</div>
 
 			<span class="comment">
@@ -166,14 +166,16 @@
 
 			<div class="source">
 				&lt;script id="template" type="text/x-jquery-tmpl"&gt;<br/>
-					&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;${name}&lt;/td&gt;<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;${email}&lt;/td&gt;<br/><br/>
+					&#160;&#160;&#160;&lt;tr&gt;<br/>
+					&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${name}&lt;/td&gt;<br/>
+					&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${email}&lt;/td&gt;<br/>
+					&#160;&#160;&#160;&lt;/tr&gt;<br/>
 				&lt;/script&gt;
 			</div>
 
 			<span class="comment">
 				- The script that is a template type (text/x-jquery-tmpl) must have an ID to be hooked;<br/>
+				- You can to use td or div for build the gridy;<br/>
 				- The first tr/div represents a row of the grid and will be repeated many times;<br/>
 				- Each td/div inside the wrapper will be considerated a col of the grid;<br/>
 				- If you are using some framework like Spring or EL (Expression Language), scape the '$' to avoid conflicts: \${ } or &lt;c:out value="${ }"/&gt;.<br/>
@@ -207,202 +209,202 @@
 			<div class="session">Default options:</div>
 
 			<div class="source">
-				arrowDown:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-down'
+				arrowDown&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'gridy-arrow-down'
 				<div class="comment">Class with background used as icon on the descending sort.</div>
 
-				arrowNone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-none'
+				arrowNone&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'gridy-arrow-none'
 				<div class="comment">Class with background used as icon when there is no sort by especific field.</div>
 
-				arrowUp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-arrow-up'
+				arrowUp&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'gridy-arrow-up'
 				<div class="comment">Class with background used as icon on the ascending sort.</div>
 
-				before:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				before&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Function executed before the grid load.</div>
 
-				buttonBackTitle:&nbsp;&nbsp;&nbsp;&nbsp;'&lsaquo; Back'
+				buttonBackTitle&#160;&#160;&#160;&#160;: '&lsaquo; Back'
 				<div class="comment">Title of the navigation button back.</div>
 
-				buttonMax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lsaquo; Back'
+				buttonMax&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: '&lsaquo; Back'
 				<div class="comment">Number of paging buttons visible.</div>
 
-				buttonNextTitle:&nbsp;&nbsp;&nbsp;&nbsp;'Next &rsaquo;'
+				buttonNextTitle&#160;&#160;&#160;&#160;: 'Next &rsaquo;'
 				<div class="comment">Title of the navigation button next.</div>
 
-				buttonOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				buttonOption&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Shows the pagination buttons.</div>
 
-				buttonsWidth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
+				buttonsWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'auto'
 				<div class="comment">Width of the buttons wrapper.</div>
 
-				buttonTitle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'page'
+				buttonTitle&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'page'
 				<div class="comment">Alternative text prepended in the title attribute together the number of the button page.</div>
 
-				cache:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				cache&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Enables the ajax cache.</div>
 
-				clickFx:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
+				clickFx&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Enables rows selection on click.</div>
 
-				colsWidth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+				colsWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
 				<div class="comment">List with the width of each column of the grid.</div>
 
-				complete:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				complete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Function executed when the grid load.</div>
 
-				contentType:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				contentType&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">The content type of the ajax request.</div>
 
-				dataType:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'json'
+				dataType&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'json'
 				<div class="comment">The data type of the ajax request.</div>
 
-				debug:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
+				debug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Shows details of the grid request.</div>
 
-				error:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				error&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Function executed when occurs an error on the grid load.</div>
 
-				evenOdd:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
+				evenOdd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Enables the even odd row style.</div>
 
-				find:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
+				find&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: ''
 				<div class="comment">Name of the column where research will be done.</div>
 
-				findsName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+				findsName&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
 				<div class="comment">List with the name of the columns available for research.</div>
 
-				findTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				findTarget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">ID of the place where the find element will be appended.</div>
 
-				headersName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+				headersName&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
 				<div class="comment">List of the names used on the header element.</div>
 
-				headersWidth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+				headersWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
 				<div class="comment">Width of the columns of the header element.</div>
 
-				height:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
+				height&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'auto'
 				<div class="comment">Height of the grid.</div>
 
-				hoverFx:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
+				hoverFx&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Enables highlight rows on mouseover.</div>
 
-				jsonp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				jsonp&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Enables the JSONP content type.</div>
 
-				jsonpCallback:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				jsonpCallback&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Name of the callback function when the content type is JSONP.</div>
 
-				listPath:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'entityList'
+				listPath&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'entityList'
 				<div class="comment">Path of the list element like 'response.movie.list'.</div>
 
-				loadingIcon:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-loading'
+				loadingIcon&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'gridy-loading'
 				<div class="comment">Name of the class used as a loading icon.</div>
 
-				loadingOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				loadingOption&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Enables the presentation of the loading message.</div>
 
-				loadingText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading...
+				loadingText&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: Loading...
 				<div class="comment">Text that will appear during the loading.</div>
 
-				messageOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				messageOption&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Enables the display of messages about the grid.</div>
 
-				messageTimer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4000
+				messageTimer&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 4000
 				<div class="comment">Time in milliseconds in which the messages will remain on the screen.</div>
 
-				noResultOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				noResultOption&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Enables the presentation of the no result message.</div>
 
-				noResultText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'No results found!'
+				noResultText&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'No results found!'
 				<div class="comment">Text shown when no result is found for the search.</div>
 
-				page:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+				page&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 1
 				<div class="comment">The number of the page to be displayed.</div>
 
-				params:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{}
+				params&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: {}
 				<div class="comment">A hash of parameters to be added to the query string.</div>
 
-				paramsElements:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+				paramsElements&#160;&#160;&#160;&#160;&#160;: []
 				<div class="comment">Array of selectors of field to use the name and value as parameter.</div>
 
-				resize:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				resize&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Apply the same width of the content to the other wrappers.</div>
 
-				resultOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				resultOption&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Enables the presentation of details of the result.</div>
 
-				resultText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Displaying {from} - {to} of {total} items'
+				resultText&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'Displaying {from} - {to} of {total} items'
 				<div class="comment">Text displayed in the details of the result.</div>
 
-				rows:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10
+				rows&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 10
 				<div class="comment">Number of rows displayed on each page.</div>
 
-				rowsNumber:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5, 10, 25, 50, 100]
+				rowsNumber&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: [5, 10, 25, 50, 100]
 				<div class="comment">List with the numbers of lines should be displayed.</div>
 
-				rowsTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				rowsTarget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">ID of the place where the rows element will be appended.</div>
 
-				scroll:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
+				scroll&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Enables the display of the grid with scroll.</div>
 
-				search:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
+				search&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: ''
 				<div class="comment">Default term to be consulted.</div>
 
-				searchButtonLabel:&nbsp;&nbsp;'search'
+				searchButtonLabel&#160;&#160;: 'search'
 				<div class="comment">Label of the search button.</div>
 
-				searchButtonTitle:&nbsp;&nbsp;'Start the search'
+				searchButtonTitle&#160;&#160;: 'Start the search'
 				<div class="comment">Title of the search button.</div>
 
-				searchFocus:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				searchFocus&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Enables the automatic focus in the search field.</div>
 
-				searchOption:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				searchOption&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Enables the search field.</div>
 
-				searchTarget:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				searchTarget&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">ID of the place where the rows element will be appended.</div>
 
-				searchText:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
+				searchText&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: ''
 				<div class="comment">Text displayed in the search field.</div>
 
-				separate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true
+				separate&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Change the style of the first line on grid.</div>
 
-				sortersName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+				sortersName&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
 				<div class="comment">List with the names used on the sorter element.</div>
 
-				skin:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'gridy-default'
+				skin&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'gridy-default'
 				<div class="comment">Name of the root class name style "CSS prefix".</div>
 
-				sorterWidth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
+				sorterWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'auto'
 				<div class="comment">Width of the sorter element.</div>
 
-				sortName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''
+				sortName&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: ''
 				<div class="comment">Name of the default column sorted.</div>
 
-				sortOrder:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'asc'
+				sortOrder&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'asc'
 				<div class="comment">Order of classification.</div>
 
-				style:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'table'
+				style&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'table'
 				<div class="comment">Change between table and div style.</div>
 
-				success:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				success&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Function executed when the grid loads successfully.</div>
 				
-				template:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'template'
+				template&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'template'
 				<div class="comment">The ID of the script template loaded.</div>
 
-				totalPath:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'total'
+				totalPath&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'total'
 				<div class="comment">Path of the total element like 'response.movie.total'.</div>
 
-				type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'get'
+				type&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'get'
 				<div class="comment">Type of the HTTP request.</div>
 				
-				url:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'/gridy'
+				url&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: '/gridy'
 				<div class="comment">Url to request the data.</div>
 				
-				width:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto'
+				width&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'auto'
 				<div class="comment">Width of the grid.</div>
 			</div>
 
@@ -420,20 +422,20 @@
 			$(function() {
 
 				$('#grid').gridy({
-					buttonMax:		5,
-					clickFx:		true,
-					colsWidth:		[150, 120, 540, 78, 100, 100],
-					dataType:		'jsonp',
-					evenOdd:		true,
-					find:			'attribute',
-					findsName:		[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
-					headersName:	[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
-					hoverFx:		true,
-					jsonp:			true,
-					sortName:		'attribute',
-					searchText:		'type your search here...',
-					url:			'http://www.moviecollection.com.br/gridy',
-					width:			1100
+					buttonMax	: 5,
+					clickFx		: true,
+					colsWidth	: [150, 120, 540, 78, 100, 100],
+					dataType	: 'jsonp',
+					evenOdd		: true,
+					find		: 'attribute',
+					findsName	: [['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
+					headersName	: [['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
+					hoverFx		: true,
+					jsonp		: true,
+					sortName	: 'attribute',
+					searchText	: 'type your search here...',
+					url			: 'http://mockr.me/gridy',
+					width		: 1100
 				});
 
 			});

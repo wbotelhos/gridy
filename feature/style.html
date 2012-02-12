@@ -140,14 +140,14 @@
 
 			<div class="source">
 				&lt;script id="template" type="text/x-jquery-tmpl"&gt;<br/>
-					&nbsp;&nbsp;&nbsp;&lt;div&gt;<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;${name}&lt;/div&gt;<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;${email}&lt;/div&gt;<br/><br/>
+					&#160;&#160;&#160;&lt;div&gt;<br/>
+					&#160;&#160;&#160;&#160;&#160;&#160;&lt;div&gt;${name}&lt;/div&gt;<br/>
+					&#160;&#160;&#160;&#160;&#160;&#160;&lt;div&gt;${email}&lt;/div&gt;<br/><br/>
 	
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="gridy-button"&gt;<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#"&gt;edit&lt;/a&gt;<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;/div&gt;<br/>
+					&#160;&#160;&#160;&#160;&#160;&#160;&lt;div class="gridy-button"&gt;<br/>
+					&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;a href="#"&gt;edit&lt;/a&gt;<br/>
+					&#160;&#160;&#160;&#160;&#160;&#160;&lt;/div&gt;<br/>
+					&#160;&#160;&#160;&#160;&lt;/div&gt;<br/>
 				&lt;/script&gt;
 			</div>
 
@@ -170,21 +170,21 @@
 			$(function() {
 
 				$('#grid').gridy({
-					buttonMax:		5,
-					clickFx:		true,
-					colsWidth:		[150, 120, 550, 78, 100, 100],
-					dataType:		'jsonp',
-					evenOdd:		true,
-					find:			'attribute',
-					findsName:		[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
-					headersName:	[['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
-					hoverFx:		true,
-					jsonp:			true,
-					sortName:		'attribute',
-					searchText:		'type your search here...',
-					style:			'div',
-					url:			'http://www.moviecollection.com.br/gridy',
-					width:			1100
+					buttonMax	: 5,
+					clickFx		: true,
+					colsWidth	: [150, 120, 550, 78, 100, 100],
+					dataType	: 'jsonp',
+					evenOdd		: true,
+					find		: 'attribute',
+					findsName	: [['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
+					headersName	: [['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
+					hoverFx		: true,
+					jsonp		: true,
+					sortName	: 'attribute',
+					searchText	: 'type your search here...',
+					style		: 'div',
+					url			: 'http://mockr.me/gridy',
+					width		: 1100
 				});
 
 			});
