@@ -10,7 +10,7 @@
 
 	.gridy-arrow-none,
 	.gridy-arrow-down,
-	.gridy-arrow-up { background-image: url('../img/jquery-icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
+	.gridy-arrow-up { background-image: url('../img/icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
 
 	.gridy-arrow-up { background-position: 0 -16px; }
 	.gridy-arrow-none { background-position: -128px -16px; }
