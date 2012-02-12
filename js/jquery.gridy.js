@@ -543,7 +543,7 @@
 
 			if (opt.buttonOption) {
 				if (total > selectedRows) {
-					var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="gridy-button-reticence"/>&nbsp;',
+					var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="gridy-button-reticence"/>&#160;',
 						buttons		= '',
 						number		= 0,
 						rangePage	= null,
@@ -594,18 +594,18 @@
 						hasNextNavigation	= hasExceeded && page < (totalPage - rangePage);
 
 					if (hasBackNavigation) {
-						buttons = '<input type="button" value="&lsaquo;" alt="' + opt.buttonBackTitle + '" title="' + opt.buttonBackTitle + '" class="gridy-back"/>&nbsp;';
+						buttons = '<input type="button" value="&lsaquo;" alt="' + opt.buttonBackTitle + '" title="' + opt.buttonBackTitle + '" class="gridy-back"/>&#160;';
 						buttons += buttonEmpty;
 					}
 
 					for (var i = start; i <= end; i++) {
 						number = methods.getNumber(i);
-						buttons += '<input type="button" value="' + number + '" alt="' + number + '" title="' + opt.buttonTitle + ' ' + number + '"/>&nbsp;';
+						buttons += '<input type="button" value="' + number + '" alt="' + number + '" title="' + opt.buttonTitle + ' ' + number + '"/>&#160;';
 					}
 
 					if (hasNextNavigation) {
 						buttons += buttonEmpty;
-						buttons += '<input type="button" value="&rsaquo;" alt="' + opt.buttonNextTitle + '" title="' + opt.buttonNextTitle + '" class="gridy-button-next"/>&nbsp;';
+						buttons += '<input type="button" value="&rsaquo;" alt="' + opt.buttonNextTitle + '" title="' + opt.buttonNextTitle + '" class="gridy-button-next"/>&#160;';
 					}
 
 					$buttons.html(buttons).children(':not(".gridy-button-reticence")').click(function() {
