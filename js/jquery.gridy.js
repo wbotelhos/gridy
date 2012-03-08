@@ -819,7 +819,6 @@
 		buttonMax				: 10,
 		buttonNextTitle			: 'Next &rsaquo;',
 		buttonOption			: true,
-		buttonsWidth			: 'auto',
 			buttonTitle			: 'page',
 			cache				: undefined,
 			clickFx				: false,

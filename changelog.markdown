@@ -21,6 +21,8 @@
 + Now the 'success', 'error' and 'complete' callback receives the original $.ajax() parameters;
 + Now the 'success', 'error' and 'complete' callback has the 'this' as the Gridy context;
 + Now the defaults options that not belongs Gridy has it owner original value;
++ Now the default root name is just 'list';
++ Now the options 'buttonsWidth' no more exists;
 + Fixed gridy when search gets no result; (by Gabriel Benz)
 + Fixed the index number given to Gridy binded by class without id;
 + Fixed the ID of hidden fields to not repeat when has more than one gridy on page;
