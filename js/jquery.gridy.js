@@ -74,9 +74,9 @@
 			$this.parent().addClass(opt.skin);
 		}
 
-		var $search			= null,
-			$searchField	= null,
-			$searchButton	= null;
+		var $search			= undefined,
+			$searchField	= undefined,
+			$searchButton	= undefined;
 
 		if (opt.searchOption) {
 			$search = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').insertBefore($this);
@@ -129,8 +129,8 @@
 			$sortIcon.removeClass().addClass(sortIcon);
 		};
 
-		var $sortBar		= null,
-			$sorterItems	= null;
+		var $sortBar		= undefined,
+			$sorterItems	= undefined;
 
 		if (opt.sortersName.length > 0) {
 			var sorterContent	= '',
@@ -178,7 +178,7 @@
 			listGridy($currentPage.val(), sortName, nextSortOrder, context);
 		};
 
-		var $status = null;
+		var $status = undefined;
 
 		if (opt.loadingOption || opt.resultOption) {
 			$status = $('<div class="gridy-status"/>').insertBefore($this);
@@ -188,24 +188,24 @@
 			}
 		}
 
-		var $loading = null;
+		var $loading = undefined;
 
 		if (opt.loadingOption) {
 			$loading = $('<div class="' + opt.loadingIcon + '"><div>' + opt.loadingText + '</div></div>').appendTo($status).children();
 		}
 
-		var $result = null;
+		var $result = undefined;
 
 		if (opt.resultOption) {
 			$result = $('<div class="gridy-result"/>').appendTo($status);
 		}
 
-		var $header			= null,
-			$headerItems	= null;
+		var $header			= undefined,
+			$headerItems	= undefined;
 
 		if (hasHeader) {
-			var $head		= null,
-				$sortLink	= null,
+			var $head		= undefined,
+				$sortLink	= undefined,
 				headName	= '',
 				headLabel	= '';
 
@@ -275,7 +275,7 @@
 			}
 		}
 
-		var $content = null;
+		var $content = undefined;
 
 		if (isTable) {
 			$content = $('<tbody class="gridy-content"/>');
@@ -354,7 +354,7 @@
 			.children('option[value="' + opt.find +  '"]').attr('checked', 'checked');
 		}
 
-		var $rowsBox = null;
+		var $rowsBox = undefined;
 
 		if (opt.rowsNumber.length > 0 ) {
 			$rowsBox = $('<div class="gridy-row-option"><select></select></div>').appendTo($footer).children();
@@ -491,11 +491,11 @@
 				$sortBar.show();
 			}
 
-			var entityList	= eval('data.' + opt.listPath),
-				$rows		= null,
-				$columns	= null;
+			var list		= eval('data.' + opt.listPath),
+				$rows		= undefined,
+				$columns	= undefined;
 
-			$content.html($('#' + opt.template).tmpl(entityList));
+			$content.html($('#' + opt.template).tmpl(list));
 
 			if (opt.evenOdd) {
 				$content
@@ -546,7 +546,7 @@
 					var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="gridy-button-reticence"/>&#160;',
 						buttons		= '',
 						number		= 0,
-						rangePage	= null,
+						rangePage	= undefined,
 						start		= 1,
 						buttonMax	= opt.buttonMax,
 						isEven		= (opt.buttonMax % 2 == 0);
@@ -839,7 +839,7 @@
 			hoverFx				: false,
 			jsonp				: undefined,
 			jsonpCallback		: 'callback',
-			listPath			: 'entityList',
+			listPath			: 'list',
 			loadingIcon			: 'gridy-loading',
 			loadingOption		: true,
 			loadingText			: 'Loading...',
