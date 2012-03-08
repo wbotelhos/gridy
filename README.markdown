@@ -8,7 +8,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Version
 
-	@version        0.3.0
+	@version        0.3.0 (Development)
 	@since          2011.06.03
 	@author         Washington Botelho
 	@documentation  wbotelhos.com/gridy
@@ -51,7 +51,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	hoverFx           : false                                   // Enables highlight rows on mouseover.
 	jsonp             : undefined                               // Enables the JSONP content type.
 	jsonpCallback     : undefined                               // Name of the callback function for JSONP content type.
-	listPath          : 'entityList'                            // Path of the list element like 'response.movie.list'.
+	listPath          : 'list'                                  // Path of the list element like 'response.movie.list'.
 	loadingIcon       : 'loading'                               // Name of the class used as a loading icon.
 	loadingOption     : true                                    // Enables the presentation of the loading message.
 	loadingText       : 'Loading...'                            // Text that will appear during the loading.
@@ -85,7 +85,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	style             : 'table'                                 // Change between table and div style.
 	success           : undefined                               // Function executed when the grid loads successfully.
 	template          : 'template'                              // The ID of the script template to be loaded.
-	totalPath         : 'entityList'                            // Path of the total element like 'response.movie.total'.
+	totalPath         : 'total'                                 // Path of the total element like 'response.movie.total'.
 	type              : 'get'                                   // Type of the HTTP request.
 	url               : '/gridy'                                // Url to request the data.
 	width             : 'auto'                                  // Width of the grid.

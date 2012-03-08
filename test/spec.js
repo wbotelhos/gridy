@@ -2977,8 +2977,127 @@ describe('buttons', function() {
 		expect($buttons.eq(4).attr('alt').indexOf('Next') >= 0).toBeTruthy();
 	});
 
+	it ('should disable paging buttons', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			url				: '/gridy',
+			rows			: 1,
+			buttonMax		: 1,
+			page			: 2,
+			buttonOption	: false
+		});
+
+		var $buttons = $this.parent().find('.gridy-buttons-content');
+
+		// then
+		expect($buttons).not.toExist();
+	});
+
+	it ('should change the title of next button', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			url				: '/gridy',
+			rows			: 1,
+			buttonMax		: 1,
+			page			: 2,
+			buttonNextTitle	: 'god'
+		});
+
+		var $buttons = $this.parent().find('.gridy-buttons-content').children('input[type="button"]');
+
+		// then
+		expect($buttons.eq(4).attr('title').indexOf('god') >= 0).toBeTruthy();
+		expect($buttons.eq(4).attr('alt').indexOf('god') >= 0).toBeTruthy();
+	});
+
+	it ('should change the title of back button', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			url				: '/gridy',
+			rows			: 1,
+			buttonMax		: 1,
+			page			: 2,
+			buttonBackTitle	: 'god'
+		});
+
+		var $buttons = $this.parent().find('.gridy-buttons-content').children('input[type="button"]');
+
+		// then
+		expect($buttons.eq(0).attr('title').indexOf('god') >= 0).toBeTruthy();
+		expect($buttons.eq(0).attr('alt').indexOf('god') >= 0).toBeTruthy();
+	});
+
 });
-	
+
+describe('callbacks', function() {
+
+	beforeEach(function() {
+		$('body').append('<table id="grid"></table>');
+	});
+
+	afterEach(function() {
+		$('#grid').parent().remove();
+	});
+
+	it ('should call "before" callback', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			url		: '/gridy',
+			before	: function() {
+				$(this).addClass('my-class');
+			}
+		});
+
+		// then
+		expect($this).toHaveClass('my-class');
+	});
+
+});
+
 // TODO click one time and check arrow up.
 // TODO click two time and check arrow down.
 // TODO click three time and check arrow none.
@@ -2991,3 +3110,7 @@ describe('buttons', function() {
 // TODO click on button to change the page.
 // TODO click on back button to change the page.
 // TODO click on next button to change the page.
+// TODO sorterWidth
+// TODO sortersName
+// TODO scroll
+// TODO before
