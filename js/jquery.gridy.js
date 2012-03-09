@@ -304,7 +304,7 @@
 				if (opt.resultOption) {
 					$result.html($result.html().replace(/\d+/g, '0'));
 				}
-	
+
 				if (opt.searchOption) {
 					$searchField.focus().select();
 				}
@@ -608,7 +608,7 @@
 						buttons += '<input type="button" value="&rsaquo;" alt="' + opt.buttonNextTitle + '" title="' + opt.buttonNextTitle + '" class="gridy-button-next"/>&#160;';
 					}
 
-					$buttons.html(buttons).children(':not(".gridy-button-reticence")').click(function() {
+					$buttons.html(buttons).children(':not(".gridy-button-back, .gridy-button-reticence, .gridy-button-next")').click(function() {
 						listGridy(parseInt(this.alt, 10), $currentSortName.val(), $currentSortOrder.val(), $this);
 					});
 
@@ -814,11 +814,11 @@
 		arrowDown			: 'gridy-arrow-down',
 		arrowNone			: 'gridy-arrow-none',
 		arrowUp				: 'gridy-arrow-up',
-		before					: undefined,
-		buttonBackTitle			: '&lsaquo; Back',
-		buttonMax				: 10,
-		buttonNextTitle			: 'Next &rsaquo;',
-		buttonOption			: true,
+		before				: undefined,
+		buttonBackTitle		: '&lsaquo; Back',
+		buttonMax			: 10,
+		buttonNextTitle		: 'Next &rsaquo;',
+		buttonOption		: true,
 		buttonTitle			: 'page',
 		cache				: undefined,
 		clickFx				: false,
@@ -844,7 +844,7 @@
 		loadingText			: 'Loading...',
 		messageOption		: true,
 		messageTimer		: 4000,
-		noResultOption		:true,
+		noResultOption		: true,
 		noResultText		: 'No items found!',
 		page				: 1,
 		params				: {},

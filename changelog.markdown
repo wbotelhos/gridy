@@ -28,6 +28,7 @@
 + Fixed the ID of hidden fields to not repeat when has more than one gridy on page;
 + Fixed the ID of search field to not repeat when has more than one gridy on page;
 + Fixed the separate class to not be applied on no result row;
++ Fixed undesired trigger on back and next button with NaN page.
 
 ### 0.2.0
 
