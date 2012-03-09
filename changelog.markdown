@@ -9,6 +9,7 @@
 + Added 'totalPath' option to choose the path of the total element like 'response.movie.total';
 + Added 'style' option to choose between table and div grid style;
 + Added 'separate' option to change the style of the first line on grid to separate visually;
++ Added method 'set' to re-adjust runtime settings;
 + Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
 + Changed the option 'templateStyle' to simple 'skin';
 + Now you can use table rather div if you have just tabulated data in a list format;
@@ -21,7 +22,6 @@
 + Now the 'success', 'error' and 'complete' callback receives the original $.ajax() parameters;
 + Now the 'success', 'error' and 'complete' callback has the 'this' as the Gridy context;
 + Now the defaults options that not belongs Gridy has it owner original value;
-+ Now the default root name is just 'list';
 + Now the options 'buttonsWidth' no more exists;
 + Fixed gridy when search gets no result; (by Gabriel Benz)
 + Fixed the index number given to Gridy binded by class without id;
