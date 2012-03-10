@@ -36,7 +36,7 @@
 				var self	= this,
 					$this	= $(self);
 
-				self.opt = $.extend({}, $.fn.gridy.defaults, settings);
+				self.opt = $.extend(true, {}, $.fn.gridy.defaults, settings);
 
 				$this.data('settings', self.opt);
 
@@ -813,7 +813,7 @@
 			return this.each(function() {
 				var $this = $(this);
 
-				$this.gridy($.extend({}, $this.data('settings'), settings));
+				$this.gridy($.extend(true, {}, $this.data('settings'), settings));
 			});
 		}
 	};
