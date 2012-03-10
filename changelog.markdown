@@ -2,6 +2,7 @@
 
 ### 0.3.0 (Development)
 
++ Added 'buttonPageNumber' to disable the page buttons with the number of pages;
 + Added 'resize' option to apply the same width of the content to the other wrappers;
 + Added 'evenOdd' option to enables the even odd row style;
 + Added 'paramsElements' option to choose an array of selectors of fields to be used it values as parameters;

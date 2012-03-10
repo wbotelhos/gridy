@@ -98,7 +98,7 @@ describe('global settings', function() {
 
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -207,7 +207,7 @@ describe('json format', function() {
 		var $this = $('#grid');
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "count": {"total": 3}}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "count": {"total": 3}}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -249,7 +249,7 @@ describe('json format', function() {
 		var $this = $('#grid');
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"data": {"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}]}, "total": 3}',
+			var data	= '{"data": {"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}]}, "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -277,7 +277,7 @@ describe('style div', function() {
 		$('body').append('<div id="grid"></div>');
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -1483,7 +1483,7 @@ describe('style table', function() {
 		$('body').append('<table id="grid"></table>');
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -2864,7 +2864,7 @@ describe('ajax settings', function() {
 	it ('success should to execute with right args', function() {
 		// given
 		var $this	= $('#grid'),
-			data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 	
 		spyOn($, 'ajax').andCallFake(function(params) {
@@ -2898,7 +2898,7 @@ describe('buttons', function() {
 
 	it ('buttonMax should restrict the number of buttons with one visible and reticence on right', function() {
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -2927,14 +2927,14 @@ describe('buttons', function() {
 		expect($buttons.eq(1)).toBeDisabled();
 		expect($buttons.eq(1)).toHaveAttr('value', '...');
 
-		expect($buttons.eq(2)).toHaveClass('gridy-button-next');
+		expect($buttons.eq(2)).toHaveClass('gridy-next');
 		expect($buttons.eq(2).attr('title').indexOf('Next') >= 0).toBeTruthy();
 		expect($buttons.eq(2).attr('alt').indexOf('Next') >= 0).toBeTruthy();
 	});
 
 	it ('buttonMax should restrict the number of buttons with one visible and reticence on right and left', function() {
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -2972,14 +2972,14 @@ describe('buttons', function() {
 		expect($buttons.eq(3)).toBeDisabled();
 		expect($buttons.eq(3)).toHaveAttr('value', '...');
 
-		expect($buttons.eq(4)).toHaveClass('gridy-button-next');
+		expect($buttons.eq(4)).toHaveClass('gridy-next');
 		expect($buttons.eq(4).attr('title').indexOf('Next') >= 0).toBeTruthy();
 		expect($buttons.eq(4).attr('alt').indexOf('Next') >= 0).toBeTruthy();
 	});
 
 	it ('should disable paging buttons', function() {
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -3006,7 +3006,7 @@ describe('buttons', function() {
 
 	it ('should change the title of next button', function() {
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -3034,7 +3034,7 @@ describe('buttons', function() {
 
 	it ('should change the title of back button', function() {
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -3060,6 +3060,95 @@ describe('buttons', function() {
 		expect($buttons.eq(0).attr('alt').indexOf('god') >= 0).toBeTruthy();
 	});
 
+	it ('should disable the buttons with page number and keep right navigation', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"}], "total": 3}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			url				: '/gridy',
+			buttonPageNumber: false,
+			rows			: 1
+		});
+
+		var $buttons = $this.parent().find('.gridy-buttons-content').children('input[type="button"]');
+
+		// then
+		expect($buttons.size()).toBe(2);
+
+		expect($buttons.eq(0)).toHaveValue('01');
+		expect($buttons.filter('.gridy-back')).not.toExist();
+		expect($buttons.filter('.gridy-next')).toExist();
+	});
+
+	it ('should disable the buttons with page number and keep left and right navigation', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"}], "total": 3}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			url				: '/gridy',
+			buttonPageNumber: false,
+			page			: 2,
+			rows			: 1
+		});
+
+		var $buttons = $this.parent().find('.gridy-buttons-content').children('input[type="button"]');
+
+		// then
+		expect($buttons.size()).toBe(3);
+
+		expect($buttons.filter('.gridy-back')).toExist();
+		expect($buttons.eq(1)).toHaveValue('02');
+		expect($buttons.filter('.gridy-next')).toExist();
+	});
+
+	it ('should disable the buttons with page number and keep left navigation', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"}], "total": 3}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			url				: '/gridy',
+			buttonPageNumber: false,
+			page			: 3,
+			rows			: 1
+		});
+
+		var $buttons = $this.parent().find('.gridy-buttons-content').children('input[type="button"]');
+
+		// then
+		expect($buttons.size()).toBe(2);
+
+		expect($buttons.filter('.gridy-back')).toExist();
+		expect($buttons.eq(1)).toHaveValue('03');
+		expect($buttons.filter('.gridy-next')).not.toExist();
+	});
+
 });
 
 describe('callbacks', function() {
@@ -3074,7 +3163,7 @@ describe('callbacks', function() {
 
 	it ('should call "before" callback', function() {
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "ajose", "name": "Arlindo José"},{"id": 2, "username": "wbotelhos", "name": "Washington Botelho"},{"id": 3, "username": "zbotelho", "name": "Zilda Botelho"}], "total": 3}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
