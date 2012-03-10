@@ -77,7 +77,7 @@ describe('param settings', function() {
 
 		// then
 		spyOn($, 'ajax').andCallFake(function(params) {
-			expect(params.data.paramsElements == 'params-elements').toBeTruthy();
+			expect(params.data.paramsElements[0]).toBe('params-elements');
 		});
 
 		// when
@@ -87,6 +87,37 @@ describe('param settings', function() {
 		});
 
 		$('#params-elements').remove();
+	});
+
+	it ('should capture paramsElements from many elements including class element', function() {
+		$('body')
+		.append('<input id="single" type="text" name="single" value="singleValue" />')
+		.append('<input type="checkbox" name="multiple" value="multipleValue1" checked="checked" class="multiple" />')
+		.append('<input type="checkbox" name="multiple" value="multipleValue2" class="multiple" />')
+		.append('<input type="checkbox" name="multiple" value="multipleValue3" checked="checked" class="multiple" />');
+
+		// given
+		var $this = $('#grid');
+
+		// then
+		spyOn($, 'ajax').andCallFake(function(params) {
+			expect(params.data.multiple.length).toBe(3);
+			expect(params.data.multiple[0]).toBe('multipleValue1');
+			expect(params.data.multiple[1]).toBe('multipleValue2');
+			expect(params.data.multiple[2]).toBe('multipleValue3');
+
+			expect(params.data.single.length).toBe(1);
+			expect(params.data.single[0]).toBe('singleValue');
+		});
+
+		// when
+		$this.gridy({
+			url				: '/gridy',
+			paramsElements	: ['#single', '.multiple']
+		});
+
+		$('#single').remove();
+		$('.multiple').remove();
 	});
 
 });

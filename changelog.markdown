@@ -13,6 +13,7 @@
 + Added method 'set' to re-adjust runtime settings;
 + Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
 + Changed the option 'templateStyle' to simple 'skin';
++ Now 'paramsElements' can capture a bunch of elements including class with the same name;
 + Now you can use table rather div if you have just tabulated data in a list format;
 + Now the component 'find' will be hanging on search container;
 + Now the jQuery data is sent as hash;

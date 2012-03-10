@@ -669,12 +669,21 @@
 						data[prop] = self.opt.params[prop];
 				    }
 
-					var $paramElement;
-
 					for (var prop in self.opt.paramsElements) {
-						$paramElement = $(self.opt.paramsElements[prop]);
+						$(self.opt.paramsElements[prop]).each(function(i) {
+							var param	= data[this.name],
+								item	= [];
 
-						data[$paramElement.attr('name')] = $paramElement.val();				
+							if (param) {
+								for (var i in param) {
+									item.push(param[i]);
+								}
+							}
+
+							item.push(this.value);
+
+							data[this.name] = item;				
+						});
 					}
 
 					if (self.opt.debug) {
