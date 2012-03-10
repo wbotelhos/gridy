@@ -808,12 +808,12 @@
 		}, reload: function() {
 			var $this = $(this);
 
-			$this.gridy($this.data('options'));
+			$this.gridy($this.data('settings'));
 		}, set: function(settings) {
 			return this.each(function() {
 				var $this = $(this);
 
-				$this.gridy($.extend({}, $this.data('options'), settings));
+				$this.gridy($.extend({}, $this.data('settings'), settings));
 			});
 		}
 	};
