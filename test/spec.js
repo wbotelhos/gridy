@@ -3218,6 +3218,39 @@ describe('callbacks', function() {
 
 });
 
+describe('functions', function() {
+
+	beforeEach(function() {
+		$('body').append('<div id="grid"></div>');
+	});
+
+	it ('should reload without searchOption and on page 2', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"}], "total": 2}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows	: 1,
+			url		: '/gridy'
+		});
+
+		$this.gridy('set', { page: 2, searchOption: false });
+
+		// then
+		expect($this.parent().find('.gridy-search')).not.toExist();
+		expect($this.parent().find('.gridy-button-active')).toHaveValue('02');
+	});
+
+});
+	
 // TODO click one time and check arrow up.
 // TODO click two time and check arrow down.
 // TODO click three time and check arrow none.

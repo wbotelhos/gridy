@@ -38,21 +38,10 @@
 
 				self.opt = $.extend(true, {}, $.fn.gridy.defaults, settings);
 
-				$this.data('settings', self.opt);
+				$this.empty().data('settings', self.opt);
 
-				if ($this.data('gridy')) {
-					return;
-				}
-
-				$this.data('gridy', true);
-
-
-				
-				
-				
-				
-				var id					= $this.attr('id'),
-					$this				= $(this).empty().width(methods.getSize.call(self, self.opt.width)).wrap('<div id="' + id + '-wrapper">'),
+				var id 					= $this.attr('id'),
+					$this				= $this.width(methods.getSize.call(self, self.opt.width)).wrap('<div id="' + id + '-wrapper">'),
 					$wrapper			= $this.parent().width(methods.getSize.call(self, self.opt.width)),
 					$currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '"/>').insertBefore($this),
 					$currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '"/>').insertBefore($this),
@@ -806,12 +795,15 @@
 		}, getNumber: function(number) {
 			return (number < 10) ? '0' + number : number;
 		}, reload: function() {
-			var $this = $(this);
-
-			$this.gridy($this.data('settings'));
+			methods.set.call(this, {});
 		}, set: function(settings) {
 			return this.each(function() {
-				var $this = $(this);
+				var $this	= $(this),
+					$parent = $this.parent();
+
+				$this.insertBefore($parent);
+
+				$parent.remove();
 
 				$this.gridy($.extend(true, {}, $this.data('settings'), settings));
 			});
