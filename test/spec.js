@@ -94,26 +94,32 @@ describe('param settings', function() {
 		.append('<input id="single" type="text" name="single" value="singleValue" />')
 		.append('<input type="checkbox" name="multiple" value="multipleValue1" checked="checked" class="multiple" />')
 		.append('<input type="checkbox" name="multiple" value="multipleValue2" class="multiple" />')
-		.append('<input type="checkbox" name="multiple" value="multipleValue3" checked="checked" class="multiple" />');
+		.append('<input type="checkbox" name="multiple" value="multipleValue2" disabled="disabled" class="multiple" />')
+		.append('<input type="checkbox" name="multiple" value="multipleValue3" readonly="readonly" checked="checked" class="multiple" />')
+		.append('<select id="selection" name="selection"><option value="selection1">selection1</selection><option value="selection2" checked="checked">selection2</selection></select>');
+
+		$('#selection').val('selection2');
 
 		// given
 		var $this = $('#grid');
 
 		// then
 		spyOn($, 'ajax').andCallFake(function(params) {
-			expect(params.data.multiple.length).toBe(3);
+			expect(params.data.multiple.length).toBe(2);
 			expect(params.data.multiple[0]).toBe('multipleValue1');
-			expect(params.data.multiple[1]).toBe('multipleValue2');
-			expect(params.data.multiple[2]).toBe('multipleValue3');
+			expect(params.data.multiple[1]).toBe('multipleValue3');
 
 			expect(params.data.single.length).toBe(1);
 			expect(params.data.single[0]).toBe('singleValue');
+
+			expect(params.data.selection.length).toBe(1);
+			expect(params.data.selection[0]).toBe('selection2');
 		});
 
 		// when
 		$this.gridy({
 			url				: '/gridy',
-			paramsElements	: ['#single', '.multiple']
+			paramsElements	: ['#single', '.multiple', '#selection']
 		});
 
 		$('#single').remove();

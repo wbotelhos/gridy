@@ -660,18 +660,22 @@
 
 					for (var prop in self.opt.paramsElements) {
 						$(self.opt.paramsElements[prop]).each(function(i) {
-							var param	= data[this.name],
-								item	= [];
+							var $this = $(this);
 
-							if (param) {
-								for (var i in param) {
-									item.push(param[i]);
+							if ($this.is(':enabled') && !$this.is(':checkbox') || $this.is(':checked')) {
+								var param	= data[this.name],
+									item	= [];
+	
+								if (param) {
+									for (var i in param) {
+										item.push(param[i]);
+									}
 								}
+	
+								item.push(this.value);
+	
+								data[this.name] = item;				
 							}
-
-							item.push(this.value);
-
-							data[this.name] = item;				
 						});
 					}
 
