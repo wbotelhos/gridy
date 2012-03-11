@@ -64,32 +64,12 @@ describe('param settings', function() {
 
 		// when
 		$this.gridy({
-			url:	'/gridy',
-			params:	{ pa: 'pa', rams: 'rams'}
+			url		: '/gridy',
+			params	: { pa: 'pa', rams: 'rams'}
 		});
 	});
 
-	it ('paramsElements should send params taked from elements', function() {
-		$('body').append('<input id="params-elements" type="text" name="paramsElements" value="params-elements" />');
-
-		// given
-		var $this = $('#grid');
-
-		// then
-		spyOn($, 'ajax').andCallFake(function(params) {
-			expect(params.data.paramsElements[0]).toBe('params-elements');
-		});
-
-		// when
-		$this.gridy({
-			url:			'/gridy',
-			paramsElements:	['#params-elements']
-		});
-
-		$('#params-elements').remove();
-	});
-
-	it ('should capture paramsElements from many elements including class element', function() {
+	it ('should capture paramsElements from many elements with class as array and other elements as simple text', function() {
 		$('body')
 		.append('<input id="single" type="text" name="single" value="singleValue" />')
 		.append('<input type="checkbox" name="multiple" value="multipleValue1" checked="checked" class="multiple" />')
@@ -105,15 +85,9 @@ describe('param settings', function() {
 
 		// then
 		spyOn($, 'ajax').andCallFake(function(params) {
-			expect(params.data.multiple.length).toBe(2);
-			expect(params.data.multiple[0]).toBe('multipleValue1');
-			expect(params.data.multiple[1]).toBe('multipleValue3');
-
-			expect(params.data.single.length).toBe(1);
-			expect(params.data.single[0]).toBe('singleValue');
-
-			expect(params.data.selection.length).toBe(1);
-			expect(params.data.selection[0]).toBe('selection2');
+			expect($.isArray(params.data.multiple)).toBeTruthy();
+			expect($.isArray(params.data.single)).toBeFalsy();
+			expect($.isArray(params.data.selection)).toBeFalsy();
 		});
 
 		// when
@@ -124,6 +98,7 @@ describe('param settings', function() {
 
 		$('#single').remove();
 		$('.multiple').remove();
+		$('#selection').remove();
 	});
 
 });

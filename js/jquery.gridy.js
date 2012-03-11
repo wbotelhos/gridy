@@ -659,24 +659,37 @@
 				    }
 
 					for (var prop in self.opt.paramsElements) {
-						$(self.opt.paramsElements[prop]).each(function(i) {
+						var elem = self.opt.paramsElements[prop];
+
+						$(elem).each(function(i) {
 							var $this = $(this);
 
 							if ($this.is(':enabled') && !$this.is(':checkbox') || $this.is(':checked')) {
-								var param	= data[this.name],
-									item	= [];
-	
-								if (param) {
-									for (var i in param) {
-										item.push(param[i]);
+								var param = data[this.name];
+
+								if (elem.indexOf('.') == 0) {
+									var items = [];
+
+									if (param) {
+										for (var i in param) {
+											items.push(param[i]);
+										}
 									}
+
+									items.push(this.value);
+
+									data[this.name] = items;				
+								} else {
+									data[this.name] = this.value;
 								}
-	
-								item.push(this.value);
-	
-								data[this.name] = item;				
 							}
 						});
+					}
+
+					for (var prop in data) {
+						if (data[prop].length == 1) {
+							data[prop] = data[prop][0];
+						}
 					}
 
 					if (self.opt.debug) {
