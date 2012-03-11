@@ -665,10 +665,10 @@
 							var $this = $(this);
 
 							if ($this.is(':enabled') && !$this.is(':checkbox') || $this.is(':checked')) {
-								var param = data[this.name];
 
 								if (elem.indexOf('.') == 0) {
-									var items = [];
+									var param = data[this.name],
+										items = [];
 
 									if (param) {
 										for (var i in param) {
@@ -684,12 +684,6 @@
 								}
 							}
 						});
-					}
-
-					for (var prop in data) {
-						if (data[prop].length == 1) {
-							data[prop] = data[prop][0];
-						}
 					}
 
 					if (self.opt.debug) {
