@@ -529,14 +529,14 @@
 								number		= 0,
 								rangePage	= undefined,
 								start		= 1,
-								buttonMax	= (self.opt.buttonPageNumber) ? self.opt.buttonMax : 0,
-								isEven		= (self.opt.buttonMax % 2 == 0);
+								buttonMax	= self.opt.buttonMax,
+								isEven		= (buttonMax % 2 == 0);
 
 							if (buttonMax > totalPage) {
 								buttonMax = totalPage;
 							}
 
-							if (isEven && self.opt.buttonPageNumber) {
+							if (isEven) {
 								rangePage	= Math.ceil(buttonMax / 2);
 								start		= page - rangePage + 1;
 							} else {
@@ -569,15 +569,12 @@
 							}
 
 							var	hasExceeded			= totalPage > buttonMax,
-								hasBackNavigation	= hasExceeded && page > ((isEven && self.opt.buttonPageNumber) ? rangePage : rangePage + 1),
+								hasBackNavigation	= hasExceeded && page > ((isEven) ? rangePage : rangePage + 1),
 								hasNextNavigation	= hasExceeded && page < (totalPage - rangePage);
 
 							if (hasBackNavigation) {
 								buttons = '<input type="button" value="&lsaquo;" alt="' + self.opt.buttonBackTitle + '" title="' + self.opt.buttonBackTitle + '" class="gridy-back"/>&#160;';
-								
-								if (self.opt.buttonPageNumber) {
-									buttons += buttonEmpty;
-								}
+								buttons += buttonEmpty;
 							}
 
 							for (var i = start; i <= end; i++) {
@@ -586,20 +583,13 @@
 							}
 
 							if (hasNextNavigation) {
-								if (self.opt.buttonPageNumber) {
-									buttons += buttonEmpty;
-								}
-
+								buttons += buttonEmpty;
 								buttons += '<input type="button" value="&rsaquo;" alt="' + self.opt.buttonNextTitle + '" title="' + self.opt.buttonNextTitle + '" class="gridy-next"/>&#160;';
 							}
 
-							$buttons.html(buttons);
-
-							if (self.opt.buttonPageNumber) {
-								$buttons.children(':not(".gridy-back, .gridy-reticence, .gridy-next")').click(function() {
-									listGridy(parseInt(this.alt, 10), $currentSortName.val(), $currentSortOrder.val(), $this);
-								});
-							}
+							$buttons.html(buttons).children(':not(".gridy-back, .gridy-reticence, .gridy-next")').click(function() {
+								listGridy(parseInt(this.alt, 10), $currentSortName.val(), $currentSortOrder.val(), $this);
+							});
 
 							if (hasBackNavigation) {
 								$buttons.children('.gridy-back').click(function() {
@@ -840,7 +830,6 @@
 		buttonMax			: 10,
 		buttonNextTitle		: 'Next &rsaquo;',
 		buttonOption		: true,
-		buttonPageNumber	: true,
 		buttonTitle			: 'page',
 		cache				: undefined,
 		clickFx				: false,
