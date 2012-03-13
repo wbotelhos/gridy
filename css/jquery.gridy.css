@@ -52,7 +52,7 @@
 	.gridy-find-option { float: left; margin-left: 5px; }
 	.gridy-find-option select { margin-top: 2px; }
 
-	.gridy-row-option select { margin-top: 4px; }
+	.gridy-row-option select { float: left; margin-top: 4px; }
 
 	.gridy-buttons { margin: 0 auto; text-align: center; }
 	.gridy-buttons input { border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-weight: normal; height: 24px; margin-right: 2px; padding-bottom: 2px; text-align: center; width: 40px; }
@@ -61,8 +61,12 @@
 	.gridy-buttons input.gridy-button-next { }
 	.gridy-buttons input.gridy-button-reticence { color: #999; cursor: default; width: 25px; }
 
+	.gridy-button-refresh { background: url('../img/refresh.png') no-repeat 4px 3px #F8F8F8; border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; float: left; height: 24px; margin-left: 8px; margin-right: 2px; margin-top: 4px; padding-bottom: 2px; width: 25px; }
+	.gridy-button-refresh:hover { background-color: #FDFDFD; }
+
 	.gridy-row-option select,
-	.gridy-buttons input {
+	.gridy-buttons input,
+	.gridy-button-refresh {
 		-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 	}
 

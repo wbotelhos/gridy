@@ -18,8 +18,9 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 + jquery.gridy.js
 + jquery.gridy.css
-+ jquery-icons.png
++ icons.png
 + loading.png
++ refresh.png
 
 ## Default values
 
@@ -94,20 +95,22 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 	$('#grid').gridy({ url: '/gridy' });
 	
-	<div id="grid"></div>
+	<table id="grid"></table>
 	
 	<script id="template" type="text/x-jquery-tmpl">
-	   <div>
-	      <div>${name}</div>
-	      <div>${email}</div>
-	   </div>
+	   <table>
+	      <td>${name}</td>
+	      <td>${email}</td>
+	   </table>
 	</script>
 
 ## Public functions
 
 You must pass a ID to be the target of the action:
 	
-	$.fn.gridy.reload('#grid', { scroll: true }); // Reload the grid. The second param changes the properties and is optional.
+	$('#grid').gridy('reload'); // Reload the grid.
+
+	$('#grid').gridy('set', { scroll: true }); // Reload the grid with news parameters.
 
 ## Buy me a coffee
 

@@ -16,13 +16,13 @@
  * -----------------------------------------------------------------------------------
  * $('#grid').gridy({ url: '/gridy' });
  *
- * <div id="grid"></div>
+ * <table id="grid"></table>
  *
  * <script id="template" type="text/x-jquery-tmpl">
- *    <div>
- *       <div>${name}</div>
- *       <div>${email}</div>
- *    </div>
+ *    <tr>
+ *       <td>${name}</td>
+ *       <td>${email}</td>
+ *    </tr>
  * </script>
  *
  */
@@ -40,14 +40,14 @@
 
 				$this.empty().data('settings', self.opt);
 
-				var id 		= $this.attr('id'),
-					$this	= $this.width(methods.getSize.call(self, self.opt.width)).wrap('<div id="' + id + '-wrapper">');
+				var $this = $this.width(methods.getSize.call(self, self.opt.width)).wrap('<div id="' + self.id + '-wrapper">');
 
 				self.wrapper			= $this.parent().width(methods.getSize.call(self, self.opt.width));
 				self.currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '"/>').insertBefore($this);
 				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '"/>').insertBefore($this);
 				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '"/>').insertBefore($this);
 				self.isTable			= self.opt.style == 'table';
+				self.hasHeader			= self.opt.headersName.length > 0;
 
 				if (self.isTable) {
 					$this.attr('cellspacing', 0).parent().addClass(self.opt.skin + '-table');
@@ -55,49 +55,13 @@
 					$this.parent().addClass(self.opt.skin);
 				}
 
-				methods.buildSearch.call(self);
-
-				self.hasHeader = self.opt.headersName.length > 0;
-
-				methods.buildSortBar.call(self);
-
-				function sortGridyFunction() {
-					sortGridy($(this), $this);
+				function sortGridyCallback() {
+					methods.sortGridy.call(self, $(this));
 				};
 
-				function sortGridy(clickedLink, context) {
-					var sortName		= clickedLink.attr('name'),
-						sortOrder		= clickedLink.attr('rel'),
-						nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
-						sortIcon		= (sortOrder == 'desc') ? self.opt.arrowUp : self.opt.arrowDown,
-						isResetIcon		= clickedLink.parent().parent().find('a.gridy-sorted').length > 0;
-
-					methods.changeSortIndicator.call(self, clickedLink, nextSortOrder, sortIcon, isResetIcon);
-
-					listGridy(self.currentPage.val(), sortName, nextSortOrder, context);
-				};
-
-				var $status = undefined;
-
-				if (self.opt.loadingOption || self.opt.resultOption) {
-					$status = $('<div class="gridy-status"/>').insertBefore($this);
-
-					if (self.opt.resize) {
-						$status.width(methods.getSize.call(self, self.opt.width));
-					}
-				}
-
-				var $loading = undefined;
-
-				if (self.opt.loadingOption) {
-					$loading = $('<div class="' + self.opt.loadingIcon + '"><div>' + self.opt.loadingText + '</div></div>').appendTo($status).children();
-				}
-
-				var $result = undefined;
-
-				if (self.opt.resultOption) {
-					$result = $('<div class="gridy-result"/>').appendTo($status);
-				}
+				methods.buildSearcher.call(self);
+				methods.buildSorter.call(self);
+				methods.buildStatus.call(self);
 
 				var $header			= undefined,
 					$headerItems	= undefined;
@@ -109,9 +73,9 @@
 						headLabel	= '';
 
 					if (self.isTable) {
-						$header = $('<thead class="gridy-header"/>').appendTo($this);
+						$header = $('<thead class="gridy-header" />').appendTo($this);
 					} else {
-						$header = $('<div class="gridy-header"/>').appendTo($this);
+						$header = $('<div class="gridy-header" />').appendTo($this);
 
 						if (self.opt.resize) {
 							$header.width(methods.getSize.call(self, self.opt.width));
@@ -122,11 +86,11 @@
 						if (self.opt.colsWidth.length > 0) {
 							self.opt.headersWidth = self.opt.colsWidth;
 						} else {
-							$.error(id + ': headersWith and colsWidth options are invalid or missing!');
+							$.error(self.id + ': headersWith and colsWidth options are invalid or missing!');
 						}
 					}
 
-					for (var i = 0; i < self.opt.headersName.length; i++) {
+					for (var i in self.opt.headersName) {
 						headName = self.opt.headersName[i][0];
 						headLabel = self.opt.headersName[i][1];
 
@@ -162,75 +126,43 @@
 						$head.appendTo($header);
 					}
 
-					$headerItems = $header.children().children('a:not(".gridy-no-sort")').click(sortGridyFunction);
+					$headerItems = $header.children().children('a:not(".gridy-no-sort")').click(sortGridyCallback);
 
-					var $sortInit = $header.find('#sort-by-' + self.opt.sortName);
+					var initialSort = $header.find('#sort-by-' + self.opt.sortName);
 
-					if ($sortInit.length) {
+					if (initialSort.length) {
 						var sortIcon	= (self.opt.sortOrder == 'asc') ? self.opt.arrowUp : self.opt.arrowDown,
 							isResetIcon	= false;
 
-						methods.changeSortIndicator.call(self, $sortInit, self.opt.sortOrder, sortIcon, isResetIcon);
+						methods.changeSorter.call(self, initialSort, self.opt.sortOrder, sortIcon, isResetIcon);
 					}
 				}
-
-				var $content = undefined;
 
 				if (self.isTable) {
-					$content = $('<tbody class="gridy-content"/>');
+					self.content = $('<tbody class="gridy-content"/>');
 				} else {
-					$content = $('<div class="gridy-content"/>').css({ 'height': methods.getSize.call(self, self.opt.height), 'width': methods.getSize.call(self, self.opt.width) });
+					self.content = $('<div class="gridy-content"/>').css({ 'height': methods.getSize.call(self, self.opt.height), 'width': methods.getSize.call(self, self.opt.width) });
 				}
 
-				$content.appendTo($this);
-
-				function startLoading(isStart) {
-					if (self.opt.loadingOption) {
-						if (isStart) {
-							$loading.fadeIn('fast');
-							$content.addClass('gridy-fade');
-						} else {
-							$loading.fadeOut();
-							$content.removeClass('gridy-fade');
-						}
-					}
-				};
-
-				function showNoResult() {
-					if (self.opt.noResultOption) {
-						$content.html('<p class="gridy-no-result">' + self.opt.noResultText + '</p>');
-			
-						if (self.opt.resultOption) {
-							$result.html($result.html().replace(/\d+/g, '0'));
-						}
-
-						if (self.opt.searchOption) {
-							self.searchField.focus().select();
-						}
-					}
-				};
-
-				var $footer = undefined;
+				self.content.appendTo($this);
 
 				if (self.opt.rowsNumber.length > 0  || self.opt.messageOption || (self.opt.findsName.length > 0 && !self.opt.searchOption)) {
-					$footer = $('<div class="gridy-footer"/>').appendTo(self.wrapper);
+					self.footer = $('<div class="gridy-footer"/>').appendTo(self.wrapper);
 
 					if (self.opt.resize) {
-						$footer.width(methods.getSize.call(self, self.opt.width));
+						self.footer.width(methods.getSize.call(self, self.opt.width));
 					}
 				}
 
-				var $findBox = undefined;
-
 				if (self.opt.findsName.length > 0) {
-					$findBox = $('<div class="gridy-find-option"><select></select></div>').appendTo((self.opt.searchOption) ? self.search.children() : $footer).children();
+					self.findBox = $('<div class="gridy-find-option"><select></select></div>').appendTo((self.opt.searchOption) ? self.search.children() : self.footer).children();
 
 					var hasItem		= false,
 						options		= '',
 						findItem	= '',
 						findLabel	= '';
 
-					for (var i = 0; i < self.opt.findsName.length; i++) {
+					for (var i in self.opt.findsName) {
 						findItem = self.opt.findsName[i][0];
 						findLabel = self.opt.findsName[i][1];
 
@@ -242,10 +174,10 @@
 					}
 
 					if (!hasItem) {
-						$findBox.html('<option value="' + self.opt.find + '" checked="checked">' + self.opt.find + '</option>');
+						self.findBox.html('<option value="' + self.opt.find + '" checked="checked">' + self.opt.find + '</option>');
 					}
 
-					$findBox.append(options).val(self.opt.find).change().change(function(index, value) {
+					self.findBox.append(options).val(self.opt.find).change().change(function(index, value) {
 						if (self.opt.searchOption && self.opt.searchFocus) {
 							self.searchField.focus();
 						}
@@ -253,35 +185,7 @@
 					.children('option[value="' + self.opt.find +  '"]').attr('checked', 'checked');
 				}
 
-				var $rowsBox = undefined;
-
-				if (self.opt.rowsNumber.length > 0 ) {
-					$rowsBox = $('<div class="gridy-row-option"><select></select></div>').appendTo($footer).children();
-
-					var rows		= (self.opt.rows < 1) ? 1 : self.opt.rows,
-						hasNumber	= false,
-						options		= '',
-						number		= '';
-
-					for (var i = 0; i < self.opt.rowsNumber.length; i++) {
-						number = self.opt.rowsNumber[i];
-
-						if (number == rows) {
-							hasNumber = true;
-						}
-
-						options += '<option value="' + number + '">' + methods.getNumber.call(self, number) + '</option>';
-					}
-
-					if (!hasNumber) {
-						$rowsBox.html('<option value="' + rows + '" checked="checked">' + methods.getNumber.call(self, rows) + '</option>');
-					}
-
-					$rowsBox.append(options).val(rows).change().change(function(index, value) {
-						listGridy(1, self.currentSortName.val(), self.currentSortOrder.val(), $this);
-					})
-					.children('option[value="' + rows +  '"]').attr('checked', 'checked');
-				}
+				methods.buildRower.call(self);
 
 				if (self.opt.searchTarget) {
 					self.search.appendTo(self.opt.searchTarget);
@@ -289,427 +193,252 @@
 
 				if (self.opt.findTarget) {
 					if (self.opt.findsName.length <= 0) {
-						$.error(id + ': you need set the \'findsName\' option for findOption box be created!');
+						$.error(self.id + ': you need set the \'findsName\' option for findOption box be created!');
 					}
 
-					$findBox.parent().appendTo(self.opt.findTarget);
+					self.findBox.parent().appendTo(self.opt.findTarget);
 				}
 
 				if (self.opt.rowsTarget) {
-					$rowsBox.parent().appendTo(self.opt.rowsTarget);
+					self.rowBox.parent().appendTo(self.opt.rowsTarget);
 				}		
 
-				var $buttons = undefined;
+				methods.buildRefresher.call(self);
 
-				if (self.opt.buttonOption) {
-					$buttons = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>').appendTo(self.wrapper);
+				methods.buildPageButtons.call(self);
 
-					if (self.opt.resize) {
-						$buttons.width(methods.getSize.call(self, self.opt.width));
-					}
-
-					$buttons = $buttons.children();
-				}
-
-				var $message = undefined;
+				
 
 				if (self.opt.messageOption) {
-					$message = $('<div class="gridy-message"/>').appendTo($footer);
+					self.messageBox = $('<div class="gridy-message" />').appendTo(self.footer);
 				}
 
-				function showMessage(message) {
-					if (self.opt.messageOption) {
-						$message.html(message).show();
-
-						setTimeout(function() {
-							$message.fadeOut(function() {
-								$message.empty().hide();
-							});
-						}, self.opt.messageTimer);
-					}
-				};
-
-				listGridy(self.opt.page, self.opt.sortName, self.opt.sortOrder, $this);
-
-				function enableGrid(isEnable) {
-					if (isEnable) {
-						if (self.opt.searchOption) {
-							self.searchField.removeAttr('readonly');
-							self.searchButton.removeAttr('disabled');
-						}
-
-						if (self.opt.sortersName.length > 0) {
-							self.sorterItems.children('a').click(sortGridyFunction);
-							$headerItems.children('a:not(".gridy-no-sort")').click(sortGridyFunction);
-						}
-
-						if (self.opt.buttonOption) { $buttons.children(':not(".gridy-button-reticence")').removeAttr('disabled'); }
-						if (self.opt.findsName.length > 0) { $findBox.removeAttr('disabled'); }
-						if (self.opt.rowsNumber.length > 0 ) { $rowsBox.removeAttr('disabled'); }
-					} else {
-						if (self.opt.searchOption) {
-							self.searchField.attr('readonly', 'readonly');
-							self.searchButton.attr('disabled', 'disabled');
-						}
-
-						if (self.opt.sortersName.length > 0) {
-							self.sorterItems.children('a').die('click');
-							$headerItems.children('a:not(".gridy-no-sort")').die('click');
-						}
-
-						if (self.opt.buttonOption) { $buttons.children().attr('disabled', 'disabled'); }
-						if (self.opt.findsName.length > 0) { $findBox.attr('disabled', 'disabled'); }
-						if (self.opt.rowsNumber.length > 0 ) { $rowsBox.attr('disabled', 'disabled'); }
-					}
-				};
-
-				function processCallback(data, page, sortName, sortOrder, selectedRows) {
-					if (typeof(data) == 'string') {
-						data = $.parseJSON(data);
-					}
-
-					if (self.opt.before) {
-						var callback = self.opt.before.call($this, data, page, sortName, sortOrder);
-
-						if (callback) {
-							data = callback;
-						}
-					}
-
-					var total = eval('data.' + self.opt.totalPath);
-
-					if (total == 0) {
-						showNoResult();
-						$buttons.empty();
-						$rowsBox.hide();
-						enableGrid(true);
-						return;
-					}
-					
-					if (self.opt.sortersName.length > 0) {
-						self.sortBar.show();
-					}
-
-					var list		= eval('data.' + self.opt.listPath),
-						$rows		= undefined,
-						$columns	= undefined;
-
-					$content.html($('#' + self.opt.template).tmpl(list));
-
-					if (self.opt.evenOdd) {
-						$content
-							.children(':even').addClass((self.opt.scroll) ? 'gridy-even-scroll' : 'gridy-even')
-						.end()
-							.children(':odd').addClass((self.opt.scroll) ? 'gridy-odd-scroll' : 'gridy-odd');
-					}
-
-					if (self.opt.colsWidth) {
-						$rows = $content.children(); // div|tr
-
-						if (!self.isTable) {
-							$rows.addClass('gridy-row');
-						}
-
-						$rows.each(function() {
-							$columns = $(this).children();
-
-							if (!self.isTable) {
-								$columns.addClass('gridy-column');
-							}
-
-							$columns.each(function(index) { // div|td
-								if (self.isTable) {
-									$(this).attr('width', self.opt.colsWidth[index]);
-								} else {
-									$(this).width(self.opt.colsWidth[index]);
-								}
-							});
-						});
-					}
-
-					var rest		= total % selectedRows,
-						totalPage	= (total - rest) / selectedRows;
-
-					if (rest > 0) {
-						totalPage++;
-					}
-
-					if (self.opt.resultOption) {
-						var resultText = self.opt.resultText.replace('{from}', methods.getNumber.call(self, page)).replace('{to}', methods.getNumber.call(self, totalPage)).replace('{total}', methods.getNumber.call(self, total));
-
-						$result.html(resultText);
-					}
-
-					if (self.opt.buttonOption) {
-						if (total > selectedRows) {
-							var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="gridy-button-reticence"/>&#160;',
-								buttons		= '',
-								number		= 0,
-								rangePage	= undefined,
-								start		= 1,
-								buttonMax	= self.opt.buttonMax,
-								isEven		= (buttonMax % 2 == 0);
-
-							if (buttonMax > totalPage) {
-								buttonMax = totalPage;
-							}
-
-							if (isEven) {
-								rangePage	= Math.ceil(buttonMax / 2);
-								start		= page - rangePage + 1;
-							} else {
-								rangePage	= Math.floor(buttonMax / 2);
-								start		= page - rangePage;
-							}
-
-							var end = parseInt(page, 10) + rangePage;
-
-							if (start == 0) {
-								end++;
-								start = 1;
-							}
-
-							if (start < 0) {
-								end += Math.abs(start) + 1; // + 1 is the button 0.
-								start = 1;
-							}
-
-							if (end > totalPage) {
-								if (start > 1) {
-									if (start === (end - totalPage)) {
-										start = 1;
-									} else {
-										start -= (end - totalPage);
-									}
-								} 
-
-								end = totalPage;
-							}
-
-							var	hasExceeded			= totalPage > buttonMax,
-								hasBackNavigation	= hasExceeded && page > ((isEven) ? rangePage : rangePage + 1),
-								hasNextNavigation	= hasExceeded && page < (totalPage - rangePage);
-
-							if (hasBackNavigation) {
-								buttons = '<input type="button" value="&lsaquo;" alt="' + self.opt.buttonBackTitle + '" title="' + self.opt.buttonBackTitle + '" class="gridy-back"/>&#160;';
-								buttons += buttonEmpty;
-							}
-
-							for (var i = start; i <= end; i++) {
-								number = methods.getNumber.call(self, i);
-								buttons += '<input type="button" value="' + number + '" alt="' + number + '" title="' + self.opt.buttonTitle + ' ' + number + '"/>&#160;';
-							}
-
-							if (hasNextNavigation) {
-								buttons += buttonEmpty;
-								buttons += '<input type="button" value="&rsaquo;" alt="' + self.opt.buttonNextTitle + '" title="' + self.opt.buttonNextTitle + '" class="gridy-next"/>&#160;';
-							}
-
-							$buttons.html(buttons).children(':not(".gridy-back, .gridy-reticence, .gridy-next")').click(function() {
-								listGridy(parseInt(this.alt, 10), self.currentSortName.val(), self.currentSortOrder.val(), $this);
-							});
-
-							if (hasBackNavigation) {
-								$buttons.children('.gridy-back').click(function() {
-									listGridy(page - 1, self.currentSortName.val(), self.currentSortOrder.val(), $this);
-								});
-							}
-
-							if (hasNextNavigation) {
-								$buttons.children('.gridy-next').click(function() {
-									listGridy(page + 1, self.currentSortName.val(), self.currentSortOrder.val(), $this);
-								});
-							}
-						} else {
-							$buttons.empty();
-						}
-
-						$('input[value="' + methods.getNumber.call(self, page) + '"]').attr('disabled', 'disabled').addClass('gridy-button-active');
-					}
-
-					self.currentPage.val(page);
-					self.currentSortName.val(sortName);
-					self.currentSortOrder.val(sortOrder);
-				};
-
-				function listGridy(page, sortName, sortOrder, context) {
-					enableGrid(false);
-					startLoading(true);
-
-					var search			= self.opt.search,
-						selectedRows	= (self.opt.rowsNumber.length > 0) ? $rowsBox.show().val() : self.opt.rows,
-						selectedFind	= (self.opt.findsName.length > 0) ? $findBox.val() : self.opt.find;
-
-					if (self.opt.searchOption) {
-						search = (self.searchField.val() == self.opt.searchText) ? '' : self.searchField.val();
-
-						if (self.opt.searchFocus) {
-							self.searchField.focus();
-						}
-					}
-
-					if (self.opt.data) {
-						processCallback(self.opt.data, page, sortName, sortOrder);
-						return;
-					}
-
-					var data = {
-						search:		search,
-						page:		page,
-						sortName: 	sortName,
-						sortOrder:  sortOrder,
-						find:		selectedFind,
-						rows:		selectedRows
-					};
-
-					for (var prop in self.opt.params) {
-						data[prop] = self.opt.params[prop];
-				    }
-
-					for (var prop in self.opt.paramsElements) {
-						var elem = self.opt.paramsElements[prop];
-
-						$(elem).each(function(i) {
-							var $this = $(this);
-
-							if ($this.is(':enabled') && !$this.is(':checkbox') || $this.is(':checked')) {
-
-								if (elem.indexOf('.') == 0) {
-									var param = data[this.name],
-										items = [];
-
-									if (param) {
-										for (var i in param) {
-											items.push(param[i]);
-										}
-									}
-
-									items.push(this.value);
-
-									data[this.name] = items;				
-								} else {
-									data[this.name] = this.value;
-								}
-							}
-						});
-					}
-
-					if (self.opt.debug) {
-						var queryString = '[debug] query string:\n\n',
-							propSpace	,
-							i			;
-
-						for (var prop in data) {
-							propSpace = prop;
-
-							for (i = 0; i < (20 - prop.length); i++) {
-								propSpace += ' ';
-							}
-
-							queryString += propSpace + ': \'' + data[prop] + '\'\n';
-						}
-
-						if (window.console && window.console.log) {
-							window.console.log(queryString);
-						}
-					}
-
-					$.ajax({
-						cache			: self.opt.cache,
-						contentType		: self.opt.contentType,
-						dataType		: self.opt.dataType,
-						jsonp			: self.opt.jsonp,
-						jsonpCallback	: self.opt.jsonpCallback,
-						type			: self.opt.type,
-						url				: self.opt.url,
-						data			: data,
-						success			: function(data, textStatus, jqXHR) {
-							processCallback(data, page, sortName, sortOrder, selectedRows);
-
-							var scrollSufix = (self.opt.scroll) ? '-scroll' : '';
-
-							if (self.opt.hoverFx) {
-								$content.children().mouseenter(function() {
-									$(this).addClass('gridy-row-hovered' + scrollSufix);
-								}).mouseleave(function() {
-									$(this).removeClass('gridy-row-hovered' + scrollSufix);
-								});
-							}
-
-							if (self.opt.clickFx) {
-								$content.children().click(function(evt) {
-									var $this = $(this);
-
-									if (!evt.shiftKey) {
-										$this.parent().children('.gridy-row-selected' + scrollSufix).removeClass('gridy-row-selected' + scrollSufix);
-									}
-
-									$this.toggleClass('gridy-row-selected' + scrollSufix);
-								});
-							}
-
-							if (self.opt.success) {
-								self.opt.success.call(context, data, textStatus, jqXHR);
-							}
-						}, error: function(jqXHR, textStatus, errorThrown) {
-							showMessage(methods.getError.call(self, jqXHR));
-
-							if (self.opt.error) {
-								self.opt.error.call(context, jqXHR, textStatus, errorThrown);
-							}
-						}, complete: function(jqXHR, textStatus) {
-							startLoading(false);
-							enableGrid(true);
-
-							if (self.opt.scroll) {
-								if (self.opt.height == 'auto') {
-									throw id + ': height attribute missing!';
-								}
-
-								if (self.isTable) {
-									var $this	= $content.parent(),
-										width	= methods.getSize.call(self, self.opt.width + 15);
-
-									$this.wrap('<div id="' + id + '-wrapper" />')
-										.parent().addClass('gridy-scroll-wrapper').css({ 'height': methods.getSize.call(self, self.opt.height), 'width': width })
-									.end()
-									.clone(true).removeAttr('id').width(width) 
-										.find('tbody').remove()
-									.end()
-									.insertBefore($this.parent());
-
-									$this.children('thead').remove();
-								} else {
-									$content.addClass('gridy-scroll-wrapper').children().addClass('gridy-scroll');
-								}
-							} else {
-								if (self.opt.separate) {
-									var $firstLine = $content.children(':first').not('p');
+				methods.listGridy.call(self, self.opt.page, self.opt.sortName, self.opt.sortOrder);
+			});
+		}, processCallback: function(data, page, sortName, sortOrder, selectedRows) {
+			var self = this;
+
+			if (typeof(data) == 'string') {
+				data = $.parseJSON(data);
+			}
+
+			if (self.opt.before) {
+				var callback = self.opt.before.call($(self), data, page, sortName, sortOrder);
+
+				if (callback) {
+					data = callback;
+				}
+			}
+
+			var total = eval('data.' + self.opt.totalPath);
+
+			if (total == 0) {
+				methods.showNoResult.call(self);
+				self.pageButtons.empty();
+				self.rowBox.hide();
+				methods.enableGrid.call(self, true);
+				return;
+			}
 			
-									if (self.isTable) {
-										$firstLine = $firstLine.children();
-									}
+			if (self.opt.sortersName.length > 0) {
+				self.sortBar.show();
+			}
 
-									$firstLine.addClass('gridy-separate');
-								}
-							}
+			var list		= eval('data.' + self.opt.listPath),
+				$rows		= undefined,
+				$columns	= undefined;
 
-							if (self.isTable) {
-								$content.children(':last').children().addClass('gridy-last-line');
-							}
+			self.content.html($('#' + self.opt.template).tmpl(list));
 
-							if (self.opt.complete) {
-								self.opt.complete.call(context, jqXHR, textStatus);
-							}
+			if (self.opt.evenOdd) {
+				self.content
+					.children(':even').addClass((self.opt.scroll) ? 'gridy-even-scroll' : 'gridy-even')
+				.end()
+					.children(':odd').addClass((self.opt.scroll) ? 'gridy-odd-scroll' : 'gridy-odd');
+			}
+
+			if (self.opt.colsWidth) {
+				$rows = self.content.children(); // div|tr
+
+				if (!self.isTable) {
+					$rows.addClass('gridy-row');
+				}
+
+				$rows.each(function() {
+					$columns = $(this).children();
+
+					if (!self.isTable) {
+						$columns.addClass('gridy-column');
+					}
+
+					$columns.each(function(index) { // div|td
+						if (self.isTable) {
+							$(this).attr('width', self.opt.colsWidth[index]);
+						} else {
+							$(this).width(self.opt.colsWidth[index]);
 						}
 					});
-				};
-			});
-		}, buildSearch: function(settings) {
+				});
+			}
+
+			var rest		= total % selectedRows,
+				totalPage	= (total - rest) / selectedRows;
+
+			if (rest > 0) {
+				totalPage++;
+			}
+
+			if (self.opt.resultOption) {
+				var resultText = self.opt.resultText.replace('{from}', methods.getNumber.call(self, page)).replace('{to}', methods.getNumber.call(self, totalPage)).replace('{total}', methods.getNumber.call(self, total));
+
+				self.result.html(resultText);
+			}
+
+			if (self.opt.buttonOption) {
+				if (total > selectedRows) {
+					var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="gridy-button-reticence"/>&#160;',
+						buttons		= '',
+						number		= 0,
+						rangePage	= undefined,
+						start		= 1,
+						buttonMax	= self.opt.buttonMax,
+						isEven		= (buttonMax % 2 == 0);
+
+					if (buttonMax > totalPage) {
+						buttonMax = totalPage;
+					}
+
+					if (isEven) {
+						rangePage	= Math.ceil(buttonMax / 2);
+						start		= page - rangePage + 1;
+					} else {
+						rangePage	= Math.floor(buttonMax / 2);
+						start		= page - rangePage;
+					}
+
+					var end = parseInt(page, 10) + rangePage;
+
+					if (start == 0) {
+						end++;
+						start = 1;
+					}
+
+					if (start < 0) {
+						end += Math.abs(start) + 1; // + 1 is the button 0.
+						start = 1;
+					}
+
+					if (end > totalPage) {
+						if (start > 1) {
+							if (start === (end - totalPage)) {
+								start = 1;
+							} else {
+								start -= (end - totalPage);
+							}
+						} 
+
+						end = totalPage;
+					}
+
+					var	hasExceeded			= totalPage > buttonMax,
+						hasBackNavigation	= hasExceeded && page > ((isEven) ? rangePage : rangePage + 1),
+						hasNextNavigation	= hasExceeded && page < (totalPage - rangePage);
+
+					if (hasBackNavigation) {
+						buttons = '<input type="button" value="&lsaquo;" alt="' + self.opt.buttonBackTitle + '" title="' + self.opt.buttonBackTitle + '" class="gridy-back"/>&#160;';
+						buttons += buttonEmpty;
+					}
+
+					for (var i = start; i <= end; i++) {
+						number = methods.getNumber.call(self, i);
+						buttons += '<input type="button" value="' + number + '" alt="' + number + '" title="' + self.opt.buttonTitle + ' ' + number + '"/>&#160;';
+					}
+
+					if (hasNextNavigation) {
+						buttons += buttonEmpty;
+						buttons += '<input type="button" value="&rsaquo;" alt="' + self.opt.buttonNextTitle + '" title="' + self.opt.buttonNextTitle + '" class="gridy-next"/>&#160;';
+					}
+
+					self.pageButtons.html(buttons).children(':not(".gridy-back, .gridy-reticence, .gridy-next")').click(function() {
+						methods.listGridy.call(self, parseInt(this.alt, 10), self.currentSortName.val(), self.currentSortOrder.val());
+					});
+
+					if (hasBackNavigation) {
+						self.pageButtons.children('.gridy-back').click(function() {
+							methods.listGridy.call(self, page - 1, self.currentSortName.val(), self.currentSortOrder.val());
+						});
+					}
+
+					if (hasNextNavigation) {
+						self.pageButtons.children('.gridy-next').click(function() {
+							methods.listGridy.call(self, page + 1, self.currentSortName.val(), self.currentSortOrder.val());
+						});
+					}
+				} else {
+					self.pageButtons.empty();
+				}
+
+				$('input[value="' + methods.getNumber.call(self, page) + '"]').attr('disabled', 'disabled').addClass('gridy-button-active');
+			}
+
+			self.currentPage.val(page);
+			self.currentSortName.val(sortName);
+			self.currentSortOrder.val(sortOrder);
+		}, buildPageButtons: function() {
+			var self = this;
+
+			if (self.opt.buttonOption) {
+				var wrapper = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>').appendTo(self.wrapper);
+
+				if (self.opt.resize) {
+					wrapper.width(methods.getSize.call(self, self.opt.width));
+				}
+
+				self.pageButtons = wrapper.children();
+			}
+		}, buildRefresher: function() {
+			var self = this;
+
+			if (self.opt.refreshOption) {
+				self.refresher = $('<input type="button" class="' + self.opt.refreshIcon + '"/>').click(function() {
+					methods.listGridy.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
+				}).appendTo(self.footer);
+			}
+		}, buildRower: function() {
+			var self = this;
+
+			if (self.opt.rowsNumber.length > 0 ) {
+				self.rowBox = $('<div class="gridy-row-option"><select></select></div>').appendTo(self.footer).children();
+
+				var rows		= (self.opt.rows < 1) ? 1 : self.opt.rows,
+					hasNumber	= false,
+					options		= '',
+					number		;
+
+				for (var i in self.opt.rowsNumber) {
+					number = self.opt.rowsNumber[i];
+
+					if (number == rows) {
+						hasNumber = true;
+					}
+
+					options += '<option value="' + number + '">' + methods.getNumber.call(self, number) + '</option>';
+				}
+
+				if (!hasNumber) {
+					options = '<option value="' + rows + '" checked="checked">' + methods.getNumber.call(self, rows) + '</option>' + options;
+				}
+
+				self.rowBox.html(options).val(rows).change().change(function(i, value) {
+					methods.listGridy.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val(), $(self));
+				})
+				.children('option[value="' + rows +  '"]').attr('checked', 'checked');
+			}
+		}, buildSearcher: function() {
 			var self = this;
 
 			if (self.opt.searchOption) {
-				self.search = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').insertBefore($(this));
+				self.search = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>').insertBefore($(self));
 
 				if (self.opt.resize) {
 					self.search.width(methods.getSize.call(self, self.opt.width));
@@ -727,17 +456,17 @@
 					}
 				}).keypress(function(evt) {
 					if ((evt.keyCode ? evt.keyCode : evt.which) == 13) {
-						listGridy(1, self.currentSortName.val(), self.currentSortOrder.val(), $this);
+						methods.listGridy.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
 					}
 				});
 
 				self.searchButton = $('<input type="button" value="' + self.opt.searchButtonLabel + '" title="' + self.opt.searchButtonTitle + '"/>').appendTo(self.search.children());
 
 				self.searchButton.click(function() {
-					listGridy(1, self.currentSortName.val(), self.currentSortOrder.val(), $this);
+					methods.listGridy.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
 				});
 			}
-		}, buildSortBar: function(settings) {
+		}, buildSorter: function() {
 			var	self = this;
 
 			if (self.opt.sortersName.length > 0) {
@@ -756,19 +485,51 @@
 						'</div>';
 				}
 
-				self.sortBar		= $('<div class="gridy-sorter-bar"/>').width(methods.getSize.call(self, self.opt.sorterWidth)).html(sorterContent).appendTo($this);
-				self.sorterItems	= self.sortBar.children().children('a').click(sortGridyFunction);
+				self.sortBar = $('<div class="gridy-sorter-bar"/>').width(methods.getSize.call(self, self.opt.sorterWidth)).html(sorterContent).appendTo($this);
+				self.sorterItems = self.sortBar.children().children('a').click(sortGridyCallback);
 
-				var $sortInit = self.sorterItems.find('a#sort-by-' + self.opt.sortName);
+				var initialSort = self.sorterItems.find('a#sort-by-' + self.opt.sortName);
 
-				if ($sortInit.length) {
+				if (initialSort.length) {
 					var sortIcon	= (self.opt.sortOrder == 'asc') ? self.opt.arrowUp : self.opt.arrowDown,
 						isResetIcon	= false;
 
-					methods.changeSortIndicator.call(self, $sortInit, self.opt.sortOrder, sortIcon, isResetIcon);
+					methods.changeSorter.call(self, initialSort, self.opt.sortOrder, sortIcon, isResetIcon);
 				}
 			}
-		}, changeSortIndicator: function(clickedLink, sortOrder, sortIcon, isResetIcon) {
+		}, enableGrid: function(isEnable) {
+			var self = this;
+
+			if (isEnable) {
+				if (self.opt.searchOption) {
+					self.searchField.removeAttr('readonly');
+					self.searchButton.removeAttr('disabled');
+				}
+
+				if (self.opt.sortersName.length > 0) {
+					self.sorterItems.children('a').click(sortGridyCallback);
+					$headerItems.children('a:not(".gridy-no-sort")').click(sortGridyCallback);
+				}
+
+				if (self.opt.buttonOption) { self.pageButtons.children(':not(".gridy-button-reticence")').removeAttr('disabled'); }
+				if (self.opt.findsName.length > 0) { self.findBox.removeAttr('disabled'); }
+				if (self.opt.rowsNumber.length > 0 ) { self.rowBox.removeAttr('disabled'); }
+			} else {
+				if (self.opt.searchOption) {
+					self.searchField.attr('readonly', 'readonly');
+					self.searchButton.attr('disabled', 'disabled');
+				}
+
+				if (self.opt.sortersName.length > 0) {
+					self.sorterItems.children('a').die('click');
+					$headerItems.children('a:not(".gridy-no-sort")').die('click');
+				}
+
+				if (self.opt.buttonOption) { self.pageButtons.children().attr('disabled', 'disabled'); }
+				if (self.opt.findsName.length > 0) { self.findBox.attr('disabled', 'disabled'); }
+				if (self.opt.rowsNumber.length > 0 ) { self.rowBox.attr('disabled', 'disabled'); }
+			}
+		}, changeSorter: function(clickedLink, sortOrder, sortIcon, isResetIcon) {
 			var self			= this,
 				$sortWrapper	= clickedLink.parent().parent(),
 				isHeader		= self.hasHeader && $sortWrapper.attr('class') == 'gridy-header';
@@ -794,6 +555,29 @@
 			return (number < 10) ? '0' + number : number;
 		}, reload: function() {
 			methods.set.call(this, {});
+		}, sortGridy: function(clickedLink) {
+			var self			= this,
+				sortName		= clickedLink.attr('name'),
+				sortOrder		= clickedLink.attr('rel'),
+				nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
+				sortIcon		= (sortOrder == 'desc') ? self.opt.arrowUp : self.opt.arrowDown,
+				isResetIcon		= clickedLink.parent().parent().find('a.gridy-sorted').length > 0;
+
+			methods.changeSorter.call(self, clickedLink, nextSortOrder, sortIcon, isResetIcon);
+
+			methods.listGridy.call(self, self.currentPage.val(), sortName, nextSortOrder);
+		}, showMessage: function(message) {
+			var self = this;
+
+			if (self.opt.messageOption) {
+				self.messageBox.html(message).show();
+
+				setTimeout(function() {
+					self.messageBox.fadeOut(function() {
+						self.messageBox.hide().empty();
+					});
+				}, self.opt.messageTimer);
+			}
 		}, set: function(settings) {
 			return this.each(function() {
 				var $this	= $(this),
@@ -804,6 +588,223 @@
 				$parent.remove();
 
 				$this.gridy($.extend(true, {}, $this.data('settings'), settings));
+			});
+		}, showNoResult: function() {
+			var self = this;
+
+			if (self.opt.noResultOption) {
+				self.content.html('<p class="gridy-no-result">' + self.opt.noResultText + '</p>');
+	
+				if (self.opt.resultOption) {
+					self.result.html(self.result.html().replace(/\d+/g, '0'));
+				}
+
+				if (self.opt.searchOption) {
+					self.searchField.focus().select();
+				}
+			}
+		}, startLoading: function(isStart) {
+			var self = this;
+
+			if (self.opt.loadingOption) {
+				if (isStart) {
+					self.loading.fadeIn('fast');
+					self.content.addClass('gridy-fade');
+				} else {
+					self.loading.fadeOut();
+					self.content.removeClass('gridy-fade');
+				}
+			}
+		}, buildStatus: function() {
+			var self = this;
+
+			if (self.opt.loadingOption || self.opt.resultOption) {
+				self.statusBox = $('<div class="gridy-status" />').insertBefore($(self));
+
+				if (self.opt.resize) {
+					self.statusBox.width(methods.getSize.call(self, self.opt.width));
+				}
+			}
+
+			if (self.opt.loadingOption) {
+				self.loading = $('<div class="' + self.opt.loadingIcon + '"><div>' + self.opt.loadingText + '</div></div>').appendTo(self.statusBox).children();
+			}
+
+			if (self.opt.resultOption) {
+				self.result = $('<div class="gridy-result" />').appendTo(self.statusBox);
+			}
+		}, listGridy: function(page, sortName, sortOrder) {
+			var self = this;
+
+			methods.enableGrid.call(self, false);
+			methods.startLoading.call(self, true);
+
+			var search			= self.opt.search,
+				selectedRows	= (self.opt.rowsNumber.length > 0) ? self.rowBox.show().val() : self.opt.rows,
+				selectedFind	= (self.opt.findsName.length > 0) ? self.findBox.val() : self.opt.find;
+
+			if (self.opt.searchOption) {
+				search = (self.searchField.val() == self.opt.searchText) ? '' : self.searchField.val();
+
+				if (self.opt.searchFocus) {
+					self.searchField.focus();
+				}
+			}
+
+			if (self.opt.data) {
+				methods.processCallback.call(self, self.opt.data, page, sortName, sortOrder);
+				return;
+			}
+
+			var data = {
+				search		: search,
+				page		: page,
+				sortName	: sortName,
+				sortOrder	: sortOrder,
+				find		: selectedFind,
+				rows		: selectedRows
+			};
+
+			for (var prop in self.opt.params) {
+				data[prop] = self.opt.params[prop];
+		    }
+
+			for (var prop in self.opt.paramsElements) {
+				var elem = self.opt.paramsElements[prop];
+
+				$(elem).each(function(i) {
+					var $this = $(this);
+
+					if ($this.is(':enabled') && !$this.is(':checkbox') || $this.is(':checked')) {
+
+						if (elem.indexOf('.') == 0) {
+							var param = data[this.name],
+								items = [];
+
+							if (param) {
+								for (var i in param) {
+									items.push(param[i]);
+								}
+							}
+
+							items.push(this.value);
+
+							data[this.name] = items;				
+						} else {
+							data[this.name] = this.value;
+						}
+					}
+				});
+			}
+
+			if (self.opt.debug) {
+				var queryString = '[debug] query string:\n\n',
+					propSpace	,
+					i			;
+
+				for (var prop in data) {
+					propSpace = prop;
+
+					for (i = 0; i < (20 - prop.length); i++) {
+						propSpace += ' ';
+					}
+
+					queryString += propSpace + ': \'' + data[prop] + '\'\n';
+				}
+
+				if (window.console && window.console.log) {
+					window.console.log(queryString);
+				}
+			}
+
+			$.ajax({
+				cache			: self.opt.cache,
+				contentType		: self.opt.contentType,
+				dataType		: self.opt.dataType,
+				jsonp			: self.opt.jsonp,
+				jsonpCallback	: self.opt.jsonpCallback,
+				type			: self.opt.type,
+				url				: self.opt.url,
+				data			: data,
+				success			: function(data, textStatus, jqXHR) {
+					methods.processCallback.call(self, data, page, sortName, sortOrder, selectedRows);
+
+					var scrollSufix = (self.opt.scroll) ? '-scroll' : '';
+
+					if (self.opt.hoverFx) {
+						self.content.children().mouseenter(function() {
+							$(this).addClass('gridy-row-hovered' + scrollSufix);
+						}).mouseleave(function() {
+							$(this).removeClass('gridy-row-hovered' + scrollSufix);
+						});
+					}
+
+					if (self.opt.clickFx) {
+						self.content.children().click(function(evt) {
+							var $this = $(this);
+
+							if (!evt.shiftKey) {
+								$this.parent().children('.gridy-row-selected' + scrollSufix).removeClass('gridy-row-selected' + scrollSufix);
+							}
+
+							$this.toggleClass('gridy-row-selected' + scrollSufix);
+						});
+					}
+
+					if (self.opt.success) {
+						self.opt.success.call(self, data, textStatus, jqXHR);
+					}
+				}, error: function(jqXHR, textStatus, errorThrown) {
+					methods.showMessage.call(self, methods.getError.call(self, jqXHR));
+
+					if (self.opt.error) {
+						self.opt.error.call(self, jqXHR, textStatus, errorThrown);
+					}
+				}, complete: function(jqXHR, textStatus) {
+					methods.startLoading.call(self, false);
+					methods.enableGrid.call(self, true);
+
+					if (self.opt.scroll) {
+						if (self.opt.height == 'auto') {
+							throw self.id + ': height attribute missing!';
+						}
+
+						if (self.isTable) {
+							var $this	= self.content.parent(),
+								width	= methods.getSize.call(self, self.opt.width + 15);
+
+							$this.wrap('<div id="' + self.id + '-wrapper" />')
+								.parent().addClass('gridy-scroll-wrapper').css({ 'height': methods.getSize.call(self, self.opt.height), 'width': width })
+							.end()
+							.clone(true).removeAttr('id').width(width) 
+								.find('tbody').remove()
+							.end()
+							.insertBefore($this.parent());
+
+							$this.children('thead').remove();
+						} else {
+							self.content.addClass('gridy-scroll-wrapper').children().addClass('gridy-scroll');
+						}
+					} else {
+						if (self.opt.separate) {
+							var $firstLine = self.content.children(':first').not('p');
+	
+							if (self.isTable) {
+								$firstLine = $firstLine.children();
+							}
+
+							$firstLine.addClass('gridy-separate');
+						}
+					}
+
+					if (self.isTable) {
+						self.content.children(':last').children().addClass('gridy-last-line');
+					}
+
+					if (self.opt.complete) {
+						self.opt.complete.call(self, jqXHR, textStatus);
+					}
+				}
 			});
 		}
 	};
@@ -857,6 +858,8 @@
 		page				: 1,
 		params				: {},
 		paramsElements		: [],
+		refreshIcon			: 'gridy-button-refresh',
+		refreshOption		: true,
 		resize				: true,
 		resultOption		: true,
 		resultText			: 'Displaying {from} - {to} of {total} items',

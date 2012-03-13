@@ -1487,6 +1487,23 @@ describe('style div', function() {
 		expect($firstRow).not.toHaveClass('gridy-row-selected');
 	});
 
+	it ('should create refresh button', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			style:		'div',
+			template:	'template-div',
+			url: 		'/gridy'
+		});
+
+		var refresher = $this.parent().find('.gridy-button-refresh');
+
+		// then
+		expect(refresher).toExist();
+	});
+
 });
 
 describe('style table', function() {
@@ -2520,6 +2537,22 @@ describe('style table', function() {
 		expect($firstRow).not.toHaveClass('gridy-row-selected');
 	});
 
+	it ('should create refresh button', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			template:	'template-div',
+			url: 		'/gridy'
+		});
+
+		var refresher = $this.parent().find('.gridy-button-refresh');
+
+		// then
+		expect(refresher).toExist();
+	});
+
 });
 
 describe('style table with no result', function() {
@@ -3116,7 +3149,11 @@ describe('functions', function() {
 		$('body').append('<div id="grid"></div>');
 	});
 
-	it ('should reload without searchOption and on page 2', function() {
+	afterEach(function() {
+		$('#grid').parent().remove();
+	});
+
+	it ('should set without searchOption and on page 2', function() {
 		spyOn($, 'ajax').andCallFake(function(params) {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"}], "total": 2}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
@@ -3126,18 +3163,39 @@ describe('functions', function() {
 		});
 
 		// given
-		var $this = $('#grid');
-
-		// when
-		$this.gridy({
+		var $this = $('#grid').gridy({
 			rows	: 1,
 			url		: '/gridy'
 		});
 
+		// when
 		$this.gridy('set', { page: 2, searchOption: false });
 
 		// then
 		expect($this.parent().find('.gridy-search')).not.toExist();
+		expect($this.parent().find('.gridy-button-active')).toHaveValue('02');
+	});
+
+	it ('should reload with the same filter', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"}], "total": 2}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid').gridy({
+			page	: 2,
+			rows	: 1,
+			url		: '/gridy'
+		});
+
+		// when
+		$this.gridy('reload');
+
+		// then
 		expect($this.parent().find('.gridy-button-active')).toHaveValue('02');
 	});
 
