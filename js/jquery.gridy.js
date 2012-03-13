@@ -635,7 +635,7 @@
 			}
 
 			if (self.opt.before) {
-				var callback = self.opt.before.call($(self), data, page, sortName, sortOrder);
+				var callback = self.opt.before.call(self, data, page, sortName, sortOrder);
 
 				if (callback) {
 					data = callback;
