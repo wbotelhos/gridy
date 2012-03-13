@@ -13,6 +13,7 @@
 + Now the 'success', 'error' and 'complete' callback has the 'this' as the Gridy context;
 + Now the defaults options that not belongs Gridy has it owner original value;
 + Now the options 'buttonsWidth' no more exists;
++ Now the callback 'before' receives the raw scope 'this' instead the jQuery selector;
 
 + Changed the delegate() method to click() and die() to be able use on jQuery 1.4.x;
 + Changed the name of the 'templateStyle' option to 'skin';
@@ -21,7 +22,8 @@
 + Fixed the ID of hidden fields to not repeat when has more than one gridy on page;
 + Fixed the ID of search field to not repeat when has more than one gridy on page;
 + Fixed the separate class to not be applied on no result row;
-+ Fixed undesired trigger on back and next button with NaN page.
++ Fixed undesired trigger on back and next button with NaN page;
++ Fixed the JSON return taked from the callback 'before';
 
 + Added 'resize' option to apply the same width of the content to the other wrappers;
 + Added 'evenOdd' option to enables the even odd row style;

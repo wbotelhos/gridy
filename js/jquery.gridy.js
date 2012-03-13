@@ -639,6 +639,10 @@
 
 				if (callback) {
 					data = callback;
+
+					if (typeof(data) == 'string') {
+						data = $.parseJSON(data);
+					}
 				}
 			}
 

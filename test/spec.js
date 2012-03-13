@@ -3165,6 +3165,35 @@ describe('callbacks', function() {
 		expect($this).toHaveClass('my-class');
 	});
 
+	it ('should set json from return of "before" callback', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"}], "total": 2}',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows	: 1,
+			url		: '/gridy',
+			before	: function() {
+				return '{"list": [{"id": 3, "username": "z", "name": "Z"}], "total": 1}';
+			}
+		});
+
+		// then
+		var rows = $this.find('td');
+
+		expect(rows.eq(0)).toHaveHtml('3');
+		expect(rows.eq(1)).toHaveHtml('z');
+		expect(rows.eq(2)).toHaveHtml('Z');
+	});
+
 });
 
 describe('functions', function() {
