@@ -108,7 +108,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 You must pass a ID to be the target of the action:
 	
-	$('#grid').gridy('reload'); // Reload the grid.
+	$('#grid').gridy('reload'); // Reload the grid with the current filter configuration.
 
 	$('#grid').gridy('set', { scroll: true }); // Reload the grid with news parameters.
 

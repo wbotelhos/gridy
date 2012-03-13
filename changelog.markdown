@@ -2,35 +2,38 @@
 
 ### 0.3.0 (Development)
 
-+ Added 'buttonPageNumber' to disable the page buttons with the number of pages;
++ Now 'paramsElements' capture class elements as a array of parameter and other elements as simple value;
++ Now you can use table rather div if you have just tabulated data in a list format;
++ Now the component 'find' will be hanging on search container;
++ Now the 'params' option is sent as hash object intead a simple query string;
++ Now the 'paramsElements' option is sent as hash object intead a simple query string;
++ Now the 'debug' option was improved to show a better description;
++ Now the Gridy has a major wrapper to keep all the grid;
++ Now the 'success', 'error' and 'complete' callback receives the original $.ajax() parameters;
++ Now the 'success', 'error' and 'complete' callback has the 'this' as the Gridy context;
++ Now the defaults options that not belongs Gridy has it owner original value;
++ Now the options 'buttonsWidth' no more exists;
+
++ Changed the delegate() method to click() and die() to be able use on jQuery 1.4.x;
++ Changed the name of the 'templateStyle' option to 'skin';
+
++ Fixed gridy when search gets no result; (by Gabriel Benz)
++ Fixed the ID of hidden fields to not repeat when has more than one gridy on page;
++ Fixed the ID of search field to not repeat when has more than one gridy on page;
++ Fixed the separate class to not be applied on no result row;
++ Fixed undesired trigger on back and next button with NaN page.
+
 + Added 'resize' option to apply the same width of the content to the other wrappers;
 + Added 'evenOdd' option to enables the even odd row style;
 + Added 'paramsElements' option to choose an array of selectors of fields to be used it values as parameters;
 + Added 'listPath' option to choose the path of the list element like 'response.movie.list';
 + Added 'totalPath' option to choose the path of the total element like 'response.movie.total';
 + Added 'style' option to choose between table and div grid style;
-+ Added 'separate' option to change the style of the first line on grid to separate visually;
-+ Added method 'set' to re-adjust runtime settings;
-+ Changed the delegate() to click() and die() to be able use on jQuery 1.4.x;
-+ Changed the option 'templateStyle' to simple 'skin';
-+ Now 'paramsElements' can capture a bunch of elements including class with the same name;
-+ Now you can use table rather div if you have just tabulated data in a list format;
-+ Now the component 'find' will be hanging on search container;
-+ Now the jQuery data is sent as hash;
-+ Now the 'params' option is sent as hash;
-+ Now the 'paramsElements' option is sent as hash;
-+ Now the 'debug' option was improved to show a better debug;
-+ Now the Gridy has a major wrapper to keep all the grid;
-+ Now the 'success', 'error' and 'complete' callback receives the original $.ajax() parameters;
-+ Now the 'success', 'error' and 'complete' callback has the 'this' as the Gridy context;
-+ Now the defaults options that not belongs Gridy has it owner original value;
-+ Now the options 'buttonsWidth' no more exists;
-+ Fixed gridy when search gets no result; (by Gabriel Benz)
-+ Fixed the index number given to Gridy binded by class without id;
-+ Fixed the ID of hidden fields to not repeat when has more than one gridy on page;
-+ Fixed the ID of search field to not repeat when has more than one gridy on page;
-+ Fixed the separate class to not be applied on no result row;
-+ Fixed undesired trigger on back and next button with NaN page.
++ Added 'separate' option to change the style of the first line on grid to separate visually the header;
++ Added 'refreshTarget' option to choose where the refresh button should appear;
+
++ Added function 'reload' to reload the grid with current filter configuration;
++ Added function 'set' to reload the grid with new options;
 
 ### 0.2.0
 

@@ -1504,6 +1504,30 @@ describe('style div', function() {
 		expect(refresher).toExist();
 	});
 
+	it ('refreshTarget should put it on target', function() {
+		$('body').append('<div id="target"></div>');
+
+		// given
+		var $this	= $('#grid'),
+			$target	= $('#target');
+
+		// when
+		$this.gridy({
+			style			: 'div',
+			template		: 'template-div',
+			url				: '/gridy',
+			refreshTarget	: '#target'
+		});
+
+		var $wrapper = $this.parent();
+
+		// then
+		expect($wrapper.children('.gridy-footer').children('.gridy-button-refresh')).not.toExist();
+		expect($target.children('.gridy-button-refresh')).toExist();
+
+		$target.remove();
+	});
+
 });
 
 describe('style table', function() {
