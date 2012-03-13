@@ -281,6 +281,52 @@ describe('json format', function() {
 	    expect($columns.length == 3).toBeTruthy();
 	});
 
+	it ('should get the totalPath inside just one object', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"}], "totale": 1 }',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows		: 1,
+			url			: '/gridy',
+			totalPath	: 'totale'
+		});
+
+		// then
+		expect($this.parent().find('.gridy-result')).toHaveHtml('Displaying 01 - 01 of 01 items');
+	});
+
+	it ('should get the totalPath inside a couple of objects', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"}], "total": { "subtotal": { "value": 1 } } }',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows		: 1,
+			url			: '/gridy',
+			totalPath	: 'total.subtotal.value'
+		});
+
+		// then
+		expect($this.parent().find('.gridy-result')).toHaveHtml('Displaying 01 - 01 of 01 items');
+	});
+
 });
 
 describe('style div', function() {
@@ -3192,6 +3238,60 @@ describe('callbacks', function() {
 		expect(rows.eq(0)).toHaveHtml('3');
 		expect(rows.eq(1)).toHaveHtml('z');
 		expect(rows.eq(2)).toHaveHtml('Z');
+	});
+
+	it ('should get the listPath inside a couple of objects', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"collection": { "subCollection": { "value": [{"id": 1, "username": "a", "name": "A"}] } }, "total": 1 }',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows		: 1,
+			url			: '/gridy',
+			listPath	: 'collection.subCollection.value'
+		});
+
+		// then
+		var rows = $this.find('td');
+
+		expect(rows.eq(0)).toHaveHtml('1');
+		expect(rows.eq(1)).toHaveHtml('a');
+		expect(rows.eq(2)).toHaveHtml('A');
+	});
+
+	it ('should get the listPath inside a single object', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"collection": [{"id": 1, "username": "a", "name": "A"}], "total": 1 }',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows		: 1,
+			url			: '/gridy',
+			listPath	: 'collection'
+		});
+
+		// then
+		var rows = $this.find('td');
+
+		expect(rows.eq(0)).toHaveHtml('1');
+		expect(rows.eq(1)).toHaveHtml('a');
+		expect(rows.eq(2)).toHaveHtml('A');
 	});
 
 });

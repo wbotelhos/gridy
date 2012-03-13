@@ -646,7 +646,14 @@
 				}
 			}
 
-			var total = eval('data.' + self.opt.totalPath);
+			var totalVet	= self.opt.totalPath.split('.'),
+				total		= 0,
+				prop		;
+
+			for (var i in totalVet) {
+				prop = totalVet[i];
+				total = (i == 0) ? data[prop] : total[prop]; 
+			}
 
 			if (total == 0) {
 				methods.showNoResult.call(self);
@@ -655,13 +662,20 @@
 				methods.enableGrid.call(self, true);
 				return;
 			}
-			
+
 			if (self.opt.sortersName.length > 0) {
 				self.sortBar.show();
 			}
 
-			var list	= eval('data.' + self.opt.listPath),
-				rows	= undefined,
+			var listVet	= self.opt.listPath.split('.'),
+				list	= [];
+	
+			for (var i in listVet) {
+				prop = listVet[i];
+				list = (i == 0) ? data[prop] : list[prop]; 
+			}
+
+			var rows	= undefined,
 				columns	= undefined;
 
 			self.content.html($('#' + self.opt.template).tmpl(list));
