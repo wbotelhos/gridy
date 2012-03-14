@@ -571,7 +571,7 @@
 				}
 
 				if (self.opt.buttonOption) {
-					self.pageButtons.children(':not(".gridy-button-reticence")').attr('disabled', 'disabled');
+					self.pageButtons.attr('disabled', 'disabled');
 				}
 
 				if (self.hasFinds) {
@@ -685,10 +685,10 @@
 				list = (i == 0) ? data[prop] : list[prop]; 
 			}
 
+			self.content.html($('#' + self.opt.template).tmpl(list));
+
 			var rows	= undefined,
 				columns	= undefined;
-
-			self.content.html($('#' + self.opt.template).tmpl(list));
 
 			if (self.opt.evenOdd) {
 				self.content
