@@ -68,7 +68,7 @@
 				methods.buildPageButtons.call(self);
 				methods.buildMessager.call(self);
 
-				methods.listData.call(self, self.opt.page, self.opt.sortName, self.opt.sortOrder);
+				methods.data.call(self, self.opt.page, self.opt.sortName, self.opt.sortOrder);
 			});
 		}, buildContent: function() {
 			var self = this;
@@ -196,13 +196,13 @@
 				}
 
 				self.sorters = self.header.children('.gridy-sorter').children('a').click(function() {
-					methods.sortData.call(self, $(this));
+					methods.sort.call(self, $(this));
 				});
 
 				var initialSort = self.header.find('#sort-by-' + self.opt.sortName);
 
 				if (initialSort.length) {
-					methods.sort.call(self, initialSort, self.opt.sortOrder);
+					methods.flick.call(self, initialSort, self.opt.sortOrder);
 				}
 			}
 		}, buildMessager: function() {
@@ -228,7 +228,7 @@
 
 			if (self.opt.refreshOption) {
 				self.refresher = $('<input type="button" class="' + self.opt.refreshIcon + '" />').click(function() {
-					methods.listData.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
+					methods.data.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
 				});
 			}
 
@@ -267,7 +267,7 @@
 				}
 
 				self.rower.html(options).val(rows).change().change(function(index, value) {
-					methods.listData.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val(), $(self));
+					methods.data.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val(), $(self));
 				})
 				.children('option[value="' + rows +  '"]').attr('checked', 'checked');
 			}
@@ -305,14 +305,14 @@
 					}
 				}).keypress(function(evt) {
 					if ((evt.keyCode ? evt.keyCode : evt.which) == 13) {
-						methods.listData.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
+						methods.data.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
 					}
 				});
 
 				self.searchButton = $('<input type="button" value="' + self.opt.searchButtonLabel + '" title="' + self.opt.searchButtonTitle + '" />');
 
 				self.searchButton.click(function() {
-					methods.listData.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
+					methods.data.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
 				}).appendTo(searchContent);
 
 				if (self.opt.searchTarget) {
@@ -339,78 +339,7 @@
 			if (self.opt.resultOption) {
 				self.result = $('<div class="gridy-result" />').appendTo(self.statusBox);
 			}
-		}, sort: function(sorter, sortOrder, currentSort) {
-			var self		= this,
-				sortIcon	= (self.opt.sortOrder == 'asc') ? self.opt.arrowUp : self.opt.arrowDown;
-
-			if (currentSort) {
-				currentSort.attr('rel', 'desc').removeClass('gridy-sorted').next('div').removeClass().addClass(self.opt.arrowNone);
-			}
-
-			sorter.attr('rel', sortOrder).addClass('gridy-sorted').next('div').removeClass().addClass(sortIcon);
-		}, enableGrid: function(isEnable) {
-			var self = this;
-
-			if (isEnable) {
-				if (self.opt.searchOption) {
-					self.searchField.removeAttr('readonly');
-					self.searchButton.removeAttr('disabled');
-				}
-
-				if (self.hasHeader) {
-					self.sorters.filter(':not(".gridy-no-sort")').click(function() {
-						methods.sortData.call(self, $(this));
-					});
-				}
-
-				if (self.opt.buttonOption) {
-					self.pageButtons.children(':not(".gridy-button-reticence")').removeAttr('disabled');
-				}
-
-				if (self.hasFinds) {
-					self.findBox.removeAttr('disabled');
-				}
-
-				if (self.hasRows) {
-					self.rower.removeAttr('disabled');
-				}
-
-				if (self.opt.refreshOption) {
-					self.refresher.removeAttr('disabled');
-				}
-			} else {
-				if (self.opt.searchOption) {
-					self.searchField.attr('readonly', 'readonly');
-					self.searchButton.attr('disabled', 'disabled');
-				}
-
-				if (self.hasHeader) {
-					self.sorters.unbind('click');
-				}
-
-				if (self.opt.buttonOption) {
-					self.pageButtons.children(':not(".gridy-button-reticence")').attr('disabled', 'disabled');
-				}
-
-				if (self.hasFinds) {
-					self.findBox.attr('disabled', 'disabled');
-				}
-
-				if (self.hasRows) {
-					self.rower.attr('disabled', 'disabled');
-				}
-
-				if (self.opt.refreshOption) {
-					self.refresher.attr('disabled', 'disabled');
-				}
-			}
-		}, getError: function(xhr) {
-			return (xhr.responseText) ? xhr.responseText.substring(xhr.responseText.indexOf('(') + 1, xhr.responseText.indexOf(')')) : xhr.statusText;
-		}, getNumber: function(number) {
-			return (number < 10) ? '0' + number : number;
-		}, getSize: function(size) {
-			return (isNaN(parseInt(size, 10))) ? size : size + 'px';
-		}, listData: function(page, sortName, sortOrder) {
+		}, data: function(page, sortName, sortOrder) {
 			var self = this;
 
 			methods.enableGrid.call(self, false);
@@ -550,7 +479,7 @@
 						self.opt.success.call(self, data, textStatus, jqXHR);
 					}
 				}, error: function(jqXHR, textStatus, errorThrown) {
-					methods.showMessage.call(self, methods.getError.call(self, jqXHR));
+					methods.message.call(self, methods.getError.call(self, jqXHR));
 
 					if (self.opt.error) {
 						self.opt.error.call(self, jqXHR, textStatus, errorThrown);
@@ -601,6 +530,77 @@
 					}
 				}
 			});
+		}, enableGrid: function(isEnable) {
+			var self = this;
+
+			if (isEnable) {
+				if (self.opt.searchOption) {
+					self.searchField.removeAttr('readonly');
+					self.searchButton.removeAttr('disabled');
+				}
+
+				if (self.hasHeader) {
+					self.sorters.filter(':not(".gridy-no-sort")').click(function() {
+						methods.sort.call(self, $(this));
+					});
+				}
+
+				if (self.opt.buttonOption) {
+					self.pageButtons.children(':not(".gridy-button-reticence")').removeAttr('disabled');
+				}
+
+				if (self.hasFinds) {
+					self.findBox.removeAttr('disabled');
+				}
+
+				if (self.hasRows) {
+					self.rower.removeAttr('disabled');
+				}
+
+				if (self.opt.refreshOption) {
+					self.refresher.removeAttr('disabled');
+				}
+			} else {
+				if (self.opt.searchOption) {
+					self.searchField.attr('readonly', 'readonly');
+					self.searchButton.attr('disabled', 'disabled');
+				}
+
+				if (self.hasHeader) {
+					self.sorters.unbind('click');
+				}
+
+				if (self.opt.buttonOption) {
+					self.pageButtons.children(':not(".gridy-button-reticence")').attr('disabled', 'disabled');
+				}
+
+				if (self.hasFinds) {
+					self.findBox.attr('disabled', 'disabled');
+				}
+
+				if (self.hasRows) {
+					self.rower.attr('disabled', 'disabled');
+				}
+
+				if (self.opt.refreshOption) {
+					self.refresher.attr('disabled', 'disabled');
+				}
+			}
+		}, flick: function(sorter, sortOrder, currentSort) {
+			var self		= this,
+				sortIcon	= (self.opt.sortOrder == 'asc') ? self.opt.arrowUp : self.opt.arrowDown;
+
+			if (currentSort) {
+				currentSort.attr('rel', 'desc').removeClass('gridy-sorted').next('div').removeClass().addClass(self.opt.arrowNone);
+			}
+
+			sorter.attr('rel', sortOrder).addClass('gridy-sorted').next('div').removeClass().addClass(sortIcon);
+		}, getError: function(xhr) {
+			return (xhr.responseText) ? xhr.responseText.substring(xhr.responseText.indexOf('(') + 1, xhr.responseText.indexOf(')')) : xhr.statusText;
+		}, getNumber: function(number) {
+			return (number < 10) ? '0' + number : number;
+		}, getSize: function(size) {
+			return (isNaN(parseInt(size, 10))) ? size : size + 'px';
 		}, loading: function(isStart) {
 			var self = this;
 
@@ -611,6 +611,32 @@
 				} else {
 					self.loading.fadeOut();
 					self.content.removeClass('gridy-fade');
+				}
+			}
+		}, message: function(message) {
+			var self = this;
+
+			if (self.opt.messageOption) {
+				self.messageBox.html(message).show();
+
+				setTimeout(function() {
+					self.messageBox.fadeOut(function() {
+						self.messageBox.hide().empty();
+					});
+				}, self.opt.messageTimer);
+			}
+		}, noResult: function() {
+			var self = this;
+
+			if (self.opt.noResultOption) {
+				self.content.html('<p class="gridy-no-result">' + self.opt.noResultText + '</p>');
+	
+				if (self.opt.resultOption) {
+					self.result.html(self.result.html().replace(/\d+/g, '0'));
+				}
+
+				if (self.opt.searchOption) {
+					self.searchField.focus().select();
 				}
 			}
 		}, process: function(data, page, sortName, sortOrder, selectedRows) {
@@ -642,7 +668,7 @@
 			}
 
 			if (total == 0) {
-				methods.showNoResult.call(self);
+				methods.noResult.call(self);
 
 				if (self.opt.buttonOption) {
 					self.pageButtons.empty();
@@ -774,18 +800,18 @@
 					}
 
 					self.pageButtons.html(buttons).children(':not(".gridy-back, .gridy-reticence, .gridy-next")').click(function() {
-						methods.listData.call(self, parseInt(this.alt, 10), self.currentSortName.val(), self.currentSortOrder.val());
+						methods.data.call(self, parseInt(this.alt, 10), self.currentSortName.val(), self.currentSortOrder.val());
 					});
 
 					if (hasBackNavigation) {
 						self.pageButtons.children('.gridy-back').click(function() {
-							methods.listData.call(self, page - 1, self.currentSortName.val(), self.currentSortOrder.val());
+							methods.data.call(self, page - 1, self.currentSortName.val(), self.currentSortOrder.val());
 						});
 					}
 
 					if (hasNextNavigation) {
 						self.pageButtons.children('.gridy-next').click(function() {
-							methods.listData.call(self, page + 1, self.currentSortName.val(), self.currentSortOrder.val());
+							methods.data.call(self, page + 1, self.currentSortName.val(), self.currentSortOrder.val());
 						});
 					}
 				} else {
@@ -811,42 +837,15 @@
 
 				$this.gridy($.extend(true, {}, $this.data('settings'), settings));
 			});
-		}, showMessage: function(message) {
-			var self = this;
-
-			if (self.opt.messageOption) {
-				self.messageBox.html(message).show();
-
-				setTimeout(function() {
-					self.messageBox.fadeOut(function() {
-						self.messageBox.hide().empty();
-					});
-				}, self.opt.messageTimer);
-			}
-		}, showNoResult: function() {
-			var self = this;
-
-			if (self.opt.noResultOption) {
-				self.content.html('<p class="gridy-no-result">' + self.opt.noResultText + '</p>');
-	
-				if (self.opt.resultOption) {
-					self.result.html(self.result.html().replace(/\d+/g, '0'));
-				}
-
-				if (self.opt.searchOption) {
-					self.searchField.focus().select();
-				}
-			}
-		}, sortData: function(sorter) {
+		}, sort: function(sorter) {
 			var self			= this,
 				sortName		= sorter.attr('name'),
 				sortOrder		= sorter.attr('rel'),
 				nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
 				currentSort		= self.sorters.filter('.gridy-sorted');
 
-			methods.sort.call(self, sorter, nextSortOrder, currentSort);
-
-			methods.listData.call(self, self.currentPage.val(), sortName, nextSortOrder);
+			methods.flick.call(self, sorter, nextSortOrder, currentSort);
+			methods.data.call(self, self.currentPage.val(), sortName, nextSortOrder);
 		}
 	};
 
