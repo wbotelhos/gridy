@@ -34,6 +34,7 @@
 + Added 'style' option to choose between table and div grid style;
 + Added 'separate' option to change the style of the first line on grid to separate visually the header;
 + Added 'refreshTarget' option to choose where the refresh button should appear;
++ Added the new 'before' callback called before the ajax request with option to override the 'page', 'sortName' and 'sortOrder';
 
 + Added function 'reload' to reload the grid with current filter configuration;
 + Added function 'set' to reload the grid with new options;

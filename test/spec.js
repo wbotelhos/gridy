@@ -3292,6 +3292,86 @@ describe('callbacks', function() {
 		expect(rows.eq(2)).toHaveHtml('A');
 	});
 
+	it ('should call "before" callback before load the grid', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"collection": [{"id": 1, "username": "a", "name": "A"}], "total": 1 }',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows	: 1,
+			url		: '/gridy',
+			before	: function() {
+				$(this).addClass('called');
+
+				// then
+				expect($this.parent().find('.gridy-loading').children()).toBeVisible();
+				expect($this.parent().find('.gridy-content').children().length == 0).toEqual(true);
+			}
+		});
+
+		expect($this).toHaveClass('called');
+	});
+
+	it ('should call "before" callback and override the page number, sortName and sortOrder', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"collection": [{"id": 1, "username": "a", "name": "A"}], "total": 1 }',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+
+			// then
+			expect(params.data.page).toEqual(2);
+			expect(params.data.sortName).toEqual('sortName');
+			expect(params.data.sortOrder).toEqual('sortOrder');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows	: 1,
+			url		: '/gridy',
+			before	: function() {
+				return { page: 2, sortName: 'sortName', sortOrder: 'sortOrder' }
+			}
+		});
+	});
+
+	it ('should call "before" callback and NOT override the page number, sortName and sortOrder', function() {
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"collection": [{"id": 1, "username": "a", "name": "A"}], "total": 1 }',
+				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+
+			// then
+			expect(params.data.page).toEqual(1);
+			expect(params.data.sortName).toEqual('');
+			expect(params.data.sortOrder).toEqual('asc');
+		});
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows	: 1,
+			url		: '/gridy',
+			before	: function() { }
+		});
+	});
+
 });
 
 describe('functions', function() {

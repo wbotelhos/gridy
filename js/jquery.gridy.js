@@ -463,7 +463,25 @@
 			var self = this;
 
 			methods.enableGrid.call(self, false);
-			methods.startLoading.call(self, true);
+			methods.loading.call(self, true);
+
+			if (self.opt.before) {
+				var result = self.opt.before.call(self, page, sortName, sortOrder);
+
+				if (result) {
+					if (result.page) {
+						page = result.page;
+					}
+	
+					if (result.sortName) {
+						sortName = result.sortName;
+					}
+	
+					if (result.sortOrder) {
+						sortOrder = result.sortOrder;
+					}
+				}
+			}
 
 			var search			= self.opt.search,
 				selectedRows	= (self.opt.rowsNumber.length > 0) ? self.rowBox.show().val() : self.opt.rows,
@@ -587,7 +605,7 @@
 						self.opt.error.call(self, jqXHR, textStatus, errorThrown);
 					}
 				}, complete: function(jqXHR, textStatus) {
-					methods.startLoading.call(self, false);
+					methods.loading.call(self, false);
 					methods.enableGrid.call(self, true);
 
 					if (self.opt.scroll) {
@@ -632,6 +650,18 @@
 					}
 				}
 			});
+		}, loading: function(isStart) {
+			var self = this;
+
+			if (self.opt.loadingOption) {
+				if (isStart) {
+					self.loading.fadeIn('fast');
+					self.content.addClass('gridy-fade');
+				} else {
+					self.loading.fadeOut();
+					self.content.removeClass('gridy-fade');
+				}
+			}
 		}, process: function(data, page, sortName, sortOrder, selectedRows) {
 			var self = this;
 
@@ -868,18 +898,6 @@
 			methods.changeSorter.call(self, clickedLink, nextSortOrder, sortIcon, isResetIcon);
 
 			methods.listData.call(self, self.currentPage.val(), sortName, nextSortOrder);
-		}, startLoading: function(isStart) {
-			var self = this;
-
-			if (self.opt.loadingOption) {
-				if (isStart) {
-					self.loading.fadeIn('fast');
-					self.content.addClass('gridy-fade');
-				} else {
-					self.loading.fadeOut();
-					self.content.removeClass('gridy-fade');
-				}
-			}
 		}
 	};
 
