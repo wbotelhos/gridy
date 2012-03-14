@@ -3342,7 +3342,7 @@ describe('callbacks', function() {
 			rows	: 1,
 			url		: '/gridy',
 			before	: function() {
-				return { page: 2, sortName: 'sortName', sortOrder: 'sortOrder' }
+				return { page: 2, sortName: 'sortName', sortOrder: 'sortOrder' };
 			}
 		});
 	});
