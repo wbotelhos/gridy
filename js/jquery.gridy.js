@@ -687,9 +687,6 @@
 
 			self.content.html($('#' + self.opt.template).tmpl(list));
 
-			var rows	= undefined,
-				columns	= undefined;
-
 			if (self.opt.evenOdd) {
 				self.content
 					.children(':even').addClass((self.opt.scroll) ? 'gridy-even-scroll' : 'gridy-even')
@@ -697,12 +694,10 @@
 					.children(':odd').addClass((self.opt.scroll) ? 'gridy-odd-scroll' : 'gridy-odd');
 			}
 
+			var rows, columns;
+
 			if (self.opt.colsWidth) {
 				rows = self.content.children(); // div|tr
-
-				if (!self.isTable) {
-					rows.addClass('gridy-row');
-				}
 
 				rows.each(function() {
 					columns = $(this).children();
