@@ -639,8 +639,8 @@
 				data = $.parseJSON(data);
 			}
 
-			if (self.opt.before) {
-				var callback = self.opt.before.call(self, data, page, sortName, sortOrder);
+			if (self.opt.filter) {
+				var callback = self.opt.filter.call(self, data, page, sortName, sortOrder);
 
 				if (callback) {
 					data = callback;
@@ -897,7 +897,6 @@
 		arrowDown			: 'gridy-arrow-down',
 		arrowNone			: 'gridy-arrow-none',
 		arrowUp				: 'gridy-arrow-up',
-		before				: undefined,
 		buttonBackTitle		: '&lsaquo; Back',
 		buttonMax			: 10,
 		buttonNextTitle		: 'Next &rsaquo;',
@@ -912,6 +911,7 @@
 		debug				: false,
 		error				: undefined,
 		evenOdd				: false,
+		filter				: undefined,
 		find				: '',
 		findsName			: [],
 		findTarget			: undefined,

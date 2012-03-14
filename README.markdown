@@ -43,6 +43,7 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 	debug             : false                                   // Shows details of the grid request.
 	error             : undefined                               // Function executed when occurs an error.
 	evenOdd           : false                                   // Enables the even odd row style.
+	filter            : undefined                               // Function executed to filter the returned JSON data.
 	find              : ''                                      // Name of the column where research will be done.
 	findsName         : []                                      // List with the name of the columns for research.
 	findTarget        : undefined                               // ID of the place where the find element will be appended.

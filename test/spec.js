@@ -3185,7 +3185,7 @@ describe('callbacks', function() {
 		$('#grid').parent().remove();
 	});
 
-	it ('should call "before" callback', function() {
+	it ('should call "filter" callback', function() {
 		spyOn($, 'ajax').andCallFake(function(params) {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
@@ -3200,7 +3200,7 @@ describe('callbacks', function() {
 		// when
 		$this.gridy({
 			url		: '/gridy',
-			before	: function() {
+			filter	: function() {
 				$(this).addClass('my-class');
 			}
 		});
@@ -3209,9 +3209,9 @@ describe('callbacks', function() {
 		expect($this).toHaveClass('my-class');
 	});
 
-	it ('should set json from return of "before" callback', function() {
+	it ('should set json from return of "filter" callback', function() {
 		spyOn($, 'ajax').andCallFake(function(params) {
-			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"}], "total": 2}',
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"}], "total": 1}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 			params.success(data, 'status', xhr);
@@ -3225,17 +3225,17 @@ describe('callbacks', function() {
 		$this.gridy({
 			rows	: 1,
 			url		: '/gridy',
-			before	: function() {
-				return '{"list": [{"id": 3, "username": "z", "name": "Z"}], "total": 1}';
+			filter	: function() {
+				return '{"list": [{"id": 2, "username": "b", "name": "B"}], "total": 1}';
 			}
 		});
 
 		// then
 		var rows = $this.find('td');
 
-		expect(rows.eq(0)).toHaveHtml('3');
-		expect(rows.eq(1)).toHaveHtml('z');
-		expect(rows.eq(2)).toHaveHtml('Z');
+		expect(rows.eq(0)).toHaveHtml('2');
+		expect(rows.eq(1)).toHaveHtml('b');
+		expect(rows.eq(2)).toHaveHtml('B');
 	});
 
 	it ('should get the listPath inside a couple of objects', function() {
