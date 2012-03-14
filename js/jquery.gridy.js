@@ -87,26 +87,25 @@
 
 			if (self.opt.findsName.length > 0) {
 				self.findBox =
-					$('<div class="gridy-find-option"><select></select></div>')
-					.appendTo((self.opt.searchOption) ? self.search.children() : self.footer).children();
+				$('<div class="gridy-find-option"><select></select></div>').appendTo((self.opt.searchOption) ? self.search.children() : self.footer).children();
 
-				var hasItem		= false,
+				var hasValue	= false,
 					options		= '',
-					findItem	,
-					findLabel	;
+					value		,
+					label		;
 
 				for (var i in self.opt.findsName) {
-					findItem = self.opt.findsName[i][0];
-					findLabel = self.opt.findsName[i][1];
+					value = self.opt.findsName[i][0];
+					label = self.opt.findsName[i][1];
 
-					options += '<option value="' + findItem + '">' + findLabel + '</option>';
+					options += '<option value="' + value + '">' + label + '</option>';
 
-					if (findItem == self.opt.find) {
-						hasItem = true;
+					if (value == self.opt.find) {
+						hasValue = true;
 					}
 				}
 
-				if (!hasItem) {
+				if (!hasValue) {
 					options = '<option value="' + self.opt.find + '" checked="checked">' + self.opt.find + '</option>' + options;
 				}
 
@@ -120,7 +119,7 @@
 
 			if (self.opt.findTarget) {
 				if (self.opt.findsName.length <= 0) {
-					$.error(self.id + ": you need set the 'findsName' option for findOption box be created!");
+					$.error(self.id + ": you need set the 'findsName' option for find box be created!");
 				}
 
 				self.findBox.parent().appendTo(self.opt.findTarget);
@@ -128,7 +127,7 @@
 		}, buildFooter: function() {
 			var self = this;
 
-			if (self.opt.rowsNumber.length > 0  || self.opt.messageOption || (self.opt.findsName.length > 0 && !self.opt.searchOption)) {
+			if (self.opt.rowsNumber.length > 0  || self.opt.messageOption || (!self.opt.searchOption && self.opt.findsName.length > 0)) {
 				self.footer = $('<div class="gridy-footer" />').appendTo(self.wrapper);
 
 				if (self.opt.resize) {
@@ -139,64 +138,60 @@
 			var self = this;
 
 			if (self.hasHeader) {
-				var $this		= $(self),
-					$head		= undefined,
-					$sortLink	= undefined,
-					headName	= '',
-					headLabel	= '';
+				if (self.opt.headersWidth.length <= 0) {
+					if (self.opt.colsWidth.length <= 0) {
+						$.error(self.id + ": 'headersWith' and 'colsWidth' options are invalid or missing!");
+					}
+
+					self.opt.headersWidth = self.opt.colsWidth;
+				}
 
 				if (self.isTable) {
-					self.header = $('<thead class="gridy-header" />').appendTo($this);
+					self.header = $('<thead class="gridy-header" />').appendTo(self);
 				} else {
-					self.header = $('<div class="gridy-header" />').appendTo($this);
+					self.header = $('<div class="gridy-header" />').appendTo(self);
 
 					if (self.opt.resize) {
 						self.header.width(methods.getSize.call(self, self.opt.width));
 					}
 				}
 
-				if (self.opt.headersWidth.length <= 0) {
-					if (self.opt.colsWidth.length > 0) {
-						self.opt.headersWidth = self.opt.colsWidth;
-					} else {
-						$.error(self.id + ': headersWith and colsWidth options are invalid or missing!');
-					}
-				}
+				var headName, headLabel, sortLink, head;
 
 				for (var i in self.opt.headersName) {
 					headName = self.opt.headersName[i][0];
 					headLabel = self.opt.headersName[i][1];
 
-					$sortLink = $('<a/>', { href: 'javascript:void(0);', html: headLabel });
+					sortLink = $('<a />', { href: 'javascript:void(0);', html: headLabel });
 
 					if (self.isTable) {
-						$head = $('<th class="gridy-head-item"/>');
+						head = $('<th class="gridy-head-item" />');
 					} else {
-						$head = $('<div class="gridy-head-item"/>');
+						head = $('<div class="gridy-head-item" />');
 					}
 
 					if (headName) {
-						$sortLink.attr({ id: 'sort-by-' + headName, name: headName });
+						sortLink.attr({ id: 'sort-by-' + headName, name: headName });
 
 						var $sortIcon = $('<div/>', { 'class': self.opt.arrowNone });
 
-						$head.append($sortLink, $sortIcon);
+						head.append(sortLink, $sortIcon);
 					} else {
-						$sortLink.attr('class', 'gridy-no-sort');
-						$head.append($sortLink);
+						sortLink.attr('class', 'gridy-no-sort');
+						head.append(sortLink);
 					}
 
 					if (self.opt.headersName[i][2]) {
-						$head.addClass(self.opt.headersName[i][2]);
+						head.addClass(self.opt.headersName[i][2]);
 					}
 
 					if (self.isTable) {
-						$head.attr('width', self.opt.headersWidth[i]);
+						head.attr('width', self.opt.headersWidth[i]);
 					} else {
-						$head.width(self.opt.headersWidth[i]);
+						head.width(self.opt.headersWidth[i]);
 					}
 
-					$head.appendTo(self.header);
+					head.appendTo(self.header);
 				}
 
 				self.headerItems = self.header.children().children('a:not(".gridy-no-sort")').click(function() {
@@ -237,12 +232,16 @@
 				self.refresher = $('<input type="button" class="' + self.opt.refreshIcon + '"/>').click(function() {
 					methods.listData.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
 				});
+			}
 
-				if (self.opt.refreshTarget) {
-					self.refresher.appendTo(self.opt.refreshTarget);
-				} else {
-					self.refresher.appendTo(self.footer);
+			if (self.opt.refreshTarget) {
+				if (!self.opt.refreshOption) {
+					$.error(self.id + ": you must turn the 'refreshOption' to true to use 'refreshTarget'!");
 				}
+
+				self.refresher.appendTo(self.opt.refreshTarget);
+			} else {
+				self.refresher.appendTo(self.footer);
 			}
 		}, buildRower: function() {
 			var self = this;
@@ -273,12 +272,16 @@
 					methods.listData.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val(), $(self));
 				})
 				.children('option[value="' + rows +  '"]').attr('checked', 'checked');
+			}
 
-				if (self.opt.rowsTarget) {
-					self.rowBox.parent().appendTo(self.opt.rowsTarget);
-				} else {
-					self.rowBox.parent().appendTo(self.footer);
+			if (self.opt.rowsTarget) {
+				if (self.opt.rowsNumber.length <= 0) {
+					$.error(self.id + ": you need set the 'rowsNumber' option for rows box be created!");
 				}
+
+				self.rowBox.parent().appendTo(self.opt.rowsTarget);
+			} else {
+				self.rowBox.parent().appendTo(self.footer);
 			}
 		}, buildSearcher: function() {
 			var self = this;
@@ -428,8 +431,10 @@
 				}
 
 				if (self.opt.sortersName.length > 0) {
-					self.sorterItems.children('a').die('click');
-					self.headerItems.children('a:not(".gridy-no-sort")').die('click');
+					var sorters = self.sorterItems.children('a');
+					console.log(sorters);
+					sorters.die('click');
+					sorters.filter(':not(".gridy-no-sort")').die('click');
 				}
 
 				if (self.opt.buttonOption) {
@@ -659,7 +664,6 @@
 				methods.showNoResult.call(self);
 				self.pageButtons.empty();
 				self.rowBox.hide();
-				methods.enableGrid.call(self, true);
 				return;
 			}
 
