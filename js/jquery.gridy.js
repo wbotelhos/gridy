@@ -156,13 +156,13 @@
 					}
 				}
 
-				var headName, headLabel, sortLink, head;
+				var name, label, sortLink, head;
 
 				for (var i in self.opt.headersName) {
-					headName = self.opt.headersName[i][0];
-					headLabel = self.opt.headersName[i][1];
+					name = self.opt.headersName[i][0];
+					label = self.opt.headersName[i][1];
 
-					sortLink = $('<a />', { href: 'javascript:void(0);', html: headLabel });
+					sortLink = $('<a />', { href: 'javascript:void(0);', html: label });
 
 					if (self.isTable) {
 						head = $('<th class="gridy-head-item" />');
@@ -170,10 +170,10 @@
 						head = $('<div class="gridy-head-item" />');
 					}
 
-					if (headName) {
-						sortLink.attr({ id: 'sort-by-' + headName, name: headName });
+					if (name) {
+						sortLink.attr({ id: 'sort-by-' + name, name: name });
 
-						var $sortIcon = $('<div/>', { 'class': self.opt.arrowNone });
+						var $sortIcon = $('<div />', { 'class': self.opt.arrowNone });
 
 						head.append(sortLink, $sortIcon);
 					} else {
@@ -327,22 +327,22 @@
 			var	self = this;
 
 			if (self.opt.sortersName.length > 0) {
-				var	sorterContent	= '',
-					sorterItem		,
-					sorterLabel		;
+				var	build	= '',
+					name	,
+					label	;
 
 				for (var i in self.opt.sortersName) {
-					sorterItem = self.opt.sortersName[i][0];
-					sorterLabel = self.opt.sortersName[i][1];
+					name = self.opt.sortersName[i][0];
+					label = self.opt.sortersName[i][1];
 
-					sorterContent +=
+					build +=
 						'<div class="gridy-sorter-item">' +
 							'<div class="' + self.opt.arrowNone + '"></div>' +
-							'<a id="sort-by-' + sorterItem + '" href="javascript:void(0);" name="' + sorterItem + '" rel="desc">' + sorterLabel + '</a>' +
+							'<a id="sort-by-' + name + '" href="javascript:void(0);" name="' + name + '" rel="desc">' + label + '</a>' +
 						'</div>';
 				}
 
-				self.sortBar = $('<div class="gridy-sorter-bar"/>').width(methods.getSize.call(self, self.opt.sorterWidth)).html(sorterContent).appendTo($this);
+				self.sortBar = $('<div class="gridy-sorter-bar" />').width(methods.getSize.call(self, self.opt.sorterWidth)).html(build).appendTo(self);
 				self.sorterItems = self.sortBar.children().children('a').click(function() {
 					methods.sortData.call(self, $(this));
 				});
@@ -432,9 +432,9 @@
 
 				if (self.opt.sortersName.length > 0) {
 					var sorters = self.sorterItems.children('a');
-					console.log(sorters);
-					sorters.die('click');
-					sorters.filter(':not(".gridy-no-sort")').die('click');
+
+					sorters.unbind('click');
+					sorters.filter(':not(".gridy-no-sort")').unbind('click');
 				}
 
 				if (self.opt.buttonOption) {

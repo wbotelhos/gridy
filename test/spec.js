@@ -401,9 +401,9 @@ describe('style div', function() {
 
 		// when
 		$this.gridy({
-			style:		'div',
-			template:	'template-div',
-			url:		'/gridy'
+			style	: 'div',
+			template: 'template-div',
+			url		: '/gridy'
 		});
 
 		var $columns = $this.children('.gridy-content').children('div:first').children('div');
@@ -914,7 +914,7 @@ describe('style div', function() {
 		expect($wrapper.children('.gridy-search')).not.toExist();
 		expect($target.children('.gridy-search')).toExist();
 
-		$target.remove();
+		$('#target').remove();
 	});
 
 	it ('gridy-footer should exists by default', function() {
@@ -1110,7 +1110,7 @@ describe('style div', function() {
 		expect($wrapper.children('.gridy-row-option')).not.toExist();
 		expect($target.children('.gridy-row-option')).toExist();
 
-		$target.remove();
+		$('#target').remove();
 	});
 
 	it ('findTarget should put it on target', function() {
@@ -1135,7 +1135,7 @@ describe('style div', function() {
 		expect($wrapper.children('.gridy-search').find('.gridy-find-option')).not.toExist();
 		expect($target.children('.gridy-find-option')).toExist();
 
-		$target.remove();
+		$('#target').remove();
 	});
 
 	it ('findsName should changes the finds name and add the default empty find', function() {
@@ -1571,7 +1571,7 @@ describe('style div', function() {
 		expect($wrapper.children('.gridy-footer').children('.gridy-button-refresh')).not.toExist();
 		expect($target.children('.gridy-button-refresh')).toExist();
 
-		$target.remove();
+		$('#target').remove();
 	});
 
 });
@@ -2061,8 +2061,7 @@ describe('style table', function() {
 		$('body').append('<div id="target"></div>');
 
 		// given
-		var $this	= $('#grid'),
-			$target	= $('#target');
+		var $this = $('#grid');
 
 		// when
 		$this.gridy({
@@ -2074,9 +2073,9 @@ describe('style table', function() {
 
 		// then
 		expect($wrapper.children('.gridy-search')).not.toExist();
-		expect($target.children('.gridy-search')).toExist();
+		expect($('#target').children('.gridy-search')).toExist();
 
-		$target.remove();
+		$('#target').remove();
 	});
 
 	it ('gridy-footer should exists by default', function() {
@@ -2256,15 +2255,14 @@ describe('style table', function() {
 		expect($wrapper.children('.gridy-row-option')).not.toExist();
 		expect($target.children('.gridy-row-option')).toExist();
 
-		$target.remove();
+		$('#target').remove();
 	});
 
 	it ('findTarget should put it on target', function() {
 		$('body').append('<div id="target"></div>');
 
 		// given
-		var $this	= $('#grid'),
-			$target	= $('#target');
+		var $this = $('#grid');
 
 		// when
 		$this.gridy({
@@ -2277,9 +2275,9 @@ describe('style table', function() {
 
 		// then
 		expect($wrapper.children('.gridy-search').find('.gridy-find-option')).not.toExist();
-		expect($target.children('.gridy-find-option')).toExist();
+		expect($('#target').children('.gridy-find-option')).toExist();
 
-		$target.remove();
+		$('#target').remove();
 	});
 
 	it ('findsName should changes the finds name and add the default empty find', function() {
