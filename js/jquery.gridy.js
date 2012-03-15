@@ -43,9 +43,9 @@
 				var $this = $this.width(methods.getSize.call(self, self.opt.width)).wrap('<div id="' + self.id + '-wrapper" />');
 
 				self.wrapper			= $this.parent().width(methods.getSize.call(self, self.opt.width));
-				self.currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '" />').insertBefore($this);
-				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '" />').insertBefore($this);
-				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '" />').insertBefore($this);
+				self.currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '" />').insertBefore(self);
+				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '" />').insertBefore(self);
+				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '" />').insertBefore(self);
 				self.isTable			= self.opt.style == 'table';
 				self.hasHeader			= self.opt.headersName.length > 0;
 				self.hasFinds			= self.opt.findsName.length > 0;
@@ -82,7 +82,7 @@
 				self.content = $('<div class="gridy-content" />').css({ 'height': height, 'width': width });
 			}
 
-			$(self).append(self.content);
+			self.content.appendTo(self);
 		}, buildFinder: function() {
 			var self = this;
 
