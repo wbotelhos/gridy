@@ -14,12 +14,12 @@ describe('param settings', function() {
 
 		// then
 		spyOn($, 'ajax').andCallFake(function(params) {
-			expect(params.data.search == '').toBeTruthy();
-			expect(params.data.page == 1).toBeTruthy();
-			expect(params.data.sortName == '').toBeTruthy();
-			expect(params.data.sortOrder == 'asc').toBeTruthy();
-			expect(params.data.find == '').toBeTruthy();
-			expect(params.data.rows == 10).toBeTruthy();
+			expect(params.data.search).toEqual('');
+			expect(params.data.page).toEqual(1);
+			expect(params.data.sortName).toEqual('');
+			expect(params.data.sortOrder).toEqual('asc');
+			expect(params.data.find).toEqual('');
+			expect(params.data.rows).toEqual('10');
 		});
 
 		// when
@@ -32,12 +32,12 @@ describe('param settings', function() {
 
 		// then
 		spyOn($, 'ajax').andCallFake(function(params) {
-			expect(params.data.search == 'search').toBeTruthy();
-			expect(params.data.page == 2).toBeTruthy();
-			expect(params.data.sortName == 'id').toBeTruthy();
-			expect(params.data.sortOrder == 'desc').toBeTruthy();
-			expect(params.data.find == 'find').toBeTruthy();
-			expect(params.data.rows == 3).toBeTruthy();
+			expect(params.data.search).toEqual('search');
+			expect(params.data.page).toEqual(2);
+			expect(params.data.sortName).toEqual('id');
+			expect(params.data.sortOrder).toEqual('desc');
+			expect(params.data.find).toEqual('find');
+			expect(params.data.rows).toEqual('3');
 		});
 
 		// when
@@ -429,7 +429,7 @@ describe('style div', function() {
 	    expect($columns.length == 3).toBeTruthy();
 	});
 
-	it ('row should have right class', function() {
+	it ('row should not have gridy-row class anymore', function() {
 		// given
 		var $this = $('#grid');
 
@@ -443,9 +443,9 @@ describe('style div', function() {
 		var $columns = $this.children('.gridy-content').children();
 
 		// then
-	    expect($columns.eq(0)).toHaveClass('gridy-row');
-	    expect($columns.eq(1)).toHaveClass('gridy-row');
-	    expect($columns.eq(2)).toHaveClass('gridy-row');
+	    expect($columns.eq(0)).not.toHaveClass('gridy-row');
+	    expect($columns.eq(1)).not.toHaveClass('gridy-row');
+	    expect($columns.eq(2)).not.toHaveClass('gridy-row');
 	});
 
 	it ('row should have separate class on the first one', function() {
@@ -1214,16 +1214,15 @@ describe('style div', function() {
 
 	it ('hoverFx should not apply effect for default', function() {
 		// given
-		var $this = $('#grid').gridy({
-			style:		'div',
-			template:	'template-div',
-			url:		'/gridy'
+		var $this	= $('#grid').gridy({
+			style	: 'div',
+			template: 'template-div',
+			url		: '/gridy'
 		}),
-
-		$row = $this.find('.gridy-row:first');
+		$row		= $this.children('.gridy-content').children('div:first');
 
 		// when
-		$row.children().eq(0).mouseover();
+		$row.mouseover();
 
 		// then
 		expect($row).not.toHaveClass('gridy-row-hovered');
@@ -1231,17 +1230,16 @@ describe('style div', function() {
 
 	it ('hoverFx should apply effect', function() {
 		// given
-		var $this = $('#grid').gridy({
-			style:		'div',
-			template:	'template-div',
-			url:		'/gridy',
-			hoverFx:	true
+		var $this	= $('#grid').gridy({
+			style	: 'div',
+			template: 'template-div',
+			url		: '/gridy',
+			hoverFx	: true
 		}),
-
-		$row = $this.find('.gridy-row:first');
+		$row		= $this.children('.gridy-content').children('div:first');
 
 		// when
-		$row.children().eq(0).mouseover();
+		$row.mouseover();
 
 		// then
 		expect($row).toHaveClass('gridy-row-hovered');
@@ -1505,33 +1503,33 @@ describe('style div', function() {
 	it ('clickFx should enable it', function() {
 		// given
 		var $this = $('#grid').gridy({
-			style:		'div',
-			template:	'template-div',
-			url:		'/gridy',
-			clickFx:	true
+			style	: 'div',
+			template: 'template-div',
+			url		: '/gridy',
+			clickFx	: true
 		});
 
 		// when
-		var $firstRow = $this.find('.gridy-row:first').click();
+		var row = $this.children('div.gridy-content').children('div:first').click();
 
 		// then
-		expect($firstRow).toHaveClass('gridy-row-selected');
+		expect(row).toHaveClass('gridy-row-selected');
 	});
 
-	it ('clickFx should not be enabled by default', function() {
+	it ('clickFx should enable it', function() {
 		// given
 		var $this = $('#grid').gridy({
-			style:		'div',
-			template:	'template-div',
-			url:		'/gridy'
+			style	: 'div',
+			template: 'template-div',
+			url		: '/gridy'
 		});
 
 		// when
-		var $firstRow = $this.find('.gridy-row:first').click();
+		var row = $this.children('div.gridy-content').children('div:first').click();
 
 		// then
-		expect($firstRow).not.toHaveClass('gridy-row-selected');
-	});
+		expect(row).not.toHaveClass('gridy-row-selected');
+	});	
 
 	it ('should create refresh button', function() {
 		// given
@@ -3444,7 +3442,6 @@ describe('functions', function() {
 // TODO click on button to change the page.
 // TODO click on back button to change the page.
 // TODO click on next button to change the page.
-// TODO sorterWidth
-// TODO sortersName
-// TODO scroll
-// TODO before
+// TODO scroll div.
+// TODO scroll table.
+// TODO click on refresh button and keep the same filter.

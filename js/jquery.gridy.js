@@ -228,7 +228,7 @@
 
 			if (self.opt.refreshOption) {
 				self.refresher = $('<input type="button" class="' + self.opt.refreshIcon + '" />').click(function() {
-					methods.data.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
+					methods.data.call(self, self.currentPage.val(), self.currentSortName.val(), self.currentSortOrder.val());
 				});
 			}
 
