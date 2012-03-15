@@ -40,12 +40,12 @@
 
 				$this.empty().data('settings', self.opt);
 
-				var $this = $this.width(methods.getSize.call(self, self.opt.width)).wrap('<div id="' + self.id + '-wrapper">');
+				var $this = $this.width(methods.getSize.call(self, self.opt.width)).wrap('<div id="' + self.id + '-wrapper" />');
 
 				self.wrapper			= $this.parent().width(methods.getSize.call(self, self.opt.width));
-				self.currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '"/>').insertBefore($this);
-				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '"/>').insertBefore($this);
-				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '"/>').insertBefore($this);
+				self.currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '" />').insertBefore($this);
+				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '" />').insertBefore($this);
+				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '" />').insertBefore($this);
 				self.isTable			= self.opt.style == 'table';
 				self.hasHeader			= self.opt.headersName.length > 0;
 				self.hasFinds			= self.opt.findsName.length > 0;
@@ -209,7 +209,7 @@
 			var self = this;
 
 			if (self.opt.messageOption) {
-				self.messageBox = $('<div class="gridy-message" />').appendTo(self.footer);
+				self.messager = $('<div class="gridy-message" />').appendTo(self.footer);
 			}
 		}, buildPageButtons: function() {
 			var self = this;
@@ -617,11 +617,11 @@
 			var self = this;
 
 			if (self.opt.messageOption) {
-				self.messageBox.html(message).show();
+				self.messager.html(message).show();
 
 				setTimeout(function() {
-					self.messageBox.fadeOut(function() {
-						self.messageBox.hide().empty();
+					self.messager.fadeOut(function() {
+						self.messager.hide().empty();
 					});
 				}, self.opt.messageTimer);
 			}
