@@ -394,14 +394,14 @@
 		    }
 
 			for (var prop in self.opt.paramsElements) {
-				var elem = self.opt.paramsElements[prop];
+				var element = self.opt.paramsElements[prop];
 
-				$(elem).each(function(i) {
+				$(element).each(function(i) {
 					var $this = $(this);
 
 					if ($this.is(':enabled') && !$this.is(':checkbox') || $this.is(':checked')) {
 
-						if (elem.indexOf('.') == 0) {
+						if (element.indexOf('.') == 0) {
 							var param = data[this.name],
 								items = [];
 
@@ -423,13 +423,12 @@
 
 			if (self.opt.debug) {
 				var queryString = '[debug] query string:\n\n',
-					propSpace	,
-					i			;
+					propSpace	;
 
 				for (var prop in data) {
 					propSpace = prop;
 
-					for (i = 0; i < (20 - prop.length); i++) {
+					for (var i = 0; i < (20 - prop.length); i++) {
 						propSpace += ' ';
 					}
 
@@ -855,72 +854,104 @@
 	};
 
 	$.fn.gridy.defaults = {
+		// ajax
+		cache				: undefined,
+		complete			: undefined,
+		contentType			: undefined,
+		dataType			: 'json',
+		error				: undefined,
+		jsonp				: undefined,
+		jsonpCallback		: 'callback',
+		page				: 1,
+		params				: {},
+		paramsElements		: [],
+		sortName			: '',
+		sortOrder			: 'asc',
+		success				: undefined,
+		type				: 'get',
+		url					: '/gridy',
+
+		// structure
+		colsWidth			: [],
+		height				: 'auto',
+		scroll				: false,
+		style				: 'table',
+		width				: 'auto',
+
+		// callback
+		before				: undefined,
+		filter				: undefined,
+
+		// design
+		evenOdd				: false,
+		resize				: true,
+		separate			: true,
+		skin				: 'gridy-default',
+
+		// effect
+		clickFx				: false,
+		hoverFx				: false,
+
+		// find
+		find				: '',
+		findsName			: [],
+		findTarget			: undefined,
+
+		// header
 		arrowDown			: 'gridy-arrow-down',
 		arrowNone			: 'gridy-arrow-none',
 		arrowUp				: 'gridy-arrow-up',
+		headersName			: [],
+		headersWidth		: [],
+
+		// page
 		buttonBackTitle		: '&lsaquo; Back',
 		buttonMax			: 10,
 		buttonNextTitle		: 'Next &rsaquo;',
 		buttonOption		: true,
 		buttonTitle			: 'page',
-		cache				: undefined,
-		clickFx				: false,
-		colsWidth			: [],
-		complete			: undefined,
-		contentType			: undefined,
-		dataType			: 'json',
-		debug				: false,
-		error				: undefined,
-		evenOdd				: false,
-		filter				: undefined,
-		find				: '',
-		findsName			: [],
-		findTarget			: undefined,
-		headersName			: [],
-		headersWidth		: [],
-		height				: 'auto',
-		hoverFx				: false,
-		jsonp				: undefined,
-		jsonpCallback		: 'callback',
+
+		// json
 		listPath			: 'list',
+		totalPath			: 'total',
+		template			: 'template',
+
+		// loading
 		loadingIcon			: 'gridy-loading',
 		loadingOption		: true,
 		loadingText			: 'Loading...',
+
+		// message
 		messageOption		: true,
 		messageTimer		: 4000,
-		noResultOption		: true,
-		noResultText		: 'No items found!',
-		page				: 1,
-		params				: {},
-		paramsElements		: [],
+
+		// other
+		debug				: false,
+
+		// refresh
 		refreshIcon			: 'gridy-button-refresh',
 		refreshOption		: true,
 		refreshTarget		: undefined,
-		resize				: true,
+
+		// result
+		noResultOption		: true,
+		noResultText		: 'No items found!',
 		resultOption		: true,
 		resultText			: 'Displaying {from} - {to} of {total} items',
+
+		// row
 		rows				: 10,
 		rowsNumber			: [5, 10, 25, 50, 100],
 		rowsTarget			: undefined,
-		scroll				: false,
+
+		// seach
 		search				: '',
 		searchButtonLabel	: 'search',
 		searchButtonTitle	: 'Start the search',
 		searchFocus			: true,
 		searchOption		: true,
 		searchTarget		: undefined,
-		searchText			: '',
-		separate			: true,
-		skin				: 'gridy-default',
-		sortName			: '',
-		sortOrder			: 'asc',
-		style				: 'table',
-		success				: undefined,
-		template			: 'template',
-		totalPath			: 'total',
-		type				: 'get',
-		url					: '/gridy',
-		width				: 'auto'
+		searchText			: ''
 	};
 
 })(jQuery);
