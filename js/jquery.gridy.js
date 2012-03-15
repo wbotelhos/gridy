@@ -607,10 +607,10 @@
 			if (self.opt.loadingOption) {
 				if (isStart) {
 					self.loading.fadeIn('fast');
-					self.content.addClass('gridy-fade');
+					self.content.children().children().addClass('gridy-fade'); // 2 * children() for otimization.
 				} else {
 					self.loading.fadeOut();
-					self.content.removeClass('gridy-fade');
+					self.content.children().children().removeClass('gridy-fade'); // 2 * children() for otimization.
 				}
 			}
 		}, message: function(message) {
