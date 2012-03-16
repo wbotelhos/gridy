@@ -8,20 +8,22 @@
 	.gridy-search .gridy-search-content input[type="text"] { color: #BBB; float: left; height: 20px; margin-bottom: 5px; }
 	.gridy-search .gridy-search-content input[type="text"].gridy-typed { color: #444; }
 
-	.gridy-arrow-none,
 	.gridy-arrow-down,
+	.gridy-arrow-empty,
+	.gridy-arrow-none,
 	.gridy-arrow-up { background-image: url('../img/icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
 
-	.gridy-arrow-up { background-position: 0 -16px; }
-	.gridy-arrow-none { background-position: -128px -16px; }
 	.gridy-arrow-down { background-position: -64px -16px; }
+	.gridy-arrow-empty { background-position: 15px 0; }
+	.gridy-arrow-none { background-position: -128px -16px; }
+	.gridy-arrow-up { background-position: 0 -16px; }
 
 	.gridy-fade { opacity: .6; }
 
 	.gridy-loading { clear: left; float: left; width: 90px; }
 	.gridy-loading div { background: url('../img/loading.gif') no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
 
-	.gridy-status { height: 17px; margin: 10px auto 5px; }
+	.gridy-status { float: left; height: 18px; margin: 5px auto; }
 
 	.gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
 

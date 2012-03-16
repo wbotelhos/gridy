@@ -47,7 +47,7 @@
 				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '" />').insertBefore(self);
 				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '" />').insertBefore(self);
 				self.isTable			= self.opt.style == 'table';
-				self.hasHeader			= self.opt.headersName.length > 0;
+				self.hasHeader			= self.opt.columns.length > 0;
 				self.hasFinds			= self.opt.findsName.length > 0;
 				self.hasRows			= self.opt.rowsNumber.length > 0;
 
@@ -157,33 +157,33 @@
 					}
 				}
 
-				var name, label, sortLink, head;
+				var name, value, head, link;
 
-				for (var i in self.opt.headersName) {
-					name = self.opt.headersName[i][0];
-					label = self.opt.headersName[i][1];
+				for (var i in self.opt.columns) {
+					name = self.opt.columns[i].name;
+					value = self.opt.columns[i].value;
 
-					sortLink = $('<a />', { href: 'javascript:void(0);', html: label });
+					head = $((self.isTable) ? '<th />' : '<div />', { 'class': 'gridy-sorter' });
 
-					if (self.isTable) {
-						head = $('<th class="gridy-sorter" />');
+					link = $('<a />', { href: 'javascript:void(0);', html: name });
+
+					if (value) {
+						var icon = $('<div />', { 'class': (name) ? self.opt.arrowNone : 'gridy-arrow-empty' });
+
+						link.attr({ id: 'sort-by-' + value, name: value });
+
+						if (!name) {
+							link.addClass('gridy-no-sort');
+						}
+
+						head.append(link, icon);
 					} else {
-						head = $('<div class="gridy-sorter" />');
+						link.addClass('gridy-no-sort');
+						head.append(link);
 					}
 
-					if (name) {
-						sortLink.attr({ id: 'sort-by-' + name, name: name });
-
-						var $sortIcon = $('<div />', { 'class': self.opt.arrowNone });
-
-						head.append(sortLink, $sortIcon);
-					} else {
-						sortLink.attr('class', 'gridy-no-sort');
-						head.append(sortLink);
-					}
-
-					if (self.opt.headersName[i][2]) {
-						head.addClass(self.opt.headersName[i][2]);
+					if (self.opt.columns[i].clazz) {
+						head.addClass(self.opt.columns[i].clazz);
 					}
 
 					if (self.isTable) {
@@ -199,10 +199,11 @@
 					methods.sort.call(self, $(this));
 				});
 
-				var initialSort = self.header.find('#sort-by-' + self.opt.sortName);
+				var sorter = self.sorters.filter('#sort-by-' + self.opt.sortName);
 
-				if (initialSort.length) {
-					methods.flick.call(self, initialSort, self.opt.sortOrder);
+				if (sorter.length) {
+					console.log(sorter);
+					methods.flick.call(self, sorter, self.opt.sortOrder, undefined);
 				}
 			}
 		}, buildMessager: function() {
@@ -585,15 +586,15 @@
 					self.refresher.attr('disabled', 'disabled');
 				}
 			}
-		}, flick: function(sorter, sortOrder, currentSort) {
+		}, flick: function(sorter, nextOrder, currentSorter) {
 			var self		= this,
-				sortIcon	= (self.opt.sortOrder == 'asc') ? self.opt.arrowUp : self.opt.arrowDown;
+				nextIcon	= (nextOrder == 'asc') ? self.opt.arrowUp : self.opt.arrowDown;
 
-			if (currentSort) {
-				currentSort.attr('rel', 'desc').removeClass('gridy-sorted').next('div').removeClass().addClass(self.opt.arrowNone);
+			if (currentSorter) {
+				currentSorter.removeAttr('rel').removeClass('gridy-sorted').next('div').removeClass().addClass(self.opt.arrowNone);
 			}
 
-			sorter.attr('rel', sortOrder).addClass('gridy-sorted').next('div').removeClass().addClass(sortIcon);
+			sorter.attr('rel', nextOrder).addClass('gridy-sorted').next('div').removeClass().addClass(nextIcon);
 		}, getError: function(xhr) {
 			return (xhr.responseText) ? xhr.responseText.substring(xhr.responseText.indexOf('(') + 1, xhr.responseText.indexOf(')')) : xhr.statusText;
 		}, getNumber: function(number) {
@@ -835,11 +836,11 @@
 			var self			= this,
 				sortName		= sorter.attr('name'),
 				sortOrder		= sorter.attr('rel'),
-				nextSortOrder	= (sortOrder == 'desc') ? 'asc' : 'desc',
-				currentSort		= self.sorters.filter('.gridy-sorted');
+				nextOrder		= (sortOrder && sortOrder == 'asc') ? 'desc' : 'asc',
+				currentSorter	= self.sorters.filter('.gridy-sorted');
 
-			methods.flick.call(self, sorter, nextSortOrder, currentSort);
-			methods.data.call(self, self.currentPage.val(), sortName, nextSortOrder);
+			methods.flick.call(self, sorter, nextOrder, currentSorter);
+			methods.data.call(self, self.currentPage.val(), sortName, nextOrder);
 		}
 	};
 
@@ -871,13 +872,6 @@
 		type				: 'get',
 		url					: '/gridy',
 
-		// structure
-		colsWidth			: [],
-		height				: 'auto',
-		scroll				: false,
-		style				: 'table',
-		width				: 'auto',
-
 		// callback
 		before				: undefined,
 		filter				: undefined,
@@ -901,7 +895,6 @@
 		arrowDown			: 'gridy-arrow-down',
 		arrowNone			: 'gridy-arrow-none',
 		arrowUp				: 'gridy-arrow-up',
-		headersName			: [],
 		headersWidth		: [],
 
 		// page
@@ -951,7 +944,15 @@
 		searchFocus			: true,
 		searchOption		: true,
 		searchTarget		: undefined,
-		searchText			: ''
+		searchText			: '',
+
+		// structure
+		colsWidth			: [],
+		columns				: [],
+		height				: 'auto',
+		scroll				: false,
+		style				: 'table',
+		width				: 'auto'
 	};
 
 })(jQuery);

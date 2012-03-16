@@ -506,7 +506,7 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -524,7 +524,7 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -543,7 +543,7 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -564,7 +564,7 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -585,7 +585,7 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -1245,7 +1245,7 @@ describe('style div', function() {
 		expect($row).toHaveClass('gridy-row-hovered');
 	});
 
-	it ('headersName should set the name of the heads', function() {
+	it ('columns should set the name of the heads', function() {
 		// given
 		var $this = $('#grid');
 
@@ -1254,16 +1254,16 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('a')).toHaveHtml('ID');
-	    expect($header.children().eq(1).children('a')).toHaveHtml('Username');
-	    expect($header.children().eq(2).children('a')).toHaveHtml('Name');
+	    expect(sorters.eq(0).children('a')).toHaveHtml('ID');
+	    expect(sorters.eq(1).children('a')).toHaveHtml('Username');
+	    expect(sorters.eq(2).children('a')).toHaveHtml('Name');
 	});
 
 	it ('headersWith should set the width of the heads', function() {
@@ -1275,16 +1275,16 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 110, 120]
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0)).toHaveAttr('style', 'width: 100px;');
-	    expect($header.children().eq(1)).toHaveAttr('style', 'width: 110px;');
-	    expect($header.children().eq(2)).toHaveAttr('style', 'width: 120px;');
+	    expect(sorters.eq(0)).toHaveAttr('style', 'width: 100px;');
+	    expect(sorters.eq(1)).toHaveAttr('style', 'width: 110px;');
+	    expect(sorters.eq(2)).toHaveAttr('style', 'width: 120px;');
 	});
 
 	it ('arrowNone should to use none arrow at first', function() {
@@ -1296,16 +1296,16 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('arrowNone should to change this icon', function() {
@@ -1317,17 +1317,17 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			arrowNone:		'arrow-none'
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('arrow-none');
-	    expect($header.children().eq(1).children('div')).toHaveClass('arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('arrow-none');
+	    expect(sorters.eq(1).children('div')).toHaveClass('arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('arrow-none');
 	});
 	
 	it ('arrowUp should to use it on asc sort', function() {
@@ -1339,17 +1339,17 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			sortName:		'id'
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('gridy-arrow-up');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-up');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('arrowUp should to change this arrow', function() {
@@ -1361,18 +1361,18 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			sortName:		'id',
 			arrowUp:		'arrow-up'
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('arrow-up');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('arrow-up');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('arrowDown should to change this arrow', function() {
@@ -1384,7 +1384,7 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			sortName:		'id',
 			sortOrder:		'desc',
@@ -1392,11 +1392,11 @@ describe('style div', function() {
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('arrow-down');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('arrow-down');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('arrowDown should to use it on asc sort', function() {
@@ -1408,18 +1408,18 @@ describe('style div', function() {
 			style:			'div',
 			template:		'template-div',
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			sortName:		'id',
 			sortOrder:		'desc'
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('gridy-arrow-down');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-down');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('evenOdd should apply it', function() {
@@ -1570,6 +1570,82 @@ describe('style div', function() {
 		expect($target.children('.gridy-button-refresh')).toExist();
 
 		$('#target').remove();
+	});
+
+	it ('[div columns] should set the first column with no label', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' } ],
+			headersWidth: [100, 100, 100],
+			style		: 'div',
+			template	: 'template-div',
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters = $this.children('.gridy-header').children();
+
+	    expect(sorters.eq(0).children('a')).toHaveHtml('');
+	    expect(sorters.eq(1).children('a')).toHaveHtml('Username');
+	    expect(sorters.eq(2).children('a')).toHaveHtml('Name');
+	});
+
+	it ('[div columns] should set the first column with no value (read only)', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { name: 'ID' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' } ],
+			headersWidth: [100, 100, 100],
+			style		: 'div',
+			template	: 'template-div',
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters = $this.children('.gridy-header').children();
+
+	    expect(sorters.eq(0).children('a')).toHaveHtml('ID');
+	    expect(sorters.eq(0).children('a')).toHaveClass('gridy-no-sort');
+	});
+
+	it ('[table columns] should set the first column with no sort icon (empty) when there is no name and it is not sorted', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { value: 'id' }, { name: 'username', value: 'username' }, { name: 'Name', value: 'name' } ],
+			headersWidth: [100, 100, 100],
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters = $this.children('.gridy-header').children();
+
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-empty');
+	});
+
+	it ('[div columns] should set the first column with no name but with sorted icon', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' } ],
+			headersWidth: [100, 100, 100],
+			sortName	: 'id',
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters = $this.children('.gridy-header').children();
+
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-up');
 	});
 
 });
@@ -1731,7 +1807,7 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -1747,7 +1823,7 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -1764,7 +1840,7 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -1783,7 +1859,7 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -1802,7 +1878,7 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
@@ -2376,23 +2452,23 @@ describe('style table', function() {
 		expect($row).toHaveClass('gridy-row-hovered');
 	});	
 
-	it ('headersName should set the name of the heads', function() {
+	it ('columns should set the name of the heads', function() {
 		// given
 		var $this = $('#grid');
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
-			headersWidth:	[100, 100, 100]
+			url			: '/gridy',
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
+			headersWidth: [100, 100, 100]
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('a')).toHaveHtml('ID');
-	    expect($header.children().eq(1).children('a')).toHaveHtml('Username');
-	    expect($header.children().eq(2).children('a')).toHaveHtml('Name');
+	    expect(sorters.eq(0).children('a')).toHaveHtml('ID');
+	    expect(sorters.eq(1).children('a')).toHaveHtml('Username');
+	    expect(sorters.eq(2).children('a')).toHaveHtml('Name');
 	});
 
 	it ('headersWith should set the width of the heads', function() {
@@ -2401,17 +2477,17 @@ describe('style table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
-			headersWidth:	[100, 110, 120]
+			url			: '/gridy',
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
+			headersWidth: [100, 110, 120]
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0)).toHaveAttr('width', '100');
-	    expect($header.children().eq(1)).toHaveAttr('width', '110');
-	    expect($header.children().eq(2)).toHaveAttr('width', '120');
+	    expect(sorters.eq(0)).toHaveAttr('width', '100');
+	    expect(sorters.eq(1)).toHaveAttr('width', '110');
+	    expect(sorters.eq(2)).toHaveAttr('width', '120');
 	});
 
 	it ('arrowNone should to use none arrow at first', function() {
@@ -2421,18 +2497,19 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100]
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
+	
 	it ('arrowNone should to change this icon', function() {
 		// given
 		var $this = $('#grid');
@@ -2440,17 +2517,17 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			arrowNone:		'arrow-none'
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('arrow-none');
-	    expect($header.children().eq(1).children('div')).toHaveClass('arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('arrow-none');
+	    expect(sorters.eq(1).children('div')).toHaveClass('arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('arrow-none');
 	});
 
 	it ('arrowUp should to use it on asc sort', function() {
@@ -2460,17 +2537,17 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			sortName:		'id'
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('gridy-arrow-up');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-up');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('arrowUp should to change this arrow', function() {
@@ -2480,18 +2557,18 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			sortName:		'id',
 			arrowUp:		'arrow-up'
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('arrow-up');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('arrow-up');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('arrowDown should to change this arrow', function() {
@@ -2501,7 +2578,7 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			sortName:		'id',
 			sortOrder:		'desc',
@@ -2509,11 +2586,11 @@ describe('style table', function() {
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('arrow-down');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('arrow-down');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('arrowDown should to use it on asc sort', function() {
@@ -2523,18 +2600,18 @@ describe('style table', function() {
 		// when
 		$this.gridy({
 			url:			'/gridy',
-			headersName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']],
+			columns		: [ { name: 'ID', value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' }],
 			headersWidth:	[100, 100, 100],
 			sortName:		'id',
 			sortOrder:		'desc'
 		});
 
 		// then
-		var $header = $this.children('.gridy-header');
+		var sorters = $this.children('.gridy-header').children();
 
-	    expect($header.children().eq(0).children('div')).toHaveClass('gridy-arrow-down');
-	    expect($header.children().eq(1).children('div')).toHaveClass('gridy-arrow-none');
-	    expect($header.children().eq(2).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-down');
+	    expect(sorters.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+	    expect(sorters.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('evenOdd should apply it', function() {
@@ -2619,6 +2696,82 @@ describe('style table', function() {
 		expect(refresher).toExist();
 	});
 
+	it ('[table columns] should set the first column with no label', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' } ],
+			headersWidth: [100, 100, 100],
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters = $this.children('.gridy-header').children();
+
+	    expect(sorters.eq(0).children('a')).toHaveHtml('');
+	    expect(sorters.eq(1).children('a')).toHaveHtml('Username');
+	    expect(sorters.eq(2).children('a')).toHaveHtml('Name');
+	});
+
+	it ('[table columns] should set the first column with no value (read only)', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { name: 'ID' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' } ],
+			headersWidth: [100, 100, 100],
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters = $this.children('.gridy-header').children();
+
+	    expect(sorters.eq(0).children('a')).toHaveHtml('ID');
+	    expect(sorters.eq(0).children('a')).toHaveClass('gridy-no-sort');
+	});
+
+	it ('[table columns] should set the first column with no sort icon (empty) when there is no name and it is not sorted', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { value: 'id' }, { name: 'username', value: 'username' }, { name: 'Name', value: 'name' } ],
+			headersWidth: [100, 100, 100],
+			style		: 'div',
+			template	: 'template-div',
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters = $this.children('.gridy-header').children();
+
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-empty');
+	});
+
+	it ('[table columns] should set the first column with no name but with sorted icon', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' } ],
+			headersWidth: [100, 100, 100],
+			sortName	: 'id',
+			style		: 'div',
+			template	: 'template-div',
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters = $this.children('.gridy-header').children();
+
+	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-up');
+	});
+
 });
 
 describe('style table with no result', function() {
@@ -2649,11 +2802,11 @@ describe('style table with no result', function() {
 			findsName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']]
 		});
 
-		var $noResult = $this.children('.gridy-content').children('.gridy-no-result');
+		var noResult = $this.children('.gridy-content').children('.gridy-no-result');
 
 		// then
-		expect($noResult).toExist();
-		expect($noResult).toHaveHtml('No items found!');
+		expect(noResult).toExist();
+		expect(noResult).toHaveHtml('No items found!');
 	});
 
 	it ('noResultOption should be disabled', function() {
@@ -2667,10 +2820,10 @@ describe('style table with no result', function() {
 			noResultOption: false
 		});
 
-		var $noResult = $this.children('.gridy-content').children('.gridy-no-result');
+		var noResult = $this.children('.gridy-content').children('.gridy-no-result');
 
 		// then
-		expect($noResult).not.toExist();
+		expect(noResult).not.toExist();
 	});
 
 	it ('noResultText should change the text', function() {
@@ -2684,10 +2837,10 @@ describe('style table with no result', function() {
 			noResultText:	'No results!'
 		});
 
-		var $noResult = $this.children('.gridy-content').children('.gridy-no-result');
+		var noResult = $this.children('.gridy-content').children('.gridy-no-result');
 
 		// then
-		expect($noResult).toHaveHtml('No results!');
+		expect(noResult).toHaveHtml('No results!');
 	});
 
 });
@@ -2722,11 +2875,11 @@ describe('style div with no result', function() {
 			findsName:	[['id', 'ID'], ['username', 'Username'], ['name', 'Name']]
 		});
 
-		var $noResult = $this.children('.gridy-content').children('.gridy-no-result');
+		var noResult = $this.children('.gridy-content').children('.gridy-no-result');
 
 		// then
-		expect($noResult).toExist();
-		expect($noResult).toHaveHtml('No items found!');
+		expect(noResult).toExist();
+		expect(noResult).toHaveHtml('No items found!');
 	});
 
 	it ('noResultOption should be disabled', function() {
@@ -2742,10 +2895,10 @@ describe('style div with no result', function() {
 			noResultOption: false
 		});
 
-		var $noResult = $this.children('.gridy-content').children('.gridy-no-result');
+		var noResult = $this.children('.gridy-content').children('.gridy-no-result');
 
 		// then
-		expect($noResult).not.toExist();
+		expect(noResult).not.toExist();
 	});
 
 	it ('noResultText should change the text', function() {
@@ -2761,10 +2914,10 @@ describe('style div with no result', function() {
 			noResultText:	'No results!'
 		});
 
-		var $noResult = $this.children('.gridy-content').children('.gridy-no-result');
+		var noResult = $this.children('.gridy-content').children('.gridy-no-result');
 
 		// then
-		expect($noResult).toHaveHtml('No results!');
+		expect(noResult).toHaveHtml('No results!');
 	});
 
 });
@@ -2791,11 +2944,11 @@ describe('error settings', function() {
 		// when
 		$this.gridy({ url: '/gridy' });
 
-		var $message = $this.parent().find('.gridy-message');
+		var message = $this.parent().find('.gridy-message');
 
 		// then
-		expect($message).toBeVisible(); 
-		expect($message).toHaveText('responseText'); 
+		expect(message).toBeVisible(); 
+		expect(message).toHaveText('responseText'); 
 	});
 
 	it ('message should be displayed with full statusText error when there is no responseText', function() {
@@ -2810,11 +2963,11 @@ describe('error settings', function() {
 		// when
 		$this.gridy({ url: '/gridy' });
 
-		var $message = $this.parent().find('.gridy-message');
+		var message = $this.parent().find('.gridy-message');
 
 		// then
-		expect($message).toBeVisible(); 
-		expect($message).toHaveText('statusText'); 
+		expect(message).toBeVisible(); 
+		expect(message).toHaveText('statusText'); 
 	});
 
 });

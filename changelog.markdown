@@ -15,6 +15,7 @@
 + Now the options 'buttonsWidth' no more exists;
 + Now the callback 'before' receives the raw scope 'this' instead the jQuery selector;
 + Now the callback 'before' will be called as 'filter' to have an better semantics;
++ Now the 'headersName' is the 'column' options. Its an array of objects with name and value;
 
 + Changed the delegate() method to click() and die() to be able use on jQuery 1.4.x;
 + Changed the name of the 'templateStyle' option to 'skin';
