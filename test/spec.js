@@ -1442,46 +1442,6 @@ describe('style div', function() {
 	    expect($rows.eq(2)).toHaveClass('gridy-even');
 	});
 
-	it ('colsWidth should change it', function() {
-		// given
-		var $this = $('#grid');
-
-		// when
-		$this.gridy({
-			style:		'div',
-			template:	'template-div',
-			url:		'/gridy',
-			colsWidth:	[100, 110, 120, 130]
-		});
-
-		// then
-		var $columns = $this.children('.gridy-content').children(':first').children('.gridy-column');
-
-	    expect($columns.eq(0)).toHaveAttr('style', 'width: 100px;');
-	    expect($columns.eq(1)).toHaveAttr('style', 'width: 110px;');
-	    expect($columns.eq(2)).toHaveAttr('style', 'width: 120px;');
-	    expect($columns.eq(3)).toHaveAttr('style', 'width: 130px;');
-	});
-
-	it ('colsWidth should change it', function() {
-		// given
-		var $this = $('#grid');
-
-		// when
-		$this.gridy({
-			url:		'/gridy',
-			colsWidth:	[100, 110, 120, 130]
-		});
-
-		// then
-		var $columns = $this.find('tr:first').children();
-
-	    expect($columns.eq(0)).toHaveAttr('width', '100');
-	    expect($columns.eq(1)).toHaveAttr('width', '110');
-	    expect($columns.eq(2)).toHaveAttr('width', '120');
-	    expect($columns.eq(3)).toHaveAttr('width', '130');
-	});
-
 	it ('separate should not have separate class on the first one', function() {
 		// given
 		var $this = $('#grid');
@@ -1621,6 +1581,8 @@ describe('style div', function() {
 		$this.gridy({
 			columns		: [ { value: 'id' }, { name: 'username', value: 'username' }, { name: 'Name', value: 'name' } ],
 			headersWidth: [100, 100, 100],
+			style		: 'div',
+			template	: 'template-div',
 			url			: '/gridy'
 		});
 
@@ -1638,6 +1600,8 @@ describe('style div', function() {
 		$this.gridy({
 			columns		: [ { value: 'id' }, { name: 'Username', value: 'username' }, { name: 'Name', value: 'name' } ],
 			headersWidth: [100, 100, 100],
+			style		: 'div',
+			template	: 'template-div',
 			sortName	: 'id',
 			url			: '/gridy'
 		});
@@ -1646,6 +1610,33 @@ describe('style div', function() {
 		var sorters = $this.children('.gridy-header').children();
 
 	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-up');
+	});
+
+	it ('[table columns] should set width on headers and the same o rows when it is div style', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { name: 'ID', value: 'id', width: 10 }, { name: 'Username', value: 'username', width: 20 }, { name: 'Name', value: 'name', width: 30 } ],
+			sortName	: 'id',
+			style		: 'div',
+			template	: 'template-div',
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters	= $this.children('div.gridy-header').children('div');
+			rows	= $this.children('div.gridy-content').children('div:first').children('div');
+
+		// then
+		expect(sorters.eq(0)).toHaveAttr('style', 'width: 10px;');
+		expect(sorters.eq(1)).toHaveAttr('style', 'width: 20px;');
+		expect(sorters.eq(2)).toHaveAttr('style', 'width: 30px;');
+
+		expect(rows.eq(0)).toHaveAttr('style', 'width: 10px;');
+		expect(rows.eq(1)).toHaveAttr('style', 'width: 20px;');
+		expect(rows.eq(2)).toHaveAttr('style', 'width: 30px;');
 	});
 
 });
@@ -2770,6 +2761,31 @@ describe('style table', function() {
 		var sorters = $this.children('.gridy-header').children();
 
 	    expect(sorters.eq(0).children('div')).toHaveClass('gridy-arrow-up');
+	});
+
+	it ('[table columns] should set width just on headers when it is table style', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [ { name: 'ID', value: 'id', width: 10 }, { name: 'Username', value: 'username', width: 20 }, { name: 'Name', value: 'name', width: 30 } ],
+			sortName	: 'id',
+			url			: '/gridy'
+		});
+
+		// then
+		var sorters	= $this.children('thead.gridy-header').children('th');
+			rows	= $this.children('tbody.gridy-content').children('tr');
+
+		// then
+		expect(sorters.eq(0)).toHaveAttr('width', '10');
+		expect(sorters.eq(1)).toHaveAttr('width', '20');
+		expect(sorters.eq(2)).toHaveAttr('width', '30');
+
+		expect(rows.eq(0)).not.toHaveAttr('width');
+		expect(rows.eq(1)).not.toHaveAttr('width');
+		expect(rows.eq(2)).not.toHaveAttr('width');
 	});
 
 });

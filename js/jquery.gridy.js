@@ -139,14 +139,6 @@
 			var self = this;
 
 			if (self.hasHeader) {
-				if (self.opt.headersWidth.length <= 0) {
-					if (self.opt.colsWidth.length <= 0) {
-						$.error(self.id + ": 'headersWith' and 'colsWidth' options are invalid or missing!");
-					}
-
-					self.opt.headersWidth = self.opt.colsWidth;
-				}
-
 				if (self.isTable) {
 					self.header = $('<thead class="gridy-header" />').appendTo(self);
 				} else {
@@ -157,11 +149,16 @@
 					}
 				}
 
-				var name, value, head, link;
+				var name, value, width, head, link;
 
 				for (var i in self.opt.columns) {
 					name = self.opt.columns[i].name;
 					value = self.opt.columns[i].value;
+					width = self.opt.columns[i].width;
+
+					if (self.opt.headersWidth[i]) {
+						width = self.opt.headersWidth[i];
+					}
 
 					head = $((self.isTable) ? '<th />' : '<div />', { 'class': 'gridy-sorter' });
 
@@ -182,14 +179,16 @@
 						head.append(link);
 					}
 
-					if (self.opt.columns[i].clazz) {
-						head.addClass(self.opt.columns[i].clazz);
+					if (width) {
+						if (self.isTable) {
+							head.attr('width', width);
+						} else {
+							head.width(width);
+						}
 					}
 
-					if (self.isTable) {
-						head.attr('width', self.opt.headersWidth[i]);
-					} else {
-						head.width(self.opt.headersWidth[i]);
+					if (self.opt.columns[i].clazz) {
+						head.addClass(self.opt.columns[i].clazz);
 					}
 
 					head.appendTo(self.header);
@@ -202,7 +201,6 @@
 				var sorter = self.sorters.filter('#sort-by-' + self.opt.sortName);
 
 				if (sorter.length) {
-					console.log(sorter);
 					methods.flick.call(self, sorter, self.opt.sortOrder, undefined);
 				}
 			}
@@ -694,9 +692,9 @@
 					.children(':odd').addClass((self.opt.scroll) ? 'gridy-odd-scroll' : 'gridy-odd');
 			}
 
-			var rows, columns;
+			var rows, columns, width;
 
-			if (self.opt.colsWidth) {
+			for (var i in self.opt.columns) {
 				rows = self.content.children(); // div|tr
 
 				rows.each(function() {
@@ -707,10 +705,14 @@
 					}
 
 					columns.each(function(index) { // div|td
-						if (self.isTable) {
-							$(this).attr('width', self.opt.colsWidth[index]);
-						} else {
-							$(this).width(self.opt.colsWidth[index]);
+						if (self.opt.columns[index]) {
+							width = self.opt.columns[index].width;
+
+							if (self.isTable) {
+								$(this).attr('width', width);
+							} else {
+								$(this).width(width);
+							}
 						}
 					});
 				});
@@ -947,7 +949,6 @@
 		searchText			: '',
 
 		// structure
-		colsWidth			: [],
 		columns				: [],
 		height				: 'auto',
 		scroll				: false,
