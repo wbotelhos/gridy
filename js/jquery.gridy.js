@@ -472,14 +472,14 @@
 						});
 					}
 
-					if (self.opt.success) {
-						self.opt.success.call(self, data, textStatus, jqXHR);
+					if (self.opt.done) {
+						self.opt.done.call(self, data, textStatus, jqXHR);
 					}
 				}, error: function(jqXHR, textStatus, errorThrown) {
 					methods.message.call(self, methods.getError.call(self, jqXHR));
 
-					if (self.opt.error) {
-						self.opt.error.call(self, jqXHR, textStatus, errorThrown);
+					if (self.opt.fail) {
+						self.opt.fail.call(self, jqXHR, textStatus, errorThrown);
 					}
 				}, complete: function(jqXHR, textStatus) {
 					methods.loading.call(self, false);
@@ -521,8 +521,8 @@
 						self.content.children(':last').children().addClass('gridy-last-line');
 					}
 
-					if (self.opt.complete) {
-						self.opt.complete.call(self, jqXHR, textStatus);
+					if (self.opt.always) {
+						self.opt.always.call(self, jqXHR, textStatus);
 					}
 				}
 			});
@@ -846,11 +846,12 @@
 
 	$.fn.gridy.defaults = {
 		// ajax
+		always				: undefined,
 		cache				: undefined,
-		complete			: undefined,
 		contentType			: undefined,
 		dataType			: 'json',
-		error				: undefined,
+		done				: undefined,
+		fail				: undefined,
 		jsonp				: undefined,
 		jsonpCallback		: 'callback',
 		page				: 1,
@@ -858,7 +859,6 @@
 		paramsElements		: [],
 		sortName			: '',
 		sortOrder			: 'asc',
-		success				: undefined,
 		type				: 'get',
 		url					: '/gridy',
 

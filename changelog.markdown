@@ -16,8 +16,11 @@
 + Now the callback 'before' receives the raw scope 'this' instead the jQuery selector;
 + Now the callback 'before' will be called as 'filter' to have an better semantics;
 + Now the 'findsName' is the 'finds' options. Its an array of objects with name and value;
-+ Now the 'headersName' is the 'columns' options. Its an array of objects with name, value and clazz;
++ Now the 'headersName' is the 'columns' options. Its an array of objects with name, value and clazz:
 	- Removed the 'colsWidth'. Now 'columns' has the attribute 'width';
++ Now the ajax callbacks has the same name the news deferred functions, but its NOT deferred yet:
+	- 'success' is 'done', 'error' is 'fail' and 'complete' is 'always';
+	- When we dicide to change to deferred, maybe on jQuery 1.8, your plugin will not break. (:
 
 + Changed the delegate() method to click() and die() to be able use on jQuery 1.4.x;
 + Changed the name of the 'templateStyle' option to 'skin';
