@@ -48,7 +48,7 @@
 				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '" />').insertBefore(self);
 				self.isTable			= self.opt.style == 'table';
 				self.hasHeader			= self.opt.columns.length > 0;
-				self.hasFinds			= self.opt.findsName.length > 0;
+				self.hasFinds			= self.opt.finds.length > 0;
 				self.hasRows			= self.opt.rowsNumber.length > 0;
 
 				if (self.isTable) {
@@ -92,14 +92,14 @@
 
 				var hasValue	= false,
 					options		= '',
-					value		,
-					label		;
+					name		,
+					value		;
 
-				for (var i in self.opt.findsName) {
-					value = self.opt.findsName[i][0];
-					label = self.opt.findsName[i][1];
+				for (var i in self.opt.finds) {
+					name = self.opt.finds[i].name;
+					value = self.opt.finds[i].value;
 
-					options += '<option value="' + value + '">' + label + '</option>';
+					options += '<option value="' + value + '">' + name + '</option>';
 
 					if (value == self.opt.find) {
 						hasValue = true;
@@ -120,7 +120,7 @@
 
 			if (self.opt.findTarget) {
 				if (!self.hasFinds) {
-					$.error(self.id + ": you need set the 'findsName' option for find box be created!");
+					$.error(self.id + ": you need set the 'finds' option for find box be created!");
 				}
 
 				self.findBox.parent().appendTo(self.opt.findTarget);
@@ -290,9 +290,9 @@
 					self.search.width(methods.getSize.call(self, self.opt.width));
 				}
 
-				var searchContent = self.search.children();
+				var content = self.search.children();
 
-				self.searchField = $('<input type="text" name="search" value="' + ((self.opt.search == '') ? self.opt.searchText : self.opt.search) + '" title="' + self.opt.searchText + '" size="40" />').appendTo(searchContent);
+				self.searchField = $('<input type="text" name="search" value="' + ((self.opt.search == '') ? self.opt.searchText : self.opt.search) + '" title="' + self.opt.searchText + '" size="40" />').appendTo(content);
 
 				self.searchField.blur(function() {
 					if (self.searchField.val() == '') {
@@ -308,11 +308,10 @@
 					}
 				});
 
-				self.searchButton = $('<input type="button" value="' + self.opt.searchButtonLabel + '" title="' + self.opt.searchButtonTitle + '" />');
-
-				self.searchButton.click(function() {
-					methods.data.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
-				}).appendTo(searchContent);
+				self.searchButton =
+					$('<input type="button" value="' + self.opt.searchButtonLabel + '" title="' + self.opt.searchButtonTitle + '" />').click(function() {
+						methods.data.call(self, 1, self.currentSortName.val(), self.currentSortOrder.val());
+					}).appendTo(content);
 
 				if (self.opt.searchTarget) {
 					self.search.appendTo(self.opt.searchTarget);
@@ -362,9 +361,9 @@
 				}
 			}
 
-			var search			= self.opt.search,
-				selectedRows	= (self.hasRows) ? self.rower.val() : self.opt.rows,
-				selectedFind	= (self.hasFinds) ? self.findBox.val() : self.opt.find;
+			var search		= self.opt.search,
+				rowNumber	= (self.hasRows) ? self.rower.val() : self.opt.rows,
+				findName	= (self.hasFinds) ? self.findBox.val() : self.opt.find;
 
 			if (self.opt.searchOption) {
 				search = (self.searchField.val() == self.opt.searchText) ? '' : self.searchField.val();
@@ -384,8 +383,8 @@
 				page		: page,
 				sortName	: sortName,
 				sortOrder	: sortOrder,
-				find		: selectedFind,
-				rows		: selectedRows
+				find		: findName,
+				rows		: rowNumber
 			};
 
 			for (var prop in self.opt.params) {
@@ -449,7 +448,7 @@
 				url				: self.opt.url,
 				data			: data,
 				success			: function(data, textStatus, jqXHR) {
-					methods.process.call(self, data, page, sortName, sortOrder, selectedRows);
+					methods.process.call(self, data, page, sortName, sortOrder, rowNumber);
 
 					var scrollSufix = (self.opt.scroll) ? '-scroll' : '';
 
@@ -492,6 +491,7 @@
 						}
 
 						if (self.isTable) {
+							console.log(self.content.parent());
 							var $this	= self.content.parent(),
 								width	= methods.getSize.call(self, self.opt.width + 15);
 
@@ -507,16 +507,14 @@
 						} else {
 							self.content.addClass('gridy-scroll-wrapper').children().addClass('gridy-scroll');
 						}
-					} else {
-						if (self.opt.separate) {
-							var $firstLine = self.content.children(':first').not('p');
-	
-							if (self.isTable) {
-								$firstLine = $firstLine.children();
-							}
+					} else if (self.opt.separate) {
+						var firstLine = self.content.children(':first');
 
-							$firstLine.addClass('gridy-separate');
+						if (self.isTable) {
+							firstLine = firstLine.children();
 						}
+
+						firstLine.addClass('gridy-separate');
 					}
 
 					if (self.isTable) {
@@ -637,7 +635,7 @@
 					self.searchField.focus().select();
 				}
 			}
-		}, process: function(data, page, sortName, sortOrder, selectedRows) {
+		}, process: function(data, page, sortName, sortOrder, rowNumber) {
 			var self = this;
 
 			if (typeof(data) == 'string') {
@@ -692,34 +690,24 @@
 					.children(':odd').addClass((self.opt.scroll) ? 'gridy-odd-scroll' : 'gridy-odd');
 			}
 
-			var rows, columns, width;
+			var width;
 
-			for (var i in self.opt.columns) {
-				rows = self.content.children(); // div|tr
+			self.content.children().each(function() { // div|tr
+				$(this).children().each(function(index) { // div|td
+					if (self.opt.columns[index]) {
+						width = self.opt.columns[index].width;
 
-				rows.each(function() {
-					columns = $(this).children();
-
-					if (!self.isTable) {
-						columns.addClass('gridy-column');
-					}
-
-					columns.each(function(index) { // div|td
-						if (self.opt.columns[index]) {
-							width = self.opt.columns[index].width;
-
-							if (self.isTable) {
-								$(this).attr('width', width);
-							} else {
-								$(this).width(width);
-							}
+						if (self.isTable) {
+							$(this).attr('width', width);
+						} else {
+							$(this).addClass('gridy-column').width(width);
 						}
-					});
+					}
 				});
-			}
+			});
 
-			var rest		= total % selectedRows,
-				totalPage	= (total - rest) / selectedRows;
+			var rest		= total % rowNumber,
+				totalPage	= (total - rest) / rowNumber;
 
 			if (rest > 0) {
 				totalPage++;
@@ -732,7 +720,7 @@
 			}
 
 			if (self.opt.buttonOption) {
-				if (total > selectedRows) {
+				if (total > rowNumber) {
 					var buttonEmpty	= '<input type="button" value="..." disabled="disabled" class="gridy-button-reticence"/>&#160;',
 						buttons		= '',
 						number		= 0,
@@ -878,6 +866,13 @@
 		before				: undefined,
 		filter				: undefined,
 
+		// content
+		columns				: [],
+		height				: 'auto',
+		scroll				: false,
+		style				: 'table',
+		width				: 'auto',
+
 		// design
 		evenOdd				: false,
 		resize				: true,
@@ -890,7 +885,7 @@
 
 		// find
 		find				: '',
-		findsName			: [],
+		finds				: [],
 		findTarget			: undefined,
 
 		// header
@@ -946,14 +941,7 @@
 		searchFocus			: true,
 		searchOption		: true,
 		searchTarget		: undefined,
-		searchText			: '',
-
-		// structure
-		columns				: [],
-		height				: 'auto',
-		scroll				: false,
-		style				: 'table',
-		width				: 'auto'
+		searchText			: ''
 	};
 
 })(jQuery);

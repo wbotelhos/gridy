@@ -15,7 +15,8 @@
 + Now the options 'buttonsWidth' no more exists;
 + Now the callback 'before' receives the raw scope 'this' instead the jQuery selector;
 + Now the callback 'before' will be called as 'filter' to have an better semantics;
-+ Now the 'headersName' is the 'columns' options. Its an array of objects with name and value;
++ Now the 'findsName' is the 'finds' options. Its an array of objects with name and value;
++ Now the 'headersName' is the 'columns' options. Its an array of objects with name, value and clazz;
 	- Removed the 'colsWidth'. Now 'columns' has the attribute 'width';
 
 + Changed the delegate() method to click() and die() to be able use on jQuery 1.4.x;
