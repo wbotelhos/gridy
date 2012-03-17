@@ -113,8 +113,8 @@ describe('global settings', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always(xhr, 'status');
+			params.success(data, 'status', xhr);
+			params.complete(xhr, 'status');
 		});
 	});
 
@@ -222,8 +222,8 @@ describe('json format', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "count": {"total": 3}}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// when
@@ -264,8 +264,8 @@ describe('json format', function() {
 			var data	= '{"data": {"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}]}, "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// when
@@ -286,8 +286,8 @@ describe('json format', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"}], "totale": 1 }',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -309,8 +309,8 @@ describe('json format', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"}], "total": { "subtotal": { "value": 1 } } }',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -338,8 +338,8 @@ describe('style div', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 	});
 
@@ -1648,8 +1648,8 @@ describe('style table', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 	});
 
@@ -2796,8 +2796,8 @@ describe('style table with no result', function() {
 			var data	= '{"list": [], "total": 0}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always(xhr, 'status');
+			params.success(data, 'status', xhr);
+			params.complete(xhr, 'status');
 		});
 	});
 
@@ -2867,8 +2867,8 @@ describe('style div with no result', function() {
 			var data	= '{"list": [], "total": 0}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always(xhr, 'status');
+			params.success(data, 'status', xhr);
+			params.complete(xhr, 'status');
 		});
 	});
 
@@ -2951,7 +2951,7 @@ describe('error settings', function() {
 			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			params.fail(xhr, 'status', 'error');
+			params.error(xhr, 'status', 'error');
 		});
 
 		// when
@@ -2970,7 +2970,7 @@ describe('error settings', function() {
 			xhr		= { statusText: 'statusText' };
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			params.fail(xhr);
+			params.error(xhr);
 		});
 
 		// when
@@ -3102,7 +3102,7 @@ describe('ajax settings', function() {
 			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			params.always.call($this, xhr, 'status');
+			params.complete.call($this, xhr, 'status');
 		});
 		// when
 		$this.gridy({
@@ -3122,7 +3122,7 @@ describe('ajax settings', function() {
 			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
 		spyOn($, 'ajax').andCallFake(function(params) {
-			params.fail.call($this, xhr, 'status', 'fail');
+			params.error.call($this, xhr, 'status', 'fail');
 		});
 		
 		// when
@@ -3145,7 +3145,7 @@ describe('ajax settings', function() {
 			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 	
 		spyOn($, 'ajax').andCallFake(function(params) {
-			params.done.call($this, data, 'status', xhr);
+			params.success.call($this, data, 'status', xhr);
 		});
 
 		// when
@@ -3178,8 +3178,8 @@ describe('buttons', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3214,8 +3214,8 @@ describe('buttons', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3259,8 +3259,8 @@ describe('buttons', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3286,8 +3286,8 @@ describe('buttons', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3314,8 +3314,8 @@ describe('buttons', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3354,8 +3354,8 @@ describe('callbacks', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"},{"id": 3, "username": "z", "name": "Z"}], "total": 3}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3378,8 +3378,8 @@ describe('callbacks', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"}], "total": 1}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3407,8 +3407,8 @@ describe('callbacks', function() {
 			var data	= '{"collection": { "subCollection": { "value": [{"id": 1, "username": "a", "name": "A"}] } }, "total": 1 }',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3434,8 +3434,8 @@ describe('callbacks', function() {
 			var data	= '{"collection": [{"id": 1, "username": "a", "name": "A"}], "total": 1 }',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3461,8 +3461,8 @@ describe('callbacks', function() {
 			var data	= '{"collection": [{"id": 1, "username": "a", "name": "A"}], "total": 1 }',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3489,8 +3489,8 @@ describe('callbacks', function() {
 			var data	= '{"collection": [{"id": 1, "username": "a", "name": "A"}], "total": 1 }',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 
 			// then
 			expect(params.data.page).toEqual(2);
@@ -3516,8 +3516,8 @@ describe('callbacks', function() {
 			var data	= '{"collection": [{"id": 1, "username": "a", "name": "A"}], "total": 1 }',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 
 			// then
 			expect(params.data.page).toEqual(1);
@@ -3553,8 +3553,8 @@ describe('functions', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"}], "total": 2}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
@@ -3576,8 +3576,8 @@ describe('functions', function() {
 			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"}], "total": 2}',
 				xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
 
-			params.done(data, 'status', xhr);
-			params.always('xhr', 'status');
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
 		});
 
 		// given
