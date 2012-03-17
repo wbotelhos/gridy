@@ -160,7 +160,7 @@
 						width = self.opt.headersWidth[i];
 					}
 
-					head = $((self.isTable) ? '<th />' : '<div />', { 'class': 'gridy-sorter' });
+					head = $((self.isTable) ? '<th />' : '<div />');
 
 					link = $('<a />', { href: 'javascript:void(0);', html: name });
 
@@ -194,7 +194,7 @@
 					head.appendTo(self.header);
 				}
 
-				self.sorters = self.header.children('.gridy-sorter').children('a').click(function() {
+				self.sorters = self.header.children().children('a').click(function() {
 					methods.sort.call(self, $(this));
 				});
 

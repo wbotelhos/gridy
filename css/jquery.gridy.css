@@ -95,12 +95,12 @@
 	.gridy-default .gridy-separate { border-top-width: 2px !important; }
 
 	.gridy-default .gridy-header { clear: both; height: 16px; margin-bottom: 3px; }
-	.gridy-default .gridy-header .gridy-sorter { float: left; text-align: center; }
-	.gridy-default .gridy-header .gridy-sorter div { float: right; }
-	.gridy-default .gridy-header .gridy-sorter a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
-	.gridy-default .gridy-header .gridy-sorter a:hover { color: #339BD0; }
-	.gridy-default .gridy-header .gridy-sorter a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
-	.gridy-default .gridy-header .gridy-sorter a.gridy-no-sort { cursor: default; }
+	.gridy-default .gridy-header > div { float: left; text-align: center; }
+	.gridy-default .gridy-header > div div { float: right; }
+	.gridy-default .gridy-header > div a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
+	.gridy-default .gridy-header > div a:hover { color: #339BD0; }
+	.gridy-default .gridy-header > div a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
+	.gridy-default .gridy-header > div a.gridy-no-sort { cursor: default; }
 
 	.gridy-default .gridy-content { clear: both; height: auto; overflow: visible; }
 	.gridy-default .gridy-content .gridy-row-hovered-scroll { background-color: #D9EBF5; border-left-color: #D9EBF5 !important; border-top-color: #D9EBF5 !important; }
