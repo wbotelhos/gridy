@@ -420,21 +420,20 @@
 			}
 
 			if (self.opt.debug) {
-				var queryString = '[debug] query string:\n\n',
-					propSpace	;
+				var query = '[debug] query string:\n\n';
 
 				for (var prop in data) {
-					propSpace = prop;
+					query += prop;
 
 					for (var i = 0; i < (20 - prop.length); i++) {
-						propSpace += ' ';
+						query += ' ';
 					}
 
-					queryString += propSpace + ': \'' + data[prop] + '\'\n';
+					query += ': ' + (data[prop] || "''") + '\n';
 				}
 
 				if (window.console && window.console.log) {
-					window.console.log(queryString);
+					window.console.log(query);
 				}
 			}
 
