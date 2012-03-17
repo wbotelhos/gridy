@@ -700,7 +700,7 @@
 						if (self.isTable) {
 							$(this).attr('width', width);
 						} else {
-							$(this).addClass('gridy-column').width(width);
+							$(this).width(width);
 						}
 					}
 				});

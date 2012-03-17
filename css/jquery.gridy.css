@@ -110,8 +110,8 @@
 	.gridy-default .gridy-content .gridy-scroll { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }
 	
 	.gridy-default .gridy-content > div { border: 1px solid #CCC; float: left; margin-bottom: -1px; width: auto; }
-	.gridy-default .gridy-content > div .gridy-column { float: left; min-height: 20px; padding-bottom: 9px; padding-top: 9px; text-indent: 10px; }
-	.gridy-default .gridy-content > div .gridy-button a {
+	.gridy-default .gridy-content > div > div { float: left; min-height: 20px; padding-bottom: 9px; padding-top: 9px; text-indent: 10px; }
+	.gridy-default .gridy-content > div > div.gridy-button a {
 		border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; display: block; height: 20px; margin-right: 5px; margin-top: -3px; padding-top: 3px; text-align: center; text-indent: 0 !important; text-transform: lowercase; width: 90px;
 		-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 	}
