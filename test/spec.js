@@ -3611,3 +3611,4 @@ describe('functions', function() {
 // TODO scroll div.
 // TODO scroll table.
 // TODO click on refresh button and keep the same filter.
+// TODO test message error skipping the $.erro() as a fail spec.

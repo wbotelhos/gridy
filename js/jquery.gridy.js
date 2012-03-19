@@ -99,6 +99,14 @@
 					name = self.opt.finds[i].name;
 					value = self.opt.finds[i].value;
 
+					if (!name) {
+						methods.error.call(self, self.id + ': finds[' + i + '].name missing!');
+					}
+
+					if (!value) {
+						methods.error.call(self, self.id + ': finds[' + i + '].value missing!');
+					}
+
 					options += '<option value="' + value + '">' + name + '</option>';
 
 					if (value == self.opt.find) {
@@ -120,7 +128,7 @@
 
 			if (self.opt.findTarget) {
 				if (!self.hasFinds) {
-					$.error(self.id + ": you need set the 'finds' option for find box be created!");
+					methods.error.call(self, self.id + ": you need set the 'finds' option for find box be created!");
 				}
 
 				self.findBox.parent().appendTo(self.opt.findTarget);
@@ -233,7 +241,7 @@
 
 			if (self.opt.refreshTarget) {
 				if (!self.opt.refreshOption) {
-					$.error(self.id + ": you must turn the 'refreshOption' to true to use 'refreshTarget'!");
+					methods.error.call(self, self.id + ": you must turn the 'refreshOption' to true to use 'refreshTarget'!");
 				}
 
 				self.refresher.appendTo(self.opt.refreshTarget);
@@ -273,7 +281,7 @@
 
 			if (self.opt.rowsTarget) {
 				if (!self.hasRows) {
-					$.error(self.id + ": you need set the 'rowsNumber' option for rows box be created!");
+					methods.error.call(self, self.id + ": you need set the 'rowsNumber' option for rows box be created!");
 				}
 
 				self.rower.parent().appendTo(self.opt.rowsTarget);
@@ -580,6 +588,10 @@
 					self.refresher.attr('disabled', 'disabled');
 				}
 			}
+		}, error: function(message) {
+			this.wrapper.html('<div class="gridy-error">' + message + '</div>');
+
+			$.error(message);
 		}, flick: function(sorter, nextOrder, currentSorter) {
 			var self		= this,
 				nextIcon	= (nextOrder == 'asc') ? self.opt.arrowUp : self.opt.arrowDown;
