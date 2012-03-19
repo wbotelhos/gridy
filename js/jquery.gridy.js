@@ -490,7 +490,6 @@
 						}
 
 						if (self.isTable) {
-							console.log(self.content.parent());
 							var $this	= self.content.parent(),
 								width	= methods.getSize.call(self, self.opt.width + 15);
 
@@ -852,7 +851,7 @@
 		done				: undefined,
 		fail				: undefined,
 		jsonp				: undefined,
-		jsonpCallback		: 'callback',
+		jsonpCallback		: undefined,
 		page				: 1,
 		params				: {},
 		paramsElements		: [],
