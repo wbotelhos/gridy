@@ -502,7 +502,7 @@
 								width	= methods.getSize.call(self, self.opt.width + 15);
 
 							$this.wrap('<div id="' + self.id + '-wrapper" />')
-								.parent().addClass('gridy-scroll-wrapper').css({ 'height': methods.getSize.call(self, self.opt.height), 'width': width })
+								.parent().addClass('gridy-scroll').css({ 'height': methods.getSize.call(self, self.opt.height), 'width': width })
 							.end()
 							.clone(true).removeAttr('id').width(width) 
 								.find('tbody').remove()
@@ -511,7 +511,7 @@
 
 							$this.children('thead').remove();
 						} else {
-							self.content.addClass('gridy-scroll-wrapper').children().addClass('gridy-scroll');
+							self.content.addClass('gridy-scroll');
 						}
 					} else if (self.opt.separate) {
 						var firstLine = self.content.children(':first');

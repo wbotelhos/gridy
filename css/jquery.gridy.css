@@ -19,6 +19,7 @@
 	.gridy-arrow-up { background-position: 0 -16px; }
 
 	.gridy-fade { opacity: .6; }
+	.gridy-error { color: #F55; font: bold 12px verdana; margin-bottom: 20px; margin-top: 20px; text-align: center; }
 
 	.gridy-loading { clear: left; float: left; width: 90px; }
 	.gridy-loading div { background: url('../img/loading.gif') no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
@@ -27,7 +28,7 @@
 
 	.gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
 
-	.gridy-scroll-wrapper { border: 1px solid #BBB; overflow: auto !important; }
+	.gridy-scroll { border: 1px solid #BBB; overflow: auto !important; }
 
 	.gridy-content .gridy-even { background-color: #FFF; }
 	.gridy-content .gridy-odd { background-color: #F7F7F7; }
@@ -106,12 +107,12 @@
 	.gridy-default .gridy-content .gridy-row-hovered-scroll { background-color: #D9EBF5; border-left-color: #D9EBF5 !important; border-top-color: #D9EBF5 !important; }
 	.gridy-default .gridy-content .gridy-row-selected-scroll { background-color: #ECF1F5; border-left-color: #ECF1F5 !important; border-top-color: #ECF1F5 !important; }
 	.gridy-default .gridy-content .gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
-	
-	.gridy-default .gridy-content .gridy-scroll { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }
-	
+
 	.gridy-default .gridy-content > div { border: 1px solid #CCC; float: left; margin-bottom: -1px; width: auto; }
 	.gridy-default .gridy-content > div > div { float: left; min-height: 20px; padding-bottom: 9px; padding-top: 9px; text-indent: 10px; }
 	.gridy-default .gridy-content > div > div.gridy-button a {
 		border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; display: block; height: 20px; margin-right: 5px; margin-top: -3px; padding-top: 3px; text-align: center; text-indent: 0 !important; text-transform: lowercase; width: 90px;
 		-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 	}
+
+	.gridy-default .gridy-scroll > div { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }
