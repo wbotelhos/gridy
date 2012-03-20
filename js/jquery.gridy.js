@@ -157,7 +157,7 @@
 					}
 				}
 
-				var name, value, width, head, link;
+				var name, value, width, head, link, icon;
 
 				for (var i in self.opt.columns) {
 					name = self.opt.columns[i].name;
@@ -168,24 +168,29 @@
 						width = self.opt.headersWidth[i];
 					}
 
-					head = $((self.isTable) ? '<th />' : '<div />');
+					link = $('<a />', { href: 'javascript:void(0);' });
 
-					link = $('<a />', { href: 'javascript:void(0);', html: name });
+					icon = $('<div />');
+
+					if (name) {
+						link.html(name);
+					}
 
 					if (value) {
-						var icon = $('<div />', { 'class': (name) ? self.opt.arrowNone : 'gridy-arrow-empty' });
-
 						link.attr({ id: 'sort-by-' + value, name: value });
 
-						if (!name) {
-							link.addClass('gridy-no-sort');
+						if (name) {
+							icon.addClass(self.opt.arrowNone);
 						}
-
-						head.append(link, icon);
 					} else {
 						link.addClass('gridy-no-sort');
-						head.append(link);
 					}
+
+					if (!name || !value) {
+						icon.addClass('gridy-arrow-empty');
+					}
+
+					head = $((self.isTable) ? '<th />' : '<div />').append(link, icon);
 
 					if (width) {
 						if (self.isTable) {
