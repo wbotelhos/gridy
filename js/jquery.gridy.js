@@ -517,6 +517,7 @@
 							$this.children('thead').remove();
 						} else {
 							self.content.addClass('gridy-scroll');
+							self.content.children(':last').addClass('gridy-last-line-scroll');
 						}
 					} else if (self.opt.separate) {
 						var firstLine = self.content.children(':first');

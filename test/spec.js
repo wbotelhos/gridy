@@ -3595,7 +3595,63 @@ describe('functions', function() {
 	});
 
 });
-	
+
+describe('scroll', function() {
+
+	beforeEach(function() {
+		$('body').append('<div id="grid"></div>');
+
+		spyOn($, 'ajax').andCallFake(function(params) {
+			var data	= '{"list": [{"id": 1, "username": "a", "name": "A"},{"id": 2, "username": "w", "name": "W"}], "total": 2}',
+			xhr		= { responseText: '(responseText)',  statusText: 'statusText' };
+			
+			params.success(data, 'status', xhr);
+			params.complete('xhr', 'status');
+		});
+	});
+
+	afterEach(function() {
+		$('#grid').parent().remove();
+	});
+
+	it ('[div scroll] should have scroll class', function() {
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			height	: 100,
+			scroll	: true,
+			style	: 'free',
+			template: 'template-div',
+			url		: '/gridy'
+		});
+
+		// then
+		expect($this.children('.gridy-content')).toHaveClass('gridy-scroll');
+	});
+
+	it ('[div scroll] should set the last line class', function() {
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			height	: 100,
+			scroll	: true,
+			style	: 'free',
+			template: 'template-div',
+			url		: '/gridy'
+		});
+
+		// then
+		expect($this.children('.gridy-content').children(':last')).toHaveClass('gridy-last-line-scroll');
+	});
+
+});
+
 // TODO click one time and check arrow up.
 // TODO click two time and check arrow down.
 // TODO click three time and check arrow none.
