@@ -47,7 +47,8 @@
 				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '" />').insertBefore(self);
 				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '" />').insertBefore(self);
 				self.isTable			= self.opt.style == 'table';
-				self.hasHeader			= self.opt.columns.length > 0;
+				self.hasColumns			= self.opt.columns.length > 0;
+				self.hasHeaders			= self.opt.headers.length > 0 || self.hasColumns;
 				self.hasFinds			= self.opt.finds.length > 0;
 				self.hasRows			= self.opt.rowsNumber.length > 0;
 
@@ -146,7 +147,7 @@
 		}, buildHeader: function() {
 			var self = this;
 
-			if (self.hasHeader) {
+			if (self.hasHeaders) {
 				if (self.isTable) {
 					self.header = $('<thead class="gridy-header" />').appendTo(self);
 				} else {
@@ -157,16 +158,17 @@
 					}
 				}
 
-				var name, value, width, head, link, icon;
+				if (self.opt.headers <= 0) {
+					self.opt.headers = self.opt.columns;
+				}
 
-				for (var i in self.opt.columns) {
-					name = self.opt.columns[i].name;
-					value = self.opt.columns[i].value;
-					width = self.opt.columns[i].width;
+				var name, value, width, clazz, head, link, icon;
 
-					if (self.opt.headersWidth[i]) {
-						width = self.opt.headersWidth[i];
-					}
+				for (var i in self.opt.headers) {
+					name = self.opt.headers[i].name;
+					value = self.opt.headers[i].value;
+					width = self.opt.headers[i].width;
+					clazz = self.opt.headers[i].clazz;
 
 					link = $('<a />', { href: 'javascript:void(0);' });
 
@@ -200,8 +202,8 @@
 						}
 					}
 
-					if (self.opt.columns[i].clazz) {
-						head.addClass(self.opt.columns[i].clazz);
+					if (clazz) {
+						head.addClass(clazz);
 					}
 
 					head.appendTo(self.header);
@@ -547,7 +549,7 @@
 					self.searchButton.removeAttr('disabled');
 				}
 
-				if (self.hasHeader) {
+				if (self.hasHeaders) {
 					self.sorters.filter(':not(".gridy-no-sort")').click(function() {
 						methods.sort.call(self, $(this));
 					});
@@ -574,7 +576,7 @@
 					self.searchButton.attr('disabled', 'disabled');
 				}
 
-				if (self.hasHeader) {
+				if (self.hasHeaders) {
 					self.sorters.unbind('click');
 				}
 
@@ -908,7 +910,7 @@
 		arrowDown			: 'gridy-arrow-down',
 		arrowNone			: 'gridy-arrow-none',
 		arrowUp				: 'gridy-arrow-up',
-		headersWidth		: [],
+		headers				: [],
 
 		// page
 		buttonBackTitle		: '&lsaquo; Back',
