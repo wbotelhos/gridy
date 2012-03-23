@@ -69,7 +69,11 @@
 				methods.buildPageButtons.call(self);
 				methods.buildMessager.call(self);
 
-				methods.data.call(self, self.opt.page, self.opt.sortName, self.opt.sortOrder);
+				if (self.opt.firstQuery) {
+					methods.data.call(self, self.opt.page, self.opt.sortName, self.opt.sortOrder);
+				} else {
+					methods.noResult.call(self, self.opt.noFirstQueryText);
+				}
 			});
 		}, buildContent: function() {
 			var self = this;
@@ -337,7 +341,7 @@
 		}, buildStatus: function() {
 			var self = this;
 
-			if (self.opt.loadingOption || self.opt.resultOption) {
+			if (self.opt.loadingOption || self.opt.statusOption) {
 				self.statusBox = $('<div class="gridy-status" />').insertBefore($(self));
 
 				if (self.opt.resize) {
@@ -346,10 +350,10 @@
 			}
 
 			if (self.opt.loadingOption) {
-				self.loading = $('<div class="' + self.opt.loadingIcon + '"><div>' + self.opt.loadingText + '</div></div>').appendTo(self.statusBox).children();
+				self.loading = $('<div class="' + self.opt.loadingIcon + '"><div>' + self.opt.loadingText + '</div></div>').appendTo(self.statusBox).children().hide();
 			}
 
-			if (self.opt.resultOption) {
+			if (self.opt.statusOption) {
 				self.result = $('<div class="gridy-result" />').appendTo(self.statusBox);
 			}
 		}, data: function(page, sortName, sortOrder) {
@@ -639,13 +643,13 @@
 					});
 				}, self.opt.messageTimer);
 			}
-		}, noResult: function() {
+		}, noResult: function(message) {
 			var self = this;
 
-			if (self.opt.noResultOption) {
-				self.content.html('<p class="gridy-no-result">' + self.opt.noResultText + '</p>');
-	
-				if (self.opt.resultOption) {
+			if (self.opt.resultOption) {
+				self.content.html('<p class="gridy-no-result">' + (message || '') + '</p>');
+
+				if (self.opt.statusOption) {
 					self.result.html(self.result.html().replace(/\d+/g, '0'));
 				}
 
@@ -682,7 +686,7 @@
 			}
 
 			if (total == 0) {
-				methods.noResult.call(self);
+				methods.noResult.call(self, self.opt.noResultText);
 
 				if (self.opt.buttonOption) {
 					self.pageButtons.empty();
@@ -731,10 +735,10 @@
 				totalPage++;
 			}
 
-			if (self.opt.resultOption) {
-				var resultText = self.opt.resultText.replace('{from}', methods.getNumber.call(self, page)).replace('{to}', methods.getNumber.call(self, totalPage)).replace('{total}', methods.getNumber.call(self, total));
+			if (self.opt.statusOption) {
+				var statusText = self.opt.statusText.replace('{from}', methods.getNumber.call(self, page)).replace('{to}', methods.getNumber.call(self, totalPage)).replace('{total}', methods.getNumber.call(self, total));
 
-				self.result.html(resultText);
+				self.result.html(statusText);
 			}
 
 			if (self.opt.buttonOption) {
@@ -942,10 +946,10 @@
 		refreshTarget		: undefined,
 
 		// result
-		noResultOption		: true,
-		noResultText		: 'No items found!',
+		firstQuery			: true,
+		noFirstQueryText	: 'No search was performed yet!',
+		noResultText		: 'No items was found!',
 		resultOption		: true,
-		resultText			: 'Displaying {from} - {to} of {total} items',
 
 		// row
 		rows				: 10,
@@ -959,7 +963,11 @@
 		searchFocus			: true,
 		searchOption		: true,
 		searchTarget		: undefined,
-		searchText			: ''
+		searchText			: '',
+
+		// status
+		statusOption		: true,
+		statusText			: 'Displaying {from} - {to} of {total} items'
 	};
 
 })(jQuery);

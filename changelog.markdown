@@ -23,6 +23,9 @@
 	- 'success' is 'done', 'error' is 'fail' and 'complete' is 'always';
 	- When we dicide to change to deferred, maybe on jQuery 1.8, your plugin will not break. (:
 + Now the error messages are displayed on the screen in the place of grid;
++ Now the 'resultOption' is the 'statusOption';
++ Now the 'resultText' is the 'statusText';
++ Now the 'noResultOption' is the 'resultOption';
 
 + Changed the delegate() method to click() and die() to be able use on jQuery 1.4.x;
 + Changed the name of the 'templateStyle' option to 'skin';
@@ -47,6 +50,8 @@
 + Added function 'set' to reload the grid with new options;
 + Added 'columns' option to define all configuration about the columns and the header:
 	- Its an array of objects with name, value, width and clazz;
++ Added 'firstQuery' option to choose if the grid will do a first query when loaded on page;
++ Added 'noFirstQueryText' option to choose the text displayed when the first query is disable.
 
 ### 0.2.0
 

@@ -202,6 +202,52 @@ describe('global', function() {
 	    expect($this.children().children().is('ul')).toBeTruthy();
 	});
 
+	it ('[global firstQuery] should not execute the first query', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns		: [
+			    { name: 'ID', value: 'id', width: 100 },
+			    { name: 'Nick', value: 'nick', width: 100 },
+			    { name: 'Name', value: 'name', width: 100 }
+			],
+			firstQuery	: false,
+			url			: '/gridy'
+		});
+
+		// then
+		var content = $this.children('tbody.gridy-content');
+			rows	= content.children('tr'),
+			message	= content.children('p');
+
+		expect(rows.length).toEqual(0);
+		expect(message).toHaveHtml('No search was performed yet!');
+	});
+
+	it ('[global noFirstQueryText] should be possible to change the "noFirstQueryText"', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			columns				: [
+			    { name: 'ID', value: 'id', width: 100 },
+			    { name: 'Nick', value: 'nick', width: 100 },
+			    { name: 'Name', value: 'name', width: 100 }
+			],
+			firstQuery			: false,
+			noFirstQueryText	: 'Do a query!',
+			url					: '/gridy'
+		});
+
+		// then
+		var message = $this.children('tbody.gridy-content').children('p');
+
+		expect(message).toHaveHtml('Do a query!');
+	});
+
 });
 
 describe('json format', function() {
@@ -745,7 +791,7 @@ describe('free', function() {
 		expect($status.children('div.gridy-result')).toExist();
 	});
 
-	it ('resultText should have default mask', function() {
+	it ('statusText should have default mask', function() {
 		// given
 		var $this = $('#grid');
 
@@ -762,7 +808,7 @@ describe('free', function() {
 		expect($result).toHaveHtml('Displaying 01 - 01 of 03 items');
 	});
 
-	it ('resultText should be turned off', function() {
+	it ('statusText should be turned off', function() {
 		// given
 		var $this = $('#grid');
 
@@ -771,7 +817,7 @@ describe('free', function() {
 			style:			'free',
 			template:		'template-div',
 			url:			'/gridy',
-			resultOption:	false
+			statusOption:	false
 		});
 
 		var wrapper = $this.parent();
@@ -780,7 +826,7 @@ describe('free', function() {
 		expect(wrapper).not.toContain('div.gridy-result');
 	});
 
-	it ('resultText should be changed', function() {
+	it ('statusText should be changed', function() {
 		// given
 		var $this = $('#grid');
 
@@ -789,7 +835,7 @@ describe('free', function() {
 			style:			'free',
 			template:		'template-div',
 			url:			'/gridy',
-			resultText:		'Pagee {from} -- {to} off {total} itemss'
+			statusText:		'Pagee {from} -- {to} off {total} itemss'
 		});
 
 		var $result = $this.parent().find('div.gridy-result');
@@ -2068,7 +2114,7 @@ describe('table', function() {
 		expect($status.children('div.gridy-result')).toExist();
 	});
 
-	it ('resultText should have default mask', function() {
+	it ('statusText should have default mask', function() {
 		// given
 		var $this = $('#grid');
 
@@ -2081,14 +2127,14 @@ describe('table', function() {
 		expect($result).toHaveHtml('Displaying 01 - 01 of 03 items');
 	});
 
-	it ('resultText should be turned off', function() {
+	it ('statusText should be turned off', function() {
 		// given
 		var $this = $('#grid');
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
-			resultOption:	false
+			url			: '/gridy',
+			statusOption: false
 		});
 
 		var wrapper = $this.parent();
@@ -2097,14 +2143,14 @@ describe('table', function() {
 		expect(wrapper).not.toContain('div.gridy-result');
 	});
 
-	it ('resultText should be changed', function() {
+	it ('statusText should be changed', function() {
 		// given
 		var $this = $('#grid');
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
-			resultText:		'Pagee {from} -- {to} off {total} itemss'
+			statusText	: 'Pagee {from} -- {to} off {total} itemss',
+			url			: '/gridy'
 		});
 
 		var $result = $this.parent().find('div.gridy-result');
@@ -2981,7 +3027,7 @@ describe('style table with no result', function() {
 		$('#grid').parent().remove();
 	});
 
-	it ('noResultOption should be enabled by default', function() {
+	it ('resultOption should be enabled by default', function() {
 		// given
 		var $this = $('#grid');
 
@@ -2995,18 +3041,22 @@ describe('style table with no result', function() {
 
 		// then
 		expect(noResult).toExist();
-		expect(noResult).toHaveHtml('No items found!');
+		expect(noResult).toHaveHtml('No items was found!');
 	});
 
-	it ('noResultOption should be disabled', function() {
+	it ('resultOption should be disabled', function() {
 		// given
 		var $this = $('#grid');
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
-			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
-			noResultOption: false
+			finds			: [
+			    { name: 'ID', value: 'id' },
+			    { name: 'Nick', value: 'nick' },
+			    { name: 'Name', value: 'name' }
+			],
+			resultOption	: false,
+			url				: '/gridy'
 		});
 
 		var noResult = $this.children('.gridy-content').children('.gridy-no-result');
@@ -3052,7 +3102,7 @@ describe('style div with no result', function() {
 		$('#grid').parent().remove();
 	});
 
-	it ('noResultOption should be enabled by default', function() {
+	it ('resultOption should be enabled by default', function() {
 		// given
 		var $this = $('#grid');
 
@@ -3068,10 +3118,10 @@ describe('style div with no result', function() {
 
 		// then
 		expect(noResult).toExist();
-		expect(noResult).toHaveHtml('No items found!');
+		expect(noResult).toHaveHtml('No items was found!');
 	});
 
-	it ('noResultOption should be disabled', function() {
+	it ('resultOption should be disabled', function() {
 		// given
 		var $this = $('#grid');
 
@@ -3081,7 +3131,7 @@ describe('style div with no result', function() {
 			template:		'template-div',
 			url:			'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
-			noResultOption: false
+			resultOption: false
 		});
 
 		var noResult = $this.children('.gridy-content').children('.gridy-no-result');
