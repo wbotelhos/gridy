@@ -9,7 +9,7 @@
 		<title>jQuery Gridy - A Grid Plugin</title>
 
 		<!-- This CSS does not belong to the plugin. -->
-		<link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
+		<link type="text/css" rel="stylesheet" href="doc/css/stylesheet.css"/>
 
 		<link type="text/css" rel="stylesheet" href="css/jquery.gridy.css"/>
 
@@ -55,82 +55,9 @@
 		</div>
 
 		<div id="content">
-			<div id="default-demo" class="session-first">Features:</div>
-
-			<div id="menu-feature">
-				<a href="javascript:void(0);" class="selected">home</a>
-				<a href="http://wbotelhos.com/gridy/feature/scroll.html">scroll</a>
-				<a href="javascript:void(0);" class="disabled">arrowDown</a>
-				<a href="javascript:void(0);" class="disabled">arrowNone</a>
-				<a href="javascript:void(0);" class="disabled">arrowUp</a>
-				<a href="javascript:void(0);" class="disabled">before</a>
-				<a href="javascript:void(0);" class="disabled">buttonBackTitle</a>
-				<a href="javascript:void(0);" class="disabled">buttonMax</a>
-				<a href="javascript:void(0);" class="disabled">buttonNextTitle</a>
-				<a href="javascript:void(0);" class="disabled">buttonOption</a>
-				<a href="javascript:void(0);" class="disabled">buttonsWidth</a>
-				<a href="javascript:void(0);" class="disabled">buttonTitle</a>
-				<a href="javascript:void(0);" class="disabled">cache</a>
-				<a href="javascript:void(0);" class="disabled">clickFx</a>
-				<a href="javascript:void(0);" class="disabled">colsWidth</a>
-				<a href="javascript:void(0);" class="disabled">complete</a>
-				<a href="javascript:void(0);" class="disabled">contentType</a>
-				<a href="javascript:void(0);" class="disabled">dataType</a>
-				<a href="javascript:void(0);" class="disabled">debug</a>
-				<a href="javascript:void(0);" class="disabled">error</a>
-				<a href="javascript:void(0);" class="disabled">evenOdd</a>
-				<a href="javascript:void(0);" class="disabled">find</a>
-				<a href="javascript:void(0);" class="disabled">findsName</a>
-				<a href="javascript:void(0);" class="disabled">findTarget</a>
-				<a href="javascript:void(0);" class="disabled">headersName</a>
-				<a href="javascript:void(0);" class="disabled">headersWidth</a>
-				<a href="javascript:void(0);" class="disabled">height</a>
-				<a href="javascript:void(0);" class="disabled">hoverFx</a>
-				<a href="javascript:void(0);" class="disabled">jsonp</a>
-				<a href="javascript:void(0);" class="disabled">jsonpCallback</a>
-				<a href="javascript:void(0);" class="disabled">listPath</a>
-				<a href="javascript:void(0);" class="disabled">loadingIcon</a>
-				<a href="javascript:void(0);" class="disabled">loadingOption</a>
-				<a href="javascript:void(0);" class="disabled">loadingText</a>
-				<a href="javascript:void(0);" class="disabled">messageOption</a>
-				<a href="javascript:void(0);" class="disabled">messageTimer</a>
-				<a href="javascript:void(0);" class="disabled">noResultOption</a>
-				<a href="javascript:void(0);" class="disabled">noResultText</a>
-				<a href="javascript:void(0);" class="disabled">page</a>
-				<a href="javascript:void(0);" class="disabled">params</a>
-				<a href="http://wbotelhos.com/gridy/feature/paramsElements.html">paramsElements</a>
-				<a href="javascript:void(0);" class="disabled">resize</a>
-				<a href="javascript:void(0);" class="disabled">resultOption</a>
-				<a href="javascript:void(0);" class="disabled">resultText</a>
-				<a href="javascript:void(0);" class="disabled">rows</a>
-				<a href="javascript:void(0);" class="disabled">rowsNumber</a>
-				<a href="javascript:void(0);" class="disabled">rowsTarget</a>
-				<a href="javascript:void(0);" class="disabled">scroll</a>
-				<a href="javascript:void(0);" class="disabled">search</a>
-				<a href="javascript:void(0);" class="disabled">searchButtonLabel</a>
-				<a href="javascript:void(0);" class="disabled">searchButtonTitle</a>
-				<a href="javascript:void(0);" class="disabled">searchFocus</a>
-				<a href="javascript:void(0);" class="disabled">searchOption</a> 
-				<a href="javascript:void(0);" class="disabled">searchText</a>
-				<a href="javascript:void(0);" class="disabled">separate</a>
-				<a href="javascript:void(0);" class="disabled">sortersName</a>
-				<a href="javascript:void(0);" class="disabled">sorterWidth</a>
-				<a href="javascript:void(0);" class="disabled">sortName</a>
-				<a href="javascript:void(0);" class="disabled">sortOrder</a>
-				<a href="http://wbotelhos.com/gridy/feature/style.html">style</a>
-				<a href="javascript:void(0);" class="disabled">success</a>
-				<a href="javascript:void(0);" class="disabled">template</a>
-				<a href="javascript:void(0);" class="disabled">templateStyle</a>
-				<a href="javascript:void(0);" class="disabled">totalPath</a>
-				<a href="javascript:void(0);" class="disabled">type</a>
-				<a href="javascript:void(0);" class="disabled">url</a>
-				<a href="javascript:void(0);" class="disabled">width</a>
-				<a href="javascript:void(0);" class="disabled">.reload()</a>
-			</div>
-
 			<table id="grid"></table>
 
-			<div class="session-mini">JSON:</div>
+			<div class="session">JSON:</div>
 
 			<div class="source">
 				{"list": [{"id": 1, "name": "Washington Botelho", "email": "gridy@wbotelhos.com"}], "total": 1}
@@ -140,73 +67,547 @@
 				 - The JSON must have a list of object and an attribute with the total length.
 			</span>
 
-			<div class="session-mini">Script:</div>
+			<div class="session">Script:</div>
 
 			<div class="source">
 				$('#grid').gridy({ url:&#160;'/gridy' });
 			</div>
 
 			<span class="comment">
-				- Just especify your URL that will returns the JSON;<br/>
+				- Just especify your URL that will returns the JSON;<br />
 				- That's all, but you'll want to use other cool features.
 			</span>
 
-			<div class="session-mini">HTML:</div>
+			<div class="session">HTML:</div>
 
 			<div class="source">
 				&lt;table id="grid"&gt;&lt;/table&gt;
 			</div>
 
 			<span class="comment">
-				- Where the grid will appears;<br/>
-				- In this case we're using the default template "gridy-default", but you can create your own. (:<br/>
+				- Where the grid will appears;<br />
+				- In this case we're using the default template "gridy-default", but you can create your own. (:<br />
+ 				- This target element can be any you want.<br />
 			</span>
 
-			<div class="session-mini">Template:</div>
+			<div class="session">Template:</div>
 
 			<div class="source">
-				&lt;script id="template" type="text/x-jquery-tmpl"&gt;<br/>
-					&#160;&#160;&#160;&lt;tr&gt;<br/>
-					&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${name}&lt;/td&gt;<br/>
-					&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${email}&lt;/td&gt;<br/>
-					&#160;&#160;&#160;&lt;/tr&gt;<br/>
+				&lt;script id="template" type="text/x-jquery-tmpl"&gt;<br />
+					&#160;&#160;&#160;&lt;tr&gt;<br />
+					&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${name}&lt;/td&gt;<br />
+					&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${email}&lt;/td&gt;<br />
+					&#160;&#160;&#160;&lt;/tr&gt;<br />
 				&lt;/script&gt;
 			</div>
 
 			<span class="comment">
-				- The script that is a template type (text/x-jquery-tmpl) must have an ID to be hooked;<br/>
-				- You can to use td or div for build the gridy;<br/>
-				- The first tr/div represents a row of the grid and will be repeated many times;<br/>
-				- Each td/div inside the wrapper will be considerated a col of the grid;<br/>
-				- If you are using some framework like Spring or EL (Expression Language), scape the '$' to avoid conflicts: \${ } or &lt;c:out value="${ }"/&gt;.<br/>
+				- You build a jQuery Template with an ID to be hooked;<br />
+				- The main purpose of Gridy is to provide the flexibility to use any data structure, not just an old table;<br />
+				- The first element inside the template will be the row and the direct children will be the columns;<br />
+				- This structure will be repeated as many times as the total number of objects returned in JSON;<br />
+				- If you are using some framework like Spring or EL (Expression Language), scape the '$' to avoid conflicts: \${ } or &lt;c:out value="${ }"/&gt;.<br />
 			</span>
 
-			<div class="session-mini">Query String:</div>
+			<div class="session">Query String:</div>
 
 			<div class="source">
 				<span class="attribute">search</span>=__&<span class="attribute">page</span>=__&<span class="attribute">sortname</span>=__&<span class="attribute">sortorder</span>=__&<span class="attribute">find</span>=__&<span class="attribute">rows</span>=__
 			</div>
 
 			<span class="comment">
-				- search: the term you want to search;<br/>
-				- page: the number of the page you want to view;<br/>
-				- sortname: the name of the column of the database you want to sort by;<br/>
-				- sortorder: the order you want to sort the result: ascending or descending;<br/>
-				- find: the name of the column you want to search;<br/>
-				- rows: the number of rows you want to display in each page;<br/>
-				- You can append more attributes using the 'params' option.<br/>
+				- search: the term you want to search;<br />
+				- page: the number of the page you want to view;<br />
+				- sortname: the name of the column of the database you want to sort by;<br />
+				- sortorder: the order you want to sort the result: ascending or descending;<br />
+				- find: the name of the column you want to search;<br />
+				- rows: the number of rows you want to display in each page;<br />
+				- * You can append more attributes using the 'params' or 'paramsElements' option.<br />
 			</span>
 
-			<div class="session-mini">Server Side (Java):</div>
+			<div class="session">Server side example (Java/VRaptor):</div>
 
 			<div class="source">
-				@Get("/gridy")<br/>
-				public void gridy(String search, int page, String sortName, String sortOrder, String find, int rows) {<br/><br/>
+				@Get("/gridy")<br />
+				public void gridy(String search, int page, String sortName, String sortOrder, String find, int rows) {<br /><br />
 
 				}
 			</div>
 
-			<div class="session">Default options:</div>
+			<div class="session">Ajax Options:</div>
+
+			<div class="session-option">always: <span>undefined / using undefined jQuery will consider it as: undefined</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">always: function(jqXHR, textStatus) {<br />
+				&#160;&#160;&#160;&#160;alert('Successfully completed!');<br />
+				&#160;&#160;}</span><br />
+				});
+			</div>
+
+			<div class="comment">Function executed when the grid finish the request.</div>
+
+			<div class="comment-personal">Example: you can stop a loading message when request finish.</div>
+
+			<hr />
+
+			<div class="session-option">cache: <span>undefined / using undefined jQuery will consider it as: true, false for dataType 'script' and 'jsonp'</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">cache: true</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the ajax cache.</div>
+
+			<div class="comment-personal">Example: you can enable de ajax cache to avoid reload some data.</div>
+
+			<hr />
+
+			<div class="session-option">contentType: <span>undefined / using undefined jQuery will consider it as: 'application/x-www-form-urlencoded'</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">contentType: 'jsonp'</span><br />
+				});
+			</div>
+
+			<div class="comment">The content type of the ajax request.</div>
+
+			<div class="comment-personal">Example: you can do a cross domain request with JSONP.</div>
+
+			<hr />
+
+			<div class="session-option">dataType: <span>'json' / using undefined jQuery will consider it as: Intelligent Guess (xml, json, script, or html)</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">dataType: 'xml'</span><br />
+				});
+			</div>
+
+			<div class="comment">The data type of the ajax request.</div>
+
+			<div class="comment-personal">Example: you can receive the data as XML. * For now just JSON is supported!</div>
+
+			<hr />
+
+			<div class="session-option">done: <span>undefined / using undefined jQuery will consider it as: undefined</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">done: function(data, textStatus, jqXHR) {<br />
+				&#160;&#160;&#160;&#160;alert('Successfully loaded!');<br />
+				&#160;&#160;}</span><br />
+				});
+				});
+			</div>
+
+			<div class="comment">The data type of the ajax request.</div>
+
+			<div class="comment-personal">Example: you can get the data returned from request and display a success message.</div>
+
+			<hr />
+
+			<div class="session-option">fail: <span>undefined / using undefined jQuery will consider it as: undefined</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">fail: function(jqXHR, textStatus, errorThrown) {<br />
+				&#160;&#160;&#160;&#160;alert('Some thing is wrong!');<br />
+				&#160;&#160;}</span><br />
+				});
+				});
+			</div>
+
+			<div class="comment">The data type of the ajax request.</div>
+
+			<div class="comment-personal">Example: you can recover an error and display it, or take a workaround decision.</div>
+
+			<hr />
+
+			<div class="session-option">jsonp: <span>undefined / using undefined jQuery will consider it as: no effect.</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">jsonp: true</span><br />
+				});
+			</div>
+
+			<div class="comment">Override the callback function name in a jsonp request.</div>
+
+			<div class="comment-personal">Example: you can override the callback name. jQuery 1.5+ you can set it to false to avoid append of "?callback" or "=?" and set the name using jsonpCallback option.</div>
+
+			<hr />
+
+			<div class="session-option">jsonpCallback: <span>undefined / using undefined jQuery will consider it as: random value</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">jsonpCallback: 'MyCallbackName'</span><br />
+				});
+			</div>
+
+			<div class="comment">Specify the callback function name for a JSONP request.</div>
+
+			<div class="comment-personal">
+				Example:<br/ >
+				- You can change the name of callback manually;<br />
+				- Using static name you can have a better browser caching;<br />
+				- But it is preferable to let jQuery generate a unique name as it'll make it easier to manage the requests and provide callbacks and error handling
+			</div>
+
+			<hr />
+
+			<div class="session-option">page: <span>1</span></div>
+
+			<img src="img/doc/page.png" alt="page" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">page: 3</span><br />
+				});
+			</div>
+
+			<div class="comment">The number of the page to be displayed.</div>
+
+			<div class="comment-personal">Example: you can choose the number of the page you want to start.</div>
+
+			<hr />
+
+			<div class="session-option">params: <span>{}</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">params: { 'language': 'pt_BR', 'status': 1 }</span><br />
+				});
+			</div>
+
+			<div class="source">
+				...&language=pt_BR&status=1
+			</div>
+
+			<div class="comment">A hash of parameters to be added to the query string.</div>
+
+			<div class="comment-personal">Example: you can pass extra parameter to filter your search.</div>
+
+			<hr />
+
+			<div class="session-option">paramsElements: <span>[]</span></div>
+
+			<div class="source">
+				&lt;input id="language" type="text" name="language" value="pt_BR" /&gt;<br /><br />
+
+				&lt;input type="checkbox" name="status" value="0" checked="checked" class="status" /&gt;<br />
+				&lt;input type="checkbox" name="status" value="1" class="status" /&gt;<br />
+				&lt;input type="checkbox" name="status" value="2" checked="checked" class="status" /&gt;<br /><br />
+
+				&lt;select name="entity.year"&gt;<br />
+				&#160;&#160;&lt;option value="2011"&gt;2011&lt;/option&gt;<br />
+				&#160;&#160;&lt;option value="2012" selected="selected"&gt;2012&lt;/option&gt;<br />
+				&#160;&#160;&lt;option value="2013"&gt;2013&lt;/option&gt;<br />
+				&lt;/select&gt;
+			</div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">paramsElements: ['#language', '.status', '[name="entity.year"]']</span><br />
+				});
+			</div>
+
+			<div class="source">
+				...&language=pt_BR&status[]=0&status[]=2&entity.year=2012
+			</div>
+
+			<div class="comment">Array of selectors of field to use the name and value as parameter.</div>
+
+			<div class="comment-personal">Example:<br />- You can pass dinamically extra parameter coming from fields elements:<br />- The name of field will be the key and the value will be the value of that key;<br />- If the selector is a class then the parameters will be send as a array.</div>
+
+			<hr />
+
+			<div class="session-option">sortName: <span>''</span></div>
+
+			<img src="img/doc/sortName.png" alt="sortName" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">sortName: 'attribute'</span><br />
+				});
+			</div>
+
+			<div class="comment">Name of the default column sorted.</div>
+			<div class="comment-personal">Example: you can choose a column of the grid to be sorted alphabetically.</div>
+
+			<hr />
+
+			<div class="session-option">sortOrder: <span>'asc'</span></div>
+
+			<img src="img/doc/sortOrder.png" alt="sortOrder" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">sortOrder: 'desc'</span><br />
+				});
+			</div>
+
+			<div class="comment">Order of classification.</div>
+
+			<div class="comment-personal">Example: you can choose to sort the data in a column in ascending or descending order.</div>
+
+			<hr />
+
+			<div class="session-option">type: <span>'get'</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">type: 'post'</span><br />
+				});
+			</div>
+
+			<div class="comment">Type of the HTTP request.</div>
+
+			<div class="comment-personal">Example: you can change the verb to get, post, delete or put, but it is a search, then it is recommended that you use the default get.</div>
+
+			<hr />
+
+			<div class="session-option">url: <span>'/gridy'</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/user/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">type: 'post'</span><br />
+				});
+			</div>
+
+			<div class="comment">URL to request the data.</div>
+
+			<div class="comment-personal">Example: you can change the URL to receive your data. Don't forget to prepend the context of your application.</div>
+
+			<hr />
+
+			<div class="session-option">url: <span>'/gridy'</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/user/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">type: 'post'</span><br />
+				});
+			</div>
+
+			<div class="comment">URL to request the data.</div>
+
+			<div class="comment-personal">Example: you can change the URL to receive your data. Don't forget to prepend the context of your application.</div>
+
+			<div class="session">Callback Options:</div>
+
+			<div class="session-option">before: <span>undefined</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">filter: function(page, sortName, sortOrder) {<br />
+				&#160;&#160;&#160;&#160;return { page: 2, sortName: 'value', sortOrder: 'desc' };<br />
+				&#160;&#160;}</span><br />
+				});
+			</div>
+
+			<div class="comment">Function executed before the grid call the request.</div>
+
+			<div class="comment-personal">Example:<br /> - You can receives the parameters 'page', 'sortName' and 'sortOrder' before the grid request the URL<br />- You can override each one of that attributes returning a hash with the desired values.</div>
+
+			<hr />
+
+			<div class="session-option">filter: <span>undefined</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">before: function(data, page, sortName, sortOrder) {<br />
+				&#160;&#160;&#160;&#160;if (page == 10) {<br />
+				&#160;&#160;&#160;&#160;&#160;&#160;data.total = 0;<br />
+				&#160;&#160;&#160;&#160;&#160;&#160;return data;<br />
+				&#160;&#160;&#160;&#160;}<br />
+				&#160;&#160;}</span><br />
+				});
+			</div>
+
+			<div class="comment">Function executed when the data is returned from request.</div>
+
+			<div class="comment-personal">Example:<br /> - You can receives the parameters 'data' that is the content of request, 'page', 'sortName' and 'sortOrder' when the data returned from request<br />- You'll receives the data as an object, then you can change and return it to the original data be overrided like a filter.<br />- The data will be overrided only if you return some object.</div>
+
+			<div class="session">Content Options:</div>
+
+			<div class="session-option">columns: <span>[]</span></div>
+
+			<img src="img/doc/columns.png" alt="columns" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">columns: [<br />
+				&#160;&#160;&#160;&#160;{ name: 'Attribute', value: 'attribute', width: 100, clazz: 'special' },<br />
+				&#160;&#160;&#160;&#160;{ value: 'value', width: 200 },<br />
+				&#160;&#160;&#160;&#160;{ name: 'Description', width: 300 },<br />
+				&#160;&#160;&#160;&#160;{ width: 50 }<br />
+				&#160;&#160;}</span><br />
+				});
+			</div>
+
+			<div class="comment">Array of objects that represents each column of the grid with name, value, width and clazz.</div>
+
+			<div class="comment-personal">Example:<br />
+				- You can choose to have the column label, it will be read-only, it will have a different style, or if nothing is displayed on header label;<br />
+				- 1. Has all attributes;<br />
+				- 2. Don't has a label then we can't click it to make a sort and nothing is displayed on label, but it is sorted, then the arrow shows;<br />
+				- 3. Has the label, but don't has the value necessary to send to the query to be sorted, then it is read-only. It shows arrows indicating the sort;<br />
+				- 4. Has just the width;<br />
+				- 5. Was not declared, then don't have any special config. All attributes are optional;<br />
+				- 6. Idem item 5.
+				- 7. The headers will take all values from 'columns' unless you override it using the specific 'headers' option to build columns and headers with different size;
+				- 8. The width from 'headers' will be applied only on header, so you can, for example, build a grid with one column (900px) and three headers (300px).
+			</div>
+
+			<hr />
+
+			<div class="session-option">scroll: <span>false</span> / height: <span>'auto'</span></div>
+
+			<div id="scroll"></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">height: 200,<br />
+				&#160;&#160;scroll: true</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the display of the grid with scroll.</div>
+
+			<div class="comment-personal">Example:<br />
+				- You can choose the scroll style when you need a bunch of grid on the same screen with poor space;<br />
+				- The 'height' attribute is mandatory, because scroll must has a vertical delimiter to be builded;<br />
+				- The 'height' attribute just works with 'scroll' option.
+			</div>
+
+			<hr />
+
+			<div class="session-option">style: <span>table</span></div>
+
+			<div id="style"></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">style: 'free'</span><br />
+				});
+			</div>
+
+			<div class="source">
+				&lt;script id="template" type="text/x-jquery-tmpl"&gt;<br />
+				&#160;&#160;&lt;div&gt;<br />
+				&#160;&#160;&#160;&#160;&lt;div&gt;${attribute}&lt;/div&gt;<br />
+				&#160;&#160;&#160;&#160;&lt;div&gt;${value}&lt;/div&gt;<br />
+				&#160;&#160;&#160;&#160;&lt;div&gt;${description}&lt;/div&gt;<br />
+				&#160;&#160;&#160;&#160;&lt;div&gt;${version}&lt;/div&gt;<br /><br />
+
+				&#160;&#160;&#160;&#160;&lt;div class="gridy-button"&gt;<br />
+				&#160;&#160;&#160;&#160;&#160;&#160;&lt;a href="javascript:void(0);"&gt;edit&lt;/a&gt;<br />
+				&#160;&#160;&#160;&#160;&lt;/div&gt;<br />
+				&#160;&#160;&lt;/div&gt;<br />
+				&lt;/script&gt;
+			</div>
+
+			<div class="comment">Change between table and free style of template.</div>
+
+			<div class="comment-personal">Example:<br />
+				- You can use any structure on your template, not only the old table;<br />
+				- In fact, Gridy was build with this goal: do cool things on your way;<br />
+				- You can use combinate ul and li or any elements you want, build the template the way you want;<br />
+				- On the example above we dicide to use only divs.
+			</div>
+
+			<hr />
+
+			<div class="session-option">width: <span>'auto'</span></div>
+
+			<img src="img/doc/width.png" alt="width" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">width: 1000</span><br />
+				});
+			</div>
+
+			<div class="comment">Width of the grid.</div>
+
+			<div class="comment-personal">Example: you can choose the width based on you screen space. Some grid needs less or more space then other.</div>
+
+			<div class="session">Design Options:</div>
+
+			<div class="session-option">evenOdd: <span>false</span></div>
+
+			<img src="img/doc/evenOdd.png" alt="evenOdd" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">evenOdd: true</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the even odd row style.</div>
+
+			<div class="comment-personal">Example: you can enable this option to make better the difference between the lines.</div>
+
+			<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="session-option">arrowDown: <span>'gridy-arrow-down'</span></div>
+
+			<img src="img/doc/arrowDown.png" alt="arrowDown" class="session-image" />
+
+			<div class="source">
+				<span class="source-highlight">.arrow-down-style { background: url('big-arrow-down.png'); }</span>
+			</div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">arrowDown: 'arrow-down-style'</span><br />
+				});
+			</div>
+
+			<div class="comment">Class with background used as icon on the descending sort.</div>
+			<div class="comment-personal">Example: you can do a cross domain request with JSONP.</div>
+
+			<hr />
 
 			<div class="source">
 				arrowDown&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'gridy-arrow-down'
@@ -217,9 +618,6 @@
 
 				arrowUp&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'gridy-arrow-up'
 				<div class="comment">Class with background used as icon on the ascending sort.</div>
-
-				before&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">Function executed before the grid load.</div>
 
 				buttonBackTitle&#160;&#160;&#160;&#160;: '&lsaquo; Back'
 				<div class="comment">Title of the navigation button back.</div>
@@ -239,32 +637,17 @@
 				buttonTitle&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'page'
 				<div class="comment">Alternative text prepended in the title attribute together the number of the button page.</div>
 
-				cache&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">Enables the ajax cache.</div>
-
 				clickFx&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Enables rows selection on click.</div>
 
 				colsWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
 				<div class="comment">List with the width of each column of the grid.</div>
 
-				complete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">Function executed when the grid load.</div>
-
-				contentType&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">The content type of the ajax request.</div>
-
-				dataType&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'json'
-				<div class="comment">The data type of the ajax request.</div>
-
 				debug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Shows details of the grid request.</div>
 
 				error&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Function executed when occurs an error on the grid load.</div>
-
-				evenOdd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
-				<div class="comment">Enables the even odd row style.</div>
 
 				find&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: ''
 				<div class="comment">Name of the column where research will be done.</div>
@@ -281,17 +664,8 @@
 				headersWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
 				<div class="comment">Width of the columns of the header element.</div>
 
-				height&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'auto'
-				<div class="comment">Height of the grid.</div>
-
 				hoverFx&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Enables highlight rows on mouseover.</div>
-
-				jsonp&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">Enables the JSONP content type.</div>
-
-				jsonpCallback&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">Name of the callback function when the content type is JSONP.</div>
 
 				listPath&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'list'
 				<div class="comment">Path of the list element like 'response.movie.list'.</div>
@@ -317,15 +691,6 @@
 				noResultText&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'No results found!'
 				<div class="comment">Text shown when no result is found for the search.</div>
 
-				page&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 1
-				<div class="comment">The number of the page to be displayed.</div>
-
-				params&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: {}
-				<div class="comment">A hash of parameters to be added to the query string.</div>
-
-				paramsElements&#160;&#160;&#160;&#160;&#160;: []
-				<div class="comment">Array of selectors of field to use the name and value as parameter.</div>
-
 				resize&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Apply the same width of the content to the other wrappers.</div>
 
@@ -343,9 +708,6 @@
 
 				rowsTarget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">ID of the place where the rows element will be appended.</div>
-
-				scroll&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
-				<div class="comment">Enables the display of the grid with scroll.</div>
 
 				search&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: ''
 				<div class="comment">Default term to be consulted.</div>
@@ -380,15 +742,6 @@
 				sorterWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'auto'
 				<div class="comment">Width of the sorter element.</div>
 
-				sortName&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: ''
-				<div class="comment">Name of the default column sorted.</div>
-
-				sortOrder&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'asc'
-				<div class="comment">Order of classification.</div>
-
-				style&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'table'
-				<div class="comment">Change between table and div style.</div>
-
 				success&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Function executed when the grid loads successfully.</div>
 				
@@ -397,15 +750,6 @@
 
 				totalPath&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'total'
 				<div class="comment">Path of the total element like 'response.movie.total'.</div>
-
-				type&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'get'
-				<div class="comment">Type of the HTTP request.</div>
-				
-				url&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: '/gridy'
-				<div class="comment">Url to request the data.</div>
-				
-				width&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'auto'
-				<div class="comment">Width of the grid.</div>
 			</div>
 
 			<div class="session">Public functions:</div>
@@ -415,7 +759,7 @@
 		</div>
 
 		<div id="footer">
-			<div id="copy">&copy; 2011 <a href="http://www.wbotelhos.com/" target="_blank">wbotelhos.com</a></div>
+			<div>&copy; 2011 <a href="http://www.wbotelhos.com/" target="_blank">wbotelhos.com</a></div>
 		</div>
 
 		<script type="text/javascript">
@@ -424,18 +768,87 @@
 				$('#grid').gridy({
 					buttonMax	: 5,
 					clickFx		: true,
-					colsWidth	: [150, 120, 540, 78, 100, 100],
+					columns		: [
+						{ name: 'Attribute',value: 'attribute', width: 150 },
+						{ name: 'Value', value: 'value', width: 160 },
+						{ name: 'Description', value: 'description', width: 605 },
+						{ name: 'Version', value: 'version', width: 80 },
+						{ width: 95 }
+					],
 					dataType	: 'jsonp',
 					evenOdd		: true,
 					find		: 'attribute',
-					findsName	: [['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
-					headersName	: [['attribute', 'attribute'], ['value', 'Value'], ['description', 'Description'], ['version', 'Version']],
+					finds		: [
+						{ name: 'Attribute', value: 'Attribute' },
+						{ name: 'Value', value: 'value' },
+						{ name: 'Description', value: 'description' },
+						{ name: 'Version', value: 'version' }
+					],
 					hoverFx		: true,
-					jsonp		: true,
-					sortName	: 'attribute',
 					searchText	: 'type your search here...',
-					url			: 'http://mockr.me/gridy',
-					width		: 1100
+					sortName	: 'attribute',
+					url			: 'http://localhost:8080/mockr/gridy',
+					width		: 1100,
+								searchFocus	: false,
+				});
+
+				$('#scroll').gridy({
+					clickFx		: true,
+					columns		: [
+						{ name: 'Attribute', value: 'attribute', width: 150 },
+						{ name: 'Value', value: 'value', width: 160 },
+						{ name: 'Description', value: 'description', width: 600 },
+						{ name: 'Version', value: 'version', width: 78 },
+						{ width: 95 }
+					],
+					dataType	: 'jsonp',
+					evenOdd		: true,
+					find		: 'attribute',
+					finds		: [
+						{ name: 'Attribute', value: 'Attribute' },
+						{ name: 'Value', value: 'value' },
+						{ name: 'Description', value: 'description' },
+						{ name: 'Version', value: 'version' }
+					],
+					height		: 200,
+					hoverFx		: true,
+					rows		: 100,
+					scroll		: true,
+					searchText	: 'type your search here...',
+					sortName	: 'attribute',
+					style		: 'free',
+					template	: 'template-div',
+					url			: 'http://localhost:8080/mockr/gridy',
+					width		: 1100,
+								searchFocus	: false
+				});
+
+				$('#style').gridy({
+					clickFx		: true,
+					columns		: [
+						{ name: 'Attribute',value: 'attribute', width: 150 },
+						{ name: 'Value', value: 'value', width: 160 },
+						{ name: 'Description', value: 'description', width: 600 },
+						{ name: 'Version', value: 'version', width: 78 },
+						{ width: 95 }
+					],
+					dataType	: 'jsonp',
+					evenOdd		: true,
+					find		: 'attribute',
+					finds		: [
+						{ name: 'Attribute', value: 'Attribute' },
+						{ name: 'Value', value: 'value' },
+						{ name: 'Description', value: 'description' },
+						{ name: 'Version', value: 'version' }
+					],
+					hoverFx		: true,
+					searchText	: 'type your search here...',
+					sortName	: 'attribute',
+					style		: 'free',
+					template	: 'template-div',
+					url			: 'http://localhost:8080/mockr/gridy',
+					width		: 1100,
+								searchFocus	: false, debug: true
 				});
 
 			});
@@ -449,13 +862,22 @@
 				<td>${version}</td>
 
 				<td class="gridy-button">
-					<a href="javascript:void(0);">remove</a>
-				</td>
-
-				<td class="gridy-button">
 					<a href="javascript:void(0);">edit</a>
 				</td>
 			</tr>
+		</script>
+
+		<script id="template-div" type="text/x-jquery-tmpl">
+			<div>
+				<div>${attribute}</div>
+				<div>${value}</div>
+				<div>${description}</div>
+				<div>${version}</div>
+
+				<div class="gridy-button">
+					<a href="javascript:void(0);">edit</a>
+				</div>
+			</div>
 		</script>
 	</body>
 </html>
