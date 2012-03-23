@@ -271,7 +271,7 @@
 
 			<div class="session-option">page: <span>1</span></div>
 
-			<img src="img/doc/page.png" alt="page" class="session-image" />
+			<img src="doc/img/page.png" alt="page" height="40" width="320" class="session-image" />
 
 			<div class="source">
 				$('#grid').gridy({<br />
@@ -340,7 +340,7 @@
 
 			<div class="session-option">sortName: <span>''</span></div>
 
-			<img src="img/doc/sortName.png" alt="sortName" class="session-image" />
+			<img src="doc/img/sortName.png" alt="sortName" height="149" width="321" class="session-image" />
 
 			<div class="source">
 				$('#grid').gridy({<br />
@@ -356,7 +356,7 @@
 
 			<div class="session-option">sortOrder: <span>'asc'</span></div>
 
-			<img src="img/doc/sortOrder.png" alt="sortOrder" class="session-image" />
+			<img src="doc/img/sortOrder.png" alt="sortOrder" height="149" width="321" class="session-image" />
 
 			<div class="source">
 				$('#grid').gridy({<br />
@@ -455,7 +455,7 @@
 
 			<div class="session-option">columns: <span>[]</span></div>
 
-			<img src="img/doc/columns.png" alt="columns" class="session-image" />
+			<img src="doc/img/columns.png" alt="columns" height="82" width="872" class="session-image" />
 
 			<div class="source">
 				$('#grid').gridy({<br />
@@ -478,8 +478,8 @@
 				- 3. Has the label, but don't has the value necessary to send to the query to be sorted, then it is read-only. It shows arrows indicating the sort;<br />
 				- 4. Has just the width;<br />
 				- 5. Was not declared, then don't have any special config. All attributes are optional;<br />
-				- 6. Idem item 5.
-				- 7. The headers will take all values from 'columns' unless you override it using the specific 'headers' option to build columns and headers with different size;
+				- 6. Idem item 5;<br />
+				- 7. The headers will take all values from 'columns' unless you override it using the specific 'headers' option to build columns and headers with different size;<br />
 				- 8. The width from 'headers' will be applied only on header, so you can, for example, build a grid with one column (900px) and three headers (300px).
 			</div>
 
@@ -546,7 +546,7 @@
 
 			<div class="session-option">width: <span>'auto'</span></div>
 
-			<img src="img/doc/width.png" alt="width" class="session-image" />
+			<img src="doc/img/width.png" alt="width" height="114" width="325" class="session-image" />
 
 			<div class="source">
 				$('#grid').gridy({<br />
@@ -563,7 +563,7 @@
 
 			<div class="session-option">evenOdd: <span>false</span></div>
 
-			<img src="img/doc/evenOdd.png" alt="evenOdd" class="session-image" />
+			<img src="doc/img/evenOdd.png" alt="evenOdd" height="117" width="328" class="session-image" />
 
 			<div class="source">
 				$('#grid').gridy({<br />
@@ -578,11 +578,26 @@
 
 			<hr />
 
+			<div class="session-option">resize: <span>true</span></div>
 
+			<img src="doc/img/resize.png" alt="resize" height="195" width="927" class="session-image" />
 
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="source-highlight">resize: false</span><br />
+				});
+			</div>
 
+			<div class="comment">Apply the same width of the content to the other wrappers.</div>
 
+			<div class="comment-personal">
+				Example:<br />
+				- This option to make sure that wrappers main, header, content, footer and buttons has the same size.<br />
+				- You can turn off this option to choose a free size for each one of that wrapper.
+			</div>
 
+			<hr />
 
 
 
@@ -591,7 +606,7 @@
 
 			<div class="session-option">arrowDown: <span>'gridy-arrow-down'</span></div>
 
-			<img src="img/doc/arrowDown.png" alt="arrowDown" class="session-image" />
+			<img src="doc/img/arrowDown.png" alt="arrowDown" height="25" width="356" class="session-image" />
 
 			<div class="source">
 				<span class="source-highlight">.arrow-down-style { background: url('big-arrow-down.png'); }</span>
@@ -640,9 +655,6 @@
 				clickFx&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Enables rows selection on click.</div>
 
-				colsWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
-				<div class="comment">List with the width of each column of the grid.</div>
-
 				debug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Shows details of the grid request.</div>
 
@@ -657,12 +669,6 @@
 
 				findTarget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">ID of the place where the find element will be appended.</div>
-
-				headersName&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
-				<div class="comment">List of the names used on the header element.</div>
-
-				headersWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
-				<div class="comment">Width of the columns of the header element.</div>
 
 				hoverFx&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
 				<div class="comment">Enables highlight rows on mouseover.</div>
@@ -690,9 +696,6 @@
 
 				noResultText&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'No results found!'
 				<div class="comment">Text shown when no result is found for the search.</div>
-
-				resize&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
-				<div class="comment">Apply the same width of the content to the other wrappers.</div>
 
 				resultOption&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Enables the presentation of details of the result.</div>
@@ -733,14 +736,8 @@
 				separate&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
 				<div class="comment">Change the style of the first line on grid.</div>
 
-				sortersName&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: []
-				<div class="comment">List with the names used on the sorter element.</div>
-
 				skin&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'gridy-default'
 				<div class="comment">Name of the root class name style "CSS prefix".</div>
-
-				sorterWidth&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'auto'
-				<div class="comment">Width of the sorter element.</div>
 
 				success&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Function executed when the grid loads successfully.</div>
@@ -829,7 +826,7 @@
 						{ name: 'Attribute',value: 'attribute', width: 150 },
 						{ name: 'Value', value: 'value', width: 160 },
 						{ name: 'Description', value: 'description', width: 600 },
-						{ name: 'Version', value: 'version', width: 78 },
+						{ name: 'Version', value: 'version', width: 93 },
 						{ width: 95 }
 					],
 					dataType	: 'jsonp',
