@@ -32,7 +32,9 @@
 
 	.gridy-content .gridy-even { background-color: #FFF; }
 	.gridy-content .gridy-odd { background-color: #F7F7F7; }
+	.gridy-content .gridy-even-scroll { background-color: #FFF; border-left-color: #FFF !important; border-top-color: #FFF !important; }
 	.gridy-content .gridy-odd-scroll { background-color: #F7F7F7; border-left-color: #F7F7F7 !important; border-top-color: #F7F7F7 !important; }
+	.gridy-content .gridy-last-line-scroll { border-bottom: 0 !important; }
 
 	.gridy-content .gridy-row-hovered { background-color: #D9EBF5; border-color: #CCC; }
 	.gridy-content .gridy-row-selected { background-color: #ECF1F5; border-color: #BBB; }
