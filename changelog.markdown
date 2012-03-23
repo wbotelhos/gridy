@@ -17,8 +17,8 @@
 + Now the callback 'before' will be called as 'filter' to have an better semantics;
 + Now the 'findsName' is the 'finds' options. Its an array of objects with name and value;
 + Now the default value of the 'jsonCallback' is undefined for jQuery auto generate the callback name;
-+ Now the 'headersName' is the 'columns' options. Its an array of objects with name, value and clazz:
-	- Removed the 'colsWidth'. Now 'columns' has the attribute 'width';
++ Now the 'headersName' is the 'headers' option. Its an array of objects with name, value, width and clazz:
+	- Removed the 'headersWidth'. Now 'headers' has the attribute 'width';
 + Now the ajax callbacks has the same name the news deferred functions, but its NOT deferred yet:
 	- 'success' is 'done', 'error' is 'fail' and 'complete' is 'always';
 	- When we dicide to change to deferred, maybe on jQuery 1.8, your plugin will not break. (:
@@ -43,9 +43,10 @@
 + Added 'separate' option to change the style of the first line on grid to separate visually the header;
 + Added 'refreshTarget' option to choose where the refresh button should appear;
 + Added the new 'before' callback called before the ajax request with option to override the 'page', 'sortName' and 'sortOrder';
-
 + Added function 'reload' to reload the grid with current filter configuration;
 + Added function 'set' to reload the grid with new options;
++ Added 'columns' option to define all configuration about the columns and the header:
+	- Its an array of objects with name, value, width and clazz;
 
 ### 0.2.0
 
