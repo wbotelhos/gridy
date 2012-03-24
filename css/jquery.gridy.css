@@ -68,53 +68,53 @@
 
 /* table */
 
-	.gridy-default-table { margin: 0 auto; }
+	.gridy-table { margin: 0 auto; }
 
-	.gridy-default-table .gridy-separate { border-top-width: 2px; }
+	.gridy-table .gridy-separate { border-top-width: 2px; }
 
-	.gridy-default-table th { float: left; padding-bottom: 7px; text-align: center; }
-	.gridy-default-table th div { float: right; }
-	.gridy-default-table th a { font-size: 11px; font-weight: normal; color: #369; letter-spacing: 1px; text-decoration: none; }
-	.gridy-default-table th a:hover { color: #339BD0; }
-	.gridy-default-table th a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
+	.gridy-table th { float: left; padding-bottom: 7px; text-align: center; }
+	.gridy-table th div { float: right; }
+	.gridy-table th a { font-size: 11px; font-weight: normal; color: #369; letter-spacing: 1px; text-decoration: none; }
+	.gridy-table th a:hover { color: #339BD0; }
+	.gridy-table th a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
 
-	.gridy-default-table .gridy-content { clear: both; height: auto; margin: 0; overflow: visible; padding: 0; }
-	.gridy-default-table .gridy-content .gridy-row-hovered-scroll { background-color: #D9EBF5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
-	.gridy-default-table .gridy-content .gridy-row-selected-scroll { background-color: #ECF1F5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
-	.gridy-default-table .gridy-content .gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
+	.gridy-table .gridy-content { clear: both; height: auto; margin: 0; overflow: visible; padding: 0; }
+	.gridy-table .gridy-content .gridy-row-hovered-scroll { background-color: #D9EBF5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
+	.gridy-table .gridy-content .gridy-row-selected-scroll { background-color: #ECF1F5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
+	.gridy-table .gridy-content .gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
 	
-	.gridy-default-table td { border-color: #CCC; border-style: solid; border-width: 1px 0 0; float: left; min-height: 25px; padding-top: 9px; text-indent: 10px; }
-	.gridy-default-table td.gridy-button a {
+	.gridy-table td { border-color: #CCC; border-style: solid; border-width: 1px 0 0; float: left; min-height: 25px; padding-top: 9px; text-indent: 10px; }
+	.gridy-table td.gridy-button a {
 		border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; display: block; height: 20px; margin-right: 5px; margin-top: -5px; padding-top: 3px; text-align: center; text-indent: 0 !important; text-transform: lowercase; width: 90px;
 		-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 	}
 
-	.gridy-default-table .gridy-last-line { border-bottom-width: 1px; }
+	.gridy-table .gridy-last-line { border-bottom-width: 1px; }
 
 /* div */
 
-	.gridy-default { margin: 0 auto; }
+	.gridy { margin: 0 auto; }
 
-	.gridy-default .gridy-separate { border-top-width: 2px !important; }
+	.gridy .gridy-separate { border-top-width: 2px !important; }
 
-	.gridy-default .gridy-header { clear: both; height: 16px; margin-bottom: 3px; }
-	.gridy-default .gridy-header > div { float: left; text-align: center; }
-	.gridy-default .gridy-header > div div { float: right; }
-	.gridy-default .gridy-header > div a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
-	.gridy-default .gridy-header > div a:hover { color: #339BD0; }
-	.gridy-default .gridy-header > div a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
-	.gridy-default .gridy-header > div a.gridy-no-sort { cursor: default; }
+	.gridy .gridy-header { clear: both; height: 16px; margin-bottom: 3px; }
+	.gridy .gridy-header > div { float: left; text-align: center; }
+	.gridy .gridy-header > div div { float: right; }
+	.gridy .gridy-header > div a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
+	.gridy .gridy-header > div a:hover { color: #339BD0; }
+	.gridy .gridy-header > div a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
+	.gridy .gridy-header > div a.gridy-no-sort { cursor: default; }
 
-	.gridy-default .gridy-content { clear: both; height: auto; overflow: visible; }
-	.gridy-default .gridy-content .gridy-row-hovered-scroll { background-color: #D9EBF5; border-left-color: #D9EBF5 !important; border-top-color: #D9EBF5 !important; }
-	.gridy-default .gridy-content .gridy-row-selected-scroll { background-color: #ECF1F5; border-left-color: #ECF1F5 !important; border-top-color: #ECF1F5 !important; }
-	.gridy-default .gridy-content .gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
+	.gridy .gridy-content { clear: both; height: auto; overflow: visible; }
+	.gridy .gridy-content .gridy-row-hovered-scroll { background-color: #D9EBF5; border-left-color: #D9EBF5 !important; border-top-color: #D9EBF5 !important; }
+	.gridy .gridy-content .gridy-row-selected-scroll { background-color: #ECF1F5; border-left-color: #ECF1F5 !important; border-top-color: #ECF1F5 !important; }
+	.gridy .gridy-content .gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
 
-	.gridy-default .gridy-content > div { border: 1px solid #CCC; float: left; margin-bottom: -1px; width: auto; }
-	.gridy-default .gridy-content > div > div { float: left; min-height: 20px; padding-bottom: 9px; padding-top: 9px; text-indent: 10px; }
-	.gridy-default .gridy-content > div > div.gridy-button a {
+	.gridy .gridy-content > div { border: 1px solid #CCC; float: left; margin-bottom: -1px; width: auto; }
+	.gridy .gridy-content > div > div { float: left; min-height: 20px; padding-bottom: 9px; padding-top: 9px; text-indent: 10px; }
+	.gridy .gridy-content > div > div.gridy-button a {
 		border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; display: block; height: 20px; margin-right: 5px; margin-top: -3px; padding-top: 3px; text-align: center; text-indent: 0 !important; text-transform: lowercase; width: 90px;
 		-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 	}
 
-	.gridy-default .gridy-scroll > div { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }
+	.gridy .gridy-scroll > div { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }

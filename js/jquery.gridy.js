@@ -899,7 +899,7 @@
 		evenOdd				: false,
 		resize				: true,
 		separate			: true,
-		skin				: 'gridy-default',
+		skin				: 'gridy',
 
 		// effect
 		clickFx				: false,
