@@ -482,7 +482,7 @@
 						self.content.children().click(function(evt) {
 							var $this = $(this);
 
-							if (!evt.shiftKey) {
+							if (!evt.ctrlKey && !evt.metaKey) {
 								$this.parent().children('.gridy-row-selected' + scrollSufix).removeClass('gridy-row-selected' + scrollSufix);
 							}
 
