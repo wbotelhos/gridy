@@ -921,7 +921,7 @@
 		buttonMax			: 10,
 		buttonNextTitle		: 'Next &rsaquo;',
 		buttonOption		: true,
-		buttonTitle			: 'page',
+		buttonTitle			: 'Page',
 
 		// json
 		listPath			: 'list',
