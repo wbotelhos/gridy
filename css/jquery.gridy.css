@@ -21,7 +21,7 @@
 	.gridy-fade { opacity: .6; }
 	.gridy-error { color: #F55; font: bold 12px verdana; margin-bottom: 20px; margin-top: 20px; text-align: center; }
 
-	.gridy-loading { clear: left; float: left; width: 90px; }
+	.gridy-loading { clear: left; float: left; }
 	.gridy-loading div { background: url('../img/loading.gif') no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
 
 	.gridy-status { float: left; height: 18px; margin: 5px auto; }
@@ -40,7 +40,7 @@
 	.gridy-content .gridy-row-selected { background-color: #ECF1F5; border-color: #BBB; }
 
 	.gridy-footer { clear: both; height: 31px; margin: 0 auto; }
-	.gridy-footer .gridy-message { color: #F55; font-weight: bold; float: right; font-size: 12px; letter-spacing: .gridy-3px; margin-right: 20px; margin-top: 10px; text-align: right; }
+	.gridy-footer .gridy-message { color: #F55; font-weight: bold; float: right; font-size: 12px; letter-spacing: .gridy-3px; margin-top: 10px; text-align: right; }
 
 	.gridy-find-option select,
 	.gridy-row-option select { border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-size: 12px; height: 24px; padding: 2px; }
