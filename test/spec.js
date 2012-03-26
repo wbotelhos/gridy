@@ -248,6 +248,28 @@ describe('global', function() {
 		expect(message).toHaveHtml('Do a query!');
 	});
 
+	it ('[global rowsNumber] should not duplicate the numbers', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rowsNumber	: [10, 100, 1000, 10000],
+			url			: '/gridy'
+		});
+
+		var options = $this.parent('div').children('.gridy-footer').children('.gridy-row-option').children('select').children('option');
+
+		// then
+		expect(options.length).toEqual(4);
+
+		expect(options.eq(0)).toHaveValue('10');
+		expect(options.eq(1)).toHaveValue('100');
+		expect(options.eq(2)).toHaveValue('1000');
+		expect(options.eq(3)).toHaveValue('10000');
+		expect(options.eq(4)).not.toExist();
+	});
+
 });
 
 describe('json format', function() {
