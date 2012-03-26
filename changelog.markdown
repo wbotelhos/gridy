@@ -26,6 +26,8 @@
 + Now the 'resultOption' is the 'statusOption';
 + Now the 'resultText' is the 'statusText';
 + Now the 'noResultOption' is the 'resultOption';
++ Now the 'skin' option has the default name as "gridy" instead "gridy-default";
++ Now the key to select more then one line with 'clickFx' option is the ctrl/command key:
 
 + Changed the delegate() method to click() and die() to be able use on jQuery 1.4.x;
 + Changed the name of the 'templateStyle' option to 'skin';

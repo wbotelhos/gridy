@@ -39,6 +39,8 @@ hr { border-top: medium none; height: 1px; margin-bottom: 16px; margin-top: 15px
 .description { color: #555; letter-spacing: .1px; margin-bottom: 15px; margin-top: 10px; text-align: left; }
 .description-code { color: #555; letter-spacing: .1px; margin-bottom: 10px; text-indent: 7px; }
 
+.highlight { color: #369; }
+
 .session { clear: both;  font: bold 13px verdana; border-bottom: 1px solid #EFEFEF; color: #444; letter-spacing: .7px; margin-bottom: 18px; margin-top: 24px; text-align: left; }
 .session-first { clear: both; font: bold 13px verdana; border-bottom: 1px solid #EFEFEF; color: #444; letter-spacing: .7px; margin-bottom: 18px; text-align: left; }
 .session-image { display: block; margin: 5px auto 0; }
@@ -46,7 +48,6 @@ hr { border-top: medium none; height: 1px; margin-bottom: 16px; margin-top: 15px
 .session-option span { color: #BBB; font: 11px arial; }
 
 .source { background: #FFF7FF; border: 1px solid #EFEFEF; border-left: 3px solid #CCC; clear: both; color: #444; font: 12px monospace; border-radius: 2px; letter-spacing: .1px; margin-bottom: 7px; margin-top: 15px; padding: 7px; width: 1081px; -khtml-border-radius: 2px; -moz-border-radius: 2px; -opera-border-radius: 2px; -webkit-border-radius: 2px; }
-.source-highlight { color: #369; }
 
 /* custom */
 
