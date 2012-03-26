@@ -738,7 +738,7 @@
 			<img src="doc/img/findTarget.png" alt="findTarget" height="135" width="712" class="session-image" />
 
 			<div class="source">
-				&lt;div id="target"&gt;Find:&lt;/div&gt;
+				&lt;div <span class="highlight">id="target"</span>&gt;Find:&lt;/div&gt;
 			</div>
 
 			<div class="source">
@@ -1066,7 +1066,7 @@
 				- If your intention is just show the icon, than let this option with a empty text.
 			</div>
 
-			<div class="session">Message Option</div>
+			<div class="session">Message Options</div>
 
 			<div class="session-option">messageOption: <span>false</span></div>
 
@@ -1106,32 +1106,202 @@
 				- The time is in milliseconds, to convert it to second just divide by 1000.
 			</div>
 
-			<hr />
+			<div class="session">Other Options</div>
+
+			<div class="session-option">debug: <span>false</span></div>
+
+			<img src="doc/img/debug.png" alt="debug" height="161" width="256" class="session-image" />
 
 			<div class="source">
-				debug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: false
-				<div class="comment">Shows details of the grid request.</div>
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">debug: true</span><br />
+				});
+			</div>
 
+			<div class="comment">Shows details of the grid request.</div>
+
+			<div class="comment-personal">Example: to know about data that is sending on request.</div>
+
+			<div class="session">Refresh Options</div>
+
+			<div class="session-option">refreshIcon: <span>'gridy-button-refresh'</span></div>
+
+			<img src="doc/img/refreshIcon.png" alt="refreshIcon" height="72" width="129" class="session-image" />
+
+			<div class="source">
+				<span class="highlight">.refresh-button { background: url('refresh.png'); }</span>
+			</div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">refreshIcon: 'refresh-button'</span><br />
+				});
+			</div>
+
+			<div class="comment">Button to refresh the data of the grid.</div>
+
+			<div class="comment-personal">Example: if someone alter some information on the grid you current vision will be old, then refresh it.</div>
+
+			<hr />
+
+			<div class="session-option">refreshOption: <span>true</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">refreshOption: false</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the refresh button.</div>
+
+			<div class="comment-personal">Example: if you want refresh the grid just with another search you can remove the refresh button.</div>
+
+			<hr />
+
+			<div class="session-option">refreshTarget: <span>undefined</span></div>
+
+			<img src="doc/img/refreshTarget.png" alt="refreshTarget" height="108" width="395" class="session-image" />
+
+			<div class="source">
+				&lt;div <span class="highlight">id="target"</span>&gt;Find:&lt;/div&gt;
+			</div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">refreshTarget: '#target'</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the refresh button.</div>
+
+			<div class="comment-personal">Example: if you want refresh the grid just with another search you can remove the refresh button.</div>
+
+			<div class="session">Result Options</div>
+
+			<div class="session-option">firstQuery: <span>true</span></div>
+
+			<img src="doc/img/firstQuery.png" alt="firstQuery" height="224" width="1009" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">firstQuery: false</span><br />
+				});
+			</div>
+
+			<div class="comment">Choose if the grid will do a first query when loaded on page.</div>
+
+			<div class="comment-personal">
+				Example:<br />
+				- if you always starts doing a filter before the search, than you can turn off the first query.<br />
+				- Of course if the options passed to the Gridy is enough, you don't need it<br />
+				- This options has the objective to avoidd the first request that can bring useless data.
+			</div>
+
+			<hr />
+
+			<div class="session-option">noFirstQueryText: <span>'No search was performed yet!'</span></div>
+
+			<img src="doc/img/noFirstQueryText.png" alt="noFirstQueryText" height="116" width="304" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">noFirstQueryText: 'Do your first query!'</span><br />
+				});
+			</div>
+
+			<div class="comment">Message displayed when the first query is blocked.</div>
+
+			<div class="comment-personal">Example: you can choose a good description to tell the user that him must do the first query before show the data.</div>
+
+			<hr />
+
+			<div class="session-option">noResultText: <span>'No item was found!'</span></div>
+
+			<img src="doc/img/noResultText.png" alt="noResultText" height="103" width="250" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">noResultText: 'No result, try again!'</span><br />
+				});
+			</div>
+
+			<div class="comment">Text shown when no result is found for the search.</div>
+
+			<div class="comment-personal">Example: you can tell the user the no result was found, maybe give some tips.</div>
+
+			<hr />
+
+			<div class="session-option">resultOption: <span>true</span></div>
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">resultOption: false</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the presentation of details of the result.</div>
+
+			<div class="comment-personal">Example: maybe you don't want to show message when there is no result or the first query was not trigger.</div>
+
+			<div class="session">Row Options</div>
+
+			<div class="session-option">rows: <span>10</span></div>
+
+			<img src="doc/img/rows.png" alt="rows" height="151" width="312" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">rows: 3</span><br />
+				});
+			</div>
+
+			<div class="comment">Number of rows displayed on each page.</div>
+
+			<div class="comment-personal">
+				Example:<br />
+				- If you has more space on page you can increase this number to show more items.<br />
+				- With lower number you'll has more pages and less database overload.
+			</div>
+
+			<hr />
+
+			<div class="session-option">rowsNumber: <span>[5, 10, 25, 50, 100]</span></div>
+
+			<img src="doc/img/rowsNumber.png" alt="rowsNumber" height="151" width="312" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">rowsNumber: [10, 100, 1000, 10000]</span><br />
+				});
+			</div>
+
+			<div class="comment">List with the numbers of lines that should be displayed.</div>
+
+			<div class="comment-personal">
+				Example:<br />
+				- You can choose how many lines can be displayed at once.<br />
+				- Huge number can be slower, than make sure to keep a good number for pagination.
+			</div>
+
+			<hr />
+
+
+			<div class="source">
 				error&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">Function executed when occurs an error on the grid load.</div>
 
-				noResultOption&#160;&#160;&#160;&#160;&#160;: true
-				<div class="comment">Enables the presentation of the no result message.</div>
-
-				noResultText&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'No results found!'
-				<div class="comment">Text shown when no result is found for the search.</div>
-
-				resultOption&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
-				<div class="comment">Enables the presentation of details of the result.</div>
-
-				resultText&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'Displaying {from} - {to} of {total} items'
+				statusText&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'Displaying {from} - {to} of {total} items'
 				<div class="comment">Text displayed in the details of the result.</div>
-
-				rows&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 10
-				<div class="comment">Number of rows displayed on each page.</div>
-
-				rowsNumber&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: [5, 10, 25, 50, 100]
-				<div class="comment">List with the numbers of lines should be displayed.</div>
 
 				rowsTarget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
 				<div class="comment">ID of the place where the rows element will be appended.</div>
@@ -1256,6 +1426,7 @@
 					style		: 'free',
 					template	: 'template-free',
 					url			: 'http://localhost:8080/mockr/gridy',
+					rowsNumber: [10, 100, 1000, 10000],
 					width		: 1100,
 								searchFocus	: false
 				});
