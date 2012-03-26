@@ -948,7 +948,7 @@
 		// result
 		firstQuery			: true,
 		noFirstQueryText	: 'No search was performed yet!',
-		noResultText		: 'No items was found!',
+		noResultText		: 'No item was found!',
 		resultOption		: true,
 
 		// row
