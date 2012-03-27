@@ -426,7 +426,7 @@ describe('free', function() {
 		});
 
 		// then
-	    expect($this.parent()).toHaveClass('gridy-default');
+	    expect($this.parent()).toHaveClass('gridy');
 	    expect($this.parent()).toHaveId('grid-wrapper');
 	});
 
@@ -1121,15 +1121,15 @@ describe('free', function() {
 		expect($buttonsContent).toExist();
 		expect($buttons.length == 3).toBeTruthy();
 		expect($buttons.eq(0)).toHaveClass('gridy-button-active');
-		expect($buttons.eq(0)).toHaveAttr('title', 'page 01');
+		expect($buttons.eq(0)).toHaveAttr('title', 'Page 01');
 		expect($buttons.eq(0)).toHaveAttr('alt', '01');
 		expect($buttons.eq(0)).toHaveAttr('value', '01');
 		expect($buttons.eq(1)).not.toHaveClass('gridy-button-active');
-		expect($buttons.eq(1)).toHaveAttr('title', 'page 02');
+		expect($buttons.eq(1)).toHaveAttr('title', 'Page 02');
 		expect($buttons.eq(1)).toHaveAttr('alt', '02');
 		expect($buttons.eq(1)).toHaveAttr('value', '02');
 		expect($buttons.eq(2)).not.toHaveClass('gridy-button-active');
-		expect($buttons.eq(2)).toHaveAttr('title', 'page 03');
+		expect($buttons.eq(2)).toHaveAttr('title', 'Page 03');
 		expect($buttons.eq(2)).toHaveAttr('alt', '03');
 		expect($buttons.eq(2)).toHaveAttr('value', '03');
 	});
@@ -1856,7 +1856,7 @@ describe('table', function() {
 		});
 
 		// then
-	    expect($this.parent()).toHaveClass('gridy-default-table');
+	    expect($this.parent()).toHaveClass('gridy-table');
 	    expect($this.parent()).toHaveId('grid-wrapper');
 	});
 
@@ -2394,15 +2394,15 @@ describe('table', function() {
 		expect($buttonsContent).toExist();
 		expect($buttons.length == 3).toBeTruthy();
 		expect($buttons.eq(0)).toHaveClass('gridy-button-active');
-		expect($buttons.eq(0)).toHaveAttr('title', 'page 01');
+		expect($buttons.eq(0)).toHaveAttr('title', 'Page 01');
 		expect($buttons.eq(0)).toHaveAttr('alt', '01');
 		expect($buttons.eq(0)).toHaveAttr('value', '01');
 		expect($buttons.eq(1)).not.toHaveClass('gridy-button-active');
-		expect($buttons.eq(1)).toHaveAttr('title', 'page 02');
+		expect($buttons.eq(1)).toHaveAttr('title', 'Page 02');
 		expect($buttons.eq(1)).toHaveAttr('alt', '02');
 		expect($buttons.eq(1)).toHaveAttr('value', '02');
 		expect($buttons.eq(2)).not.toHaveClass('gridy-button-active');
-		expect($buttons.eq(2)).toHaveAttr('title', 'page 03');
+		expect($buttons.eq(2)).toHaveAttr('title', 'Page 03');
 		expect($buttons.eq(2)).toHaveAttr('alt', '03');
 		expect($buttons.eq(2)).toHaveAttr('value', '03');
 	});
@@ -3063,7 +3063,7 @@ describe('style table with no result', function() {
 
 		// then
 		expect(noResult).toExist();
-		expect(noResult).toHaveHtml('No items was found!');
+		expect(noResult).toHaveHtml('No item was found!');
 	});
 
 	it ('resultOption should be disabled', function() {
@@ -3140,7 +3140,7 @@ describe('style div with no result', function() {
 
 		// then
 		expect(noResult).toExist();
-		expect(noResult).toHaveHtml('No items was found!');
+		expect(noResult).toHaveHtml('No item was found!');
 	});
 
 	it ('resultOption should be disabled', function() {
@@ -3444,7 +3444,7 @@ describe('buttons', function() {
 
 		// then
 		expect($buttons.eq(0)).toHaveClass('gridy-button-active');
-		expect($buttons.eq(0)).toHaveAttr('title', 'page 01');
+		expect($buttons.eq(0)).toHaveAttr('title', 'Page 01');
 		expect($buttons.eq(0)).toHaveAttr('alt', '01');
 		expect($buttons.eq(0)).toHaveAttr('value', '01');
 
@@ -3489,7 +3489,7 @@ describe('buttons', function() {
 		expect($buttons.eq(1)).toHaveAttr('value', '...');
 
 		expect($buttons.eq(2)).toHaveClass('gridy-button-active');
-		expect($buttons.eq(2)).toHaveAttr('title', 'page 02');
+		expect($buttons.eq(2)).toHaveAttr('title', 'Page 02');
 		expect($buttons.eq(2)).toHaveAttr('alt', '02');
 		expect($buttons.eq(2)).toHaveAttr('value', '02');
 

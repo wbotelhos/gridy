@@ -36,7 +36,7 @@
 				var self	= this,
 					$this	= $(self);
 
-				self.opt = $.extend(true, {}, $.fn.gridy.defaults, settings);
+				self.opt = $.extend({}, $.fn.gridy.defaults, settings);
 
 				$this.empty().data('settings', self.opt);
 
