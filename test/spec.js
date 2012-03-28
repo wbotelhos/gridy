@@ -445,23 +445,6 @@ describe('free', function() {
 		expect($this.children('.gridy-content')).toExist();
 	});
 
-	it ('content should has height and width as auto', function() {
-		// given
-		var $this = $('#grid');
-
-		// when
-		$this.gridy({
-			style:		'free',
-			template:	'template-div',
-			url:		'/gridy'
-		});
-
-		var $content = $this.children('.gridy-content');
-
-		// then
-	    expect($content).toHaveAttr('style', 'height: auto; width: auto;');
-	});
-
 	it ('column should have the right count', function() {
 		// given
 		var $this = $('#grid');
@@ -1826,6 +1809,33 @@ describe('free', function() {
 		expect(rows.eq(2)).toHaveAttr('style', 'width: 30px;');
 	});
 
+	it ('[free width] should not set when width is not defined', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows		: 1,
+			style		: 'free',
+			template	: 'template-free',
+			url			: '/gridy'
+		});
+
+		// then
+		var wrapper		= $this.parent('div'),
+			container	= wrapper.attr('style'),
+			thiz		= $this.attr('style'),
+			search		= wrapper.children('div.gridy-search').attr('style'),
+			status		= wrapper.children('div.gridy-status').attr('style'),
+			footer		= wrapper.children('div.gridy-footer').attr('style');
+	
+		expect(!container || container.indexOf('width') < 0).toBeTruthy();
+		expect(!thiz || thiz.indexOf('width') < 0).toBeTruthy();
+		expect(!search || search.indexOf('width') < 0).toBeTruthy();
+		expect(!status || status.indexOf('width') < 0).toBeTruthy();
+		expect(!footer || footer.indexOf('width') < 0).toBeTruthy();
+	});
+
 });
 
 describe('table', function() {
@@ -3029,6 +3039,32 @@ describe('table', function() {
 		expect(rows.eq(2)).not.toHaveAttr('width');
 	});
 
+	it ('[table width] should not set when width is not defined', function() {
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			rows	: 1,
+			url		: '/gridy',
+			width	: undefined
+		});
+
+		// then
+		var wrapper		= $this.parent('div'),
+			container	= wrapper.attr('style'),
+			thiz		= $this.attr('style'),
+			search		= wrapper.children('div.gridy-search').attr('style'),
+			status		= wrapper.children('div.gridy-status').attr('style'),
+			footer		= wrapper.children('div.gridy-footer').attr('style');
+
+		expect(!container || container.indexOf('width') < 0).toBeTruthy();
+		expect(!thiz || thiz.indexOf('width') < 0).toBeTruthy();
+		expect(!search || search.indexOf('width') < 0).toBeTruthy();
+		expect(!status || status.indexOf('width') < 0).toBeTruthy();
+		expect(!footer || footer.indexOf('width') < 0).toBeTruthy();
+	});
+
 });
 
 describe('style table with no result', function() {
@@ -3102,6 +3138,42 @@ describe('style table with no result', function() {
 
 		// then
 		expect(noResult).toHaveHtml('No results!');
+	});
+
+	it ('[noResultText] should disable the hoverFx', function() {
+		// given
+		var $this = $('#grid').gridy({
+			hoverFx		: true,
+			style		: 'free',
+			template	: 'template-free',
+			url			: '/gridy'
+		});
+
+		var noResult = $this.children('div.gridy-content').children('p');
+
+		// when
+		noResult.mouseover();
+
+		// then
+		expect(noResult).not.toHaveClass('gridy-row-hovered');
+	});
+
+	it ('[noResultText] should disable the clickFx', function() {
+		// given
+		var $this = $('#grid').gridy({
+			clickFx		: true,
+			style		: 'free',
+			template	: 'template-free',
+			url			: '/gridy'
+		});
+
+		var noResult = $this.children('div.gridy-content').children('p');
+
+		// when
+		noResult.click();
+
+		// then
+		expect(noResult).not.toHaveClass('gridy-row-hovered');
 	});
 
 });

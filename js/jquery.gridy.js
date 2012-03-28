@@ -34,15 +34,22 @@
 			return this.each(function() {
 
 				var self	= this,
-					$this	= $(self);
+					$this	= $(self).empty();
 
 				self.opt = $.extend({}, $.fn.gridy.defaults, settings);
+				self.width = methods.getSize.call(self, self.opt.width);
+				self.height = methods.getSize.call(self, self.opt.height);
 
-				$this.empty().data('settings', self.opt);
+				self.wrapper = $this.data('settings', self.opt).wrap('<div id="' + self.id + '-wrapper" />').parent();
 
-				var $this = $this.width(methods.getSize.call(self, self.opt.width)).wrap('<div id="' + self.id + '-wrapper" />');
+				if (self.opt.width) {
+					$this.width(self.width);
+				}
 
-				self.wrapper			= $this.parent().width(methods.getSize.call(self, self.opt.width));
+				if (self.opt.width) {
+					self.wrapper.width(self.width);
+				}
+
 				self.currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '" />').insertBefore(self);
 				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '" />').insertBefore(self);
 				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '" />').insertBefore(self);
@@ -81,10 +88,15 @@
 			if (self.isTable) {
 				self.content = $('<tbody class="gridy-content" />');
 			} else {
-				var width	= methods.getSize.call(self, self.opt.width),
-					height	= methods.getSize.call(self, self.opt.height);
+				self.content = $('<div class="gridy-content" />');
 
-				self.content = $('<div class="gridy-content" />').css({ 'height': height, 'width': width });
+				if (self.opt.width) {
+					self.content.width(self.width);
+				}
+
+				if (self.opt.height) {
+					self.content.height(self.height);
+				}
 			}
 
 			self.content.appendTo(self);
@@ -144,8 +156,8 @@
 			if (self.hasRows || self.opt.messageOption || (!self.opt.searchOption && self.hasFinds)) {
 				self.footer = $('<div class="gridy-footer" />').appendTo(self.wrapper);
 
-				if (self.opt.resize) {
-					self.footer.width(methods.getSize.call(self, self.opt.width));
+				if (self.opt.resize && self.opt.width) {
+					self.footer.width(self.width);
 				}
 			}
 		}, buildHeader: function() {
@@ -157,8 +169,8 @@
 				} else {
 					self.header = $('<div class="gridy-header" />').appendTo(self);
 
-					if (self.opt.resize) {
-						self.header.width(methods.getSize.call(self, self.opt.width));
+					if (self.opt.resize && self.opt.width) {
+						self.header.width(self.width);
 					}
 				}
 
@@ -235,8 +247,8 @@
 			if (self.opt.buttonOption) {
 				var wrapper = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>').appendTo(self.wrapper);
 
-				if (self.opt.resize) {
-					wrapper.width(methods.getSize.call(self, self.opt.width));
+				if (self.opt.resize && self.opt.width) {
+					wrapper.width(self.width);
 				}
 
 				self.pageButtons = wrapper.children();
@@ -305,8 +317,8 @@
 			if (self.opt.searchOption) {
 				self.search = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>');
 
-				if (self.opt.resize) {
-					self.search.width(methods.getSize.call(self, self.opt.width));
+				if (self.opt.resize && self.opt.width) {
+					self.search.width(self.width);
 				}
 
 				var content = self.search.children();
@@ -344,8 +356,8 @@
 			if (self.opt.loadingOption || self.opt.statusOption) {
 				self.statusBox = $('<div class="gridy-status" />').insertBefore($(self));
 
-				if (self.opt.resize) {
-					self.statusBox.width(methods.getSize.call(self, self.opt.width));
+				if (self.opt.resize && self.opt.width) {
+					self.statusBox.width(self.width);
 				}
 			}
 
@@ -471,7 +483,7 @@
 					var scrollSufix = (self.opt.scroll) ? '-scroll' : '';
 
 					if (self.opt.hoverFx) {
-						self.content.children().mouseenter(function() {
+						self.content.children(':not("p")').mouseenter(function() {
 							$(this).addClass('gridy-row-hovered' + scrollSufix);
 						}).mouseleave(function() {
 							$(this).removeClass('gridy-row-hovered' + scrollSufix);
@@ -479,7 +491,7 @@
 					}
 
 					if (self.opt.clickFx) {
-						self.content.children().click(function(evt) {
+						self.content.children(':not("p")').click(function(evt) {
 							var $this = $(this);
 
 							if (!evt.ctrlKey && !evt.metaKey) {
@@ -510,15 +522,19 @@
 
 						if (self.isTable) {
 							var $this	= self.content.parent(),
-								width	= methods.getSize.call(self, self.opt.width + 15);
+								wrapper	= $this.wrap('<div id="' + self.id + '-wrapper" />').parent().addClass('gridy-scroll');
 
-							$this.wrap('<div id="' + self.id + '-wrapper" />')
-								.parent().addClass('gridy-scroll').css({ 'height': methods.getSize.call(self, self.opt.height), 'width': width })
-							.end()
-							.clone(true).removeAttr('id').width(width) 
-								.find('tbody').remove()
-							.end()
-							.insertBefore($this.parent());
+							if (self.opt.height) {
+								wrapper.height(self.height);
+							}
+
+							if (self.opt.width) {
+								wrapper.width(self.width + 15);
+							}
+
+							$this.clone(true).removeAttr('id').width(width).find('tbody').remove();
+
+							$this.insertBefore(wrapper);
 
 							$this.children('thead').remove();
 						} else {
@@ -890,10 +906,10 @@
 
 		// content
 		columns				: [],
-		height				: 'auto',
+		height				: undefined,
 		scroll				: false,
 		style				: 'table',
-		width				: 'auto',
+		width				: undefined,
 
 		// design
 		evenOdd				: false,

@@ -1,6 +1,6 @@
 # jQuery Gridy - A Grid Plugin - http://wbotelhos.com/gridy
 
-### 0.3.0 (Development)
+### 0.1.0 (Development)
 
 + Now 'paramsElements' capture class elements as a array of parameter and other elements as simple value;
 + Now you can use table rather div if you have just tabulated data in a list format;
@@ -27,7 +27,8 @@
 + Now the 'resultText' is the 'statusText';
 + Now the 'noResultOption' is the 'resultOption';
 + Now the 'skin' option has the default name as "gridy" instead "gridy-default";
-+ Now the key to select more then one line with 'clickFx' option is the ctrl/command key:
++ Now the key to select more then one line with 'clickFx' option is the ctrl/command key;
++ Now the 'with' and 'height' options is undefined and by default is not setted anymore as 'auto';
 
 + Changed the delegate() method to click() and die() to be able use on jQuery 1.4.x;
 + Changed the name of the 'templateStyle' option to 'skin';
@@ -38,6 +39,7 @@
 + Fixed the separate class to not be applied on no result row;
 + Fixed undesired trigger on back and next button with NaN page;
 + Fixed the JSON return taked from the callback 'before';
++ Fixed the clickFx and mouseFx to avoid bind on noResultText;
 
 + Added 'resize' option to apply the same width of the content to the other wrappers;
 + Added 'evenOdd' option to enables the even odd row style;
