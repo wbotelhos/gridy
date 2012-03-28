@@ -822,9 +822,12 @@
 						buttons += '<input type="button" value="&rsaquo;" alt="' + self.opt.buttonNextTitle + '" title="' + self.opt.buttonNextTitle + '" class="gridy-next"/>&#160;';
 					}
 
-					self.pageButtons.html(buttons).children(':not(".gridy-back, .gridy-reticence, .gridy-next")').click(function() {
+					var pageButtons = self.pageButtons.html(buttons).children('input:button:not(".gridy-back, .gridy-reticence, .gridy-next")');
+
+					pageButtons.click(function() {
 						methods.data.call(self, parseInt(this.alt, 10), self.currentSortName.val(), self.currentSortOrder.val());
-					});
+					})
+					.filter('[value="' + methods.getNumber.call(self, page) + '"]').attr('disabled', 'disabled').addClass('gridy-button-active');
 
 					if (hasBackNavigation) {
 						self.pageButtons.children('.gridy-back').click(function() {
@@ -837,11 +840,10 @@
 							methods.data.call(self, page + 1, self.currentSortName.val(), self.currentSortOrder.val());
 						});
 					}
+
 				} else {
 					self.pageButtons.empty();
 				}
-
-				$('input[value="' + methods.getNumber.call(self, page) + '"]').attr('disabled', 'disabled').addClass('gridy-button-active');
 			}
 
 			self.currentPage.val(page);
