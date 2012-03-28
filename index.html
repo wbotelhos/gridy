@@ -210,7 +210,7 @@
 				});
 			</div>
 
-			<div class="comment">The data type of the ajax request.</div>
+			<div class="comment">Function executed when the grid loads successfully.</div>
 
 			<div class="comment-personal">Example: you can get the data returned from request and display a success message.</div>
 
@@ -228,7 +228,7 @@
 				});
 			</div>
 
-			<div class="comment">The data type of the ajax request.</div>
+			<div class="comment">Function executed when occurs an error.</div>
 
 			<div class="comment-personal">Example: you can recover an error and display it, or take a workaround decision.</div>
 
@@ -399,21 +399,6 @@
 
 			<div class="comment-personal">Example: you can change the URL to receive your data. Don't forget to prepend the context of your application.</div>
 
-			<hr />
-
-			<div class="session-option">url: <span>'/gridy'</span></div>
-
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/user/gridy',<br /> 
-				&#160;&#160;<span class="highlight">type: 'post'</span><br />
-				});
-			</div>
-
-			<div class="comment">URL to request the data.</div>
-
-			<div class="comment-personal">Example: you can change the URL to receive your data. Don't forget to prepend the context of your application.</div>
-
 			<div class="session">Callback Options:</div>
 
 			<div class="session-option">before: <span>undefined</span></div>
@@ -429,7 +414,11 @@
 
 			<div class="comment">Function executed before the grid call the request.</div>
 
-			<div class="comment-personal">Example:<br /> - You can receives the parameters 'page', 'sortName' and 'sortOrder' before the grid request the URL<br />- You can override each one of that attributes returning a hash with the desired values.</div>
+			<div class="comment-personal">
+				Example:<br />
+				- You can receives the parameters 'page', 'sortName' and 'sortOrder' before the grid request the URL<br />
+				- You can override each one of that attributes returning a hash with the desired values.
+			</div>
 
 			<hr />
 
@@ -469,7 +458,7 @@
 				});
 			</div>
 
-			<div class="comment">Array of objects that represents each column of the grid with name, value, width and clazz.</div>
+			<div class="comment">Array of objects that represents the columns with name, value, width and clazz.</div>
 
 			<div class="comment-personal">Example:<br />
 				- You can choose to have the column label, it will be read-only, it will have a different style, or if nothing is displayed on header label;<br />
@@ -485,7 +474,7 @@
 
 			<hr />
 
-			<div class="session-option">scroll: <span>false</span> / height: <span>'auto'</span></div>
+			<div class="session-option">scroll: <span>false</span> / height: <span>undefined</span></div>
 
 			<div id="scroll"></div>
 
@@ -507,7 +496,7 @@
 
 			<hr />
 
-			<div class="session-option">style: <span>table</span></div>
+			<div class="session-option">style: <span>'table'</span></div>
 
 			<div id="style"></div>
 
@@ -544,7 +533,7 @@
 
 			<hr />
 
-			<div class="session-option">width: <span>'auto'</span></div>
+			<div class="session-option">width: <span>undefined</span></div>
 
 			<img src="doc/img/width.png" alt="width" height="114" width="325" class="session-image" />
 
@@ -748,7 +737,7 @@
 				});
 			</div>
 
-			<div class="comment">Selector of the place where the "find"" element will be appended.</div>
+			<div class="comment">Selector of the place where the "find" element will be appended.</div>
 
 			<div class="comment-personal">
 				Example:<br />
@@ -774,6 +763,7 @@
 			</div>
 
 			<div class="comment">Class with background used as icon on the descending sort.</div>
+
 			<div class="comment-personal">Example: you can change the background icon with one you like.</div>
 
 			<hr />
@@ -794,6 +784,7 @@
 			</div>
 
 			<div class="comment">Class with background used as icon when there is no sort by especific field.</div>
+
 			<div class="comment-personal">Example: you can choose an empty image to hide the arrow when there is no sort.</div>
 
 			<hr />
@@ -814,6 +805,7 @@
 			</div>
 
 			<div class="comment">Class with background used as icon on the ascending sort.</div>
+
 			<div class="comment-personal">Example: you can change the background icon with one you like.</div>
 
 			<hr />
@@ -922,7 +914,7 @@
 
 			<hr />
 
-			<div class="session-option">buttonTitle: <span>'page'</span></div>
+			<div class="session-option">buttonTitle: <span>'Page'</span></div>
 
 			<img src="doc/img/buttonTitle.png" alt="buttonTitle" height="65" width="338" class="session-image" />
 
@@ -950,7 +942,7 @@
 				});
 			</div>
 
-			<div class="comment">The JSON root name</div>
+			<div class="comment">The JSON root name.</div>
 
 			<div class="comment-personal">
 				Example:<br />
@@ -1276,7 +1268,7 @@
 
 			<div class="session-option">rowsNumber: <span>[5, 10, 25, 50, 100]</span></div>
 
-			<img src="doc/img/rowsNumber.png" alt="rowsNumber" height="151" width="312" class="session-image" />
+			<img src="doc/img/rowsNumber.png" alt="rowsNumber" height="105" width="96" class="session-image" />
 
 			<div class="source">
 				$('#grid').gridy({<br />
@@ -1295,46 +1287,209 @@
 
 			<hr />
 
+			<div class="session-option">rowsTarget: <span>undefined</span></div>
+
+			<img src="doc/img/rowsTarget.png" alt="rowsTarget" height="124" width="337" class="session-image" />
 
 			<div class="source">
-				error&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">Function executed when occurs an error on the grid load.</div>
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">rowsTarget: '#target'</span><br />
+				});
+			</div>
 
-				statusText&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: 'Displaying {from} - {to} of {total} items'
-				<div class="comment">Text displayed in the details of the result.</div>
+			<div class="comment">Selector of the place where the "rows" element will be appended.</div>
 
-				rowsTarget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">ID of the place where the rows element will be appended.</div>
+			<div class="comment-personal">
+				Example:<br />
+				- For default the rows box is located on the footer, but you can change the place of it;<br />
+				- To change the place, just provide a jQuery selector to indicate the new place.
+			</div>
 
-				search&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: ''
-				<div class="comment">Default term to be consulted.</div>
+			<div class="session">Search Options</div>
 
-				searchButtonLabel&#160;&#160;: 'search'
-				<div class="comment">Label of the search button.</div>
+			<div class="session-option">search: <span>''</span></div>
 
-				searchButtonTitle&#160;&#160;: 'Start the search'
-				<div class="comment">Title of the search button.</div>
+			<div class="source">...&search=wbotelhos%20blog</div>
 
-				searchFocus&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
-				<div class="comment">Enables the automatic focus in the search field.</div>
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">search: 'wbotelhos blog'</span><br />
+				});
+			</div>
 
-				searchOption&#160;&#160;&#160;&#160;&#160;&#160;&#160;: true
-				<div class="comment">Enables the search field.</div>
+			<div class="comment">Default term to be consulted.</div>
 
-				searchTarget&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">ID of the place where the rows element will be appended.</div>
+			<div class="comment-personal">
+				Example:<br />
+				- Some times you wants the Gridy loads and on the first load do a search, than just provide the term you want;<br />
+				- Of couser that the term typed on search field will be override this value.
+			</div>
 
-				searchText&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: ''
-				<div class="comment">Text displayed in the search field.</div>
+			<hr />
 
-				success&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;: undefined
-				<div class="comment">Function executed when the grid loads successfully.</div>
+			<div class="session-option">searchButtonLabel: <span>'search'</span></div>
+
+			<img src="doc/img/searchButtonLabel.png" alt="searchButtonLabel" height="73" width="517" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">searchButtonLabel: 'go!'</span><br />
+				});
+			</div>
+
+			<div class="comment">Value of the search button.</div>
+
+			<div class="comment-personal">Example: choose an better description to the search button.</div>
+
+			<hr />
+
+			<div class="session-option">searchButtonTitle: <span>'Start the search'</span></div>
+
+			<img src="doc/img/searchButtonTitle.png" alt="searchButtonTitle" height="73" width="506" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">searchButtonTitle: 'Click to search'</span><br />
+				});
+			</div>
+
+			<div class="comment">Title of the search button.</div>
+
+			<div class="comment-personal">Example: choose a good explanation about what this button do.</div>
+
+			<hr />
+
+			<div class="session-option">searchFocus: <span>true</span></div>
+
+			<img src="doc/img/searchFocus.png" alt="searchFocus " height="55" width="405" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">searchFocus: false</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the automatic focus in the search field.</div>
+
+			<div class="comment-personal">
+				Example:<br />
+				- Its a good idea keep the focus enable to avoid the user click on field.<br />
+				- If you have more than one grid on the same screen, maybe you will need choose wich will receives the focus.
+			</div>
+
+			<hr />
+
+			<div class="session-option">searchOption: <span>true</span></div>
+
+			<img src="doc/img/searchOption.png" alt="searchOption " height="72" width="519" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">searchOption: false</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the search field.</div>
+
+			<div class="comment-personal">
+				Example:<br />
+				- If you need a search over the grid, then just enable this option.<br />
+				- Even if this options is off, you can set the initials values on Gridy configuration.<br />
+				- If you need more on field to input search criteria, then use the 'params' and 'paramsElements' to send the values.<br />
+				- For default we have just this search field, but you can create any you want.
+			</div>
+
+			<hr />
+
+			<div class="session-option">searchTarget: <span>undefined</span></div>
+
+			<img src="doc/img/searchTarget.png" alt="searchTarget " height="93" width="533" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">searchTarget: '#target'</span><br />
+				});
+			</div>
+
+			<div class="comment">Selector of the place where the "search" element will be appended.</div>
+
+			<div class="comment-personal">
+				Example:<br />
+				- For default the search box is located on the top of Gridy, but you can change the place of it;<br />
+				- To change the place, just provide a jQuery selector to indicate the new place.
+			</div>
+
+			<hr />
+
+			<div class="session-option">searchText: <span>''</span></div>
+
+			<img src="doc/img/searchText.png" alt="searchText " height="44" width="393" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">searchText: 'type your search here...'</span><br />
+				});
+			</div>
+
+			<div class="comment">Text displayed in the search field.</div>
+
+			<div class="comment-personal">Example: you can set a tip text to encourage the user type something on search field.</div>
+
+			<div class="session">Status Options</div>
+
+			<div class="session-option">statusOption: <span>true</span></div>
+
+			<img src="doc/img/statusOption.png" alt="statusOption " height="74" width="242" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">statusOption: false</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the status information text.</div>
+
+			<div class="comment-personal">Example: let it on to see how many pages the gridy has, you current page and the total of items.</div>
+
+			<hr />
+
+			<div class="session-option">statusText: <span>'Displaying {from} - {to} of {total} items'</span></div>
+
+			<img src="doc/img/statusText.png" alt="statusText " height="72" width="298" class="session-image" />
+
+			<div class="source">
+				$('#grid').gridy({<br />
+				&#160;&#160;url: '/gridy',<br /> 
+				&#160;&#160;<span class="highlight">statusText: 'Page: {from} | Total Page: {to} | Total Items: {total}'</span><br />
+				});
+			</div>
+
+			<div class="comment">Enables the status information text.</div>
+
+			<div class="comment-personal">
+				Example:<br />
+				- The text has three templates that can be used or not;<br />
+				- {from} you current page;<br />
+				- {to} the number of the last page;<br />
+				- {total} the total of item.
 			</div>
 
 			<div class="session">Public functions:</div>
-			
-			<div class="source">$.fn.gridy.reload('#grid', { scroll: true });</div>
-			<div class="description-code">Reload the grid. The second parameter changes the properties and is optional.</div>
+
+			<div class="source">$('#grid').gridy('reload');</div>
+			<div class="description-code">Reload the grid with the current filter configuration.</div>
+
+			<div class="source">$('#grid').gridy('set', { scroll: true });</div>
+			<div class="description-code">Reload the grid with the current filter configuration.</div>
 		</div>
 
 		<div id="footer">
@@ -1367,8 +1522,7 @@
 					searchText	: 'type your search here...',
 					sortName	: 'attribute',
 					url			: 'http://localhost:8080/mockr/gridy',
-					width		: 1100,
-								searchFocus	: false,
+					width		: 1100
 				});
 
 				$('#scroll').gridy({
@@ -1393,13 +1547,13 @@
 					hoverFx		: true,
 					rows		: 100,
 					scroll		: true,
+					searchFocus	: false,
 					searchText	: 'type your search here...',
 					sortName	: 'attribute',
 					style		: 'free',
 					template	: 'template-free',
 					url			: 'http://localhost:8080/mockr/gridy',
-					width		: 1100,
-								searchFocus	: false
+					width		: 1100
 				});
 
 				$('#style').gridy({
@@ -1421,14 +1575,13 @@
 						{ name: 'Version', value: 'version' }
 					],
 					hoverFx		: true,
+					searchFocus	: false,
 					searchText	: 'type your search here...',
 					sortName	: 'attribute',
 					style		: 'free',
 					template	: 'template-free',
 					url			: 'http://localhost:8080/mockr/gridy',
-					rowsNumber: [10, 100, 1000, 10000],
-					width		: 1100,
-								searchFocus	: false
+					width		: 1100
 				});
 
 			});
