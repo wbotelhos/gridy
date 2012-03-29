@@ -516,8 +516,8 @@
 					methods.enableGrid.call(self, true);
 
 					if (self.opt.scroll) {
-						if (self.opt.height == 'auto') {
-							throw self.id + ': height attribute missing!';
+						if (!self.opt.height || self.opt.height == 'auto') {
+							methods.error.call(self, self.id + ': height attribute missing!');
 						}
 
 						if (self.isTable) {
