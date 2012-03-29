@@ -635,50 +635,48 @@ describe('free', function() {
 		expect(rows.eq(2)).toHaveAttr('style', 'width: 100px;');
 	});
 
-	it ('header should create the columns', function() {
+	it ('[free header] should create the columns', function() {
 		// given
 		var $this = $('#grid');
 
 		// when
 		$this.gridy({
-			style:			'free',
-			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
-						    { name: 'ID', value: 'id', width: 100 },
-						    { name: 'Nick', value: 'nick', width: 100 },
-						    { name: 'Name', value: 'name', width: 100 }
-						]
+			    { name: 'ID', value: 'id', width: 100 },
+	   		    { name: 'Nick', value: 'nick', width: 100 },
+	   		    { name: 'Name', value: 'name', width: 100 }
+	   		],
+	   		style		: 'free',
+	   		template	: 'template-div',
+	   		url			: '/gridy'
 		});
 
-		var columns = $this.children('.gridy-header').children();
-
 		// then
-		expect(columns.length == 3).toBeTruthy();
+		expect($this.children('div.gridy-header').children('div').length).toEqual(3);
 	});
 
-	it ('header column should have right width', function() {
+	it ('[free header] the columns should have right width', function() {
 		// given
 		var $this = $('#grid');
 
 		// when
 		$this.gridy({
-			style:			'free',
-			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
 			    { name: 'Name', value: 'name', width: 100 }
-			]
+			],
+			style		: 'free',
+			template	: 'template-div',
+			url			: '/gridy'
 		});
 
-		var columnsHeader = $this.children('div.gridy-header').children('div');
+		var headers = $this.children('div.gridy-header').children('div');
 
 		// then
-		expect(columnsHeader.eq(0)).toHaveAttr('style', 'width: 100px;');
-		expect(columnsHeader.eq(1)).toHaveAttr('style', 'width: 100px;');
-		expect(columnsHeader.eq(2)).toHaveAttr('style', 'width: 100px;');
+		expect(headers.eq(0)).toHaveAttr('style', 'width: 100px;');
+		expect(headers.eq(1)).toHaveAttr('style', 'width: 100px;');
+		expect(headers.eq(2)).toHaveAttr('style', 'width: 100px;');
 	});
 
 	it ('header column should have the right disable icon', function() {
@@ -697,12 +695,12 @@ describe('free', function() {
 			]
 		});
 
-		var columnsHeader = $this.children('div.gridy-header').children('div');
+		var headers = $this.children('div.gridy-header').children('div');
 
 		// then
-		expect(columnsHeader.eq(0).children('div')).toHaveClass('gridy-arrow-none');
-		expect(columnsHeader.eq(1).children('div')).toHaveClass('gridy-arrow-none');
-		expect(columnsHeader.eq(2).children('div')).toHaveClass('gridy-arrow-none');
+		expect(headers.eq(0).children('div')).toHaveClass('gridy-arrow-none');
+		expect(headers.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+		expect(headers.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('header column should have the right link info', function() {
@@ -721,10 +719,10 @@ describe('free', function() {
 						]
 		});
 
-		var columnsHeader	= $this.children('div.gridy-header').children('div'),
-			$link1			= columnsHeader.eq(0).children('a'),
-			$link2			= columnsHeader.eq(1).children('a'),
-			$link3			= columnsHeader.eq(2).children('a');
+		var headers	= $this.children('div.gridy-header').children('div'),
+			$link1			= headers.eq(0).children('a'),
+			$link2			= headers.eq(1).children('a'),
+			$link3			= headers.eq(2).children('a');
 
 
 		// then
@@ -2007,46 +2005,44 @@ describe('table', function() {
 	    expect($this.children().eq(0)).toHaveClass('gridy-header');
 	});
 
-	it ('header should create the columns', function() {
+	it ('[table header] should create the columns', function() {
 		// given
 		var $this = $('#grid');
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
-			    { name: 'Nick', value: 'nick', width: 100 },
-			    { name: 'Name', value: 'name', width: 100 }
-			]
+	   		    { name: 'Nick', value: 'nick', width: 100 },
+	   		    { name: 'Name', value: 'name', width: 100 }
+	   		],
+	   		url			: '/gridy'
 		});
 
-		var columns = $this.children('.gridy-header').children();
-
 		// then
-		expect(columns.length == 3).toBeTruthy();
+		expect($this.children('thead.gridy-header').children('tr').children('th').length).toEqual(3);
 	});
 
-	it ('header column should have right width', function() {
+	it ('[table header] the columns should have right width', function() {
 		// given
 		var $this = $('#grid');
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
-			columns		: [
+			columns	: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
 			    { name: 'Name', value: 'name', width: 100 }
-			]
+			],
+			url		: '/gridy'
 		});
 
-		var columnsHeader = $this.children('thead.gridy-header').children('th');
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 		// then
-		expect(columnsHeader.eq(0)).toHaveAttr('width', '100');
-		expect(columnsHeader.eq(1)).toHaveAttr('width', '100');
-		expect(columnsHeader.eq(2)).toHaveAttr('width', '100');
+		expect(headers.eq(0)).toHaveAttr('width', '100');
+		expect(headers.eq(1)).toHaveAttr('width', '100');
+		expect(headers.eq(2)).toHaveAttr('width', '100');
 	});
 
 	it ('header column should have the right disable icon', function() {
@@ -2063,12 +2059,12 @@ describe('table', function() {
 			]
 		});
 
-		var columnsHeader = $this.children('thead.gridy-header').children('th');
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 		// then
-		expect(columnsHeader.eq(0).children('div')).toHaveClass('gridy-arrow-none');
-		expect(columnsHeader.eq(1).children('div')).toHaveClass('gridy-arrow-none');
-		expect(columnsHeader.eq(2).children('div')).toHaveClass('gridy-arrow-none');
+		expect(headers.eq(0).children('div')).toHaveClass('gridy-arrow-none');
+		expect(headers.eq(1).children('div')).toHaveClass('gridy-arrow-none');
+		expect(headers.eq(2).children('div')).toHaveClass('gridy-arrow-none');
 	});
 
 	it ('header column should have the right link info', function() {
@@ -2085,10 +2081,10 @@ describe('table', function() {
 			]
 		});
 
-		var columnsHeader	= $this.children('thead.gridy-header').children('th'),
-			$link1			= columnsHeader.eq(0).children('a'),
-			$link2			= columnsHeader.eq(1).children('a'),
-			$link3			= columnsHeader.eq(2).children('a');
+		var headers	= $this.children('thead.gridy-header').children('tr').children('th'),
+			$link1			= headers.eq(0).children('a'),
+			$link2			= headers.eq(1).children('a'),
+			$link3			= headers.eq(2).children('a');
 
 		// then
 		expect($link1).toHaveId('sort-by-id');
@@ -2669,7 +2665,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('.gridy-header').children();
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0).children('a')).toHaveHtml('ID');
 	    expect(headers.eq(1).children('a')).toHaveHtml('Nick');
@@ -2691,7 +2687,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('.gridy-header').children();
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0)).toHaveAttr('width', '100');
 	    expect(headers.eq(1)).toHaveAttr('width', '110');
@@ -2713,7 +2709,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('.gridy-header').children();
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0).children('div')).toHaveClass('gridy-arrow-none');
 	    expect(headers.eq(1).children('div')).toHaveClass('gridy-arrow-none');
@@ -2737,7 +2733,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('.gridy-header').children();
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0).children('div')).toHaveClass('arrow-none');
 	    expect(headers.eq(1).children('div')).toHaveClass('arrow-none');
@@ -2760,7 +2756,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('.gridy-header').children();
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0).children('div')).toHaveClass('gridy-arrow-up');
 	    expect(headers.eq(1).children('div')).toHaveClass('gridy-arrow-none');
@@ -2784,7 +2780,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('.gridy-header').children();
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0).children('div')).toHaveClass('arrow-up');
 	    expect(headers.eq(1).children('div')).toHaveClass('gridy-arrow-none');
@@ -2809,7 +2805,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('.gridy-header').children();
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0).children('div')).toHaveClass('arrow-down');
 	    expect(headers.eq(1).children('div')).toHaveClass('gridy-arrow-none');
@@ -2833,7 +2829,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('.gridy-header').children();
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0).children('div')).toHaveClass('gridy-arrow-down');
 	    expect(headers.eq(1).children('div')).toHaveClass('gridy-arrow-none');
@@ -2870,7 +2866,7 @@ describe('table', function() {
 			separate:	false
 		});
 
-		var columns = $this.children('.gridy-content').children();
+		var columns = $this.children('thead.gridy-header').children('tr').children('th');
 
 		// then
 	    expect(columns.eq(0)).not.toHaveClass('gridy-separate');
@@ -2937,7 +2933,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('thead.gridy-header').children('th');
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0).children('a')).toHaveHtml('');
 	    expect(headers.eq(1).children('a')).toHaveHtml('Nick');
@@ -2959,7 +2955,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers = $this.children('.gridy-header').children();
+		var headers = $this.children('thead.gridy-header').children('tr').children('th');
 
 	    expect(headers.eq(0).children('a')).toHaveHtml('ID');
 	    expect(headers.eq(0).children('a')).toHaveClass('gridy-no-sort');
@@ -3026,7 +3022,7 @@ describe('table', function() {
 		});
 
 		// then
-		var headers	= $this.children('thead.gridy-header').children('th');
+		var headers	= $this.children('thead.gridy-header').children('tr').children('th');
 			rows	= $this.children('tbody.gridy-content').children('tr');
 
 		// then

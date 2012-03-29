@@ -163,13 +163,15 @@
 			var self = this;
 
 			if (self.hasHeaders) {
+				var header;
+
 				if (self.isTable) {
-					self.header = $('<thead class="gridy-header" />').appendTo(self);
+					header = $('<thead class="gridy-header"><tr></tr></thead>').appendTo(self).children('tr');
 				} else {
-					self.header = $('<div class="gridy-header" />').appendTo(self);
+					header = $('<div class="gridy-header" />').appendTo(self);
 
 					if (self.opt.resize && self.opt.width) {
-						self.header.width(self.myWidth);
+						header.width(self.myWidth);
 					}
 				}
 
@@ -221,10 +223,10 @@
 						head.addClass(clazz);
 					}
 
-					head.appendTo(self.header);
+					head.appendTo(header);
 				}
 
-				self.sorters = self.header.children().children('a').click(function() {
+				self.sorters = header.children().children('a').click(function() {
 					methods.sort.call(self, $(this));
 				});
 
