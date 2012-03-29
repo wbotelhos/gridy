@@ -860,7 +860,7 @@
 
 				$parent.remove();
 
-				$this.gridy($.extend(true, {}, $this.data('settings'), settings));
+				$this.gridy($.extend({}, $this.data('settings'), settings));
 			});
 		}, sort: function(sorter) {
 			var self			= this,
