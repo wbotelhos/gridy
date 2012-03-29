@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  *
- * @version        1.0.0 (Development)
+ * @version        1.0.0
  * @since          2011.06.03
  * @author         Washington Botelho
  * @documentation  wbotelhos.com/gridy
@@ -37,17 +37,17 @@
 					$this	= $(self).empty();
 
 				self.opt = $.extend({}, $.fn.gridy.defaults, settings);
-				self.width = methods.getSize.call(self, self.opt.width);
-				self.height = methods.getSize.call(self, self.opt.height);
+				self.myWidth = methods.getSize.call(self, self.opt.width);
+				self.myHeight = methods.getSize.call(self, self.opt.height);
 
 				self.wrapper = $this.data('settings', self.opt).wrap('<div id="' + self.id + '-wrapper" />').parent();
 
 				if (self.opt.width) {
-					$this.width(self.width);
+					$this.width(self.myWidth);
 				}
 
 				if (self.opt.width) {
-					self.wrapper.width(self.width);
+					self.wrapper.width(self.myWidth);
 				}
 
 				self.currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '" />').insertBefore(self);
@@ -91,11 +91,11 @@
 				self.content = $('<div class="gridy-content" />');
 
 				if (self.opt.width) {
-					self.content.width(self.width);
+					self.content.width(self.myWidth);
 				}
 
 				if (self.opt.height) {
-					self.content.height(self.height);
+					self.content.height(self.myHeight);
 				}
 			}
 
@@ -157,7 +157,7 @@
 				self.footer = $('<div class="gridy-footer" />').appendTo(self.wrapper);
 
 				if (self.opt.resize && self.opt.width) {
-					self.footer.width(self.width);
+					self.footer.width(self.myWidth);
 				}
 			}
 		}, buildHeader: function() {
@@ -170,7 +170,7 @@
 					self.header = $('<div class="gridy-header" />').appendTo(self);
 
 					if (self.opt.resize && self.opt.width) {
-						self.header.width(self.width);
+						self.header.width(self.myWidth);
 					}
 				}
 
@@ -248,7 +248,7 @@
 				var wrapper = $('<div class="gridy-buttons"><div class="gridy-buttons-content"></div></div>').appendTo(self.wrapper);
 
 				if (self.opt.resize && self.opt.width) {
-					wrapper.width(self.width);
+					wrapper.width(self.myWidth);
 				}
 
 				self.pageButtons = wrapper.children();
@@ -318,7 +318,7 @@
 				self.search = $('<div class="gridy-search"><div class="gridy-search-content"></div></div>');
 
 				if (self.opt.resize && self.opt.width) {
-					self.search.width(self.width);
+					self.search.width(self.myWidth);
 				}
 
 				var content = self.search.children();
@@ -357,7 +357,7 @@
 				self.statusBox = $('<div class="gridy-status" />').insertBefore($(self));
 
 				if (self.opt.resize && self.opt.width) {
-					self.statusBox.width(self.width);
+					self.statusBox.width(self.myWidth);
 				}
 			}
 
@@ -525,14 +525,14 @@
 								wrapper	= $this.wrap('<div id="' + self.id + '-wrapper" />').parent().addClass('gridy-scroll');
 
 							if (self.opt.height) {
-								wrapper.height(self.height);
+								wrapper.height(self.myHeight);
 							}
 
 							if (self.opt.width) {
-								wrapper.width(self.width + 15);
+								wrapper.width(self.myWidth + 15);
 							}
 
-							$this.clone(true).removeAttr('id').width(width).find('tbody').remove();
+							$this.clone(true).removeAttr('id').find('tbody').remove();
 
 							$this.insertBefore(wrapper);
 
