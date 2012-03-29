@@ -40,16 +40,7 @@
 				self.myWidth = methods.getSize.call(self, self.opt.width);
 				self.myHeight = methods.getSize.call(self, self.opt.height);
 
-				self.wrapper = $this.data('settings', self.opt).wrap('<div id="' + self.id + '-wrapper" />').parent();
-
-				if (self.opt.width) {
-					$this.width(self.myWidth);
-				}
-
-				if (self.opt.width) {
-					self.wrapper.width(self.myWidth);
-				}
-
+				self.wrapper			= $this.data('settings', self.opt).wrap('<div id="' + self.id + '-wrapper" />').parent();
 				self.currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '" />').insertBefore(self);
 				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '" />').insertBefore(self);
 				self.currentSortOrder	= $('<input type="hidden" name="sortOrder" value="' + self.opt.sortOrder + '" />').insertBefore(self);
@@ -58,6 +49,14 @@
 				self.hasHeaders			= self.opt.headers.length > 0 || self.hasColumns;
 				self.hasFinds			= self.opt.finds.length > 0;
 				self.hasRows			= self.opt.rowsNumber.length > 0;
+
+				if (self.opt.width) {
+					self.wrapper.width(self.myWidth);
+				}
+
+				if (self.opt.width) {
+					$this.width(self.myWidth);
+				}
 
 				if (self.isTable) {
 					$this.attr('cellspacing', 0).parent().addClass(self.opt.skin + '-table');
