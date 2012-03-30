@@ -4,7 +4,7 @@ jQuery Gridy is a plugin that generates a highly customizable grid using templat
 
 ## Version
 
-	@version        1.0.0 (Development)
+	@version        1.0.0
 	@since          2011.06.03
 	@author         Washington Botelho
 	@documentation  wbotelhos.com/gridy

@@ -15,7 +15,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
-		<script type="text/javascript" src="js/jquery.gridy.js"></script>
+		<script type="text/javascript" src="js/jquery.gridy.min.js"></script>
 
 		<script type="text/javascript">
 			// This code does not belong to the plugin. See the example code at the bottom of this page.
@@ -45,7 +45,7 @@
 				<a href="http://www.wbotelhos.com/2011/06/26/jquery-gridy-a-grid-plugin" target="_blank">Article</a> |
 				<a href="http://www.wbotelhos.com/gridy/LICENSE.txt" target="_blank">License</a> |
 				<a href="http://www.wbotelhos.com/gridy/who.html" target="_blank">Who is using</a> |
-				<a href="http://www.wbotelhos.com/2011/06/26/jquery-gridy-a-grid-plugin/#comments" target="_blank" style="color: #2C8CBD;">Doubt</a> |
+				<a href="http://www.wbotelhos.com/2011/06/26/jquery-gridy-a-grid-plugin#comments" target="_blank" style="color: #2C8CBD;">Doubt</a> |
 				<a href="http://www.wbotelhos.com/lab" target="_blank" style="color: #000;">yLab</a>
 			</div>
 
@@ -112,7 +112,7 @@
 			<div class="session">Query String:</div>
 
 			<div class="source">
-				<span class="attribute">search</span>=__&<span class="attribute">page</span>=__&<span class="attribute">sortname</span>=__&<span class="attribute">sortorder</span>=__&<span class="attribute">find</span>=__&<span class="attribute">rows</span>=__
+				<span class="attribute">search</span>=__&amp;<span class="attribute">page</span>=__&amp;<span class="attribute">sortname</span>=__&amp;<span class="attribute">sortorder</span>=__&amp;<span class="attribute">find</span>=__&amp;<span class="attribute">rows</span>=__
 			</div>
 
 			<span class="comment">
@@ -261,7 +261,7 @@
 			<div class="comment">Specify the callback function name for a JSONP request.</div>
 
 			<div class="comment-personal">
-				Example:<br/ >
+				Example:<br />
 				- You can change the name of callback manually;<br />
 				- Using static name you can have a better browser caching;<br />
 				- But it is preferable to let jQuery generate a unique name as it'll make it easier to manage the requests and provide callbacks and error handling
@@ -296,7 +296,7 @@
 			</div>
 
 			<div class="source">
-				...&language=pt_BR&status=1
+				...&amp;language=pt_BR&amp;status=1
 			</div>
 
 			<div class="comment">A hash of parameters to be added to the query string.</div>
@@ -329,7 +329,7 @@
 			</div>
 
 			<div class="source">
-				...&language=pt_BR&status[]=0&status[]=2&entity.year=2012
+				...&amp;language=pt_BR&amp;status[]=0&amp;status[]=2&amp;entity.year=2012
 			</div>
 
 			<div class="comment">Array of selectors of field to use the name and value as parameter.</div>
@@ -682,7 +682,7 @@
 			</div>
 
 			<div class="source">
-				...&find=value
+				...&amp;find=value
 			</div>
 
 			<div class="comment">Name of the column where research will be done.</div>
@@ -1310,7 +1310,7 @@
 
 			<div class="session-option">search: <span>''</span></div>
 
-			<div class="source">...&search=wbotelhos%20blog</div>
+			<div class="source">...&amp;search=wbotelhos%20blog</div>
 
 			<div class="source">
 				$('#grid').gridy({<br />
@@ -1519,9 +1519,10 @@
 						{ name: 'Version', value: 'version' }
 					],
 					hoverFx		: true,
+					searchFocus	: false,
 					searchText	: 'type your search here...',
 					sortName	: 'attribute',
-					url			: 'http://localhost:8080/mockr/gridy',
+					url			: 'http://mockr.me/gridy',
 					width		: 1100
 				});
 
@@ -1552,7 +1553,7 @@
 					sortName	: 'attribute',
 					style		: 'free',
 					template	: 'template-free',
-					url			: 'http://localhost:8080/mockr/gridy',
+					url			: 'http://mockr.me/gridy',
 					width		: 1100
 				});
 
@@ -1580,7 +1581,7 @@
 					sortName	: 'attribute',
 					style		: 'free',
 					template	: 'template-free',
-					url			: 'http://localhost:8080/mockr/gridy',
+					url			: 'http://mockr.me/gridy',
 					width		: 1100
 				});
 

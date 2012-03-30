@@ -1,6 +1,6 @@
 # jQuery Gridy - A Grid Plugin - http://wbotelhos.com/gridy
 
-### 0.1.0 (Development)
+### 0.1.0
 
 + Now 'paramsElements' capture class elements as a array of parameter and other elements as simple value;
 + Now you can use table rather div if you have just tabulated data in a list format;
@@ -40,6 +40,8 @@
 + Fixed undesired trigger on back and next button with NaN page;
 + Fixed the JSON return taked from the callback 'before';
 + Fixed the clickFx and mouseFx to avoid bind on noResultText;
++ Fixed the missing tr on header;
++ Fixed the scroll build for table;
 
 + Added 'resize' option to apply the same width of the content to the other wrappers;
 + Added 'evenOdd' option to enables the even odd row style;

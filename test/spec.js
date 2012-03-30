@@ -2909,6 +2909,8 @@ describe('table', function() {
 
 		// then
 		expect($this.children('tbody.gridy-content').children(':first')).toHaveClass('gridy-first-line');
+
+		$('#grid').parent().parent().remove();
 	});
 
 });
