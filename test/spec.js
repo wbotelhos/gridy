@@ -47,8 +47,7 @@ describe('param settings', function() {
 			sortName:	'id',
 			sortOrder:	'desc',
 			find:		'find',
-			rows:		3,
-			url:		'/gridy'
+			rows:		3
 		});
 	});
 
@@ -63,10 +62,7 @@ describe('param settings', function() {
 		});
 
 		// when
-		$this.gridy({
-			url		: '/gridy',
-			params	: { pa: 'pa', rams: 'rams'}
-		});
+		$this.gridy({ params: { pa: 'pa', rams: 'rams'} });
 	});
 
 	it ('should capture paramsElements from many elements with class as array and other elements as simple text', function() {
@@ -91,10 +87,7 @@ describe('param settings', function() {
 		});
 
 		// when
-		$this.gridy({
-			url				: '/gridy',
-			paramsElements	: ['#single', '.multiple', '#selection']
-		});
+		$this.gridy({ paramsElements: ['#single', '.multiple', '#selection'] });
 
 		$('#single').remove();
 		$('.multiple').remove();
@@ -174,8 +167,7 @@ describe('global', function() {
 		$this.gridy({
 			page:		2,
 			sortName:	'id',
-			sortOrder:	'desc',
-			url:		'/gridy'
+			sortOrder:	'desc'
 		});
 
 		var $page		= $('input[name="page"]'),
@@ -193,10 +185,7 @@ describe('global', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			template:	'template-custom',
-			url:		'/gridy'
-		});
+		$this.gridy({ template:	'template-custom' });
 
 		// then
 	    expect($this.children().children().is('ul')).toBeTruthy();
@@ -213,8 +202,7 @@ describe('global', function() {
 			    { name: 'Nick', value: 'nick', width: 100 },
 			    { name: 'Name', value: 'name', width: 100 }
 			],
-			firstQuery	: false,
-			url			: '/gridy'
+			firstQuery	: false
 		});
 
 		// then
@@ -238,8 +226,7 @@ describe('global', function() {
 			    { name: 'Name', value: 'name', width: 100 }
 			],
 			firstQuery			: false,
-			noFirstQueryText	: 'Do a query!',
-			url					: '/gridy'
+			noFirstQueryText	: 'Do a query!'
 		});
 
 		// then
@@ -254,8 +241,7 @@ describe('global', function() {
 
 		// when
 		$this.gridy({
-			rowsNumber	: [10, 100, 1000, 10000],
-			url			: '/gridy'
+			rowsNumber	: [10, 100, 1000, 10000]
 		});
 
 		var options = $this.parent('div').children('.gridy-footer').children('.gridy-row-option').children('select').children('option');
@@ -298,7 +284,6 @@ describe('json format', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			totalPath:	'count.total'
 		});
 
@@ -314,8 +299,7 @@ describe('json format', function() {
 		// when
 		$this.gridy({
 			style:				'free',
-			template:			'template-div',
-			url:				'/gridy'
+			template:			'template-div'
 		});
 
 		var wrapper = $this.parent().find('.gridy-search-content');
@@ -338,8 +322,7 @@ describe('json format', function() {
 
 		// when
 		$this.gridy({
-			listPath: 'data.list',
-			url		: '/gridy'
+			listPath: 'data.list'
 		});
 
 		// then
@@ -363,7 +346,6 @@ describe('json format', function() {
 		// when
 		$this.gridy({
 			rows		: 1,
-			url			: '/gridy',
 			totalPath	: 'totale'
 		});
 
@@ -386,7 +368,6 @@ describe('json format', function() {
 		// when
 		$this.gridy({
 			rows		: 1,
-			url			: '/gridy',
 			totalPath	: 'total.subtotal.value'
 		});
 
@@ -421,8 +402,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:		'free',
-			template:	'template-div',
-			url:		'/gridy'
+			template:	'template-div'
 		});
 
 		// then
@@ -437,8 +417,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:		'free',
-			template:	'template-div',
-			url:		'/gridy'
+			template:	'template-div'
 		});
 
 		// then
@@ -452,8 +431,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style	: 'free',
-			template: 'template-div',
-			url		: '/gridy'
+			template: 'template-div'
 		});
 
 		var columns = $this.children('.gridy-content').children('div:first').children('div');
@@ -469,8 +447,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:		'free',
-			template:	'template-div',
-			url:		'/gridy'
+			template:	'template-div'
 		});
 
 		var columns = $this.children('.gridy-content').children('div');
@@ -486,8 +463,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:		'free',
-			template:	'template-div',
-			url:		'/gridy'
+			template:	'template-div'
 		});
 
 		// then
@@ -504,7 +480,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			width:		1000
 		});
 
@@ -520,7 +495,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			skin:		'skin'
 		});
 
@@ -541,7 +515,6 @@ describe('free', function() {
 			],
 			style		: 'free',
 			template	: 'template-div',
-			url			: '/gridy',
 		});
 
 		// then
@@ -582,7 +555,6 @@ describe('free', function() {
    		   ],
 			style		: 'free',
 			template	: 'template-div',
-			url			: '/gridy',
 		});
 
 		// then
@@ -623,7 +595,6 @@ describe('free', function() {
    		   ],
 			style		: 'free',
 			template	: 'template-div',
-			url			: '/gridy',
 		});
 
 		// then
@@ -647,8 +618,7 @@ describe('free', function() {
 	   		    { name: 'Name', value: 'name', width: 100 }
 	   		],
 	   		style		: 'free',
-	   		template	: 'template-div',
-	   		url			: '/gridy'
+	   		template	: 'template-div'
 		});
 
 		// then
@@ -667,8 +637,7 @@ describe('free', function() {
 			    { name: 'Name', value: 'name', width: 100 }
 			],
 			style		: 'free',
-			template	: 'template-div',
-			url			: '/gridy'
+			template	: 'template-div'
 		});
 
 		var headers = $this.children('div.gridy-header').children('div');
@@ -687,7 +656,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -711,7 +679,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 						    { name: 'ID', value: 'id', width: 100 },
 						    { name: 'Nick', value: 'nick', width: 100 },
@@ -752,8 +719,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:			'free',
-			template:		'template-div',
-			url:			'/gridy'
+			template:		'template-div'
 		});
 
 		// then
@@ -767,8 +733,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:			'free',
-			template:		'template-div',
-			url:			'/gridy'
+			template:		'template-div'
 		});
 
 		var $status = $this.parent().children('div.gridy-status');
@@ -784,8 +749,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:			'free',
-			template:		'template-div',
-			url:			'/gridy'
+			template:		'template-div'
 		});
 
 		var $status = $this.parent().children('div.gridy-status');
@@ -801,8 +765,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:			'free',
-			template:		'template-div',
-			url:			'/gridy'
+			template:		'template-div'
 		});
 
 		var $result = $this.parent().find('div.gridy-result');
@@ -819,7 +782,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			statusOption:	false
 		});
 
@@ -837,7 +799,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			statusText:		'Pagee {from} -- {to} off {total} itemss'
 		});
 
@@ -854,8 +815,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:			'free',
-			template:		'template-div',
-			url:			'/gridy'
+			template:		'template-div'
 		});
 
 		var wrapper = $this.parent().children('div.gridy-status');
@@ -873,7 +833,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			loadingOption:	false
 		});
 
@@ -890,8 +849,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:			'free',
-			template:		'template-div',
-			url:			'/gridy'
+			template:		'template-div'
 		});
 
 		var wrapper = $this.parent().find('div.gridy-loading');
@@ -908,7 +866,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			loadingText:	'Wait...'
 		});
 
@@ -925,8 +882,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:				'free',
-			template:			'template-div',
-			url:				'/gridy'
+			template:			'template-div'
 		});
 
 		var wrapper = $this.parent();
@@ -944,8 +900,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:				'free',
-			template:			'template-div',
-			url:				'/gridy'
+			template:			'template-div'
 		});
 
 		var wrapper = $this.parent().find('.gridy-search-content');
@@ -962,7 +917,6 @@ describe('free', function() {
 		$this.gridy({
 			style:				'free',
 			template:			'template-div',
-			url:				'/gridy',
 			searchButtonLabel:	'find'
 		});
 
@@ -979,8 +933,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:				'free',
-			template:			'template-div',
-			url:				'/gridy'
+			template:			'template-div'
 		});
 
 		var wrapper = $this.parent().find('.gridy-search-content');
@@ -994,10 +947,7 @@ describe('free', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:				'/gridy',
-			searchButtonTitle:	'type here...'
-		});
+		$this.gridy({ searchButtonTitle: 'type here...' });
 
 		var wrapper = $this.parent().find('.gridy-search-content');
 
@@ -1012,8 +962,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:				'free',
-			template:			'template-div',
-			url:				'/gridy'
+			template:			'template-div'
 		});
 
 		var wrapper = $this.parent().find('.gridy-search-content');
@@ -1034,7 +983,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			searchTarget:	'#target'
 		});
 
@@ -1054,8 +1002,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:		'free',
-			template:	'template-div',
-			url:		'/gridy'
+			template:	'template-div'
 		});
 
 		var wrapper = $this.parent().children('div.gridy-footer');
@@ -1071,8 +1018,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:		'free',
-			template:	'template-div',
-			url: 		'/gridy'
+			template:	'template-div'
 		});
 
 		var wrapper = $this.parent().children('.gridy-footer');
@@ -1089,7 +1035,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url: 		'/gridy',
 			rows:		1
 		});
 
@@ -1123,7 +1068,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url: 		'/gridy',
 			width:		100
 		});
 
@@ -1149,7 +1093,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url: 		'/gridy',
 			resize:		false,
 			width:		100
 		});
@@ -1175,8 +1118,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:		'free',
-			template:	'template-div',
-			url: 		'/gridy'
+			template:	'template-div'
 		});
 
 		var $rowsNumber = $this.parent().children('.gridy-footer').find('select').children('option');
@@ -1203,7 +1145,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url: 		'/gridy',
 			rowsNumber:	[1, 10, 20]
 		});
 
@@ -1230,7 +1171,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			rowsTarget:	'#target'
 		});
 
@@ -1255,8 +1195,7 @@ describe('free', function() {
 			finds		: [ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 			findTarget	: '#target',
 			style		: 'free',
-			template	: 'template-div',
-			url			: '/gridy'
+			template	: 'template-div'
 		});
 
 		// then
@@ -1274,7 +1213,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 		});
 
@@ -1301,7 +1239,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 			find:		'nick'
 		});
@@ -1327,7 +1264,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			searchText:	'Text here...'
 		});
 
@@ -1344,8 +1280,7 @@ describe('free', function() {
 		// given
 		var $this	= $('#grid').gridy({
 			style	: 'free',
-			template: 'template-div',
-			url		: '/gridy'
+			template: 'template-div'
 		}),
 		$row		= $this.children('.gridy-content').children('div:first');
 
@@ -1361,7 +1296,6 @@ describe('free', function() {
 		var $this	= $('#grid').gridy({
 			style	: 'free',
 			template: 'template-div',
-			url		: '/gridy',
 			hoverFx	: true
 		}),
 		$row		= $this.children('.gridy-content').children('div:first');
@@ -1381,7 +1315,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -1405,7 +1338,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 110 },
@@ -1429,7 +1361,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -1453,7 +1384,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -1478,7 +1408,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -1503,7 +1432,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -1529,7 +1457,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -1556,7 +1483,6 @@ describe('free', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -1582,7 +1508,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			evenOdd:	true
 		});
 
@@ -1602,7 +1527,6 @@ describe('free', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			separate:	false
 		});
 
@@ -1617,7 +1541,6 @@ describe('free', function() {
 		var $this = $('#grid').gridy({
 			style	: 'free',
 			template: 'template-div',
-			url		: '/gridy',
 			clickFx	: true
 		});
 
@@ -1632,8 +1555,7 @@ describe('free', function() {
 		// given
 		var $this = $('#grid').gridy({
 			style	: 'free',
-			template: 'template-div',
-			url		: '/gridy'
+			template: 'template-div'
 		});
 
 		// when
@@ -1650,8 +1572,7 @@ describe('free', function() {
 		// when
 		$this.gridy({
 			style:		'free',
-			template:	'template-div',
-			url: 		'/gridy'
+			template:	'template-div'
 		});
 
 		var refresher = $this.parent().find('.gridy-button-refresh');
@@ -1671,7 +1592,6 @@ describe('free', function() {
 		$this.gridy({
 			style			: 'free',
 			template		: 'template-div',
-			url				: '/gridy',
 			refreshTarget	: '#target'
 		});
 
@@ -1696,8 +1616,7 @@ describe('free', function() {
 			    { name: 'Name', value: 'name', width: 100 }
 			],
 			style		: 'free',
-			template	: 'template-div',
-			url			: '/gridy'
+			template	: 'template-div'
 		});
 
 		// then
@@ -1720,8 +1639,7 @@ describe('free', function() {
 			    { name: 'Name', value: 'name', width: 100 }
 			],
 			style		: 'free',
-			template	: 'template-div',
-			url			: '/gridy'
+			template	: 'template-div'
 		});
 
 		// then
@@ -1743,8 +1661,7 @@ describe('free', function() {
 			    { name: 'Name', value: 'name', width: 100 }
 			],
 			style		: 'free',
-			template	: 'template-div',
-			url			: '/gridy'
+			template	: 'template-div'
 		});
 
 		// then
@@ -1766,8 +1683,7 @@ describe('free', function() {
 			],
 			style		: 'free',
 			template	: 'template-div',
-			sortName	: 'id',
-			url			: '/gridy'
+			sortName	: 'id'
 		});
 
 		// then
@@ -1789,8 +1705,7 @@ describe('free', function() {
 			],
 			sortName	: 'id',
 			style		: 'free',
-			template	: 'template-div',
-			url			: '/gridy'
+			template	: 'template-div'
 		});
 
 		// then
@@ -1815,8 +1730,7 @@ describe('free', function() {
 		$this.gridy({
 			rows		: 1,
 			style		: 'free',
-			template	: 'template-free',
-			url			: '/gridy'
+			template	: 'template-free'
 		});
 
 		// then
@@ -1859,9 +1773,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:	'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		// then
 	    expect($this.parent()).toHaveClass('gridy-table');
@@ -1873,9 +1785,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:	'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		// then
 		expect($this.children('tbody.gridy-content')).toExist();
@@ -1886,9 +1796,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:	'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var $content = $this.children('tbody.gridy-content');
 
@@ -1901,9 +1809,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:	'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var $rows = $this.children('tbody.gridy-content').children('tr');
 
@@ -1916,9 +1822,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:	'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var columns = $this.children('tbody.gridy-content').children('tr:first').children('td');
 
@@ -1931,9 +1835,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:	'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var $rows = $this.children('tbody.gridy-content').children();
 
@@ -1948,9 +1850,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:	'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var $row = $this.children('.gridy-content').children('tr:first');
 
@@ -1964,7 +1864,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:		'/gridy',
 			width:		1000
 		});
 
@@ -1978,7 +1877,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:	'/gridy',
 			skin:	'skin'
 		});
 
@@ -1992,7 +1890,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2015,8 +1912,7 @@ describe('table', function() {
 			    { name: 'ID', value: 'id', width: 100 },
 	   		    { name: 'Nick', value: 'nick', width: 100 },
 	   		    { name: 'Name', value: 'name', width: 100 }
-	   		],
-	   		url			: '/gridy'
+	   		]
 		});
 
 		// then
@@ -2033,8 +1929,7 @@ describe('table', function() {
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
 			    { name: 'Name', value: 'name', width: 100 }
-			],
-			url		: '/gridy'
+			]
 		});
 
 		var headers = $this.children('thead.gridy-header').children('tr').children('th');
@@ -2051,7 +1946,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2073,7 +1967,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2133,9 +2026,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:			'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var $status = $this.parent().children('div.gridy-status');
 		// then
@@ -2160,10 +2051,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url			: '/gridy',
-			statusOption: false
-		});
+		$this.gridy({ statusOption: false });
 
 		var wrapper = $this.parent();
 
@@ -2177,8 +2065,7 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			statusText	: 'Pagee {from} -- {to} off {total} itemss',
-			url			: '/gridy'
+			statusText	: 'Pagee {from} -- {to} off {total} itemss'
 		});
 
 		var $result = $this.parent().find('div.gridy-result');
@@ -2192,9 +2079,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:			'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var wrapper = $this.parent().children('div.gridy-status');
 
@@ -2209,7 +2094,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			loadingOption:	false
 		});
 
@@ -2224,9 +2108,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:			'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var wrapper = $this.parent().find('div.gridy-loading');
 
@@ -2240,7 +2122,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			loadingText:	'Wait...'
 		});
 
@@ -2255,9 +2136,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:				'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var wrapper = $this.parent();
 
@@ -2272,9 +2151,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:				'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var wrapper = $this.parent().find('.gridy-search-content');
 
@@ -2288,7 +2165,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:				'/gridy',
 			searchButtonLabel:	'find'
 		});
 
@@ -2303,10 +2179,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:				'/gridy',
-			searchButtonTitle:	'type here...'
-		});
+		$this.gridy({ searchButtonTitle: 'type here...' });
 
 		var wrapper = $this.parent().find('.gridy-search-content');
 
@@ -2319,9 +2192,7 @@ describe('table', function() {
 		var $this = $('#grid').wrap('<div/>');
 
 		// when
-		$this.gridy({
-			url: '/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var wrapper = $this.parent().find('.gridy-search-content');
 
@@ -2337,10 +2208,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url:			'/gridy',
-			searchTarget:	'#target'
-		});
+		$this.gridy({ searchTarget: '#target' });
 
 		var wrapper = $this.parent();
 
@@ -2356,9 +2224,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url: '/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var wrapper = $this.parent().children('div.gridy-footer');
 
@@ -2371,9 +2237,7 @@ describe('table', function() {
 		var $this = $('#grid');
 
 		// when
-		$this.gridy({
-			url: '/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		var wrapper = $this.parent().children('.gridy-footer');
 
@@ -2387,7 +2251,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url: 		'/gridy',
 			rows:		1
 		});
 
@@ -2419,7 +2282,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url: 		'/gridy',
 			width:		100
 		});
 
@@ -2443,7 +2305,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url: 		'/gridy',
 			resize:		false,
 			width:		100
 		});
@@ -2493,7 +2354,6 @@ describe('table', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url: 		'/gridy',
 			rowsNumber:	[1, 10, 20]
 		});
 
@@ -2518,7 +2378,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:		'/gridy',
 			rowsTarget:	'#target'
 		});
 
@@ -2541,8 +2400,7 @@ describe('table', function() {
 		$this.gridy({
 			find		: 'id',
 			finds		: [ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
-			findTarget	: '#target',
-			url			: '/gridy'
+			findTarget	: '#target'
 		});
 
 		// then
@@ -2558,7 +2416,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:		'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 		});
 
@@ -2585,7 +2442,6 @@ describe('table', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 			find:		'nick'
 		});
@@ -2609,7 +2465,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:		'/gridy',
 			searchText:	'Text here...'
 		});
 
@@ -2637,7 +2492,6 @@ describe('table', function() {
 	it ('hoverFx should apply effect', function() {
 		// given
 		var $this = $('#grid').gridy({
-			url:		'/gridy',
 			hoverFx:	true
 		}),
 
@@ -2656,7 +2510,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url			: '/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2678,7 +2531,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url			: '/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 110 },
@@ -2700,7 +2552,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2723,7 +2574,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2746,7 +2596,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2769,7 +2618,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2793,7 +2641,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2818,7 +2665,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			columns		: [
 			    { name: 'ID', value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
@@ -2842,7 +2688,6 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			url:		'/gridy',
 			evenOdd:	true
 		});
 
@@ -2862,7 +2707,6 @@ describe('table', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			separate:	false
 		});
 
@@ -2875,7 +2719,6 @@ describe('table', function() {
 	it ('clickFx should enable it', function() {
 		// given
 		var $this = $('#grid').gridy({
-			url:		'/gridy',
 			clickFx:	true
 		});
 
@@ -2891,7 +2734,6 @@ describe('table', function() {
 	it ('clickFx should not be enabled by default', function() {
 		// given
 		var $this = $('#grid').gridy({
-			url:		'/gridy',
 			clickFx:	true
 		});
 
@@ -2908,8 +2750,7 @@ describe('table', function() {
 
 		// when
 		$this.gridy({
-			template:	'template-div',
-			url: 		'/gridy'
+			template:	'template-div'
 		});
 
 		var refresher = $this.parent().find('.gridy-button-refresh');
@@ -2928,8 +2769,7 @@ describe('table', function() {
 			    { value: 'id', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
 			    { name: 'Name', value: 'name', width: 100 }
-			],
-			url		: '/gridy'
+			]
 		});
 
 		// then
@@ -2950,8 +2790,7 @@ describe('table', function() {
 			    { name: 'ID', width: 100 },
 			    { name: 'Nick', value: 'nick', width: 100 },
 			    { name: 'Name', value: 'name', width: 100 }
-			],
-			url			: '/gridy'
+			]
 		});
 
 		// then
@@ -2973,8 +2812,7 @@ describe('table', function() {
 			    { name: 'Name', value: 'name', width: 100 }
 			],
 			style		: 'free',
-			template	: 'template-div',
-			url			: '/gridy'
+			template	: 'template-div'
 		});
 
 		// then
@@ -2996,8 +2834,7 @@ describe('table', function() {
 			],
 			sortName	: 'id',
 			style		: 'free',
-			template	: 'template-div',
-			url			: '/gridy'
+			template	: 'template-div'
 		});
 
 		// then
@@ -3017,8 +2854,7 @@ describe('table', function() {
 			    { name: 'Nick', value: 'nick', width: 20 },
 			    { name: 'Name', value: 'name', width: 30 }
 			],
-			sortName	: 'id',
-			url			: '/gridy'
+			sortName	: 'id'
 		});
 
 		// then
@@ -3042,7 +2878,6 @@ describe('table', function() {
 		// when
 		$this.gridy({
 			rows	: 1,
-			url		: '/gridy',
 			width	: undefined
 		});
 
@@ -3059,6 +2894,21 @@ describe('table', function() {
 		expect(!search || search.indexOf('width') < 0).toBeTruthy();
 		expect(!status || status.indexOf('width') < 0).toBeTruthy();
 		expect(!footer || footer.indexOf('width') < 0).toBeTruthy();
+	});
+
+	it ('[table scroll] should set the first line class', function() {
+
+		// given
+		var $this = $('#grid');
+
+		// when
+		$this.gridy({
+			height	: 10,
+			scroll	: true
+		});
+
+		// then
+		expect($this.children('tbody.gridy-content').children(':first')).toHaveClass('gridy-first-line');
 	});
 
 });
@@ -3087,7 +2937,6 @@ describe('style table with no result', function() {
 
 		// when
 		$this.gridy({
-			url:		'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 		});
 
@@ -3109,8 +2958,7 @@ describe('style table with no result', function() {
 			    { name: 'Nick', value: 'nick' },
 			    { name: 'Name', value: 'name' }
 			],
-			resultOption	: false,
-			url				: '/gridy'
+			resultOption	: false
 		});
 
 		var noResult = $this.children('.gridy-content').children('.gridy-no-result');
@@ -3125,7 +2973,6 @@ describe('style table with no result', function() {
 
 		// when
 		$this.gridy({
-			url:			'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 			noResultText:	'No results!'
 		});
@@ -3141,8 +2988,7 @@ describe('style table with no result', function() {
 		var $this = $('#grid').gridy({
 			hoverFx		: true,
 			style		: 'free',
-			template	: 'template-free',
-			url			: '/gridy'
+			template	: 'template-free'
 		});
 
 		var noResult = $this.children('div.gridy-content').children('p');
@@ -3159,8 +3005,7 @@ describe('style table with no result', function() {
 		var $this = $('#grid').gridy({
 			clickFx		: true,
 			style		: 'free',
-			template	: 'template-free',
-			url			: '/gridy'
+			template	: 'template-free'
 		});
 
 		var noResult = $this.children('div.gridy-content').children('p');
@@ -3200,7 +3045,6 @@ describe('style div with no result', function() {
 		$this.gridy({
 			style:		'free',
 			template:	'template-div',
-			url:		'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 		});
 
@@ -3219,7 +3063,6 @@ describe('style div with no result', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 			resultOption: false
 		});
@@ -3238,7 +3081,6 @@ describe('style div with no result', function() {
 		$this.gridy({
 			style:			'free',
 			template:		'template-div',
-			url:			'/gridy',
 			finds:		[ { name: 'ID', value: 'id' }, { name: 'Nick', value: 'nick' }, { name: 'Name', value: 'name' } ],
 			noResultText:	'No results!'
 		});
@@ -3320,10 +3162,7 @@ describe('ajax settings', function() {
 		});
 
 		// when
-		$this.gridy({
-			cache:	true,
-			url:	'/gridy'
-		});
+		$this.gridy({ cache: true });
 
 		// then check spyOn
 	});
@@ -3337,10 +3176,7 @@ describe('ajax settings', function() {
 		});
 
 		// when
-		$this.gridy({
-			contentType:	'application/pdf',
-			url:			'/gridy'
-		});
+		$this.gridy({ contentType: 'application/pdf' });
 
 		// then check spyOn
 	});
@@ -3354,10 +3190,7 @@ describe('ajax settings', function() {
 		});
 
 		// when
-		$this.gridy({
-			dataType:	'jsonp',
-			url:		'/gridy'
-		});
+		$this.gridy({ dataType:	'jsonp' });
 
 		// then check spyOn
 	});
@@ -3371,10 +3204,7 @@ describe('ajax settings', function() {
 		});
 
 		// when
-		$this.gridy({
-			jsonpCallback:	'myCallback',
-			url:			'/gridy'
-		});
+		$this.gridy({ jsonpCallback: 'myCallback' });
 
 		// then check spyOn
 	});
@@ -3388,10 +3218,7 @@ describe('ajax settings', function() {
 		});
 
 		// when
-		$this.gridy({
-			type:	'post',
-			url:	'/gridy'
-		});
+		$this.gridy({ type: 'post' });
 
 		// then check spyOn
 	});
@@ -3405,9 +3232,7 @@ describe('ajax settings', function() {
 		});
 
 		// when
-		$this.gridy({
-			url:	'/gridy'
-		});
+		$this.gridy({ url: '/gridy' });
 
 		// then check spyOn
 	});
@@ -3503,7 +3328,6 @@ describe('buttons', function() {
 
 		// when
 		$this.gridy({
-			url: 		'/gridy',
 			rows:		1,
 			buttonMax:	1
 		});
@@ -3539,7 +3363,6 @@ describe('buttons', function() {
 
 		// when
 		$this.gridy({
-			url: 		'/gridy',
 			rows:		1,
 			buttonMax:	1,
 			page:		2
@@ -3584,7 +3407,6 @@ describe('buttons', function() {
 
 		// when
 		$this.gridy({
-			url				: '/gridy',
 			rows			: 1,
 			buttonMax		: 1,
 			page			: 2,
@@ -3611,7 +3433,6 @@ describe('buttons', function() {
 
 		// when
 		$this.gridy({
-			url				: '/gridy',
 			rows			: 1,
 			buttonMax		: 1,
 			page			: 2,
@@ -3639,7 +3460,6 @@ describe('buttons', function() {
 
 		// when
 		$this.gridy({
-			url				: '/gridy',
 			rows			: 1,
 			buttonMax		: 1,
 			page			: 2,
@@ -3679,7 +3499,6 @@ describe('callback', function() {
 
 		// when
 		$this.gridy({
-			url		: '/gridy',
 			filter	: function() {
 				$(this).addClass('my-class');
 			}
@@ -3709,7 +3528,6 @@ describe('callback', function() {
 			    { name: 'Name', value: 'name', width: 100 }
 			],
 			rows	: 1,
-			url		: '/gridy',
 			filter	: function() {
 				return '{"list": [{"id": 2, "nick": "b", "name": "B"}], "total": 1}';
 			}
@@ -3738,7 +3556,6 @@ describe('callback', function() {
 		// when
 		$this.gridy({
 			rows		: 1,
-			url			: '/gridy',
 			listPath	: 'collection.subCollection.value'
 		});
 
@@ -3765,7 +3582,6 @@ describe('callback', function() {
 		// when
 		$this.gridy({
 			rows		: 1,
-			url			: '/gridy',
 			listPath	: 'collection'
 		});
 
@@ -3792,7 +3608,6 @@ describe('callback', function() {
 		// when
 		$this.gridy({
 			rows	: 1,
-			url		: '/gridy',
 			before	: function() {
 				$(this).addClass('called');
 
@@ -3825,7 +3640,6 @@ describe('callback', function() {
 		// when
 		$this.gridy({
 			rows	: 1,
-			url		: '/gridy',
 			before	: function() {
 				return { page: 2, sortName: 'sortName', sortOrder: 'sortOrder' };
 			}
@@ -3852,7 +3666,6 @@ describe('callback', function() {
 		// when
 		$this.gridy({
 			rows	: 1,
-			url		: '/gridy',
 			before	: function() { }
 		});
 	});
@@ -3880,8 +3693,7 @@ describe('functions', function() {
 
 		// given
 		var $this = $('#grid').gridy({
-			rows	: 1,
-			url		: '/gridy'
+			rows	: 1
 		});
 
 		// when
@@ -3903,9 +3715,8 @@ describe('functions', function() {
 
 		// given
 		var $this = $('#grid').gridy({
-			page	: 2,
-			rows	: 1,
-			url		: '/gridy'
+			page: 2,
+			rows: 1
 		});
 
 		// when
@@ -3945,8 +3756,7 @@ describe('scroll', function() {
 			height	: 100,
 			scroll	: true,
 			style	: 'free',
-			template: 'template-div',
-			url		: '/gridy'
+			template: 'template-div'
 		});
 
 		// then
@@ -3963,12 +3773,11 @@ describe('scroll', function() {
 			height	: 100,
 			scroll	: true,
 			style	: 'free',
-			template: 'template-div',
-			url		: '/gridy'
+			template: 'template-div'
 		});
 
 		// then
-		expect($this.children('.gridy-content').children(':last')).toHaveClass('gridy-last-line-scroll');
+		expect($this.children('.gridy-content').children(':last')).toHaveClass('gridy-last-line');
 	});
 
 });

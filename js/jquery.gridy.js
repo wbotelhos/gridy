@@ -36,10 +36,7 @@
 				var self	= this,
 					$this	= $(self).empty();
 
-				self.opt = $.extend({}, $.fn.gridy.defaults, settings);
-				self.myWidth = methods.getSize.call(self, self.opt.width);
-				self.myHeight = methods.getSize.call(self, self.opt.height);
-
+				self.opt				= $.extend({}, $.fn.gridy.defaults, settings);
 				self.wrapper			= $this.data('settings', self.opt).wrap('<div id="' + self.id + '-wrapper" />').parent();
 				self.currentPage		= $('<input type="hidden" name="page" value="' + self.opt.page + '" />').insertBefore(self);
 				self.currentSortName	= $('<input type="hidden" name="sortName" value="' + self.opt.sortName + '" />').insertBefore(self);
@@ -49,6 +46,9 @@
 				self.hasHeaders			= self.opt.headers.length > 0 || self.hasColumns;
 				self.hasFinds			= self.opt.finds.length > 0;
 				self.hasRows			= self.opt.rowsNumber.length > 0;
+
+				self.myWidth = methods.getSize.call(self, self.opt.width);
+				self.myHeight = methods.getSize.call(self, self.opt.height);
 
 				if (self.opt.width) {
 					self.wrapper.width(self.myWidth);
@@ -99,6 +99,35 @@
 			}
 
 			self.content.appendTo(self);
+
+			if (self.opt.scroll) {
+				if (!self.opt.height || self.opt.height == 'auto') {
+					methods.error.call(self, self.id + ': height attribute missing!');
+				}
+
+				if (self.isTable) {
+					var table	= self.content.parent('table'),
+						scroll	= table.wrap('<div class="gridy-scroll" />').parent('div');
+	
+					if (self.opt.height) {
+						scroll.height(self.myHeight);
+					}
+	
+					if (self.opt.width) {
+						scroll.width(methods.getSize.call(self, self.opt.width + 15));
+					}
+	
+					var header = table.clone(true).removeAttr('id');
+	
+					header.children('tbody').remove();
+	
+					header.insertBefore(scroll);
+	
+					table.children('thead').remove();
+				} else {
+					self.content.addClass('gridy-scroll');
+				}
+			}
 		}, buildFinder: function() {
 			var self = this;
 
@@ -481,13 +510,11 @@
 				success			: function(data, textStatus, jqXHR) {
 					methods.process.call(self, data, page, sortName, sortOrder, rowNumber);
 
-					var scrollSufix = (self.opt.scroll) ? '-scroll' : '';
-
 					if (self.opt.hoverFx) {
 						self.content.children(':not("p")').mouseenter(function() {
-							$(this).addClass('gridy-row-hovered' + scrollSufix);
+							$(this).addClass('gridy-row-hovered');
 						}).mouseleave(function() {
-							$(this).removeClass('gridy-row-hovered' + scrollSufix);
+							$(this).removeClass('gridy-row-hovered');
 						});
 					}
 
@@ -496,10 +523,10 @@
 							var $this = $(this);
 
 							if (!evt.ctrlKey && !evt.metaKey) {
-								$this.parent().children('.gridy-row-selected' + scrollSufix).removeClass('gridy-row-selected' + scrollSufix);
+								$this.parent().children('.gridy-row-selected').removeClass('gridy-row-selected');
 							}
 
-							$this.toggleClass('gridy-row-selected' + scrollSufix);
+							$this.toggleClass('gridy-row-selected');
 						});
 					}
 
@@ -517,42 +544,25 @@
 					methods.enableGrid.call(self, true);
 
 					if (self.opt.scroll) {
-						if (!self.opt.height || self.opt.height == 'auto') {
-							methods.error.call(self, self.id + ': height attribute missing!');
-						}
-
 						if (self.isTable) {
-							var $this	= self.content.parent(),
-								wrapper	= $this.wrap('<div id="' + self.id + '-wrapper" />').parent().addClass('gridy-scroll');
-
-							if (self.opt.height) {
-								wrapper.height(self.myHeight);
-							}
-
-							if (self.opt.width) {
-								wrapper.width(self.myWidth + 15);
-							}
-
-							$this.clone(true).removeAttr('id').find('tbody').remove();
-
-							$this.insertBefore(wrapper);
-
-							$this.children('thead').remove();
+							self.content.children(':first').addClass('gridy-first-line');
 						} else {
-							self.content.addClass('gridy-scroll').children(':last').addClass('gridy-last-line-scroll');
+							self.content.children(':last').addClass('gridy-last-line');
 						}
-					} else if (self.opt.separate) {
-						var firstLine = self.content.children(':first');
-
+					} else {
 						if (self.isTable) {
-							firstLine = firstLine.children();
+							self.content.children('tr:last').children('td').addClass('gridy-last-line');
 						}
 
-						firstLine.addClass('gridy-separate');
-					}
+						if (self.opt.separate) {
+							var firstLine = self.content.children(':first');
 
-					if (self.isTable) {
-						self.content.children(':last').children().addClass('gridy-last-line');
+							if (self.isTable) {
+								firstLine = firstLine.children('td');
+							}
+
+							firstLine.addClass('gridy-separate');
+						}
 					}
 
 					if (self.opt.always) {
@@ -723,9 +733,9 @@
 
 			if (self.opt.evenOdd) {
 				self.content
-					.children(':even').addClass((self.opt.scroll) ? 'gridy-even-scroll' : 'gridy-even')
+					.children(':even').addClass((self.opt.scroll) ? 'gridy-even' : 'gridy-even')
 				.end()
-					.children(':odd').addClass((self.opt.scroll) ? 'gridy-odd-scroll' : 'gridy-odd');
+					.children(':odd').addClass((self.opt.scroll) ? 'gridy-odd' : 'gridy-odd');
 			}
 
 			var width;
@@ -853,14 +863,19 @@
 			methods.set.call(this, {});
 		}, set: function(settings) {
 			return this.each(function() {
-				var $this	= $(this),
-					$parent = $this.parent();
+				var $this			= $(this),
+					actualSettings	= $this.data('settings'),
+					wrapper			= $this.parent();
 
-				$this.insertBefore($parent);
+				if (actualSettings.scroll && actualSettings.style == 'table') {
+					wrapper = wrapper.parent();
+				}
 
-				$parent.remove();
+				$this.insertBefore(wrapper);
 
-				$this.gridy($.extend({}, $this.data('settings'), settings));
+				wrapper.remove();
+
+				$this.gridy($.extend({}, actualSettings, settings));
 			});
 		}, sort: function(sorter) {
 			var self			= this,
