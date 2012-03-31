@@ -863,11 +863,11 @@
 			methods.set.call(this, {});
 		}, set: function(settings) {
 			return this.each(function() {
-				var $this			= $(this),
-					actualSettings	= $this.data('settings'),
-					wrapper			= $this.parent();
+				var $this		= $(this),
+					actual		= $this.data('settings'),
+					wrapper		= $this.parent();
 
-				if (actualSettings.scroll && actualSettings.style == 'table') {
+				if (actual.scroll && actual.style == 'table') {
 					wrapper = wrapper.parent();
 				}
 
@@ -875,7 +875,7 @@
 
 				wrapper.remove();
 
-				$this.gridy($.extend({}, actualSettings, settings));
+				$this.gridy($.extend({}, actual, settings));
 			});
 		}, sort: function(sorter) {
 			var self			= this,
