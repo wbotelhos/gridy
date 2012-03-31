@@ -36,7 +36,7 @@
 	.gridy-content .gridy-odd-scroll { background-color: #F7F7F7; border-top-color: #F7F7F7 !important; }
 	.gridy-content .gridy-last-line-scroll { border-bottom: 0 !important; }
 
-	.gridy-content .gridy-row-hovered { background-color: #D9EBF5; border-color: #CCC; }
+	.gridy-content .gridy-row-hovered { background-color: #D9EBF5 !important; border-color: #CCC; }
 	.gridy-content .gridy-row-selected { background-color: #ECF1F5; border-color: #BBB; }
 
 	.gridy-button a {

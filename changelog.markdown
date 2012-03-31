@@ -42,6 +42,7 @@
 + Fixed the clickFx and mouseFx to avoid bind on noResultText;
 + Fixed the missing tr on header;
 + Fixed the scroll build for table;
++ Fixed the priority of hoverFx style over clickFx style; 
 
 + Added 'resize' option to apply the same width of the content to the other wrappers;
 + Added 'evenOdd' option to enables the even odd row style;
