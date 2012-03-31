@@ -1482,6 +1482,18 @@
 				- {total} the total of item.
 			</div>
 
+			<div id="global-demo" class="session">Changing the settings globally:</div>
+
+			<div class="source">
+				$.fn.catchy.defaults.scroll = true;<br/>
+				$.fn.catchy.defaults.sortOrder = 'desc';
+			</div>
+
+			<span class="comment">
+				- You can change any option mention the scope <b>$.fn.gridy.defaults.</b> + <i>option_name</i>;<br/>
+				- This setup must be called before you bind the Gridy, of course.
+			</span>
+
 			<div class="session">Public functions:</div>
 
 			<div class="source">$('#grid').gridy('reload');</div>
