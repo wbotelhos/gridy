@@ -860,7 +860,7 @@
 			self.currentSortName.val(sortName);
 			self.currentSortOrder.val(sortOrder);
 		}, reload: function() {
-			methods.set.call(this, {});
+			return methods.set.call(this, {});
 		}, set: function(settings) {
 			return this.each(function() {
 				var $this		= $(this),
