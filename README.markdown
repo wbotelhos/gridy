@@ -152,7 +152,7 @@ jQuery Gridy is a plugin that generates a highly customizable grid using templat
 	
 	$('#grid').gridy('reload');                // Reload the grid with the current filter configuration.
 
-	$('#grid').gridy('set', { scroll: true }); // Reload the grid with option to change some attribute.
+	$('#grid').gridy('set', { scroll: true }); // Reload the grid setting new configurations.
 
 ## Contributors
 

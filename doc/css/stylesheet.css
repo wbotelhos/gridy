@@ -33,11 +33,14 @@ hr { border-top: medium none; height: 1px; margin-bottom: 16px; margin-top: 15px
 
 #version { color: #777; font: 10px verdana; }
 
+.action-field { border: 1px solid #CCC; height: 20px; padding-left: 3px; width: 80px; }
+.action-link { margin-left: 5px; }
+.action-wrapper { margin-top: 15px; }
+
 .comment { color: #444; font: 11px verdana; letter-spacing: 0.4px; padding-bottom: 5px; text-align: left; }
 .comment-personal { color: #444; font: italic 11px verdana; letter-spacing: 0.4px; text-align: left; }
 
 .description { color: #555; letter-spacing: .1px; margin-bottom: 15px; margin-top: 10px; text-align: left; }
-.description-code { color: #555; letter-spacing: .1px; margin-bottom: 10px; text-indent: 7px; }
 
 .highlight { color: #369; }
 
