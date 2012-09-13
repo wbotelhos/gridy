@@ -142,10 +142,10 @@ jQuery Gridy is a plugin that generates a highly customizable grid using templat
 	<table id="grid"></table>
 	
 	<script id="template" type="text/x-jquery-tmpl">
-	   <table>
+	   <tr>
 	      <td>${name}</td>
 	      <td>${email}</td>
-	   </table>
+	   </tr>
 	</script>
 
 ## Public functions
