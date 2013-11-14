@@ -18,10 +18,10 @@
 + Now the 'findsName' is the 'finds' options. Its an array of objects with name and value;
 + Now the default value of the 'jsonCallback' is undefined for jQuery auto generate the callback name;
 + Now the 'headersName' is the 'headers' option. Its an array of objects with name, value, width and clazz:
-	- Removed the 'headersWidth'. Now 'headers' has the attribute 'width';
+  - Removed the 'headersWidth'. Now 'headers' has the attribute 'width';
 + Now the ajax callbacks has the same name the news deferred functions, but its NOT deferred yet:
-	- 'success' is 'done', 'error' is 'fail' and 'complete' is 'always';
-	- When we dicide to change to deferred, maybe on jQuery 1.8, your plugin will not break. (:
+  - 'success' is 'done', 'error' is 'fail' and 'complete' is 'always';
+  - When we dicide to change to deferred, maybe on jQuery 1.8, your plugin will not break. (:
 + Now the error messages are displayed on the screen in the place of grid;
 + Now the 'resultOption' is the 'statusOption';
 + Now the 'resultText' is the 'statusText';
@@ -42,7 +42,7 @@
 + Fixed the clickFx and mouseFx to avoid bind on noResultText;
 + Fixed the missing tr on header;
 + Fixed the scroll build for table;
-+ Fixed the priority of hoverFx style over clickFx style; 
++ Fixed the priority of hoverFx style over clickFx style;
 
 + Added 'resize' option to apply the same width of the content to the other wrappers;
 + Added 'evenOdd' option to enables the even odd row style;
@@ -56,7 +56,7 @@
 + Added function 'reload' to reload the grid with current filter configuration;
 + Added function 'set' to reload the grid with new options;
 + Added 'columns' option to define all configuration about the columns and the header:
-	- Its an array of objects with name, value, width and clazz;
+  - Its an array of objects with name, value, width and clazz;
 + Added 'firstQuery' option to choose if the grid will do a first query when loaded on page;
 + Added 'noFirstQueryText' option to choose the text displayed when the first query is disable.
 
@@ -78,8 +78,8 @@
     + All attribute that use list will be enabled when it has a element inside.
 
 + The 'sorterName', 'headersName' an 'findsName' now are a array of array:
-    + The first element of the inner array is the name of the manipulated attribute; 
-    + The second one, is the label that will be presented on the screen, but no used in query string. 
+    + The first element of the inner array is the name of the manipulated attribute;
+    + The second one, is the label that will be presented on the screen, but no used in query string.
 
 + Added the attribute 'searchButtonLabel' to choose the label of the search button;
 + Added the attribute 'searchButtonTitle' to choose the title of the search button;
@@ -135,7 +135,7 @@
 + Enable choose the number of rows displayed;
 + Choose the default term to be consulted;
 + Enables the automatic focus in the search field;
-+ Enables the search field; 
++ Enables the search field;
 + Choose the text displayed in the search field;
 + Enables the display of the grid with height limit and scroll;
 + Set a List of the columns available for sorting;
