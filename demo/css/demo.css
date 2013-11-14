@@ -1,0 +1,148 @@
+.demo form { float: left; margin-bottom: 15px; width: 300px }
+
+.demo label { color: #333; font-size: 1.5em; font-weight: 500; letter-spacing: .7px; margin-left: 3px; vertical-align: middle }
+
+.demo input[type="color"],
+.demo input[type="date"],
+.demo input[type="datetime"],
+.demo input[type="datetime-local"],
+.demo input[type="email"],
+.demo input[type="file"],
+.demo input[type="hidden"],
+.demo input[type="month"],
+.demo input[type="number"],
+.demo input[type="password"],
+.demo input[type="range"],
+.demo input[type="search"],
+.demo input[type="tel"],
+.demo input[type="text"],
+.demo input[type="textarea"],
+.demo input[type="time"],
+.demo input[type="url"],
+.demo input[type="week"]
+{ border: 1px solid #CCC; border-radius: 4px; color: #333; font-size: 1.5em; margin-bottom: 12px; min-height: 35px; padding: 7px; transition: all 0.15s ease-in 0s; width: calc(100% - 15px) }
+
+.demo input[type="color"]:focus,
+.demo input[type="date"]:focus,
+.demo input[type="datetime"]:focus,
+.demo input[type="datetime-local"]:focus,
+.demo input[type="email"]:focus,
+.demo input[type="file"]:focus,
+.demo input[type="hidden"]:focus,
+.demo input[type="month"]:focus,
+.demo input[type="number"]:focus,
+.demo input[type="password"]:focus,
+.demo input[type="range"]:focus,
+.demo input[type="search"]:focus,
+.demo input[type="tel"]:focus,
+.demo input[type="text"]:focus,
+.demo input[type="textarea"]:focus,
+.demo input[type="time"]:focus,
+.demo input[type="url"]:focus,
+.demo input[type="week"]:focus
+{ border-color: #EEE }
+
+.demo textarea { border: 1px solid #CCC; border-radius: 4px; color: #333; font-size: 1.5em; margin-bottom: 12px; min-height: 80px; padding: 7px; transition: all 0.15s ease-in 0s; width: calc(100% - 15px) }
+.demo textarea:focus { border-color: #EEE }
+
+.demo select { border: 1px solid #CCC; border-radius: 4px; color: #333; font-size: 1.5em; margin-bottom: 12px; min-height: 45px; padding: 13px 5px; width: 100% }
+.demo select:focus { border-color: #EEE }
+
+.demo select[multiple="true"] { height: 88px }
+
+.demo .checkables { margin-bottom: 10px }
+
+.demo .checkables input[type="radio"] { margin-right: 2px; vertical-align: middle }
+.demo .checkables input[type="radio"]:focus { border-color: #EEE }
+
+.demo .checkables input[type="checkbox"] { margin-right: 2px; vertical-align: middle }
+.demo .checkables input[type="checkbox"]:focus { border-color: #EEE }
+
+.demo .button { border: medium none; border-radius: 1px; color: #FFF; font-size: 1.5em; font-weight: bold; padding: 9px 9px 12px; text-align: center; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25) }
+.demo .button.gray { background-color: #EAEAEA; background-image: linear-gradient(#FAFAFA, #EAEAEA); border-color: #DDD #DDD #C5C5C5; border-style: solid; border-width: 1px; color: #444; padding: 10px 0; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) }
+.demo .button.gray:hover { background-color: #DADADA; background-image: linear-gradient(#EAEAEA, #DADADA); border-color: #B5B5B5 }
+.demo .button.gray:active { background-color: #DADADA; background-image: none; border-color: #51A7E8; }
+
+/* custom */
+
+.demo form { width: 100% }
+
+.nestedy label { margin: 0 0 5px 0 }
+.nestedy label.select { float: left; text-align: center; margin-right: 1%; width: 9% }
+.nestedy label.check { float: left; text-align: center; margin-right: 1%; width: 6% }
+.nestedy label.hours { float: left; text-align: center; margin-right: 1%; width: 9% }
+.nestedy label.radio { float: left; text-align: center; margin-right: 1%; width: 7% }
+.nestedy label.checkbox { float: left; text-align: center; margin-right: 1%; width: 4% }
+.nestedy label.description { float: left; text-align: center; margin-right: 1%; width: 44% }
+.nestedy label.value { float: left; text-align: center; width: 10% }
+.nestedy label.remove { float: left; width: 5% }
+
+.nestedy-item { clear: both; }
+.nestedy-item div.select-place { float: left; margin-right: 1%; width: 9% }
+.nestedy-item div.check-place { float: left; margin-right: 1%; width: 6% }
+.nestedy-item div.check-place input:first-child { margin-left: 25%; margin-top: 25px;  }
+.nestedy-item div.hours-place { float: left; margin-right: 1%; width: 9% }
+.nestedy-item div.radio-place { float: left; margin-right: 1%; width: 7% }
+.nestedy-item div.radio-place input:first-child { margin-left: 25%; margin-top: 25px;  }
+.nestedy-item div.checkbox-place { float: left; margin-right: 1%; width: 5% }
+.nestedy-item div.description-place { float: left; margin-right: 1%; width: 44% }
+.nestedy-item div.value-place { float: left; width: 10% }
+.nestedy-item div.remove-place { float: left; width: 5% }
+
+.nestedy-add { border: 1px solid #CCC; cursor: pointer; float: left; font-size: 1.5em; margin-top: 5px; padding: 10px; text-align: center; width: 100% - 22px); width: calc(100% - 22px) }
+.nestedy-add:hover { background-color: #DDE3F9; border-color: #B0B0B0 }
+.nestedy-add:active { color: #51A7E8 }
+.nestedy-remove { background: url('../../lib/img/remove.png'); cursor: pointer; float: left; font-size: 2em; height: 16px; margin-left: 15px; margin-top: 18px; width: 16px; }
+
+#content-demo .nestedy {
+  float: left;
+  width: 70%
+}
+
+#content-demo .content {
+  float: right;
+  width: 30%
+}
+
+#content-demo .value-place {
+  width: 90%
+}
+
+#content-demo .remove-remove {
+  width: 10%
+}
+
+#templaty {
+  opacity: .5
+}
+
+#templaty input {
+  opacity: .9;
+}
+
+.demo input.big {
+  float: left;
+  width: 95%
+}
+
+#add-function-demo {
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  width: 50px;
+}
+
+#add-action {
+  font-size: 1.4em;
+}
+
+#remove-function-demo {
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  width: 50px;
+}
+
+#remove-action {
+  font-size: 1.4em;
+}
