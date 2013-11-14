@@ -1,1626 +1,1626 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="Pragma" content="no-cache">
-		<meta http-equiv="Expires" content="-1">
-
-		<title>jQuery Gridy - A Grid Plugin</title>
-
-		<!-- This CSS does not belong to the plugin. -->
-		<link type="text/css" rel="stylesheet" href="doc/css/stylesheet.css"/>
-
-		<link type="text/css" rel="stylesheet" href="css/jquery.gridy.css"/>
-
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
-		<script type="text/javascript" src="js/jquery.gridy.min.js"></script>
-
-		<script type="text/javascript">
-			// This code does not belong to the plugin. See the example code at the bottom of this page.
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-194992347-9']);
-			_gaq.push(['_trackPageview']);
-			
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-		</script>
-	</head>
-	<body>
-		<div id="header">
-			<div id="title">
-				<a href="http://wbotelhos.com/gridy">jQuery Gridy - A Grid Plugin</a>
-				<span id="version">(current version: 1.0.0)</span>
-			</div>
-
-			<div id="menu">
-				<a href="http://github.com/downloads/wbotelhos/gridy/jquery.gridy-1.0.0.zip" target="_blank">Download</a> |
-				<a href="http://github.com/wbotelhos/gridy" target="_blank">Github</a> |
-				<a href="http://www.wbotelhos.com/gridy/changelog.markdown" target="_blank">Change Log</a> |
-				<a href="http://www.wbotelhos.com/gridy/README.markdown" target="_blank">Readme</a> |
-				<a href="http://www.wbotelhos.com/2011/06/26/jquery-gridy-a-grid-plugin" target="_blank">Article</a> |
-				<a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">License</a> |
-				<a href="http://www.wbotelhos.com/2011/06/26/jquery-gridy-a-grid-plugin#comments" target="_blank" style="color: #2C8CBD;">Doubt</a> |
-				<a href="http://www.wbotelhos.com/lab" target="_blank" style="color: #000;">yLab</a>
-			</div>
-
-			<a id="coffee" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=X8HEP2878NDEG&amp;item_name=jQuery%20Gridy" target="_blank">buy me a coffee</a>
-
-			<div class="description">jQuery <strong>Gridy</strong> is a plugin that generates a highly customizable grid using templates.</div>
-		</div>
-
-		<div id="content">
-			<table id="grid"></table>
-
-			<div class="session">JSON:</div>
-
-			<div class="source">
-				{"list": [{"id": 1, "name": "Washington Botelho", "email": "gridy@wbotelhos.com"}], "total": 1}
-			</div>
-
-			<span class="comment">
-				 - The JSON must have a list of object and an attribute with the total length.
-			</span>
-
-			<div class="session">Script:</div>
-
-			<div class="source">
-				$('#grid').gridy({ url:&#160;'/gridy' });
-			</div>
-
-			<span class="comment">
-				- Just especify your URL that will returns the JSON;<br />
-				- That's all, but you'll want to use other cool features.
-			</span>
-
-			<div class="session">HTML:</div>
-
-			<div class="source">
-				&lt;table id="grid"&gt;&lt;/table&gt;
-			</div>
-
-			<span class="comment">
-				- Where the grid will appears;<br />
-				- In this case we're using the default template "gridy-default", but you can create your own. (:<br />
- 				- This target element can be any you want.<br />
-			</span>
-
-			<div class="session">Template:</div>
-
-			<div class="source">
-				&lt;script id="template" type="text/x-jquery-tmpl"&gt;<br />
-					&#160;&#160;&#160;&lt;tr&gt;<br />
-					&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${name}&lt;/td&gt;<br />
-					&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${email}&lt;/td&gt;<br />
-					&#160;&#160;&#160;&lt;/tr&gt;<br />
-				&lt;/script&gt;
-			</div>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+
+    <title>jQuery Gridy - A Grid Plugin</title>
+
+    <!-- This CSS does not belong to the plugin. -->
+    <link type="text/css" rel="stylesheet" href="doc/css/stylesheet.css"/>
+
+    <link type="text/css" rel="stylesheet" href="css/jquery.gridy.css"/>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="js/jquery.gridy.min.js"></script>
+
+    <script type="text/javascript">
+      // This code does not belong to the plugin. See the example code at the bottom of this page.
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-194992347-9']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <div id="title">
+        <a href="http://wbotelhos.com/gridy">jQuery Gridy - A Grid Plugin</a>
+        <span id="version">(current version: 1.0.0)</span>
+      </div>
+
+      <div id="menu">
+        <a href="http://github.com/downloads/wbotelhos/gridy/jquery.gridy-1.0.0.zip" target="_blank">Download</a> |
+        <a href="http://github.com/wbotelhos/gridy" target="_blank">Github</a> |
+        <a href="http://www.wbotelhos.com/gridy/changelog.markdown" target="_blank">Change Log</a> |
+        <a href="http://www.wbotelhos.com/gridy/README.markdown" target="_blank">Readme</a> |
+        <a href="http://www.wbotelhos.com/2011/06/26/jquery-gridy-a-grid-plugin" target="_blank">Article</a> |
+        <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">License</a> |
+        <a href="http://www.wbotelhos.com/2011/06/26/jquery-gridy-a-grid-plugin#comments" target="_blank" style="color: #2C8CBD;">Doubt</a> |
+        <a href="http://www.wbotelhos.com/lab" target="_blank" style="color: #000;">yLab</a>
+      </div>
+
+      <a id="coffee" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=X8HEP2878NDEG&amp;item_name=jQuery%20Gridy" target="_blank">buy me a coffee</a>
+
+      <div class="description">jQuery <strong>Gridy</strong> is a plugin that generates a highly customizable grid using templates.</div>
+    </div>
+
+    <div id="content">
+      <table id="grid"></table>
+
+      <div class="session">JSON:</div>
+
+      <div class="source">
+        {"list": [{"id": 1, "name": "Washington Botelho", "email": "gridy@wbotelhos.com"}], "total": 1}
+      </div>
+
+      <span class="comment">
+         - The JSON must have a list of object and an attribute with the total length.
+      </span>
+
+      <div class="session">Script:</div>
+
+      <div class="source">
+        $('#grid').gridy({ url:&#160;'/gridy' });
+      </div>
+
+      <span class="comment">
+        - Just especify your URL that will returns the JSON;<br />
+        - That's all, but you'll want to use other cool features.
+      </span>
+
+      <div class="session">HTML:</div>
+
+      <div class="source">
+        &lt;table id="grid"&gt;&lt;/table&gt;
+      </div>
+
+      <span class="comment">
+        - Where the grid will appears;<br />
+        - In this case we're using the default template "gridy-default", but you can create your own. (:<br />
+         - This target element can be any you want.<br />
+      </span>
+
+      <div class="session">Template:</div>
+
+      <div class="source">
+        &lt;script id="template" type="text/x-jquery-tmpl"&gt;<br />
+          &#160;&#160;&#160;&lt;tr&gt;<br />
+          &#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${name}&lt;/td&gt;<br />
+          &#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;${email}&lt;/td&gt;<br />
+          &#160;&#160;&#160;&lt;/tr&gt;<br />
+        &lt;/script&gt;
+      </div>
 
-			<span class="comment">
-				- You build a jQuery Template with an ID to be hooked;<br />
-				- The main purpose of Gridy is to provide the flexibility to use any data structure, not just an old table;<br />
-				- The first element inside the template will be the row and the direct children will be the columns;<br />
-				- This structure will be repeated as many times as the total number of objects returned in JSON;<br />
-				- If you are using some framework like Spring or EL (Expression Language), scape the '$' to avoid conflicts: \${ } or &lt;c:out value="${ }"/&gt;.<br />
-			</span>
+      <span class="comment">
+        - You build a jQuery Template with an ID to be hooked;<br />
+        - The main purpose of Gridy is to provide the flexibility to use any data structure, not just an old table;<br />
+        - The first element inside the template will be the row and the direct children will be the columns;<br />
+        - This structure will be repeated as many times as the total number of objects returned in JSON;<br />
+        - If you are using some framework like Spring or EL (Expression Language), scape the '$' to avoid conflicts: \${ } or &lt;c:out value="${ }"/&gt;.<br />
+      </span>
 
-			<div class="session">Query String:</div>
+      <div class="session">Query String:</div>
 
-			<div class="source">
-				<span class="attribute">search</span>=__&amp;<span class="attribute">page</span>=__&amp;<span class="attribute">sortname</span>=__&amp;<span class="attribute">sortorder</span>=__&amp;<span class="attribute">find</span>=__&amp;<span class="attribute">rows</span>=__
-			</div>
+      <div class="source">
+        <span class="attribute">search</span>=__&amp;<span class="attribute">page</span>=__&amp;<span class="attribute">sortname</span>=__&amp;<span class="attribute">sortorder</span>=__&amp;<span class="attribute">find</span>=__&amp;<span class="attribute">rows</span>=__
+      </div>
 
-			<span class="comment">
-				- search: the term you want to search;<br />
-				- page: the number of the page you want to view;<br />
-				- sortname: the name of the column of the database you want to sort by;<br />
-				- sortorder: the order you want to sort the result: ascending or descending;<br />
-				- find: the name of the column you want to search;<br />
-				- rows: the number of rows you want to display in each page;<br />
-				- * You can append more attributes using the 'params' or 'paramsElements' option.<br />
-			</span>
+      <span class="comment">
+        - search: the term you want to search;<br />
+        - page: the number of the page you want to view;<br />
+        - sortname: the name of the column of the database you want to sort by;<br />
+        - sortorder: the order you want to sort the result: ascending or descending;<br />
+        - find: the name of the column you want to search;<br />
+        - rows: the number of rows you want to display in each page;<br />
+        - * You can append more attributes using the 'params' or 'paramsElements' option.<br />
+      </span>
 
-			<div class="session">Server side example (Java/VRaptor):</div>
+      <div class="session">Server side example (Java/VRaptor):</div>
 
-			<div class="source">
-				@Get("/gridy")<br />
-				public void gridy(String search, int page, String sortName, String sortOrder, String find, int rows) {<br /><br />
+      <div class="source">
+        @Get("/gridy")<br />
+        public void gridy(String search, int page, String sortName, String sortOrder, String find, int rows) {<br /><br />
 
-				}
-			</div>
+        }
+      </div>
 
-			<div class="session">Ajax Options:</div>
+      <div class="session">Ajax Options:</div>
 
-			<div class="session-option">always: <span>undefined / using undefined jQuery will consider it as: undefined</span></div>
+      <div class="session-option">always: <span>undefined / using undefined jQuery will consider it as: undefined</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">always: function(jqXHR, textStatus) {<br />
-				&#160;&#160;&#160;&#160;alert('Successfully completed!');<br />
-				&#160;&#160;}</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">always: function(jqXHR, textStatus) {<br />
+        &#160;&#160;&#160;&#160;alert('Successfully completed!');<br />
+        &#160;&#160;}</span><br />
+        });
+      </div>
 
-			<div class="comment">Function executed when the grid finish the request.</div>
+      <div class="comment">Function executed when the grid finish the request.</div>
 
-			<div class="comment-personal">Explanation: you can stop a loading message when request finish.</div>
+      <div class="comment-personal">Explanation: you can stop a loading message when request finish.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">cache: <span>undefined / using undefined jQuery will consider it as: true, false for dataType 'script' and 'jsonp'</span></div>
+      <div class="session-option">cache: <span>undefined / using undefined jQuery will consider it as: true, false for dataType 'script' and 'jsonp'</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">cache: true</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">cache: true</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the ajax cache.</div>
+      <div class="comment">Enables the ajax cache.</div>
 
-			<div class="comment-personal">Explanation: you can enable de ajax cache to avoid reload some data.</div>
+      <div class="comment-personal">Explanation: you can enable de ajax cache to avoid reload some data.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">contentType: <span>undefined / using undefined jQuery will consider it as: 'application/x-www-form-urlencoded'</span></div>
+      <div class="session-option">contentType: <span>undefined / using undefined jQuery will consider it as: 'application/x-www-form-urlencoded'</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">contentType: 'jsonp'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">contentType: 'jsonp'</span><br />
+        });
+      </div>
 
-			<div class="comment">The content type of the ajax request.</div>
+      <div class="comment">The content type of the ajax request.</div>
 
-			<div class="comment-personal">Explanation: you can do a cross domain request with JSONP.</div>
+      <div class="comment-personal">Explanation: you can do a cross domain request with JSONP.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">dataType: <span>'json' / using undefined jQuery will consider it as: Intelligent Guess (xml, json, script, or html)</span></div>
+      <div class="session-option">dataType: <span>'json' / using undefined jQuery will consider it as: Intelligent Guess (xml, json, script, or html)</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">dataType: 'xml'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">dataType: 'xml'</span><br />
+        });
+      </div>
 
-			<div class="comment">The data type of the ajax request.</div>
+      <div class="comment">The data type of the ajax request.</div>
 
-			<div class="comment-personal">Explanation: you can receive the data as XML. * For now just JSON is supported!</div>
+      <div class="comment-personal">Explanation: you can receive the data as XML. * For now just JSON is supported!</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">done: <span>undefined / using undefined jQuery will consider it as: undefined</span></div>
+      <div class="session-option">done: <span>undefined / using undefined jQuery will consider it as: undefined</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">done: function(data, textStatus, jqXHR) {<br />
-				&#160;&#160;&#160;&#160;alert('Successfully loaded!');<br />
-				&#160;&#160;}</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">done: function(data, textStatus, jqXHR) {<br />
+        &#160;&#160;&#160;&#160;alert('Successfully loaded!');<br />
+        &#160;&#160;}</span><br />
+        });
+      </div>
 
-			<div class="comment">Function executed when the grid loads successfully.</div>
+      <div class="comment">Function executed when the grid loads successfully.</div>
 
-			<div class="comment-personal">Explanation: you can get the data returned from request and display a success message.</div>
+      <div class="comment-personal">Explanation: you can get the data returned from request and display a success message.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">fail: <span>undefined / using undefined jQuery will consider it as: undefined</span></div>
+      <div class="session-option">fail: <span>undefined / using undefined jQuery will consider it as: undefined</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">fail: function(jqXHR, textStatus, errorThrown) {<br />
-				&#160;&#160;&#160;&#160;alert('Some thing is wrong!');<br />
-				&#160;&#160;}</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">fail: function(jqXHR, textStatus, errorThrown) {<br />
+        &#160;&#160;&#160;&#160;alert('Some thing is wrong!');<br />
+        &#160;&#160;}</span><br />
+        });
+      </div>
 
-			<div class="comment">Function executed when occurs an error.</div>
+      <div class="comment">Function executed when occurs an error.</div>
 
-			<div class="comment-personal">Explanation: you can recover an error and display it, or take a workaround decision.</div>
+      <div class="comment-personal">Explanation: you can recover an error and display it, or take a workaround decision.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">jsonp: <span>undefined / using undefined jQuery will consider it as: no effect.</span></div>
+      <div class="session-option">jsonp: <span>undefined / using undefined jQuery will consider it as: no effect.</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">jsonp: true</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">jsonp: true</span><br />
+        });
+      </div>
 
-			<div class="comment">Override the callback function name in a jsonp request.</div>
+      <div class="comment">Override the callback function name in a jsonp request.</div>
 
-			<div class="comment-personal">Explanation: you can override the callback name. jQuery 1.5+ you can set it to false to avoid append of "?callback" or "=?" and set the name using jsonpCallback option.</div>
+      <div class="comment-personal">Explanation: you can override the callback name. jQuery 1.5+ you can set it to false to avoid append of "?callback" or "=?" and set the name using jsonpCallback option.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">jsonpCallback: <span>undefined / using undefined jQuery will consider it as: random value</span></div>
+      <div class="session-option">jsonpCallback: <span>undefined / using undefined jQuery will consider it as: random value</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">jsonpCallback: 'MyCallbackName'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">jsonpCallback: 'MyCallbackName'</span><br />
+        });
+      </div>
 
-			<div class="comment">Specify the callback function name for a JSONP request.</div>
+      <div class="comment">Specify the callback function name for a JSONP request.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can change the name of callback manually;<br />
-				- Using static name you can have a better browser caching;<br />
-				- But it is preferable to let jQuery generate a unique name as it'll make it easier to manage the requests and provide callbacks and error handling
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can change the name of callback manually;<br />
+        - Using static name you can have a better browser caching;<br />
+        - But it is preferable to let jQuery generate a unique name as it'll make it easier to manage the requests and provide callbacks and error handling
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">page: <span>1</span></div>
+      <div class="session-option">page: <span>1</span></div>
 
-			<img src="doc/img/page.png" alt="page" height="40" width="320" class="session-image" />
+      <img src="doc/img/page.png" alt="page" height="40" width="320" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">page: 3</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">page: 3</span><br />
+        });
+      </div>
 
-			<div class="comment">The number of the page to be displayed.</div>
+      <div class="comment">The number of the page to be displayed.</div>
 
-			<div class="comment-personal">Explanation: you can choose the number of the page you want to start.</div>
+      <div class="comment-personal">Explanation: you can choose the number of the page you want to start.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">params: <span>{}</span></div>
+      <div class="session-option">params: <span>{}</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">params: { 'language': 'pt_BR', 'status': 1 }</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">params: { 'language': 'pt_BR', 'status': 1 }</span><br />
+        });
+      </div>
 
-			<div class="source">
-				...&amp;language=pt_BR&amp;status=1
-			</div>
+      <div class="source">
+        ...&amp;language=pt_BR&amp;status=1
+      </div>
 
-			<div class="comment">A hash of parameters to be added to the query string.</div>
+      <div class="comment">A hash of parameters to be added to the query string.</div>
 
-			<div class="comment-personal">Explanation: you can pass extra parameter to filter your search.</div>
+      <div class="comment-personal">Explanation: you can pass extra parameter to filter your search.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">paramsElements: <span>[]</span></div>
+      <div class="session-option">paramsElements: <span>[]</span></div>
 
-			<div class="source">
-				&lt;input id="language" type="text" name="language" value="pt_BR" /&gt;<br /><br />
+      <div class="source">
+        &lt;input id="language" type="text" name="language" value="pt_BR" /&gt;<br /><br />
 
-				&lt;input type="checkbox" name="status" value="0" checked="checked" class="status" /&gt;<br />
-				&lt;input type="checkbox" name="status" value="1" class="status" /&gt;<br />
-				&lt;input type="checkbox" name="status" value="2" checked="checked" class="status" /&gt;<br /><br />
+        &lt;input type="checkbox" name="status" value="0" checked="checked" class="status" /&gt;<br />
+        &lt;input type="checkbox" name="status" value="1" class="status" /&gt;<br />
+        &lt;input type="checkbox" name="status" value="2" checked="checked" class="status" /&gt;<br /><br />
 
-				&lt;select name="entity.year"&gt;<br />
-				&#160;&#160;&lt;option value="2011"&gt;2011&lt;/option&gt;<br />
-				&#160;&#160;&lt;option value="2012" selected="selected"&gt;2012&lt;/option&gt;<br />
-				&#160;&#160;&lt;option value="2013"&gt;2013&lt;/option&gt;<br />
-				&lt;/select&gt;
-			</div>
+        &lt;select name="entity.year"&gt;<br />
+        &#160;&#160;&lt;option value="2011"&gt;2011&lt;/option&gt;<br />
+        &#160;&#160;&lt;option value="2012" selected="selected"&gt;2012&lt;/option&gt;<br />
+        &#160;&#160;&lt;option value="2013"&gt;2013&lt;/option&gt;<br />
+        &lt;/select&gt;
+      </div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">paramsElements: ['#language', '.status', '[name="entity.year"]']</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">paramsElements: ['#language', '.status', '[name="entity.year"]']</span><br />
+        });
+      </div>
 
-			<div class="source">
-				...&amp;language=pt_BR&amp;status[]=0&amp;status[]=2&amp;entity.year=2012
-			</div>
+      <div class="source">
+        ...&amp;language=pt_BR&amp;status[]=0&amp;status[]=2&amp;entity.year=2012
+      </div>
 
-			<div class="comment">Array of selectors of field to use the name and value as parameter.</div>
+      <div class="comment">Array of selectors of field to use the name and value as parameter.</div>
 
-			<div class="comment-personal">Explanation:<br />- You can pass dinamically extra parameter coming from fields elements:<br />- The name of field will be the key and the value will be the value of that key;<br />- If the selector is a class then the parameters will be send as a array.</div>
+      <div class="comment-personal">Explanation:<br />- You can pass dinamically extra parameter coming from fields elements:<br />- The name of field will be the key and the value will be the value of that key;<br />- If the selector is a class then the parameters will be send as a array.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">sortName: <span>''</span></div>
+      <div class="session-option">sortName: <span>''</span></div>
 
-			<img src="doc/img/sortName.png" alt="sortName" height="149" width="321" class="session-image" />
+      <img src="doc/img/sortName.png" alt="sortName" height="149" width="321" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">sortName: 'attribute'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">sortName: 'attribute'</span><br />
+        });
+      </div>
 
-			<div class="comment">Name of the default column sorted.</div>
-			<div class="comment-personal">Explanation: you can choose a column of the grid to be sorted alphabetically.</div>
+      <div class="comment">Name of the default column sorted.</div>
+      <div class="comment-personal">Explanation: you can choose a column of the grid to be sorted alphabetically.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">sortOrder: <span>'asc'</span></div>
+      <div class="session-option">sortOrder: <span>'asc'</span></div>
 
-			<img src="doc/img/sortOrder.png" alt="sortOrder" height="149" width="321" class="session-image" />
+      <img src="doc/img/sortOrder.png" alt="sortOrder" height="149" width="321" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">sortOrder: 'desc'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">sortOrder: 'desc'</span><br />
+        });
+      </div>
 
-			<div class="comment">Order of classification.</div>
+      <div class="comment">Order of classification.</div>
 
-			<div class="comment-personal">Explanation: you can choose to sort the data in a column in ascending or descending order.</div>
+      <div class="comment-personal">Explanation: you can choose to sort the data in a column in ascending or descending order.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">type: <span>'get'</span></div>
+      <div class="session-option">type: <span>'get'</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">type: 'post'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">type: 'post'</span><br />
+        });
+      </div>
 
-			<div class="comment">Type of the HTTP request.</div>
+      <div class="comment">Type of the HTTP request.</div>
 
-			<div class="comment-personal">Explanation: you can change the verb to get, post, delete or put, but it is a search, then it is recommended that you use the default get.</div>
+      <div class="comment-personal">Explanation: you can change the verb to get, post, delete or put, but it is a search, then it is recommended that you use the default get.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">url: <span>'/gridy'</span></div>
+      <div class="session-option">url: <span>'/gridy'</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/user/gridy',<br /> 
-				&#160;&#160;<span class="highlight">type: 'post'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/user/gridy',<br />
+        &#160;&#160;<span class="highlight">type: 'post'</span><br />
+        });
+      </div>
 
-			<div class="comment">URL to request the data.</div>
+      <div class="comment">URL to request the data.</div>
 
-			<div class="comment-personal">Explanation: you can change the URL to receive your data. Don't forget to prepend the context of your application.</div>
+      <div class="comment-personal">Explanation: you can change the URL to receive your data. Don't forget to prepend the context of your application.</div>
 
-			<div class="session">Callback Options:</div>
+      <div class="session">Callback Options:</div>
 
-			<div class="session-option">before: <span>undefined</span></div>
+      <div class="session-option">before: <span>undefined</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">filter: function(page, sortName, sortOrder) {<br />
-				&#160;&#160;&#160;&#160;return { page: 2, sortName: 'value', sortOrder: 'desc' };<br />
-				&#160;&#160;}</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">filter: function(page, sortName, sortOrder) {<br />
+        &#160;&#160;&#160;&#160;return { page: 2, sortName: 'value', sortOrder: 'desc' };<br />
+        &#160;&#160;}</span><br />
+        });
+      </div>
 
-			<div class="comment">Function executed before the grid call the request.</div>
+      <div class="comment">Function executed before the grid call the request.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can receives the parameters 'page', 'sortName' and 'sortOrder' before the grid request the URL<br />
-				- You can override each one of that attributes returning a hash with the desired values.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can receives the parameters 'page', 'sortName' and 'sortOrder' before the grid request the URL<br />
+        - You can override each one of that attributes returning a hash with the desired values.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">filter: <span>undefined</span></div>
+      <div class="session-option">filter: <span>undefined</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">before: function(data, page, sortName, sortOrder) {<br />
-				&#160;&#160;&#160;&#160;if (page == 10) {<br />
-				&#160;&#160;&#160;&#160;&#160;&#160;data.total = 0;<br />
-				&#160;&#160;&#160;&#160;&#160;&#160;return data;<br />
-				&#160;&#160;&#160;&#160;}<br />
-				&#160;&#160;}</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">before: function(data, page, sortName, sortOrder) {<br />
+        &#160;&#160;&#160;&#160;if (page == 10) {<br />
+        &#160;&#160;&#160;&#160;&#160;&#160;data.total = 0;<br />
+        &#160;&#160;&#160;&#160;&#160;&#160;return data;<br />
+        &#160;&#160;&#160;&#160;}<br />
+        &#160;&#160;}</span><br />
+        });
+      </div>
 
-			<div class="comment">Function executed when the data is returned from request.</div>
+      <div class="comment">Function executed when the data is returned from request.</div>
 
-			<div class="comment-personal">Explanation:<br /> - You can receives the parameters 'data' that is the content of request, 'page', 'sortName' and 'sortOrder' when the data returned from request<br />- You'll receives the data as an object, then you can change and return it to the original data be overrided like a filter.<br />- The data will be overrided only if you return some object.</div>
+      <div class="comment-personal">Explanation:<br /> - You can receives the parameters 'data' that is the content of request, 'page', 'sortName' and 'sortOrder' when the data returned from request<br />- You'll receives the data as an object, then you can change and return it to the original data be overrided like a filter.<br />- The data will be overrided only if you return some object.</div>
 
-			<div class="session">Content Options:</div>
+      <div class="session">Content Options:</div>
 
-			<div class="session-option">columns: <span>[]</span></div>
+      <div class="session-option">columns: <span>[]</span></div>
 
-			<img src="doc/img/columns.png" alt="columns" height="82" width="872" class="session-image" />
+      <img src="doc/img/columns.png" alt="columns" height="82" width="872" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">columns: [<br />
-				&#160;&#160;&#160;&#160;{ name: 'Attribute', value: 'attribute', width: 100, clazz: 'special' },<br />
-				&#160;&#160;&#160;&#160;{ value: 'value', width: 200 },<br />
-				&#160;&#160;&#160;&#160;{ name: 'Description', width: 300 },<br />
-				&#160;&#160;&#160;&#160;{ width: 50 }<br />
-				&#160;&#160;}</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">columns: [<br />
+        &#160;&#160;&#160;&#160;{ name: 'Attribute', value: 'attribute', width: 100, clazz: 'special' },<br />
+        &#160;&#160;&#160;&#160;{ value: 'value', width: 200 },<br />
+        &#160;&#160;&#160;&#160;{ name: 'Description', width: 300 },<br />
+        &#160;&#160;&#160;&#160;{ width: 50 }<br />
+        &#160;&#160;}</span><br />
+        });
+      </div>
 
-			<div class="comment">Array of objects that represents the columns with name, value, width and clazz.</div>
+      <div class="comment">Array of objects that represents the columns with name, value, width and clazz.</div>
 
-			<div class="comment-personal">Explanation:<br />
-				- You can choose to have the column label, it will be read-only, it will have a different style, or if nothing is displayed on header label;<br />
-				- 1. Has all attributes;<br />
-				- 2. Don't has a label then we can't click it to make a sort and nothing is displayed on label, but it is sorted, then the arrow shows;<br />
-				- 3. Has the label, but don't has the value necessary to send to the query to be sorted, then it is read-only. It shows arrows indicating the sort;<br />
-				- 4. Has just the width;<br />
-				- 5. Was not declared, then don't have any special config. All attributes are optional;<br />
-				- 6. Idem item 5;<br />
-				- 7. The headers will take all values from 'columns' unless you override it using the specific 'headers' option to build columns and headers with different size;<br />
-				- 8. The width from 'headers' will be applied only on header, so you can, for example, build a grid with one column (900px) and three headers (300px).
-			</div>
+      <div class="comment-personal">Explanation:<br />
+        - You can choose to have the column label, it will be read-only, it will have a different style, or if nothing is displayed on header label;<br />
+        - 1. Has all attributes;<br />
+        - 2. Don't has a label then we can't click it to make a sort and nothing is displayed on label, but it is sorted, then the arrow shows;<br />
+        - 3. Has the label, but don't has the value necessary to send to the query to be sorted, then it is read-only. It shows arrows indicating the sort;<br />
+        - 4. Has just the width;<br />
+        - 5. Was not declared, then don't have any special config. All attributes are optional;<br />
+        - 6. Idem item 5;<br />
+        - 7. The headers will take all values from 'columns' unless you override it using the specific 'headers' option to build columns and headers with different size;<br />
+        - 8. The width from 'headers' will be applied only on header, so you can, for example, build a grid with one column (900px) and three headers (300px).
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">scroll: <span>false</span> / height: <span>undefined</span></div>
+      <div class="session-option">scroll: <span>false</span> / height: <span>undefined</span></div>
 
-			<div id="scroll"></div>
+      <div id="scroll"></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">height: 200,<br />
-				&#160;&#160;scroll: true</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">height: 200,<br />
+        &#160;&#160;scroll: true</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the display of the grid with scroll.</div>
+      <div class="comment">Enables the display of the grid with scroll.</div>
 
-			<div class="comment-personal">Explanation:<br />
-				- You can choose the scroll style when you need a bunch of grid on the same screen with poor space;<br />
-				- The 'height' attribute is mandatory, because scroll must has a vertical delimiter to be builded;<br />
-				- The 'height' attribute just works with 'scroll' option.
-			</div>
+      <div class="comment-personal">Explanation:<br />
+        - You can choose the scroll style when you need a bunch of grid on the same screen with poor space;<br />
+        - The 'height' attribute is mandatory, because scroll must has a vertical delimiter to be builded;<br />
+        - The 'height' attribute just works with 'scroll' option.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">style: <span>'table'</span></div>
+      <div class="session-option">style: <span>'table'</span></div>
 
-			<div id="style"></div>
+      <div id="style"></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">style: 'free'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">style: 'free'</span><br />
+        });
+      </div>
 
-			<div class="source">
-				&lt;script id="template" type="text/x-jquery-tmpl"&gt;<br />
-				&#160;&#160;&lt;div&gt;<br />
-				&#160;&#160;&#160;&#160;&lt;div&gt;${attribute}&lt;/div&gt;<br />
-				&#160;&#160;&#160;&#160;&lt;div&gt;${value}&lt;/div&gt;<br />
-				&#160;&#160;&#160;&#160;&lt;div&gt;${description}&lt;/div&gt;<br />
-				&#160;&#160;&#160;&#160;&lt;div&gt;${version}&lt;/div&gt;<br /><br />
+      <div class="source">
+        &lt;script id="template" type="text/x-jquery-tmpl"&gt;<br />
+        &#160;&#160;&lt;div&gt;<br />
+        &#160;&#160;&#160;&#160;&lt;div&gt;${attribute}&lt;/div&gt;<br />
+        &#160;&#160;&#160;&#160;&lt;div&gt;${value}&lt;/div&gt;<br />
+        &#160;&#160;&#160;&#160;&lt;div&gt;${description}&lt;/div&gt;<br />
+        &#160;&#160;&#160;&#160;&lt;div&gt;${version}&lt;/div&gt;<br /><br />
 
-				&#160;&#160;&#160;&#160;&lt;div class="gridy-button"&gt;<br />
-				&#160;&#160;&#160;&#160;&#160;&#160;&lt;a href="javascript:void(0);"&gt;edit&lt;/a&gt;<br />
-				&#160;&#160;&#160;&#160;&lt;/div&gt;<br />
-				&#160;&#160;&lt;/div&gt;<br />
-				&lt;/script&gt;
-			</div>
+        &#160;&#160;&#160;&#160;&lt;div class="gridy-button"&gt;<br />
+        &#160;&#160;&#160;&#160;&#160;&#160;&lt;a href="javascript:void(0);"&gt;edit&lt;/a&gt;<br />
+        &#160;&#160;&#160;&#160;&lt;/div&gt;<br />
+        &#160;&#160;&lt;/div&gt;<br />
+        &lt;/script&gt;
+      </div>
 
-			<div class="comment">Change between table and free style of template.</div>
+      <div class="comment">Change between table and free style of template.</div>
 
-			<div class="comment-personal">Explanation:<br />
-				- You can use any structure on your template, not only the old table;<br />
-				- In fact, Gridy was build with this goal: do cool things on your way;<br />
-				- You can use combinate ul and li or any elements you want, build the template the way you want;<br />
-				- On the example above we dicide to use only divs.
-			</div>
+      <div class="comment-personal">Explanation:<br />
+        - You can use any structure on your template, not only the old table;<br />
+        - In fact, Gridy was build with this goal: do cool things on your way;<br />
+        - You can use combinate ul and li or any elements you want, build the template the way you want;<br />
+        - On the example above we dicide to use only divs.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">width: <span>undefined</span></div>
+      <div class="session-option">width: <span>undefined</span></div>
 
-			<img src="doc/img/width.png" alt="width" height="114" width="325" class="session-image" />
+      <img src="doc/img/width.png" alt="width" height="114" width="325" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">width: 1000</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">width: 1000</span><br />
+        });
+      </div>
 
-			<div class="comment">Width of the grid.</div>
+      <div class="comment">Width of the grid.</div>
 
-			<div class="comment-personal">Explanation: you can choose the width based on you screen space. Some grid needs less or more space then other.</div>
+      <div class="comment-personal">Explanation: you can choose the width based on you screen space. Some grid needs less or more space then other.</div>
 
-			<div class="session">Design Options:</div>
+      <div class="session">Design Options:</div>
 
-			<div class="session-option">evenOdd: <span>false</span></div>
+      <div class="session-option">evenOdd: <span>false</span></div>
 
-			<img src="doc/img/evenOdd.png" alt="evenOdd" height="117" width="328" class="session-image" />
+      <img src="doc/img/evenOdd.png" alt="evenOdd" height="117" width="328" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">evenOdd: true</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">evenOdd: true</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the even odd row style.</div>
+      <div class="comment">Enables the even odd row style.</div>
 
-			<div class="comment-personal">Explanation: you can enable this option to make better the difference between the lines.</div>
+      <div class="comment-personal">Explanation: you can enable this option to make better the difference between the lines.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">resize: <span>true</span></div>
+      <div class="session-option">resize: <span>true</span></div>
 
-			<img src="doc/img/resize.png" alt="resize" height="195" width="927" class="session-image" />
+      <img src="doc/img/resize.png" alt="resize" height="195" width="927" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">resize: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">resize: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Apply the same width of the content to the other wrappers.</div>
+      <div class="comment">Apply the same width of the content to the other wrappers.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- This option to make sure that wrappers main, header, content, footer and buttons has the same size.<br />
-				- You can turn off this option to choose a free size for each one of that wrapper.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - This option to make sure that wrappers main, header, content, footer and buttons has the same size.<br />
+        - You can turn off this option to choose a free size for each one of that wrapper.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">separate: <span>true</span></div>
+      <div class="session-option">separate: <span>true</span></div>
 
-			<img src="doc/img/separate.png" alt="separate" height="64" width="518" class="session-image" />
+      <img src="doc/img/separate.png" alt="separate" height="64" width="518" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">separate: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">separate: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Change the style of the first line on grid.</div>
+      <div class="comment">Change the style of the first line on grid.</div>
 
-			<div class="comment-personal">Explanation: you enable this option to make more clearly the division between header and the rows.</div>
+      <div class="comment-personal">Explanation: you enable this option to make more clearly the division between header and the rows.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">skin: <span>'gridy'</span></div>
+      <div class="session-option">skin: <span>'gridy'</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">skin: 'strong-layout'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">skin: 'strong-layout'</span><br />
+        });
+      </div>
 
-			<div class="source">
-				<b>.gridy</b> .gridy-header { font-weight: normal; }<br />
-				<b>.strong-layout</b> .gridy-header { font-weight: bold; }
-			</div>
+      <div class="source">
+        <b>.gridy</b> .gridy-header { font-weight: normal; }<br />
+        <b>.strong-layout</b> .gridy-header { font-weight: bold; }
+      </div>
 
-			<div class="comment">Name of the root class name style "CSS prefix".</div>
+      <div class="comment">Name of the root class name style "CSS prefix".</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can choose different skin for each gridy and take advantage from selectors precedence to be possible use different style for each one;<br />
-				- On the example above we are applying style on the same container, but the precedence indicates about what gridy we are talking;<br />
-				- In this way you can creates a bunch of skin for your grid.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can choose different skin for each gridy and take advantage from selectors precedence to be possible use different style for each one;<br />
+        - On the example above we are applying style on the same container, but the precedence indicates about what gridy we are talking;<br />
+        - In this way you can creates a bunch of skin for your grid.
+      </div>
 
-			<div class="session">Effect Options:</div>
+      <div class="session">Effect Options:</div>
 
-			<div class="session-option">clickFx: <span>false</span></div>
+      <div class="session-option">clickFx: <span>false</span></div>
 
-			<img src="doc/img/clickFx.png" alt="clickFx" height="144" width="318" class="session-image" />
+      <img src="doc/img/clickFx.png" alt="clickFx" height="144" width="318" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">clickFx: true</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">clickFx: true</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables rows selection with different style on click.</div>
+      <div class="comment">Enables rows selection with different style on click.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can enable it to be possible click to do a line selection;<br />
-				- Hold ctrl/command key to do more then one selection.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can enable it to be possible click to do a line selection;<br />
+        - Hold ctrl/command key to do more then one selection.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">hoverFx: <span>false</span></div>
+      <div class="session-option">hoverFx: <span>false</span></div>
 
-			<img src="doc/img/hoverFx.png" alt="hoverFx" height="139" width="315" class="session-image" />
+      <img src="doc/img/hoverFx.png" alt="hoverFx" height="139" width="315" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">hoverFx: true</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">hoverFx: true</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables highlight rows on mouseover.</div>
+      <div class="comment">Enables highlight rows on mouseover.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can enable it to highlight the row where the mouse is over;<br />
-				- It can help you to read the grid when there is a lot of rows.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can enable it to highlight the row where the mouse is over;<br />
+        - It can help you to read the grid when there is a lot of rows.
+      </div>
 
-			<div class="session">Find Options:</div>
+      <div class="session">Find Options:</div>
 
-			<div class="session-option">find: <span>''</span></div>
+      <div class="session-option">find: <span>''</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">find: 'value'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">find: 'value'</span><br />
+        });
+      </div>
 
-			<div class="source">
-				...&amp;find=value
-			</div>
+      <div class="source">
+        ...&amp;find=value
+      </div>
 
-			<div class="comment">Name of the column where research will be done.</div>
+      <div class="comment">Name of the column where research will be done.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You choose wich column do you want to do a search;<br />
-				- If your WHERE needs more parameters, then use 'params' or 'paramsElements' it.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You choose wich column do you want to do a search;<br />
+        - If your WHERE needs more parameters, then use 'params' or 'paramsElements' it.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">finds: <span>[]</span></div>
+      <div class="session-option">finds: <span>[]</span></div>
 
-			<img src="doc/img/finds.png" alt="finds" height="109" width="228" class="session-image" />
+      <img src="doc/img/finds.png" alt="finds" height="109" width="228" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">finds: [<br />
-				&#160;&#160;&#160;&#160;{ name: 'Attribute', value: 'attribute' },<br />
-				&#160;&#160;&#160;&#160;{ name: 'Value', value: 'value' },<br />
-				&#160;&#160;&#160;&#160;{ name: 'Description', value: 'description' },<br />
-				&#160;&#160;&#160;&#160;{ name: 'Version', value: 'version' }<br />
-				&#160;&#160;]</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">finds: [<br />
+        &#160;&#160;&#160;&#160;{ name: 'Attribute', value: 'attribute' },<br />
+        &#160;&#160;&#160;&#160;{ name: 'Value', value: 'value' },<br />
+        &#160;&#160;&#160;&#160;{ name: 'Description', value: 'description' },<br />
+        &#160;&#160;&#160;&#160;{ name: 'Version', value: 'version' }<br />
+        &#160;&#160;]</span><br />
+        });
+      </div>
 
-			<div class="comment">List of objects with the name and value representing the avaliable columns for search.</div>
+      <div class="comment">List of objects with the name and value representing the avaliable columns for search.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can choose the columns you want make possible to do a search;<br />
-				- You choose the value corresponding to the database column and a pretty name to be displayed to the user;<br />
-				- Normally we put all values from columns, but you can choose even values ​​that are not listed.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can choose the columns you want make possible to do a search;<br />
+        - You choose the value corresponding to the database column and a pretty name to be displayed to the user;<br />
+        - Normally we put all values from columns, but you can choose even values ​​that are not listed.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">findTarget: <span>undefined</span></div>
+      <div class="session-option">findTarget: <span>undefined</span></div>
 
-			<img src="doc/img/findTarget.png" alt="findTarget" height="135" width="712" class="session-image" />
+      <img src="doc/img/findTarget.png" alt="findTarget" height="135" width="712" class="session-image" />
 
-			<div class="source">
-				&lt;div <span class="highlight">id="target"</span>&gt;Find:&lt;/div&gt;
-			</div>
+      <div class="source">
+        &lt;div <span class="highlight">id="target"</span>&gt;Find:&lt;/div&gt;
+      </div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">findTarget: '#target'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">findTarget: '#target'</span><br />
+        });
+      </div>
 
-			<div class="comment">Selector of the place where the "find" element will be appended.</div>
+      <div class="comment">Selector of the place where the "find" element will be appended.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- For default the find box is located on the right side of the search field, but you can change the place of it;<br />
-				- To change the place, just provide a jQuery selector to indicate the new place.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - For default the find box is located on the right side of the search field, but you can change the place of it;<br />
+        - To change the place, just provide a jQuery selector to indicate the new place.
+      </div>
 
-			<div class="session">Header Options:</div>
+      <div class="session">Header Options:</div>
 
-			<div class="session-option">arrowDown: <span>'gridy-arrow-down'</span></div>
+      <div class="session-option">arrowDown: <span>'gridy-arrow-down'</span></div>
 
-			<img src="doc/img/arrowDown.png" alt="arrowDown" height="25" width="356" class="session-image" />
+      <img src="doc/img/arrowDown.png" alt="arrowDown" height="25" width="356" class="session-image" />
 
-			<div class="source">
-				<span class="highlight">.arrow-down-big { background: url('big-arrow-down.png'); }</span>
-			</div>
+      <div class="source">
+        <span class="highlight">.arrow-down-big { background: url('big-arrow-down.png'); }</span>
+      </div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">arrowDown: 'arrow-down-big'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">arrowDown: 'arrow-down-big'</span><br />
+        });
+      </div>
 
-			<div class="comment">Class with background used as icon on the descending sort.</div>
+      <div class="comment">Class with background used as icon on the descending sort.</div>
 
-			<div class="comment-personal">Explanation: you can change the background icon with one you like.</div>
+      <div class="comment-personal">Explanation: you can change the background icon with one you like.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">arrowNone: <span>'gridy-arrow-none'</span></div>
+      <div class="session-option">arrowNone: <span>'gridy-arrow-none'</span></div>
 
-			<img src="doc/img/arrowNone.png" alt="arrowNone" height="22" width="322" class="session-image" />
+      <img src="doc/img/arrowNone.png" alt="arrowNone" height="22" width="322" class="session-image" />
 
-			<div class="source">
-				<span class="highlight">.arrow-no-sorted { background: url('no-sorted-arrow.png'); }</span>
-			</div>
+      <div class="source">
+        <span class="highlight">.arrow-no-sorted { background: url('no-sorted-arrow.png'); }</span>
+      </div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">arrowNone: 'arrow-no-sorted'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">arrowNone: 'arrow-no-sorted'</span><br />
+        });
+      </div>
 
-			<div class="comment">Class with background used as icon when there is no sort by especific field.</div>
+      <div class="comment">Class with background used as icon when there is no sort by especific field.</div>
 
-			<div class="comment-personal">Explanation: you can choose an empty image to hide the arrow when there is no sort.</div>
+      <div class="comment-personal">Explanation: you can choose an empty image to hide the arrow when there is no sort.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">arrowUp: <span>'gridy-arrow-up'</span></div>
+      <div class="session-option">arrowUp: <span>'gridy-arrow-up'</span></div>
 
-			<img src="doc/img/arrowUp.png" alt="arrowUp" height="23" width="294" class="session-image" />
+      <img src="doc/img/arrowUp.png" alt="arrowUp" height="23" width="294" class="session-image" />
 
-			<div class="source">
-				<span class="highlight">.arrow-up-big { background: url('big-arrow-up.png'); }</span>
-			</div>
+      <div class="source">
+        <span class="highlight">.arrow-up-big { background: url('big-arrow-up.png'); }</span>
+      </div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">arrowUp: 'arrow-up-big'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">arrowUp: 'arrow-up-big'</span><br />
+        });
+      </div>
 
-			<div class="comment">Class with background used as icon on the ascending sort.</div>
+      <div class="comment">Class with background used as icon on the ascending sort.</div>
 
-			<div class="comment-personal">Explanation: you can change the background icon with one you like.</div>
+      <div class="comment-personal">Explanation: you can change the background icon with one you like.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">headers: <span>[]</span></div>
+      <div class="session-option">headers: <span>[]</span></div>
 
-			<img src="doc/img/headers.png" alt="headers" height="174" width="1018" class="session-image" />
+      <img src="doc/img/headers.png" alt="headers" height="174" width="1018" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">columns		: [<br />
-				&#160;&#160;&#160;&#160;{ width: 1000 }<br />
-				&#160;&#160;],<br />
-				&#160;&#160;headers		: [<br />
-				&#160;&#160;&#160;&#160;{ name: 'Attribute', value: 'attribute', width: 100, clazz: 'special' },<br />
-				&#160;&#160;&#160;&#160;{ name: 'Value', value: 'value', width: 100 },<br />
-				&#160;&#160;&#160;&#160;{ name: 'Description', value: 'description', width: 600 },<br />
-				&#160;&#160;&#160;&#160;{ name: 'Version', value: 'version', width: 100 },<br />
-				&#160;&#160;&#160;&#160;{ width: 100 }<br />
-				&#160;&#160;],<br />
-				&#160;&#160;}</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">columns    : [<br />
+        &#160;&#160;&#160;&#160;{ width: 1000 }<br />
+        &#160;&#160;],<br />
+        &#160;&#160;headers    : [<br />
+        &#160;&#160;&#160;&#160;{ name: 'Attribute', value: 'attribute', width: 100, clazz: 'special' },<br />
+        &#160;&#160;&#160;&#160;{ name: 'Value', value: 'value', width: 100 },<br />
+        &#160;&#160;&#160;&#160;{ name: 'Description', value: 'description', width: 600 },<br />
+        &#160;&#160;&#160;&#160;{ name: 'Version', value: 'version', width: 100 },<br />
+        &#160;&#160;&#160;&#160;{ width: 100 }<br />
+        &#160;&#160;],<br />
+        &#160;&#160;}</span><br />
+        });
+      </div>
 
-			<div class="comment">Array of objects that represents each header columns of the grid with name, value, width and clazz.</div>
+      <div class="comment">Array of objects that represents each header columns of the grid with name, value, width and clazz.</div>
 
-			<div class="comment-personal">Explanation:<br />
-				- See options 'column'!<br />
-				- Whats the difference of 'columns' option?:<br />
-				+ 1. On first look, nothing! But when you want a different width between headers and columns you must declare all options on 'headers' and just the width on 'columns';<br />
-				+ 2. 'headers' has priority over columns less the attribute 'width' that each one has your own;<br />
-				+ 3. If you declare 'name', 'value' and 'clazz' in both option, only the attributes of 'headers' will be considered;<br />
-				+ 4. If you don't need different widths, then use just columns to be more visible de configuration.<br />
-			</div>
+      <div class="comment-personal">Explanation:<br />
+        - See options 'column'!<br />
+        - Whats the difference of 'columns' option?:<br />
+        + 1. On first look, nothing! But when you want a different width between headers and columns you must declare all options on 'headers' and just the width on 'columns';<br />
+        + 2. 'headers' has priority over columns less the attribute 'width' that each one has your own;<br />
+        + 3. If you declare 'name', 'value' and 'clazz' in both option, only the attributes of 'headers' will be considered;<br />
+        + 4. If you don't need different widths, then use just columns to be more visible de configuration.<br />
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session">Page Options</div>
+      <div class="session">Page Options</div>
 
-			<div class="session-option">buttonBackTitle: <span>'&lsaquo; Back'</span></div>
+      <div class="session-option">buttonBackTitle: <span>'&lsaquo; Back'</span></div>
 
-			<img src="doc/img/buttonBackTitle.png" alt="buttonBackTitle" height="66" width="301" class="session-image" />
+      <img src="doc/img/buttonBackTitle.png" alt="buttonBackTitle" height="66" width="301" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">buttonBackTitle: 'Previous'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">buttonBackTitle: 'Previous'</span><br />
+        });
+      </div>
 
-			<div class="comment">Title of the navigation button back.</div>
+      <div class="comment">Title of the navigation button back.</div>
 
-			<div class="comment-personal">Explanation: you can choose a tip for what is that button on mouse over.</div>
+      <div class="comment-personal">Explanation: you can choose a tip for what is that button on mouse over.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">buttonMax: <span>10</span></div>
+      <div class="session-option">buttonMax: <span>10</span></div>
 
-			<img src="doc/img/buttonMax.png" alt="buttonMax" height="53" width="229" class="session-image" />
+      <img src="doc/img/buttonMax.png" alt="buttonMax" height="53" width="229" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">buttonMax: 1</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">buttonMax: 1</span><br />
+        });
+      </div>
 
-			<div class="comment">Number of paging buttons visible.</div>
+      <div class="comment">Number of paging buttons visible.</div>
 
-			<div class="comment-personal">Explanation: you can choose to see just a few buttons page and let the responsibility to the back and next button.</div>
+      <div class="comment-personal">Explanation: you can choose to see just a few buttons page and let the responsibility to the back and next button.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">buttonNextTitle: <span>'Next &rsaquo;'</span></div>
+      <div class="session-option">buttonNextTitle: <span>'Next &rsaquo;'</span></div>
 
-			<img src="doc/img/buttonNextTitle.png" alt="buttonNextTitle" height="71" width="270" class="session-image" />
+      <img src="doc/img/buttonNextTitle.png" alt="buttonNextTitle" height="71" width="270" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">buttonNextTitle: 'Forward'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">buttonNextTitle: 'Forward'</span><br />
+        });
+      </div>
 
-			<div class="comment">Title of the navigation button next.</div>
+      <div class="comment">Title of the navigation button next.</div>
 
-			<div class="comment-personal">Explanation: you can choose a tip for what is that button on mouse over.</div>
+      <div class="comment-personal">Explanation: you can choose a tip for what is that button on mouse over.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">buttonOption: <span>true</span></div>
+      <div class="session-option">buttonOption: <span>true</span></div>
 
-			<img src="doc/img/buttonOption.png" alt="buttonOption" height="124" width="787" class="session-image" />
+      <img src="doc/img/buttonOption.png" alt="buttonOption" height="124" width="787" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">buttonOption: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">buttonOption: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Shows the pagination buttons.</div>
+      <div class="comment">Shows the pagination buttons.</div>
 
-			<div class="comment-personal">Explanation: maybe you don't want to show the page buttons, even if it has more than one page to show.</div>
+      <div class="comment-personal">Explanation: maybe you don't want to show the page buttons, even if it has more than one page to show.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">buttonTitle: <span>'Page'</span></div>
+      <div class="session-option">buttonTitle: <span>'Page'</span></div>
 
-			<img src="doc/img/buttonTitle.png" alt="buttonTitle" height="65" width="338" class="session-image" />
+      <img src="doc/img/buttonTitle.png" alt="buttonTitle" height="65" width="338" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">buttonTitle: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">buttonTitle: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Text prepended in the button title with it number.</div>
+      <div class="comment">Text prepended in the button title with it number.</div>
 
-			<div class="comment-personal">Explanation: you can change the title for a good button page description.</div>
+      <div class="comment-personal">Explanation: you can change the title for a good button page description.</div>
 
-			<div class="session">JSON Options</div>
+      <div class="session">JSON Options</div>
 
-			<div class="session-option">listPath: <span>'list'</span></div>
+      <div class="session-option">listPath: <span>'list'</span></div>
 
-			<div class="source">{ "root": { "<span class="highlight">data</span>": [{"id": 1, "name": "Washington Botelho", "email": "gridy@wbotelhos.com"}] }, "total": 1 }</div>
+      <div class="source">{ "root": { "<span class="highlight">data</span>": [{"id": 1, "name": "Washington Botelho", "email": "gridy@wbotelhos.com"}] }, "total": 1 }</div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">listPath: 'root.data'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">listPath: 'root.data'</span><br />
+        });
+      </div>
 
-			<div class="comment">The JSON root name.</div>
+      <div class="comment">The JSON root name.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can receive a JSON list in the node you choose.<br />
-				- It can be at any depth.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can receive a JSON list in the node you choose.<br />
+        - It can be at any depth.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">totalPath: <span>'total'</span></div>
+      <div class="session-option">totalPath: <span>'total'</span></div>
 
-			<div class="source">{ "list": [{"id": 1, "name": "Washington Botelho", "email": "gridy@wbotelhos.com"}], <span class="highlight">"total": { "value": 1 }</span> } }</div>
+      <div class="source">{ "list": [{"id": 1, "name": "Washington Botelho", "email": "gridy@wbotelhos.com"}], <span class="highlight">"total": { "value": 1 }</span> } }</div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">totalPath: 'total.value'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">totalPath: 'total.value'</span><br />
+        });
+      </div>
 
-			<div class="comment">Path of the total element.</div>
+      <div class="comment">Path of the total element.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can change the path where you find the total value.<br />
-				- It can be at any depth.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can change the path where you find the total value.<br />
+        - It can be at any depth.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">template: <span>'template'</span></div>
+      <div class="session-option">template: <span>'template'</span></div>
 
-			<div class="source">
-				&lt;script id="<span class="highlight">template-free</span>" type="text/x-jquery-tmpl"&gt;<br />
-					&#160;&#160;&lt;div&gt;<br />
-					&#160;&#160;&#160;&#160;&lt;div&gt;${attribute}&lt;/div&gt;<br />
-					&#160;&#160;&#160;&#160;&lt;div&gt;${value}&lt;/div&gt;<br />
-					&#160;&#160;&#160;&#160;&lt;div&gt;${description}&lt;/div&gt;<br />
-					&#160;&#160;&#160;&#160;&lt;div&gt;${version}&lt;/div&gt;<br />
-					&#160;&#160;&lt;/div&gt;<br />
-				&lt;/script&gt;
-			</div>
+      <div class="source">
+        &lt;script id="<span class="highlight">template-free</span>" type="text/x-jquery-tmpl"&gt;<br />
+          &#160;&#160;&lt;div&gt;<br />
+          &#160;&#160;&#160;&#160;&lt;div&gt;${attribute}&lt;/div&gt;<br />
+          &#160;&#160;&#160;&#160;&lt;div&gt;${value}&lt;/div&gt;<br />
+          &#160;&#160;&#160;&#160;&lt;div&gt;${description}&lt;/div&gt;<br />
+          &#160;&#160;&#160;&#160;&lt;div&gt;${version}&lt;/div&gt;<br />
+          &#160;&#160;&lt;/div&gt;<br />
+        &lt;/script&gt;
+      </div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">template: 'template-free'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">template: 'template-free'</span><br />
+        });
+      </div>
 
-			<div class="comment">The ID of the script template loaded.</div>
+      <div class="comment">The ID of the script template loaded.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- If you have more than one kind of grid in you page with different structure, then you will need to create more than one template.<br />
-				- For default the template with ID equals 'template' is called by Gridy, but you can creates other template and gives another ID to be hooked.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - If you have more than one kind of grid in you page with different structure, then you will need to create more than one template.<br />
+        - For default the template with ID equals 'template' is called by Gridy, but you can creates other template and gives another ID to be hooked.
+      </div>
 
-			<div class="session">Loading Options</div>
+      <div class="session">Loading Options</div>
 
-			<div class="session-option">loadingIcon: <span>'gridy-loading'</span></div>
+      <div class="session-option">loadingIcon: <span>'gridy-loading'</span></div>
 
-			<img src="doc/img/loadingIcon.png" alt="loadingIcon" height="70" width="175" class="session-image" />
+      <img src="doc/img/loadingIcon.png" alt="loadingIcon" height="70" width="175" class="session-image" />
 
-			<div class="source">
-				<span class="highlight">.loading-icon { background: url('loading.png'); }</span>
-			</div>
+      <div class="source">
+        <span class="highlight">.loading-icon { background: url('loading.png'); }</span>
+      </div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">loadingIcon: 'loading-icon'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">loadingIcon: 'loading-icon'</span><br />
+        });
+      </div>
 
-			<div class="comment">Name of the class used as a loading icon.</div>
+      <div class="comment">Name of the class used as a loading icon.</div>
 
-			<div class="comment-personal">Explanation: you can change the loading icon or even take it off.</div>
+      <div class="comment-personal">Explanation: you can change the loading icon or even take it off.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">loadingOption: <span>true</span></div>
+      <div class="session-option">loadingOption: <span>true</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">loadingOption: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">loadingOption: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the presentation of the loading message.</div>
+      <div class="comment">Enables the presentation of the loading message.</div>
 
-			<div class="comment-personal">Explanation: maybe you want turn the loading message off and do your own.</div>
+      <div class="comment-personal">Explanation: maybe you want turn the loading message off and do your own.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">loadingText: <span>'Loading...'</span></div>
+      <div class="session-option">loadingText: <span>'Loading...'</span></div>
 
-			<img src="doc/img/loadingText.png" alt="loadingText" height="82" width="236" class="session-image" />
+      <img src="doc/img/loadingText.png" alt="loadingText" height="82" width="236" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">loadingText: 'Wait a momente please...'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">loadingText: 'Wait a momente please...'</span><br />
+        });
+      </div>
 
-			<div class="comment">Text that will appear during the loading.</div>
+      <div class="comment">Text that will appear during the loading.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can set a text to explain that Gridy is loading.<br />
-				- If your intention is just show the icon, than let this option with a empty text.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can set a text to explain that Gridy is loading.<br />
+        - If your intention is just show the icon, than let this option with a empty text.
+      </div>
 
-			<div class="session">Message Options</div>
+      <div class="session">Message Options</div>
 
-			<div class="session-option">messageOption: <span>false</span></div>
+      <div class="session-option">messageOption: <span>false</span></div>
 
-			<img src="doc/img/messageOption.png" alt="messageOption" height="120" width="393" class="session-image" />
+      <img src="doc/img/messageOption.png" alt="messageOption" height="120" width="393" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">messageOption: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">messageOption: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the display of messages about the grid.</div>
+      <div class="comment">Enables the display of messages about the grid.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can show error, success, warning and notice messages on this container.<br />
-				- Error message throwed by application is showed on that automatically.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can show error, success, warning and notice messages on this container.<br />
+        - Error message throwed by application is showed on that automatically.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">messageTimer: <span>4000</span></div>
+      <div class="session-option">messageTimer: <span>4000</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">messageTimer: 2000</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">messageTimer: 2000</span><br />
+        });
+      </div>
 
-			<div class="comment">Time in milliseconds in which the messages will remain on the screen.</div>
+      <div class="comment">Time in milliseconds in which the messages will remain on the screen.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- If you want give more time to the user read the message, just increase the time.<br />
-				- The time is in milliseconds, to convert it to second just divide by 1000.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - If you want give more time to the user read the message, just increase the time.<br />
+        - The time is in milliseconds, to convert it to second just divide by 1000.
+      </div>
 
-			<div class="session">Other Options</div>
+      <div class="session">Other Options</div>
 
-			<div class="session-option">debug: <span>false</span></div>
+      <div class="session-option">debug: <span>false</span></div>
 
-			<img src="doc/img/debug.png" alt="debug" height="161" width="256" class="session-image" />
+      <img src="doc/img/debug.png" alt="debug" height="161" width="256" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">debug: true</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">debug: true</span><br />
+        });
+      </div>
 
-			<div class="comment">Shows details of the grid request.</div>
+      <div class="comment">Shows details of the grid request.</div>
 
-			<div class="comment-personal">Explanation: to know about data that is sending on request.</div>
+      <div class="comment-personal">Explanation: to know about data that is sending on request.</div>
 
-			<div class="session">Refresh Options</div>
+      <div class="session">Refresh Options</div>
 
-			<div class="session-option">refreshIcon: <span>'gridy-button-refresh'</span></div>
+      <div class="session-option">refreshIcon: <span>'gridy-button-refresh'</span></div>
 
-			<img src="doc/img/refreshIcon.png" alt="refreshIcon" height="72" width="129" class="session-image" />
+      <img src="doc/img/refreshIcon.png" alt="refreshIcon" height="72" width="129" class="session-image" />
 
-			<div class="source">
-				<span class="highlight">.refresh-button { background: url('refresh.png'); }</span>
-			</div>
+      <div class="source">
+        <span class="highlight">.refresh-button { background: url('refresh.png'); }</span>
+      </div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">refreshIcon: 'refresh-button'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">refreshIcon: 'refresh-button'</span><br />
+        });
+      </div>
 
-			<div class="comment">Button to refresh the data of the grid.</div>
+      <div class="comment">Button to refresh the data of the grid.</div>
 
-			<div class="comment-personal">Explanation: if someone alter some information on the grid you current vision will be old, then refresh it.</div>
+      <div class="comment-personal">Explanation: if someone alter some information on the grid you current vision will be old, then refresh it.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">refreshOption: <span>true</span></div>
+      <div class="session-option">refreshOption: <span>true</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">refreshOption: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">refreshOption: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the refresh button.</div>
+      <div class="comment">Enables the refresh button.</div>
 
-			<div class="comment-personal">Explanation: if you want refresh the grid just with another search you can remove the refresh button.</div>
+      <div class="comment-personal">Explanation: if you want refresh the grid just with another search you can remove the refresh button.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">refreshTarget: <span>undefined</span></div>
+      <div class="session-option">refreshTarget: <span>undefined</span></div>
 
-			<img src="doc/img/refreshTarget.png" alt="refreshTarget" height="108" width="395" class="session-image" />
+      <img src="doc/img/refreshTarget.png" alt="refreshTarget" height="108" width="395" class="session-image" />
 
-			<div class="source">
-				&lt;div <span class="highlight">id="target"</span>&gt;Find:&lt;/div&gt;
-			</div>
+      <div class="source">
+        &lt;div <span class="highlight">id="target"</span>&gt;Find:&lt;/div&gt;
+      </div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">refreshTarget: '#target'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">refreshTarget: '#target'</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the refresh button.</div>
+      <div class="comment">Enables the refresh button.</div>
 
-			<div class="comment-personal">Explanation: if you want refresh the grid just with another search you can remove the refresh button.</div>
+      <div class="comment-personal">Explanation: if you want refresh the grid just with another search you can remove the refresh button.</div>
 
-			<div class="session">Result Options</div>
+      <div class="session">Result Options</div>
 
-			<div class="session-option">firstQuery: <span>true</span></div>
+      <div class="session-option">firstQuery: <span>true</span></div>
 
-			<img src="doc/img/firstQuery.png" alt="firstQuery" height="224" width="1009" class="session-image" />
+      <img src="doc/img/firstQuery.png" alt="firstQuery" height="224" width="1009" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">firstQuery: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">firstQuery: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Choose if the grid will do a first query when loaded on page.</div>
+      <div class="comment">Choose if the grid will do a first query when loaded on page.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- if you always starts doing a filter before the search, than you can turn off the first query.<br />
-				- Of course if the options passed to the Gridy is enough, you don't need it<br />
-				- This options has the objective to avoidd the first request that can bring useless data.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - if you always starts doing a filter before the search, than you can turn off the first query.<br />
+        - Of course if the options passed to the Gridy is enough, you don't need it<br />
+        - This options has the objective to avoidd the first request that can bring useless data.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">noFirstQueryText: <span>'No search was performed yet!'</span></div>
+      <div class="session-option">noFirstQueryText: <span>'No search was performed yet!'</span></div>
 
-			<img src="doc/img/noFirstQueryText.png" alt="noFirstQueryText" height="116" width="304" class="session-image" />
+      <img src="doc/img/noFirstQueryText.png" alt="noFirstQueryText" height="116" width="304" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">noFirstQueryText: 'Do your first query!'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">noFirstQueryText: 'Do your first query!'</span><br />
+        });
+      </div>
 
-			<div class="comment">Message displayed when the first query is blocked.</div>
+      <div class="comment">Message displayed when the first query is blocked.</div>
 
-			<div class="comment-personal">Explanation: you can choose a good description to tell the user that him must do the first query before show the data.</div>
+      <div class="comment-personal">Explanation: you can choose a good description to tell the user that him must do the first query before show the data.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">noResultText: <span>'No item was found!'</span></div>
+      <div class="session-option">noResultText: <span>'No item was found!'</span></div>
 
-			<img src="doc/img/noResultText.png" alt="noResultText" height="103" width="250" class="session-image" />
+      <img src="doc/img/noResultText.png" alt="noResultText" height="103" width="250" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">noResultText: 'No result, try again!'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">noResultText: 'No result, try again!'</span><br />
+        });
+      </div>
 
-			<div class="comment">Text shown when no result is found for the search.</div>
+      <div class="comment">Text shown when no result is found for the search.</div>
 
-			<div class="comment-personal">Explanation: you can tell the user the no result was found, maybe give some tips.</div>
+      <div class="comment-personal">Explanation: you can tell the user the no result was found, maybe give some tips.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">resultOption: <span>true</span></div>
+      <div class="session-option">resultOption: <span>true</span></div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">resultOption: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">resultOption: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the presentation of details of the result.</div>
+      <div class="comment">Enables the presentation of details of the result.</div>
 
-			<div class="comment-personal">Explanation: maybe you don't want to show message when there is no result or the first query was not trigger.</div>
+      <div class="comment-personal">Explanation: maybe you don't want to show message when there is no result or the first query was not trigger.</div>
 
-			<div class="session">Row Options</div>
+      <div class="session">Row Options</div>
 
-			<div class="session-option">rows: <span>10</span></div>
+      <div class="session-option">rows: <span>10</span></div>
 
-			<img src="doc/img/rows.png" alt="rows" height="151" width="312" class="session-image" />
+      <img src="doc/img/rows.png" alt="rows" height="151" width="312" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">rows: 3</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">rows: 3</span><br />
+        });
+      </div>
 
-			<div class="comment">Number of rows displayed on each page.</div>
+      <div class="comment">Number of rows displayed on each page.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- If you has more space on page you can increase this number to show more items.<br />
-				- With lower number you'll has more pages and less database overload.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - If you has more space on page you can increase this number to show more items.<br />
+        - With lower number you'll has more pages and less database overload.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">rowsNumber: <span>[5, 10, 25, 50, 100]</span></div>
+      <div class="session-option">rowsNumber: <span>[5, 10, 25, 50, 100]</span></div>
 
-			<img src="doc/img/rowsNumber.png" alt="rowsNumber" height="105" width="96" class="session-image" />
+      <img src="doc/img/rowsNumber.png" alt="rowsNumber" height="105" width="96" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">rowsNumber: [10, 100, 1000, 10000]</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">rowsNumber: [10, 100, 1000, 10000]</span><br />
+        });
+      </div>
 
-			<div class="comment">List with the numbers of lines that should be displayed.</div>
+      <div class="comment">List with the numbers of lines that should be displayed.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- You can choose how many lines can be displayed at once.<br />
-				- Huge number can be slower, than make sure to keep a good number for pagination.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - You can choose how many lines can be displayed at once.<br />
+        - Huge number can be slower, than make sure to keep a good number for pagination.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">rowsTarget: <span>undefined</span></div>
+      <div class="session-option">rowsTarget: <span>undefined</span></div>
 
-			<img src="doc/img/rowsTarget.png" alt="rowsTarget" height="124" width="337" class="session-image" />
+      <img src="doc/img/rowsTarget.png" alt="rowsTarget" height="124" width="337" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">rowsTarget: '#target'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">rowsTarget: '#target'</span><br />
+        });
+      </div>
 
-			<div class="comment">Selector of the place where the "rows" element will be appended.</div>
+      <div class="comment">Selector of the place where the "rows" element will be appended.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- For default the rows box is located on the footer, but you can change the place of it;<br />
-				- To change the place, just provide a jQuery selector to indicate the new place.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - For default the rows box is located on the footer, but you can change the place of it;<br />
+        - To change the place, just provide a jQuery selector to indicate the new place.
+      </div>
 
-			<div class="session">Search Options</div>
+      <div class="session">Search Options</div>
 
-			<div class="session-option">search: <span>''</span></div>
+      <div class="session-option">search: <span>''</span></div>
 
-			<div class="source">...&amp;search=wbotelhos%20blog</div>
+      <div class="source">...&amp;search=wbotelhos%20blog</div>
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">search: 'wbotelhos blog'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">search: 'wbotelhos blog'</span><br />
+        });
+      </div>
 
-			<div class="comment">Default term to be consulted.</div>
+      <div class="comment">Default term to be consulted.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- Some times you wants the Gridy loads and on the first load do a search, than just provide the term you want;<br />
-				- Of couser that the term typed on search field will be override this value.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - Some times you wants the Gridy loads and on the first load do a search, than just provide the term you want;<br />
+        - Of couser that the term typed on search field will be override this value.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">searchButtonLabel: <span>'search'</span></div>
+      <div class="session-option">searchButtonLabel: <span>'search'</span></div>
 
-			<img src="doc/img/searchButtonLabel.png" alt="searchButtonLabel" height="73" width="517" class="session-image" />
+      <img src="doc/img/searchButtonLabel.png" alt="searchButtonLabel" height="73" width="517" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">searchButtonLabel: 'go!'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">searchButtonLabel: 'go!'</span><br />
+        });
+      </div>
 
-			<div class="comment">Value of the search button.</div>
+      <div class="comment">Value of the search button.</div>
 
-			<div class="comment-personal">Explanation: choose an better description to the search button.</div>
+      <div class="comment-personal">Explanation: choose an better description to the search button.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">searchButtonTitle: <span>'Start the search'</span></div>
+      <div class="session-option">searchButtonTitle: <span>'Start the search'</span></div>
 
-			<img src="doc/img/searchButtonTitle.png" alt="searchButtonTitle" height="73" width="506" class="session-image" />
+      <img src="doc/img/searchButtonTitle.png" alt="searchButtonTitle" height="73" width="506" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">searchButtonTitle: 'Click to search'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">searchButtonTitle: 'Click to search'</span><br />
+        });
+      </div>
 
-			<div class="comment">Title of the search button.</div>
+      <div class="comment">Title of the search button.</div>
 
-			<div class="comment-personal">Explanation: choose a good explanation about what this button do.</div>
+      <div class="comment-personal">Explanation: choose a good explanation about what this button do.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">searchFocus: <span>true</span></div>
+      <div class="session-option">searchFocus: <span>true</span></div>
 
-			<img src="doc/img/searchFocus.png" alt="searchFocus " height="55" width="405" class="session-image" />
+      <img src="doc/img/searchFocus.png" alt="searchFocus " height="55" width="405" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">searchFocus: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">searchFocus: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the automatic focus in the search field.</div>
+      <div class="comment">Enables the automatic focus in the search field.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- Its a good idea keep the focus enable to avoid the user click on field.<br />
-				- If you have more than one grid on the same screen, maybe you will need choose wich will receives the focus.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - Its a good idea keep the focus enable to avoid the user click on field.<br />
+        - If you have more than one grid on the same screen, maybe you will need choose wich will receives the focus.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">searchOption: <span>true</span></div>
+      <div class="session-option">searchOption: <span>true</span></div>
 
-			<img src="doc/img/searchOption.png" alt="searchOption " height="72" width="519" class="session-image" />
+      <img src="doc/img/searchOption.png" alt="searchOption " height="72" width="519" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">searchOption: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">searchOption: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the search field.</div>
+      <div class="comment">Enables the search field.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- If you need a search over the grid, then just enable this option.<br />
-				- Even if this options is off, you can set the initials values on Gridy configuration.<br />
-				- If you need more on field to input search criteria, then use the 'params' and 'paramsElements' to send the values.<br />
-				- For default we have just this search field, but you can create any you want.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - If you need a search over the grid, then just enable this option.<br />
+        - Even if this options is off, you can set the initials values on Gridy configuration.<br />
+        - If you need more on field to input search criteria, then use the 'params' and 'paramsElements' to send the values.<br />
+        - For default we have just this search field, but you can create any you want.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">searchTarget: <span>undefined</span></div>
+      <div class="session-option">searchTarget: <span>undefined</span></div>
 
-			<img src="doc/img/searchTarget.png" alt="searchTarget " height="93" width="533" class="session-image" />
+      <img src="doc/img/searchTarget.png" alt="searchTarget " height="93" width="533" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">searchTarget: '#target'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">searchTarget: '#target'</span><br />
+        });
+      </div>
 
-			<div class="comment">Selector of the place where the "search" element will be appended.</div>
+      <div class="comment">Selector of the place where the "search" element will be appended.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- For default the search box is located on the top of Gridy, but you can change the place of it;<br />
-				- To change the place, just provide a jQuery selector to indicate the new place.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - For default the search box is located on the top of Gridy, but you can change the place of it;<br />
+        - To change the place, just provide a jQuery selector to indicate the new place.
+      </div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">searchText: <span>''</span></div>
+      <div class="session-option">searchText: <span>''</span></div>
 
-			<img src="doc/img/searchText.png" alt="searchText " height="44" width="393" class="session-image" />
+      <img src="doc/img/searchText.png" alt="searchText " height="44" width="393" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">searchText: 'type your search here...'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">searchText: 'type your search here...'</span><br />
+        });
+      </div>
 
-			<div class="comment">Text displayed in the search field.</div>
+      <div class="comment">Text displayed in the search field.</div>
 
-			<div class="comment-personal">Explanation: you can set a tip text to encourage the user type something on search field.</div>
+      <div class="comment-personal">Explanation: you can set a tip text to encourage the user type something on search field.</div>
 
-			<div class="session">Status Options</div>
+      <div class="session">Status Options</div>
 
-			<div class="session-option">statusOption: <span>true</span></div>
+      <div class="session-option">statusOption: <span>true</span></div>
 
-			<img src="doc/img/statusOption.png" alt="statusOption " height="74" width="242" class="session-image" />
+      <img src="doc/img/statusOption.png" alt="statusOption " height="74" width="242" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">statusOption: false</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">statusOption: false</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the status information text.</div>
+      <div class="comment">Enables the status information text.</div>
 
-			<div class="comment-personal">Explanation: let it on to see how many pages the gridy has, you current page and the total of items.</div>
+      <div class="comment-personal">Explanation: let it on to see how many pages the gridy has, you current page and the total of items.</div>
 
-			<hr />
+      <hr />
 
-			<div class="session-option">statusText: <span>'Displaying {from} - {to} of {total} items'</span></div>
+      <div class="session-option">statusText: <span>'Displaying {from} - {to} of {total} items'</span></div>
 
-			<img src="doc/img/statusText.png" alt="statusText " height="72" width="298" class="session-image" />
+      <img src="doc/img/statusText.png" alt="statusText " height="72" width="298" class="session-image" />
 
-			<div class="source">
-				$('#grid').gridy({<br />
-				&#160;&#160;url: '/gridy',<br /> 
-				&#160;&#160;<span class="highlight">statusText: 'Page: {from} | Total Page: {to} | Total Items: {total}'</span><br />
-				});
-			</div>
+      <div class="source">
+        $('#grid').gridy({<br />
+        &#160;&#160;url: '/gridy',<br />
+        &#160;&#160;<span class="highlight">statusText: 'Page: {from} | Total Page: {to} | Total Items: {total}'</span><br />
+        });
+      </div>
 
-			<div class="comment">Enables the status information text.</div>
+      <div class="comment">Enables the status information text.</div>
 
-			<div class="comment-personal">
-				Explanation:<br />
-				- The text has three templates that can be used or not;<br />
-				- {from} you current page;<br />
-				- {to} the number of the last page;<br />
-				- {total} the total of item.
-			</div>
+      <div class="comment-personal">
+        Explanation:<br />
+        - The text has three templates that can be used or not;<br />
+        - {from} you current page;<br />
+        - {to} the number of the last page;<br />
+        - {total} the total of item.
+      </div>
 
-			<div id="global-demo" class="session">Changing the settings globally:</div>
+      <div id="global-demo" class="session">Changing the settings globally:</div>
 
-			<div class="source">
-				$.fn.catchy.defaults.scroll = true;<br/>
-				$.fn.catchy.defaults.sortOrder = 'desc';
-			</div>
+      <div class="source">
+        $.fn.catchy.defaults.scroll = true;<br/>
+        $.fn.catchy.defaults.sortOrder = 'desc';
+      </div>
 
-			<span class="comment">
-				- You can change any option mention the scope <b>$.fn.gridy.defaults.</b> + <i>option_name</i>;<br/>
-				- This setup must be called before you bind the Gridy, of course.
-			</span>
+      <span class="comment">
+        - You can change any option mention the scope <b>$.fn.gridy.defaults.</b> + <i>option_name</i>;<br/>
+        - This setup must be called before you bind the Gridy, of course.
+      </span>
 
-			<div class="session">Public functions:</div>
+      <div class="session">Public functions:</div>
 
-			<div class="source">$('#grid').gridy('reload');</div>
-			<div class="comment">Reload the grid with the current filter configuration.</div>
+      <div class="source">$('#grid').gridy('reload');</div>
+      <div class="comment">Reload the grid with the current filter configuration.</div>
 
-			<div class="source">$('#grid').gridy('set', { scroll: true });</div>
-			<div class="comment">Reload the grid setting new configurations.</div>
-		</div>
+      <div class="source">$('#grid').gridy('set', { scroll: true });</div>
+      <div class="comment">Reload the grid setting new configurations.</div>
+    </div>
 
-		<div id="footer">
-			<div>&copy; 2011 <a href="http://www.wbotelhos.com/" target="_blank">wbotelhos.com</a></div>
-		</div>
+    <div id="footer">
+      <div>&copy; 2011 <a href="http://www.wbotelhos.com/" target="_blank">wbotelhos.com</a></div>
+    </div>
 
-		<script type="text/javascript">
-			$(function() {
+    <script type="text/javascript">
+      $(function() {
 
-				$('#grid').gridy({
-					buttonMax	: 5,
-					clickFx		: true,
-					columns		: [
-						{ name: 'Attribute',value: 'attribute', width: 150 },
-						{ name: 'Value', value: 'value', width: 160 },
-						{ name: 'Description', value: 'description', width: 605 },
-						{ name: 'Version', value: 'version', width: 80 },
-						{ width: 95 }
-					],
-					dataType	: 'jsonp',
-					evenOdd		: true,
-					find		: 'attribute',
-					finds		: [
-						{ name: 'Attribute', value: 'attribute' },
-						{ name: 'Value', value: 'value' },
-						{ name: 'Description', value: 'description' },
-						{ name: 'Version', value: 'version' }
-					],
-					hoverFx		: true,
-					searchFocus	: false,
-					searchText	: 'type your search here...',
-					sortName	: 'attribute',
-					url			: 'http://localhost:8080/mockr/gridy',
-					width		: 1100
-				});
+        $('#grid').gridy({
+          buttonMax  : 5,
+          clickFx    : true,
+          columns    : [
+            { name: 'Attribute',value: 'attribute', width: 150 },
+            { name: 'Value', value: 'value', width: 160 },
+            { name: 'Description', value: 'description', width: 605 },
+            { name: 'Version', value: 'version', width: 80 },
+            { width: 95 }
+          ],
+          dataType  : 'jsonp',
+          evenOdd    : true,
+          find    : 'attribute',
+          finds    : [
+            { name: 'Attribute', value: 'attribute' },
+            { name: 'Value', value: 'value' },
+            { name: 'Description', value: 'description' },
+            { name: 'Version', value: 'version' }
+          ],
+          hoverFx    : true,
+          searchFocus  : false,
+          searchText  : 'type your search here...',
+          sortName  : 'attribute',
+          url      : 'http://localhost:8080/mockr/gridy',
+          width    : 1100
+        });
 
-				$('#scroll').gridy({
-					clickFx		: true,
-					columns		: [
-						{ name: 'Attribute', value: 'attribute', width: 150 },
-						{ name: 'Value', value: 'value', width: 160 },
-						{ name: 'Description', value: 'description', width: 600 },
-						{ name: 'Version', value: 'version', width: 78 },
-						{ width: 95 }
-					],
-					dataType	: 'jsonp',
-					evenOdd		: true,
-					find		: 'attribute',
-					finds		: [
-						{ name: 'Attribute', value: 'attribute' },
-						{ name: 'Value', value: 'value' },
-						{ name: 'Description', value: 'description' },
-						{ name: 'Version', value: 'version' }
-					],
-					height		: 200,
-					hoverFx		: true,
-					rows		: 100,
-					scroll		: true,
-					searchFocus	: false,
-					searchText	: 'type your search here...',
-					sortName	: 'attribute',
-					style		: 'free',
-					template	: 'template-free',
-					url			: 'http://localhost:8080/mockr/gridy',
-					width		: 1100
-				});
+        $('#scroll').gridy({
+          clickFx    : true,
+          columns    : [
+            { name: 'Attribute', value: 'attribute', width: 150 },
+            { name: 'Value', value: 'value', width: 160 },
+            { name: 'Description', value: 'description', width: 600 },
+            { name: 'Version', value: 'version', width: 78 },
+            { width: 95 }
+          ],
+          dataType  : 'jsonp',
+          evenOdd    : true,
+          find    : 'attribute',
+          finds    : [
+            { name: 'Attribute', value: 'attribute' },
+            { name: 'Value', value: 'value' },
+            { name: 'Description', value: 'description' },
+            { name: 'Version', value: 'version' }
+          ],
+          height    : 200,
+          hoverFx    : true,
+          rows    : 100,
+          scroll    : true,
+          searchFocus  : false,
+          searchText  : 'type your search here...',
+          sortName  : 'attribute',
+          style    : 'free',
+          template  : 'template-free',
+          url      : 'http://localhost:8080/mockr/gridy',
+          width    : 1100
+        });
 
-				$('#style').gridy({
-					clickFx		: true,
-					columns		: [
-						{ name: 'Attribute',value: 'attribute', width: 150 },
-						{ name: 'Value', value: 'value', width: 160 },
-						{ name: 'Description', value: 'description', width: 600 },
-						{ name: 'Version', value: 'version', width: 93 },
-						{ width: 95 }
-					],
-					dataType	: 'jsonp',
-					evenOdd		: true,
-					find		: 'attribute',
-					finds		: [
-						{ name: 'Attribute', value: 'attribute' },
-						{ name: 'Value', value: 'value' },
-						{ name: 'Description', value: 'description' },
-						{ name: 'Version', value: 'version' }
-					],
-					hoverFx		: true,
-					searchFocus	: false,
-					searchText	: 'type your search here...',
-					sortName	: 'attribute',
-					style		: 'free',
-					template	: 'template-free',
-					url			: 'http://localhost:8080/mockr/gridy',
-					width		: 1100
-				});
+        $('#style').gridy({
+          clickFx    : true,
+          columns    : [
+            { name: 'Attribute',value: 'attribute', width: 150 },
+            { name: 'Value', value: 'value', width: 160 },
+            { name: 'Description', value: 'description', width: 600 },
+            { name: 'Version', value: 'version', width: 93 },
+            { width: 95 }
+          ],
+          dataType  : 'jsonp',
+          evenOdd    : true,
+          find    : 'attribute',
+          finds    : [
+            { name: 'Attribute', value: 'attribute' },
+            { name: 'Value', value: 'value' },
+            { name: 'Description', value: 'description' },
+            { name: 'Version', value: 'version' }
+          ],
+          hoverFx    : true,
+          searchFocus  : false,
+          searchText  : 'type your search here...',
+          sortName  : 'attribute',
+          style    : 'free',
+          template  : 'template-free',
+          url      : 'http://localhost:8080/mockr/gridy',
+          width    : 1100
+        });
 
-			});
-		</script>
+      });
+    </script>
 
-		<script id="template" type="text/x-jquery-tmpl">
-			<tr>
-				<td>${attribute}</td>
-				<td>${value}</td>
-				<td>${description}</td>
-				<td>${version}</td>
+    <script id="template" type="text/x-jquery-tmpl">
+      <tr>
+        <td>${attribute}</td>
+        <td>${value}</td>
+        <td>${description}</td>
+        <td>${version}</td>
 
-				<td class="gridy-button">
-					<a href="javascript:void(0);">edit</a>
-				</td>
-			</tr>
-		</script>
+        <td class="gridy-button">
+          <a href="javascript:void(0);">edit</a>
+        </td>
+      </tr>
+    </script>
 
-		<script id="template-free" type="text/x-jquery-tmpl">
-			<div>
-				<div>${attribute}</div>
-				<div>${value}</div>
-				<div>${description}</div>
-				<div>${version}</div>
+    <script id="template-free" type="text/x-jquery-tmpl">
+      <div>
+        <div>${attribute}</div>
+        <div>${value}</div>
+        <div>${description}</div>
+        <div>${version}</div>
 
-				<div class="gridy-button">
-					<a href="javascript:void(0);">edit</a>
-				</div>
-			</div>
-		</script>
-	</body>
+        <div class="gridy-button">
+          <a href="javascript:void(0);">edit</a>
+        </div>
+      </div>
+    </script>
+  </body>
 </html>
