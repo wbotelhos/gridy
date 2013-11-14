@@ -1,0 +1,118 @@
+@CHARSET "UTF-8";
+
+/* global */
+
+  .gridy-search { height: 28px; margin: 0 auto; }
+  .gridy-search .gridy-search-content { height: 28px; margin: 0 auto; width: 480px; }
+  .gridy-search .gridy-search-content input[type="button"] { float: left; height: 28px; margin-left: 2px; width: 80px; }
+  .gridy-search .gridy-search-content input[type="text"] { color: #BBB; float: left; height: 20px; margin-bottom: 5px; }
+  .gridy-search .gridy-search-content input[type="text"].gridy-typed { color: #444; }
+
+  .gridy-arrow-down,
+  .gridy-arrow-empty,
+  .gridy-arrow-none,
+  .gridy-arrow-up { background-image: url('../img/icons.png'); background-repeat: none; display: block; height: 16px; width: 16px; }
+
+  .gridy-arrow-down { background-position: -64px -16px; }
+  .gridy-arrow-empty { background-position: 15px 0; }
+  .gridy-arrow-none { background-position: -128px -16px; }
+  .gridy-arrow-up { background-position: 0 -16px; }
+
+  .gridy-fade { opacity: .6; }
+  .gridy-error { color: #F55; font: bold 12px verdana; margin-bottom: 20px; margin-top: 20px; text-align: center; }
+
+  .gridy-loading { clear: left; float: left; }
+  .gridy-loading div { background: url('../img/loading.gif') no-repeat 0 3px; color: #555; font-size: 12px; text-indent: 15px; }
+
+  .gridy-status { float: left; height: 18px; margin: 5px auto; }
+
+  .gridy-result { color: #555; float: right; font-size: 12px; text-align: right; }
+
+  .gridy-scroll { border: 1px solid #BBB; overflow: auto !important; }
+
+  .gridy-content .gridy-even { background-color: #FFF; }
+  .gridy-content .gridy-odd { background-color: #F7F7F7; }
+  .gridy-content .gridy-even-scroll { background-color: #FFF; }
+  .gridy-content .gridy-odd-scroll { background-color: #F7F7F7; border-top-color: #F7F7F7 !important; }
+  .gridy-content .gridy-last-line-scroll { border-bottom: 0 !important; }
+
+  .gridy-content .gridy-row-hovered { background-color: #D9EBF5 !important; border-color: #CCC; }
+  .gridy-content .gridy-row-selected { background-color: #ECF1F5; border-color: #BBB; }
+
+  .gridy-button a {
+    border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; display: block; height: 20px; margin-right: 5px; margin-top: -5px; padding-top: 3px; text-align: center; text-indent: 0 !important; text-transform: lowercase; width: 90px;
+    -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
+  }
+
+  .gridy-footer { clear: both; height: 31px; margin: 0 auto; }
+  .gridy-footer .gridy-message { color: #F55; font-weight: bold; float: right; font-size: 12px; letter-spacing: .gridy-3px; margin-top: 10px; text-align: right; }
+
+  .gridy-find-option select,
+  .gridy-row-option select { border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-size: 12px; height: 24px; padding: 2px; }
+
+  .gridy-find-option { float: left; margin-left: 5px; }
+  .gridy-find-option select { margin-top: 2px; }
+
+  .gridy-row-option select { float: left; margin-top: 4px; }
+
+  .gridy-buttons { margin: 0 auto; text-align: center; }
+  .gridy-buttons input { border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; font-weight: normal; height: 24px; margin-right: 2px; padding-bottom: 2px; text-align: center; width: 40px; }
+  .gridy-buttons input.gridy-button-active { background-color: #F5F8F9; border: 1px solid #B5B5B5; cursor: default; color: #47A; }
+  .gridy-buttons input.gridy-button-back { }
+  .gridy-buttons input.gridy-button-next { }
+  .gridy-buttons input.gridy-button-reticence { color: #999; cursor: default; width: 25px; }
+
+  .gridy-button-refresh { background: url('../img/refresh.png') no-repeat 4px 3px #F8F8F8; border: 1px solid #CECECE; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); cursor: pointer; float: left; height: 24px; margin-left: 8px; margin-right: 2px; margin-top: 4px; padding-bottom: 2px; width: 25px; }
+  .gridy-button-refresh:hover { background-color: #FDFDFD; }
+
+  .gridy-row-option select,
+  .gridy-buttons input,
+  .gridy-button-refresh {
+    -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
+  }
+
+/* table */
+
+  .gridy-table { margin: 0 auto; }
+
+  .gridy-table .gridy-separate { border-top-width: 2px; }
+
+  .gridy-table th { float: left; padding-bottom: 7px; text-align: center; }
+  .gridy-table th div { float: right; }
+  .gridy-table th a { font-size: 11px; font-weight: normal; color: #369; letter-spacing: 1px; text-decoration: none; }
+  .gridy-table th a:hover { color: #339BD0; }
+  .gridy-table th a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
+
+  .gridy-table .gridy-content { clear: both; height: auto; margin: 0; overflow: visible; padding: 0; }
+  .gridy-table .gridy-content .gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
+  .gridy-table .gridy-content .gridy-last-line { border-bottom-width: 1px; }
+
+  .gridy-table td { border-color: #CCC; border-style: solid; border-width: 1px 0 0; float: left; min-height: 25px; padding-top: 9px; text-indent: 6px; }
+
+  .gridy-table .gridy-scroll .gridy-first-line td { border-top-width: 0px !important; }
+  .gridy-table .gridy-scroll .gridy-row-hovered { background-color: #D9EBF5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
+  .gridy-table .gridy-scroll .gridy-row-selected { background-color: #ECF1F5; border-color: #ECF1F5 #ECF1F5 #BBB #ECF1F5 !important; }
+
+
+/* div */
+
+  .gridy { margin: 0 auto; }
+
+  .gridy .gridy-separate { border-top-width: 2px !important; }
+
+  .gridy .gridy-header { clear: both; height: 16px; margin-bottom: 3px; }
+  .gridy .gridy-header > div { float: left; text-align: center; }
+  .gridy .gridy-header > div div { float: right; }
+  .gridy .gridy-header > div a { font-size: 11px; color: #369; letter-spacing: 1px; text-decoration: none; }
+  .gridy .gridy-header > div a:hover { color: #339BD0; }
+  .gridy .gridy-header > div a.gridy-sorted { color: #2C8CBD; font-weight: bold; }
+  .gridy .gridy-header > div a.gridy-no-sort { cursor: default; }
+
+  .gridy .gridy-scroll > div { border-color: #FFF #FFF #BBB #FFF; margin-bottom: 0; }
+  .gridy .gridy-scroll .gridy-row-hovered { background-color: #D9EBF5; border-left-color: #D9EBF5 !important; border-top-color: #D9EBF5 !important; }
+  .gridy .gridy-scroll .gridy-row-selected { background-color: #ECF1F5; border-left-color: #ECF1F5 !important; border-top-color: #ECF1F5 !important; }
+
+  .gridy .gridy-content { clear: both; height: auto; overflow: visible; }
+  .gridy .gridy-content > div { border: 1px solid #CCC; float: left; margin-bottom: -1px; }
+  .gridy .gridy-content > div > div { float: left; min-height: 27px; padding-top: 9px; text-indent: 6px; }
+  .gridy .gridy-content .gridy-no-result { height: 80px; color: #F55; font: bold 12px verdana; text-align: center; width: 100%; }
